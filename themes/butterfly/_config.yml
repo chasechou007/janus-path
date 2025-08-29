@@ -271,7 +271,7 @@ footer:
   copyright:
     enable: true
     version: true
-  custom_text:
+  custom_text: <div><span>结构之中看见秩序，张力之间寻找自由。 </span><span style="display:block;">From the tension of structure, we reclaim our clarity.</span></div>
 
 # --------------------------------------
 # Aside Settings
@@ -296,7 +296,8 @@ aside:
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      # github 个人信息页
+      link: https://github.com/chasechou007
   card_announcement:
     enable: true
     content: This is my Blog

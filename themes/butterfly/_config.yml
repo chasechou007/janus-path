@@ -206,11 +206,17 @@ toc:
   style_simple: false
   scroll_percent: true
 
+# 文章版权
 post_copyright:
+  # 是否啟用版權聲明
   enable: true
+  # 是否進行文章 URL 解碼
   decode: false
-  author_href:
+  # 作者鏈接
+  author_href: https://orcid.org/0009-0001-6381-2853
+  # 許可證類型
   license: CC BY-NC-SA 4.0
+  # 許可證鏈接
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 # Sponsor/reward
@@ -295,7 +301,7 @@ aside:
     button:
       enable: true
       icon: fab fa-github
-      text: Follow Me
+      text: 关注 ｜ Follow
       # github 个人信息页
       link: https://github.com/chasechou007
   card_announcement:

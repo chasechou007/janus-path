@@ -521,13 +521,12 @@ search:
 share:
   # Choose: sharejs / addtoany
   # Leave it empty if you don't need share
-  # use: sharejs
-  use: null
+  use: sharejs
 
   # Share.js
   # https://github.com/overtrue/share.js
   sharejs:
-    sites: facebook,twitter,wechat,weibo,qq
+    sites: facebook,twitter,wechat,weibo,qq,linkedin
 
   # AddToAny
   # https://www.addtoany.com/

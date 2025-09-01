@@ -5,7 +5,10 @@
 # Site
 title: '观澈辨机'
 subtitle: 'JanusPath ｜ 双面神哲学'
-description: 结构主义型创作者，JanusPath 认知哲学提出者。关注技术、文明、哲学与制度的交汇处，写作于结构与裂隙之间。
+description: '
+  观者，取广阔之视野；澈者，求透彻之认知；辨者，明察秋毫，去伪存真；机者，洞悉变局之枢纽。
+  这里是思想与观察的工坊，跨越哲学、社会、技术与文学，从结构看世界，从裂隙找路径。
+  在纷繁与噪点中，寻找清晰、深刻与可行动的洞察。'
 keywords:
 author: chase chou
 language: zh-CN
@@ -98,8 +101,21 @@ ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+Plugins:
+  - hexo-generator-robotstxt
 ## Themes: https://hexo.io/themes/
 theme: butterfly
+
+robotstxt:
+  useragent: '*'
+  allow:
+    - /
+  disallow: []
+  sitemap:
+    - https://blog.janus-path.com/sitemap.xml
+
+sitemap:
+  path: sitemap.xml
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

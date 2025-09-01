@@ -4,7 +4,10 @@
 # Chinese: https://butterfly.js.org/
 # English: https://butterfly.js.org/en/
 # --------------------------------------
-
+seo:
+  enable: true
+  page:
+    description: true
 # --------------------------------------
 # Navigation Settings
 # --------------------------------------
@@ -54,7 +57,7 @@ code_blocks:
 # Formal:
 #   icon: link || the description || color
 social:
-  fab fa-github: https://github.com/xxxxx || Github || '#24292e'
+  fab fa-github: https://github.com/chasechou007 || Github || '#24292e'
   # fas fa-envelope: mailto:xxxxxx@gmail.com || Email || '#4a7dbe'
 
 # --------------------------------------
@@ -284,8 +287,8 @@ footer:
 # --------------------------------------
 
 aside:
-  enable: true
-  hide: false
+  enable: true #是否啟用側邊欄
+  hide: false #是否默認隱藏側邊欄
   # Show the button to hide the aside in bottom right button
   button: true
   mobile: true
@@ -293,54 +296,58 @@ aside:
   position: right
   display:
     archive: true
-    tag: true
+    tag: true #是否显示tags
     category: true
   card_author:
-    enable: true
-    description:
+    enable: true #是否顯示作者卡片
+    # 作者描述
+    description: 结构主义型创作者，JanusPath 认知哲学提出者。关注技术、文明、哲学与制度的交汇处，写作于结构与裂隙之间。
     # 关注按钮
     button:
-      enable: false
+      enable: false #是否顯示按鈕
       icon: fab fa-github
       text: 关注 ｜ Follow
       # github 个人信息页
       link: https://github.com/chasechou007
   card_announcement:
-    enable: true
-    content: This is my Blog
+    enable: true #是否顯示公告卡片
+    content: '
+      观者，取广阔之视野；澈者，求透彻之认知；辨者，明察秋毫，去伪存真；机者，洞悉变局之枢纽。
+      这里是思想与观察的工坊，跨越哲学、社会、技术与文学，从结构看世界，从裂隙找路径。
+      在纷繁与噪点中，寻找清晰、深刻与可行动的洞察。'
   card_recent_post:
-    enable: true
-    # If set 0 will show all
+    enable: true #是否顯示最新文章卡片
+    # 顯示文章數目，设置 0 為全部
     limit: 5
     # Sort: date / updated
     sort: date
     sort_order:
   card_newest_comments:
-    enable: false
+    enable: false #是否顯示最新評論卡片
     sort_order:
     limit: 6
     # Unit: mins, save data to localStorage
-    storage: 10
-    avatar: true
+    storage: 10 #保存時間，單位分鐘，保存到本地存儲，避免每次刷新都重新請求數據
+    avatar: true #是否顯示頭像
   card_categories:
-    enable: true
+    enable: true #是否顯示分類卡片
     # If set 0 will show all
     limit: 8
     # Choose: none / true / false
-    expand: none
+    expand: none #是否展開分類，none / true / false
     sort_order:
   card_tags:
-    enable: true
+    enable: true #是否顯示標籤卡片
     # If set 0 will show all
     limit: 40
-    color: false
-    # Order of tags, random/name/length
+    color: true #是否顯示標籤顔色
+    # 標籤排序方式，random / name / length
     orderby: random
-    # Sort of order. 1, asc for ascending; -1, desc for descending
+    # 排序方式，1 為升序，-1 為降序
     order: 1
     sort_order:
   card_archives:
-    enable: true
+    enable: true #是否顯示歸檔卡片
     # Type: monthly / yearly
     type: monthly
     # Eg: YYYY年MM月
@@ -351,7 +358,7 @@ aside:
     limit: 8
     sort_order:
   card_post_series:
-    enable: true
+    enable: true #是否顯示文章系列卡片
     # The title shows the series name
     series_title: false
     # Order by title or date
@@ -359,7 +366,7 @@ aside:
     # Sort of order. 1, asc for ascending; -1, desc for descending
     order: -1
   card_webinfo:
-    enable: true
+    enable: true #是否顯示網站信息卡片
     post_count: true
     last_push_date: true
     sort_order:

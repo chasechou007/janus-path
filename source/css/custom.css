@@ -1,0 +1,14 @@
+.wechat-card {
+  background-color: rgb(87, 189, 106) !important; /* 设置浅灰背景色，可替换为你想要的颜色 */
+  border-radius: 12px; /* 可选：圆角效果 */
+  padding: 10px; /* 可选：内部留白 */
+  box-sizing: border-box;
+}
+.wechat-card .item-headline {
+  display: none !important;
+}
+.card-info {
+  background-color: #f0f8ff !important; /* 可替换为你喜欢的颜色 */
+  border-radius: 8px; /* 可选，圆角效果 */
+  padding: 12px; /* 可选，内部留白 */
+}

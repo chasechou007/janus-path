@@ -4,6 +4,8 @@ date: 2025-08-28 14:00:00
 categories: [Janus Path · Prototype]
 tags: [欢迎词]
 cover: /assets/img/welcome.png
+description: 这篇开篇文章是对博客“观澈辨机”的精神定位回顾，结合结构性思维与意识哲学展开阐述，确立个人表达的基调与视角。
+keywords: 博客介绍, 观澈辨机, 哲学写作, 思维方式, 意识结构, Janus Path
 ---
 
 > _“观者，取广阔之视野；澈者，求透彻之认知；辨者，明察秋毫，去伪存真；机者，洞悉变局之枢纽。”_

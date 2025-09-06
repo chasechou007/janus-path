@@ -1,14 +1,34 @@
-name: Archive Blog Snapshot
+name: Archive Blog to Wayback Machine
 
 on:
   schedule:
-    - cron: '0 12 * * 0' # 每周日中午 12 点触发
-  workflow_dispatch: # 可手动触发
+    - cron: '0 12 * * 0'  # 每周日中午12点 UTC执行（北京时间晚上8点）
+  workflow_dispatch:
 
 jobs:
   archive:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Save homepage to Wayback Machine
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      - name: Install savepagenow
+        run: pip install savepagenow
+
+      - name: Archive homepage to Wayback Machine
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.IA_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.IA_SECRET_KEY }}
         run: |
-          curl -X POST "https://web.archive.org/save/https://blog.janus-path.com"
+          python -c "
+import savepagenow
+url = 'https://blog.janus-path.com'
+snapshot = savepagenow.capture(url)
+print(f'Snapshot saved: {snapshot}')
+"

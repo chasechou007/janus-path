@@ -1,0 +1,14 @@
+name: Archive Blog Snapshot
+
+on:
+  schedule:
+    - cron: '0 12 * * 0' # 每周日中午 12 点触发
+  workflow_dispatch: # 可手动触发
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Save homepage to Wayback Machine
+        run: |
+          curl -X POST "https://web.archive.org/save/https://blog.janus-path.com"

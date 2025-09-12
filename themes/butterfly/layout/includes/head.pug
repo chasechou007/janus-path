@@ -27,6 +27,11 @@ meta(name="author" content=pageAuthor)
 meta(name="copyright" content=pageCopyright)
 meta(name ="format-detection" content="telephone=no")
 meta(name="theme-color" content=themeColor)
+//- Inject page-level keywords for SEO
+if page.keywords
+  meta(name="keywords" content=(page.keywords instanceof Array ? page.keywords.join(',') : page.keywords))
+else if config.keywords
+  meta(name="keywords" content=(config.keywords instanceof Array ? config.keywords.join(',') : config.keywords))
 
 //- Open_Graph
 include ./head/Open_Graph.pug

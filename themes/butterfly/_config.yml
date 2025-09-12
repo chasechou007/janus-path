@@ -58,7 +58,7 @@ code_blocks:
 #   icon: link || the description || color
 social:
   fab fa-github: https://github.com/chasechou007 || Github || '#24292e'
-  fab fa-zhihu: https://www.zhihu.com/people/afarwind/posts || 知乎 || '#0084ff'
+  # fab fa-zhihu: https://www.zhihu.com/people/afarwind/posts || 知乎 || '#0084ff'
   fas fa-envelope: mailto:chaseshou007@gmail.com || Email || '#ea4335'
   # fas fa-envelope: mailto:xxxxxx@gmail.com || Email || '#4a7dbe'
 

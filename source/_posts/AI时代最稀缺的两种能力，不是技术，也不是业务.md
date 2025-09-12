@@ -1,5 +1,6 @@
 ---
 title: AI时代最稀缺的两种能力，不是技术，也不是业务
+slug: two-rarest-skills-in-ai-era-not-tech-or-business
 date: 2025-09-02 20:30:00
 categories: [JanusPath-Applied]
 tags: [结构性思维, 元能力, AI, 技术幻觉, 认知结构]

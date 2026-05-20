@@ -31,7 +31,8 @@ menu:
   Janus Path · 应用篇: /categories/janus-path-applied/
   结构宇宙: /categories/cosmic-structures/
   元工程术: /categories/meta-engineering/
-  返照录: /categories/reflections/
+  研究与论文: /research/
+  # 返照录: /categories/reflections/
   # About: /about/
 
 # --------------------------------------
@@ -58,6 +59,7 @@ code_blocks:
 #   icon: link || the description || color
 social:
   fab fa-github: https://github.com/chasechou007 || Github || '#24292e'
+  fab fa-orcid: https://orcid.org/0009-0001-6381-2853 || ORCID || '#A6CE39'
   # fab fa-zhihu: https://www.zhihu.com/people/afarwind/posts || 知乎 || '#0084ff'
   fas fa-envelope: mailto:chaseshou007@gmail.com || Email || '#ea4335'
   # fas fa-envelope: mailto:xxxxxx@gmail.com || Email || '#4a7dbe'

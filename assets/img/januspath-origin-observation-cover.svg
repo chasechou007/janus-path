@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Abstract cover image for JanusPath structural reflection and origin-observation reflection">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="48%" r="62%">
+      <stop offset="0%" stop-color="#244453"/>
+      <stop offset="42%" stop-color="#132734"/>
+      <stop offset="100%" stop-color="#07131d"/>
+    </radialGradient>
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6d27d"/>
+      <stop offset="50%" stop-color="#d49b3f"/>
+      <stop offset="100%" stop-color="#8f6424"/>
+    </linearGradient>
+    <linearGradient id="tealLine" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6ee7d8"/>
+      <stop offset="55%" stop-color="#45a9b6"/>
+      <stop offset="100%" stop-color="#285f83"/>
+    </linearGradient>
+    <linearGradient id="lensFill" x1="26%" y1="15%" x2="80%" y2="90%">
+      <stop offset="0%" stop-color="#e6f7ef" stop-opacity="0.28"/>
+      <stop offset="46%" stop-color="#65d7c4" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0b1623" stop-opacity="0.1"/>
+    </linearGradient>
+    <filter id="softGlow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.95  0 1 0 0 0.76  0 0 1 0 0.36  0 0 0 0.75 0"/>
+      <feBlend in="SourceGraphic" mode="screen"/>
+    </filter>
+    <filter id="tealGlow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.2  0 1 0 0 0.85  0 0 1 0 0.85  0 0 0 0.6 0"/>
+      <feBlend in="SourceGraphic" mode="screen"/>
+    </filter>
+    <pattern id="fineGrid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#9bc9c7" stroke-opacity="0.055" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bgGlow)"/>
+  <rect width="1600" height="900" fill="url(#fineGrid)"/>
+
+  <g opacity="0.34" fill="none" stroke="#bcd8d2" stroke-width="1.2">
+    <path d="M-60 612C173 524 264 423 434 438C587 452 637 546 790 507C957 464 997 310 1156 277C1309 245 1427 314 1653 197"/>
+    <path d="M-10 718C154 618 325 606 464 651C622 703 727 779 890 716C1028 663 1057 546 1214 489C1389 425 1482 481 1638 386"/>
+    <path d="M-45 286C119 317 247 329 394 274C560 213 666 127 824 180C973 231 1010 382 1176 386C1339 389 1435 265 1636 238"/>
+  </g>
+
+  <g opacity="0.23" fill="none" stroke="#75b7bb" stroke-width="1">
+    <path d="M279 160L445 236L620 214L785 308L956 257L1117 338L1319 301"/>
+    <path d="M214 704L363 642L527 690L716 604L915 648L1091 573L1347 619"/>
+    <path d="M414 110L523 281L438 459L552 626L501 793"/>
+    <path d="M1124 105L1056 293L1163 462L1077 642L1149 795"/>
+  </g>
+
+  <g opacity="0.52" fill="#09131d" stroke="#82c6c2" stroke-opacity="0.32" stroke-width="1.5">
+    <polygon points="366,518 563,423 757,508 553,619"/>
+    <polygon points="762,389 998,283 1230,389 994,520"/>
+    <polygon points="540,260 765,152 998,257 760,382"/>
+    <polygon points="689,638 950,506 1195,632 927,771"/>
+  </g>
+
+  <g opacity="0.55">
+    <circle cx="373" cy="517" r="5" fill="#73e2d3"/>
+    <circle cx="563" cy="423" r="5" fill="#73e2d3"/>
+    <circle cx="757" cy="508" r="5" fill="#dca348"/>
+    <circle cx="998" cy="283" r="5" fill="#73e2d3"/>
+    <circle cx="1230" cy="389" r="5" fill="#dca348"/>
+    <circle cx="927" cy="771" r="5" fill="#73e2d3"/>
+  </g>
+
+  <g transform="translate(800 446)">
+    <circle r="238" fill="url(#lensFill)" stroke="url(#goldLine)" stroke-width="5" opacity="0.95" filter="url(#softGlow)"/>
+    <circle r="202" fill="none" stroke="#d9f7ee" stroke-opacity="0.2" stroke-width="1.5"/>
+    <circle r="146" fill="none" stroke="#5cd5c8" stroke-opacity="0.16" stroke-width="1.2"/>
+    <path d="M-182 45C-109-43-21-72 70-34C135-7 174 44 209 105" fill="none" stroke="url(#tealLine)" stroke-width="7" stroke-linecap="round" opacity="0.88" filter="url(#tealGlow)"/>
+    <path d="M-196 89C-88 16 15 10 106 66C149 92 180 124 216 166" fill="none" stroke="#f0cf79" stroke-width="2.4" stroke-linecap="round" opacity="0.72"/>
+    <path d="M-210-17C-127-120-19-150 92-103C159-75 207-24 247 36" fill="none" stroke="#e8f4ea" stroke-width="1.8" stroke-opacity="0.26"/>
+  </g>
+
+  <g transform="translate(800 446)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-89 154C-45 124 22 121 70 154" stroke="#0b1724" stroke-width="17" opacity="0.92"/>
+    <path d="M-62 125C-42 91-13 71 25 70C64 72 92 96 105 132" stroke="#132334" stroke-width="18" opacity="0.96"/>
+    <circle cx="22" cy="48" r="37" fill="#101d2b" stroke="#f1cd76" stroke-width="5"/>
+    <path d="M-64 180H106" stroke="#0b1724" stroke-width="24" opacity="0.94"/>
+  </g>
+
+  <g transform="translate(800 446)" fill="none" stroke-linecap="round">
+    <path d="M-360-196C-272-275-156-298-44-266" stroke="#6fe0d2" stroke-opacity="0.54" stroke-width="4"/>
+    <path d="M290-214C376-170 432-91 442 18" stroke="#f1c96d" stroke-opacity="0.58" stroke-width="4"/>
+    <path d="M-430 115C-326 196-179 228-29 198" stroke="#f1c96d" stroke-opacity="0.42" stroke-width="3"/>
+    <path d="M194 250C314 219 396 151 443 51" stroke="#6fe0d2" stroke-opacity="0.45" stroke-width="3"/>
+  </g>
+
+  <g opacity="0.56" filter="url(#softGlow)">
+    <circle cx="512" cy="250" r="7" fill="#f0c86c"/>
+    <circle cx="1078" cy="288" r="6" fill="#6fe0d2"/>
+    <circle cx="1236" cy="548" r="8" fill="#f0c86c"/>
+    <circle cx="423" cy="644" r="6" fill="#6fe0d2"/>
+    <circle cx="720" cy="190" r="5" fill="#f0c86c"/>
+    <circle cx="952" cy="707" r="5" fill="#6fe0d2"/>
+  </g>
+
+  <g opacity="0.18">
+    <path d="M0 0H1600V900H0z" fill="none" stroke="#e9d59a" stroke-width="3"/>
+    <path d="M96 96H1504V804H96z" fill="none" stroke="#e9d59a" stroke-width="1"/>
+  </g>
+</svg>

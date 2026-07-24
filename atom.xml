@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>观澈辨机</title>
+  <subtitle>观者，取广阔之视野；澈者，求透彻之认知；辨者，明察秋毫，去伪存真；机者，洞悉变局之枢纽。 这里是思想与观察的工坊，跨越哲学、社会、技术与文学，从结构看世界，从裂隙找路径。 在纷繁与噪点中，寻找清晰、深刻与可行动的洞察。</subtitle>
+  <id>https://blog.janus-path.com/</id>
+  <link href="https://blog.janus-path.com/"/>
+  <link href="https://blog.janus-path.com/atom.xml" rel="self" type="application/atom+xml"/>
+  <updated>2026-07-23T07:12:51.508Z</updated>
+  <author>
+    <name>Chase Chou</name>
+    <uri>https://orcid.org/0009-0001-6381-2853</uri>
+  </author>
+  <entry>
+    <title>当 AI 开始沿着你的思路思考</title>
+    <link href="https://blog.janus-path.com/2026/07/23/%E5%BD%93AI%E5%BC%80%E5%A7%8B%E6%B2%BF%E7%9D%80%E4%BD%A0%E7%9A%84%E6%80%9D%E8%B7%AF%E6%80%9D%E8%80%83/"/>
+    <id>https://blog.janus-path.com/2026/07/23/%E5%BD%93AI%E5%BC%80%E5%A7%8B%E6%B2%BF%E7%9D%80%E4%BD%A0%E7%9A%84%E6%80%9D%E8%B7%AF%E6%80%9D%E8%80%83/</id>
+    <published>2026-07-23T06:20:00.000Z</published>
+    <updated>2026-07-23T07:12:51.508Z</updated>
+    <summary type="text">当 ChatGPT 不只记住偏好，而开始沿着一个人的思维结构继续思考，人机协作面对的核心问题便从保存更多信息，转向如何延续一个仍在变化的认知主体。</summary>
+  </entry>
+  <entry>
+    <title>为什么我开始给 AI Agent 做减法</title>
+    <link href="https://blog.janus-path.com/2026/07/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E5%BC%80%E5%A7%8B%E7%BB%99-AI-Agent-%E5%81%9A%E5%87%8F%E6%B3%95/"/>
+    <id>https://blog.janus-path.com/2026/07/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E5%BC%80%E5%A7%8B%E7%BB%99-AI-Agent-%E5%81%9A%E5%87%8F%E6%B3%95/</id>
+    <published>2026-07-13T02:54:10.000Z</published>
+    <updated>2026-07-13T05:06:05.543Z</updated>
+    <summary type="text">在高强度使用 Codex、Claude Code 等 AI Agent 后，我开始减少不必要的 Skill、规则和上下文。本文讨论为什么配置并非越多越好，以及如何通过克制让 Agent 获得更稳定的表现。</summary>
+  </entry>
+  <entry>
+    <title>你看到的不是问题本身，而是问题被看见的方式</title>
+    <link href="https://blog.janus-path.com/2026/06/17/%E4%BD%A0%E7%9C%8B%E5%88%B0%E7%9A%84%E4%B8%8D%E6%98%AF%E9%97%AE%E9%A2%98%E6%9C%AC%E8%BA%AB%EF%BC%8C%E8%80%8C%E6%98%AF%E9%97%AE%E9%A2%98%E8%A2%AB%E7%9C%8B%E8%A7%81%E7%9A%84%E6%96%B9%E5%BC%8F/"/>
+    <id>https://blog.janus-path.com/2026/06/17/%E4%BD%A0%E7%9C%8B%E5%88%B0%E7%9A%84%E4%B8%8D%E6%98%AF%E9%97%AE%E9%A2%98%E6%9C%AC%E8%BA%AB%EF%BC%8C%E8%80%8C%E6%98%AF%E9%97%AE%E9%A2%98%E8%A2%AB%E7%9C%8B%E8%A7%81%E7%9A%84%E6%96%B9%E5%BC%8F/</id>
+    <published>2026-06-17T01:49:03.000Z</published>
+    <updated>2026-07-13T05:06:05.935Z</updated>
+    <summary type="text">本文以通俗方式介绍 JanusPath 从“结构返照”走向“起观返照”的核心思想：复杂问题不只是内容问题，也不只是结构问题，更与我们如何开始观察有关。</summary>
+  </entry>
+  <entry>
+    <title>从编写代码到治理 Agent：AI 时代软件工程的新命题</title>
+    <link href="https://blog.janus-path.com/2026/06/06/%E4%BB%8E%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E5%88%B0%E6%B2%BB%E7%90%86-Agent-AI-%E6%97%B6%E4%BB%A3%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%9A%84%E6%96%B0%E5%91%BD%E9%A2%98/"/>
+    <id>https://blog.janus-path.com/2026/06/06/%E4%BB%8E%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E5%88%B0%E6%B2%BB%E7%90%86-Agent-AI-%E6%97%B6%E4%BB%A3%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%9A%84%E6%96%B0%E5%91%BD%E9%A2%98/</id>
+    <published>2026-06-06T14:57:22.000Z</published>
+    <updated>2026-07-13T05:06:05.838Z</updated>
+    <summary type="text">当代码逐渐可以由 AI Agent 自动生成，软件工程师的核心价值正在从直接编码迁移到规则提炼、约束设计、上下文维护与 Agent 治理。本文讨论 AI 时代软件工程的新生产对象：可执行的经验、规则与认知资产。</summary>
+  </entry>
+  <entry>
+    <title>A Team SOP for Using Codex, OpenSpec, and Superpowers</title>
+    <link href="https://blog.janus-path.com/2026/05/23/codex-team-usage-sop-en/"/>
+    <id>https://blog.janus-path.com/2026/05/23/codex-team-usage-sop-en/</id>
+    <published>2026-05-23T06:27:28.000Z</published>
+    <updated>2026-07-13T05:06:05.344Z</updated>
+    <summary type="text">A team-oriented Codex usage SOP covering OpenSpec, Superpowers, context preservation, requirements discovery, product planning, implementation, validation, operations analysis, troubleshooting, and knowledge handoff.</summary>
+  </entry>
+  <entry>
+    <title>Codex 团队使用 SOP</title>
+    <link href="https://blog.janus-path.com/2026/05/20/Codex%E5%9B%A2%E9%98%9F%E4%BD%BF%E7%94%A8SOP/"/>
+    <id>https://blog.janus-path.com/2026/05/20/Codex%E5%9B%A2%E9%98%9F%E4%BD%BF%E7%94%A8SOP/</id>
+    <published>2026-05-20T06:25:43.000Z</published>
+    <updated>2026-07-13T05:06:05.235Z</updated>
+    <summary type="text">一份面向团队协作的 Codex 使用规范，围绕 OpenSpec、Superpowers 与上下文沉淀，整理需求调研、产品规划、开发实现、测试验证、运营分析和知识交接中的标准工作流。</summary>
+  </entry>
+  <entry>
+    <title>团队氛围不是文化，是噪声管理</title>
+    <link href="https://blog.janus-path.com/2026/03/26/%E5%9B%A2%E9%98%9F%E6%B0%9B%E5%9B%B4%E4%B8%8D%E6%98%AF%E6%96%87%E5%8C%96%EF%BC%8C%E6%98%AF%E5%99%AA%E5%A3%B0%E7%AE%A1%E7%90%86/"/>
+    <id>https://blog.janus-path.com/2026/03/26/%E5%9B%A2%E9%98%9F%E6%B0%9B%E5%9B%B4%E4%B8%8D%E6%98%AF%E6%96%87%E5%8C%96%EF%BC%8C%E6%98%AF%E5%99%AA%E5%A3%B0%E7%AE%A1%E7%90%86/</id>
+    <published>2026-03-26T02:00:00.000Z</published>
+    <updated>2026-07-13T05:06:06.138Z</updated>
+    <summary type="text">团队氛围的本质不是“文化口号”，而是负责人如何管理噪声、偏差与不确定性。文章用外卖争执切入，讨论低噪声容忍如何导致防御性工作与劣化螺旋，并给出风险分层、容忍带、固定纠偏节奏等可落地的噪声管理方法。</summary>
+  </entry>
+  <entry>
+    <title>AI Agent 很强，但它会“越跑越偏”</title>
+    <link href="https://blog.janus-path.com/2026/03/25/AI%20Agent%20%E5%BE%88%E5%BC%BA%EF%BC%8C%E4%BD%86%E5%AE%83%E4%BC%9A%E2%80%9C%E8%B6%8A%E8%B7%91%E8%B6%8A%E5%81%8F%E2%80%9D/"/>
+    <id>https://blog.janus-path.com/2026/03/25/AI%20Agent%20%E5%BE%88%E5%BC%BA%EF%BC%8C%E4%BD%86%E5%AE%83%E4%BC%9A%E2%80%9C%E8%B6%8A%E8%B7%91%E8%B6%8A%E5%81%8F%E2%80%9D/</id>
+    <published>2026-03-25T02:00:00.000Z</published>
+    <updated>2026-07-13T05:06:05.023Z</updated>
+    <summary type="text">AI Agent 在短任务中表现出色，但在长流程中往往会出现“语义漂移”。本文探讨了上下文窗口与持久化记忆的本质区别，指出 Agent 当前的短板在于无法稳定承载系统结构，工程的结构主权依然需要人类来掌握。</summary>
+  </entry>
+  <entry>
+    <title>如果没人写代码了，AI也会开始变差</title>
+    <link href="https://blog.janus-path.com/2026/03/24/%E5%A6%82%E6%9E%9C%E6%B2%A1%E4%BA%BA%E5%86%99%E4%BB%A3%E7%A0%81%E4%BA%86%EF%BC%8CAI%E4%B9%9F%E4%BC%9A%E5%BC%80%E5%A7%8B%E5%8F%98%E5%B7%AE/"/>
+    <id>https://blog.janus-path.com/2026/03/24/%E5%A6%82%E6%9E%9C%E6%B2%A1%E4%BA%BA%E5%86%99%E4%BB%A3%E7%A0%81%E4%BA%86%EF%BC%8CAI%E4%B9%9F%E4%BC%9A%E5%BC%80%E5%A7%8B%E5%8F%98%E5%B7%AE/</id>
+    <published>2026-03-23T16:00:00.000Z</published>
+    <updated>2026-07-13T05:06:06.236Z</updated>
+    <summary type="text">如果未来代码主要由 AI 生成，模型将越来越多地学习“自己写过的代码”，小错误与坏结构会被反复复制并固化，最终导致质量下滑与 Model Collapse。真正让系统变好的能力，来自人类对边界、权衡与结构的判断。</summary>
+  </entry>
+  <entry>
+    <title>结构性噪点</title>
+    <link href="https://blog.janus-path.com/2026/02/07/%E7%BB%93%E6%9E%84%E6%80%A7%E5%99%AA%E7%82%B9/"/>
+    <id>https://blog.janus-path.com/2026/02/07/%E7%BB%93%E6%9E%84%E6%80%A7%E5%99%AA%E7%82%B9/</id>
+    <published>2026-02-07T02:44:12.000Z</published>
+    <updated>2026-07-13T05:06:06.432Z</updated>
+    <summary type="text">一名算法伦理审查员在城市“第八轮秩序优化”中被系统判定为不可预测的“结构性噪点”，从刷脸失败到社交与资源权限被逐层剥离，最终用一场“忠诚演讲”诱发系统自我降级，撬动规则的锚点。</summary>
+  </entry>
+  <entry>
+    <title>从结构主义视角看 IOC（控制反转）</title>
+    <link href="https://blog.janus-path.com/2026/02/02/%E4%BB%8E%E7%BB%93%E6%9E%84%E4%B8%BB%E4%B9%89%E8%A7%86%E8%A7%92%E7%9C%8B-IOC%EF%BC%88%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC%EF%BC%89/"/>
+    <id>https://blog.janus-path.com/2026/02/02/%E4%BB%8E%E7%BB%93%E6%9E%84%E4%B8%BB%E4%B9%89%E8%A7%86%E8%A7%92%E7%9C%8B-IOC%EF%BC%88%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC%EF%BC%89/</id>
+    <published>2026-02-02T04:15:09.000Z</published>
+    <updated>2026-07-13T05:06:05.740Z</updated>
+    <summary type="text">文章尝试跳出技术细节，从结构主义视角重新解读 IOC（控制反转）。提出依赖本质上是一种“权力关系”，而 IOC 的核心在于将“决定权”外置。通过这一视角，重新审视依赖注入、配置化、低代码以及系统演进背后的逻辑。</summary>
+  </entry>
+  <entry>
+    <title>软件工程，其实藏着思维模型</title>
+    <link href="https://blog.janus-path.com/2025/09/12/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%85%B6%E5%AE%9E%E8%97%8F%E7%9D%80%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%9E%8B/"/>
+    <id>https://blog.janus-path.com/2025/09/12/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%85%B6%E5%AE%9E%E8%97%8F%E7%9D%80%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%9E%8B/</id>
+    <published>2025-09-12T04:30:43.000Z</published>
+    <updated>2026-07-13T05:06:06.531Z</updated>
+    <summary type="text">软件工程从不是纯粹的技术，它更像一场结构性思维模型的实践演习。我们在模块化、架构设计、调试与迭代中，早已不自觉地践行着“无名的哲学”。</summary>
+  </entry>
+  <entry>
+    <title>为什么哲学总是属于精英？</title>
+    <link href="https://blog.janus-path.com/2025/09/09/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%93%B2%E5%AD%A6%E6%80%BB%E6%98%AF%E5%B1%9E%E4%BA%8E%E7%B2%BE%E8%8B%B1%EF%BC%9F/"/>
+    <id>https://blog.janus-path.com/2025/09/09/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%93%B2%E5%AD%A6%E6%80%BB%E6%98%AF%E5%B1%9E%E4%BA%8E%E7%B2%BE%E8%8B%B1%EF%BC%9F/</id>
+    <published>2025-09-09T12:44:32.000Z</published>
+    <updated>2026-07-13T05:06:05.445Z</updated>
+    <summary type="text">哲学为什么总显得遥不可及？本文从语言门槛、制度分工与结构性沉默三方面入手，揭示哲学“精英化”的本质，并提出：真正的哲学解放，是把重新提问的权力还给每一个人。</summary>
+  </entry>
+  <entry>
+    <title>为什么高质量的批评应该收费？</title>
+    <link href="https://blog.janus-path.com/2025/09/05/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9A%84%E6%89%B9%E8%AF%84%E5%BA%94%E8%AF%A5%E6%94%B6%E8%B4%B9%EF%BC%9F/"/>
+    <id>https://blog.janus-path.com/2025/09/05/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9A%84%E6%89%B9%E8%AF%84%E5%BA%94%E8%AF%A5%E6%94%B6%E8%B4%B9%EF%BC%9F/</id>
+    <published>2025-09-05T12:20:00.000Z</published>
+    <updated>2026-07-13T05:06:05.641Z</updated>
+    <summary type="text">一篇关于结构性批评价值的深度思考：为什么真正有改变力的批评需要代价？从“道不可轻传”到咨询悖论，本质上是对认知劳动的尊重。</summary>
+  </entry>
+  <entry>
+    <title>AI时代最稀缺的两种能力，不是技术，也不是业务</title>
+    <link href="https://blog.janus-path.com/2025/09/02/AI%E6%97%B6%E4%BB%A3%E6%9C%80%E7%A8%80%E7%BC%BA%E7%9A%84%E4%B8%A4%E7%A7%8D%E8%83%BD%E5%8A%9B%EF%BC%8C%E4%B8%8D%E6%98%AF%E6%8A%80%E6%9C%AF%EF%BC%8C%E4%B9%9F%E4%B8%8D%E6%98%AF%E4%B8%9A%E5%8A%A1/"/>
+    <id>https://blog.janus-path.com/2025/09/02/AI%E6%97%B6%E4%BB%A3%E6%9C%80%E7%A8%80%E7%BC%BA%E7%9A%84%E4%B8%A4%E7%A7%8D%E8%83%BD%E5%8A%9B%EF%BC%8C%E4%B8%8D%E6%98%AF%E6%8A%80%E6%9C%AF%EF%BC%8C%E4%B9%9F%E4%B8%8D%E6%98%AF%E4%B8%9A%E5%8A%A1/</id>
+    <published>2025-09-02T12:30:00.000Z</published>
+    <updated>2026-07-13T05:06:05.129Z</updated>
+    <summary type="text">在技术日新月异的AI时代，最稀缺的能力并不是技术本身，而是能穿透幻觉与混乱的结构洞察力与自我驯化力。本文从“技术与业务”之外的维度出发，探讨为何真正的关键在于结构性认知与心智演化能力。</summary>
+  </entry>
+  <entry>
+    <title>双面神思维路径简介：如何跳出你未察觉的思维陷阱</title>
+    <link href="https://blog.janus-path.com/2025/08/31/%E5%8F%8C%E9%9D%A2%E7%A5%9E%E6%80%9D%E7%BB%B4%E8%B7%AF%E5%BE%84%E7%AE%80%E4%BB%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E4%BD%A0%E6%9C%AA%E5%AF%9F%E8%A7%89%E7%9A%84%E6%80%9D%E7%BB%B4%E9%99%B7%E9%98%B1/"/>
+    <id>https://blog.janus-path.com/2025/08/31/%E5%8F%8C%E9%9D%A2%E7%A5%9E%E6%80%9D%E7%BB%B4%E8%B7%AF%E5%BE%84%E7%AE%80%E4%BB%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E4%BD%A0%E6%9C%AA%E5%AF%9F%E8%A7%89%E7%9A%84%E6%80%9D%E7%BB%B4%E9%99%B7%E9%98%B1/</id>
+    <published>2025-08-31T02:00:00.000Z</published>
+    <updated>2026-07-13T05:06:06.033Z</updated>
+    <summary type="text">本文介绍一种原创的结构认知模型——双面神思维路径，揭示我们如何被结构困住，又如何通过返照思维跳出困局，适用于哲学思辨、组织治理与个人成长。</summary>
+  </entry>
+  <entry>
+    <title>欢迎来到观澈辨机：一场结构与意识的回望之旅</title>
+    <link href="https://blog.janus-path.com/2025/08/28/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E8%A7%82%E6%BE%88%E8%BE%A8%E6%9C%BA%EF%BC%9A%E4%B8%80%E5%9C%BA%E7%BB%93%E6%9E%84%E4%B8%8E%E6%84%8F%E8%AF%86%E7%9A%84%E5%9B%9E%E6%9C%9B%E4%B9%8B%E6%97%85/"/>
+    <id>https://blog.janus-path.com/2025/08/28/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E8%A7%82%E6%BE%88%E8%BE%A8%E6%9C%BA%EF%BC%9A%E4%B8%80%E5%9C%BA%E7%BB%93%E6%9E%84%E4%B8%8E%E6%84%8F%E8%AF%86%E7%9A%84%E5%9B%9E%E6%9C%9B%E4%B9%8B%E6%97%85/</id>
+    <published>2025-08-28T06:00:00.000Z</published>
+    <updated>2026-07-13T05:06:06.333Z</updated>
+    <summary type="text">这篇开篇文章是对博客“观澈辨机”的精神定位回顾，结合结构性思维与意识哲学展开阐述，确立个人表达的基调与视角。</summary>
+  </entry>
+</feed>

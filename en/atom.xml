@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>JanusPath</title>
+  <subtitle>JanusPath is a workshop for structural insight across philosophy, society, technology, and literature—seeking clarity and actionable paths through complexity and noise.</subtitle>
+  <id>https://blog.janus-path.com/en/</id>
+  <link href="https://blog.janus-path.com/en/"/>
+  <link href="https://blog.janus-path.com/en/atom.xml" rel="self" type="application/atom+xml"/>
+  <updated>2026-07-28T02:37:25.389Z</updated>
+  <author>
+    <name>Chase Chou</name>
+    <uri>https://orcid.org/0009-0001-6381-2853</uri>
+  </author>
+  <entry>
+    <title>A Team SOP for Using Codex, OpenSpec, and Superpowers</title>
+    <link href="https://blog.janus-path.com/en/2026/05/23/codex-team-usage-sop/"/>
+    <id>https://blog.janus-path.com/en/2026/05/23/codex-team-usage-sop/</id>
+    <published>2026-05-23T06:27:28.000Z</published>
+    <updated>2026-07-28T02:37:25.389Z</updated>
+    <summary type="text">A team-oriented Codex usage SOP covering OpenSpec, Superpowers, context preservation, requirements discovery, product planning, implementation, validation, operations analysis, troubleshooting, and knowledge handoff.</summary>
+  </entry>
+</feed>

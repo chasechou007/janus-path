@@ -1,0 +1,1233 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>A Team SOP for Using Codex, OpenSpec, and Superpowers | JanusPath</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="Codex,OpenSpec,Superpowers,team collaboration,SOP,AI engineering,context management,knowledge capture"><meta name="description" content="A team-oriented Codex usage SOP covering OpenSpec, Superpowers, context preservation, requirements discovery, product planning, implementation, validation, operations analysis, troubleshooting, and kn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Team SOP for Using Codex, OpenSpec, and Superpowers">
+<meta property="og:url" content="https://blog.janus-path.com/en/2026/05/23/codex-team-usage-sop/">
+<meta property="og:site_name" content="JanusPath">
+<meta property="og:description" content="A team-oriented Codex usage SOP covering OpenSpec, Superpowers, context preservation, requirements discovery, product planning, implementation, validation, operations analysis, troubleshooting, and kn">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.janus-path.com/en/assets/img/codex-team-usage-sop-cover.png">
+<meta property="article:published_time" content="2026-05-23T06:27:28.000Z">
+<meta property="article:modified_time" content="2026-07-28T02:37:25.389Z">
+<meta property="article:author" content="Chase Chou">
+<meta property="article:tag" content="AI Agent">
+<meta property="article:tag" content="Codex">
+<meta property="article:tag" content="OpenSpec">
+<meta property="article:tag" content="Team Collaboration">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.janus-path.com/en/assets/img/codex-team-usage-sop-cover.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "A Team SOP for Using Codex, OpenSpec, and Superpowers",
+  "url": "https://blog.janus-path.com/en/2026/05/23/codex-team-usage-sop/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.janus-path.com/en/2026/05/23/codex-team-usage-sop/"
+  },
+  "description": "A team-oriented Codex usage SOP covering OpenSpec, Superpowers, context preservation, requirements discovery, product planning, implementation, val...",
+  "image": "https://blog.janus-path.com/en/assets/img/codex-team-usage-sop-cover.png",
+  "keywords": "Codex, OpenSpec, Superpowers, team collaboration, SOP, AI engineering, context management, knowledge capture",
+  "articleSection": [
+    "Meta Engineering"
+  ],
+  "inLanguage": "en",
+  "datePublished": "2026-05-23T06:27:28.000Z",
+  "dateModified": "2026-07-28T02:37:25.389Z",
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": "https://blog.janus-path.com/en/#blog",
+    "name": "JanusPath",
+    "url": "https://blog.janus-path.com/en/"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Chase Chou",
+      "url": "https://orcid.org/0009-0001-6381-2853",
+      "sameAs": [
+        "https://orcid.org/0009-0001-6381-2853",
+        "https://github.com/chasechou007"
+      ]
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "JanusPath",
+    "url": "https://blog.janus-path.com/en/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.janus-path.com/en/assets/img/logo.png"
+    }
+  }
+}</script><link rel="shortcut icon" href="/en/assets/img/logo.png"><link rel="canonical" href="https://blog.janus-path.com/en/2026/05/23/codex-team-usage-sop/"><link rel="alternate" hreflang="zh-Hans" href="https://blog.janus-path.com/2026/05/20/Codex%E5%9B%A2%E9%98%9F%E4%BD%BF%E7%94%A8SOP/"><link rel="alternate" hreflang="en" href="https://blog.janus-path.com/en/2026/05/23/codex-team-usage-sop/"><link rel="alternate" hreflang="x-default" href="https://blog.janus-path.com/2026/05/20/Codex%E5%9B%A2%E9%98%9F%E4%BD%BF%E7%94%A8SOP/"><link rel="alternate" type="application/atom+xml" title="JanusPath Atom Feed" href="https://blog.janus-path.com/en/atom.xml"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/en/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/en/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'A Team SOP for Using Codex, OpenSpec, and Superpowers',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/en/assets/img/avatar.png" onerror="this.onerror=null;this.src='/en/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/en/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/en/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a><a href="/en/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/en/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/en/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/en/tags/"><span> Tags</span></a></div><div class="menus_item"><a class="site-page bilingual-switch" href="/2026/05/20/Codex团队使用SOP/" hreflang="zh-Hans" lang="zh-Hans" title="阅读这篇文章的简体中文版" aria-label="阅读这篇文章的简体中文版" data-translation-available="true"><i class="fas fa-language fa-fw"></i><span> 简中</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/en/assets/img/codex-team-usage-sop-cover.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/en/"><img class="site-icon" src="/en/assets/img/logo.png" alt="Logo"><span class="site-name">JanusPath</span></a><a class="nav-page-title" href="/en/"><span class="site-name">A Team SOP for Using Codex, OpenSpec, and Superpowers</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/en/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/en/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/en/tags/"><span> Tags</span></a></div><div class="menus_item"><a class="site-page bilingual-switch" href="/2026/05/20/Codex团队使用SOP/" hreflang="zh-Hans" lang="zh-Hans" title="阅读这篇文章的简体中文版" aria-label="阅读这篇文章的简体中文版" data-translation-available="true"><i class="fas fa-language fa-fw"></i><span> 简中</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">A Team SOP for Using Codex, OpenSpec, and Superpowers</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-05-23T06:27:28.000Z" title="Created 2026-05-23 14:27:28">2026-05-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-07-28T02:37:25.389Z" title="Updated 2026-07-28 10:37:25">2026-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/en/categories/meta-engineering/">Meta Engineering</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="1-Purpose"><a href="#1-Purpose" class="headerlink" title="1. Purpose"></a>1. Purpose</h2><p>This SOP defines how a team should use Codex, OpenSpec, and Superpowers for requirements discovery, product planning, implementation, testing, validation, operations analysis, troubleshooting, and knowledge capture.</p>
+<p>This SOP is not only for software engineers. It also applies to product managers, QA engineers, designers, operations teams, customer success teams, implementation and delivery teams, data analysts, and any business team that needs to preserve project context.</p>
+<p>Core goals:</p>
+<ul>
+<li>Lower the barrier for new teammates to use Codex.</li>
+<li>Prevent project context from living only in chat history.</li>
+<li>Avoid forcing humans to restate everything when a Codex thread loses context.</li>
+<li>Use OpenSpec to record requirements, decisions, task progress, validation results, and business conclusions in a structured way.</li>
+<li>Use Superpowers to package frequent, complex operations and improve team collaboration efficiency.</li>
+<li>Make team knowledge reusable, transferable, and continuously improvable.</li>
+</ul>
+<hr>
+<h2 id="Quick-Start-5-Minute-Version-for-New-Team-Members"><a href="#Quick-Start-5-Minute-Version-for-New-Team-Members" class="headerlink" title="Quick Start: 5-Minute Version for New Team Members"></a>Quick Start: 5-Minute Version for New Team Members</h2><p>If this is your first time using Codex in a project, start with this minimal flow:</p>
+<ol>
+<li>Ask Codex to check whether relevant context already exists in OpenSpec.</li>
+<li>Decide whether this task needs a new or updated OpenSpec change.</li>
+<li>For small tasks, proceed directly. For larger tasks, write the proposal, design, and tasks first.</li>
+<li>During execution, advance according to the tasks. Do not leave key decisions only in chat.</li>
+<li>After completion, run the necessary validation and record the validation method and result.</li>
+<li>Write the actual output, key decisions, and remaining issues back to OpenSpec.</li>
+<li>If the change is complete, check whether specs need to be updated and then archive it if appropriate.</li>
+</ol>
+<p>Minimal entry prompt:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">This is my first time working on a task in this project.</span><br><span class="line"></span><br><span class="line">Please first check whether OpenSpec already contains relevant context, then tell me:</span><br><span class="line"></span><br><span class="line">1. Whether we need to create or update an OpenSpec change</span><br><span class="line">2. Whether there is a suitable Superpower to use</span><br><span class="line">3. What the minimum viable path forward is</span><br><span class="line">4. Which actions require my confirmation</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Deciding-Whether-to-Use-OpenSpec"><a href="#Deciding-Whether-to-Use-OpenSpec" class="headerlink" title="Deciding Whether to Use OpenSpec"></a>Deciding Whether to Use OpenSpec</h2><p>OpenSpec exists to preserve reusable long-term context. It is not meant to turn every small action into a process.</p>
+<p>Before starting a task, make a lightweight judgment:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Will a future teammate, my future self, or a new Codex thread need to recover this context later?</span><br></pre></td></tr></table></figure>
+
+<p>If the answer is “yes,” consider using OpenSpec.</p>
+<p>Good cases for OpenSpec:</p>
+<ul>
+<li>Requirements, solution design, acceptance criteria, or business rules need to be preserved long term.</li>
+<li>The task spans multiple people, departments, time periods, or Codex threads.</li>
+<li>A future owner needs to understand why a decision was made.</li>
+<li>The work affects product behavior, technical design, test scope, data definitions, customer delivery, or operational workflows.</li>
+<li>Key decisions, risks, validation results, or retrospective conclusions need to be recorded.</li>
+<li>The completed task may affect future requirements, testing, releases, delivery, or business judgment.</li>
+</ul>
+<p>Cases where a full OpenSpec flow may not be necessary:</p>
+<ul>
+<li>One-off simple questions and answers.</li>
+<li>Small copy, formatting, layout, or local explanation changes.</li>
+<li>Clearly low-risk mechanical edits.</li>
+<li>Temporary exploration that does not produce decisions worth preserving.</li>
+<li>Codex is only being asked to explain, translate, polish, or summarize a short piece of content.</li>
+</ul>
+<p>Recommended grading:</p>
+<table>
+<thead>
+<tr>
+<th>Task type</th>
+<th>Recommended handling</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Simple Q&amp;A, explanation, translation, polishing</td>
+<td>Ask Codex to complete it directly. No OpenSpec needed</td>
+</tr>
+<tr>
+<td>Small, low-risk tasks with no long-term impact</td>
+<td>A lightweight judgment is enough</td>
+</tr>
+<tr>
+<td>Tasks with requirements, solution design, acceptance criteria, testing, delivery, or business impact</td>
+<td>Create or update an OpenSpec change</td>
+</tr>
+<tr>
+<td>Cross-team, cross-thread, long-running, or high-risk tasks</td>
+<td>OpenSpec must be used to record and drive the work</td>
+</tr>
+</tbody></table>
+<p>One-line principle:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OpenSpec is for preserving long-term valuable context, not for recording every conversation and small action.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-Basic-Principles"><a href="#2-Basic-Principles" class="headerlink" title="2. Basic Principles"></a>2. Basic Principles</h2><p>Every project should be able to use OpenSpec to carry long-term context, but not every small task needs to follow the full OpenSpec process.</p>
+<p>OpenSpec is a structured record of project iteration context. It is used to preserve:</p>
+<ul>
+<li>Project conventions</li>
+<li>Requirement background</li>
+<li>Solution design</li>
+<li>Task breakdowns</li>
+<li>Execution progress</li>
+<li>Key decisions</li>
+<li>Validation results</li>
+<li>Business conclusions</li>
+<li>Follow-up items</li>
+</ul>
+<p>Do not rely only on Codex conversation history as the source of context.</p>
+<p>If this happens:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Codex ran out of room in the model&#x27;s context window.</span><br><span class="line">Start a new thread or clear earlier history before retrying.</span><br></pre></td></tr></table></figure>
+
+<p>Team members should be able to recover task context through OpenSpec instead of orally restating the full background.</p>
+<hr>
+<h2 id="3-Context-Budget-Principles"><a href="#3-Context-Budget-Principles" class="headerlink" title="3. Context Budget Principles"></a>3. Context Budget Principles</h2><p>Codex, OpenSpec, skills, Superpowers, local tools, rule descriptions, project documents, and chat history all consume the model’s context window.</p>
+<p>An LLM’s context window is limited. The more complex the context, the more information the model has to attend to at once, and the less attention remains for the actual task.</p>
+<p>Therefore, the team should follow this principle:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">More tools are not always better.</span><br><span class="line">More rules are not always better.</span><br><span class="line"></span><br><span class="line">Complex workflows should be packaged only when needed,</span><br><span class="line">not turned into Superpowers by default.</span><br></pre></td></tr></table></figure>
+
+<p>Pay special attention to the following:</p>
+<ul>
+<li>Do not stuff Codex with a large amount of irrelevant background all at once.</li>
+<li>Do not enable complex Superpowers for simple tasks.</li>
+<li>Do not make Codex follow too many temporary rules at the same time.</li>
+<li>Do not make Codex read unrelated documents just to appear “proper.”</li>
+<li>Do not turn OpenSpec into a running log; avoid polluting long-term context with low-value information.</li>
+<li>Do not turn every small action into a Superpower.</li>
+<li>Do not let a Superpower become a giant all-purpose workflow.</li>
+</ul>
+<p>Recommended judgment:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If a rule, tool, skill, or Superpower does not clearly help the current task, do not enable it.</span><br></pre></td></tr></table></figure>
+
+<p>Better practice:</p>
+<ul>
+<li>Read only the OpenSpec context that is truly necessary.</li>
+<li>Enable only the skill or Superpower directly related to the current task.</li>
+<li>Break complex tasks into stages instead of loading every requirement at once.</li>
+<li>After each meaningful stage, write key decisions into OpenSpec instead of relying on chat history.</li>
+<li>Keep prompts short, clear, and goal-oriented.</li>
+</ul>
+<p>One-line principle:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Context is a budget, not a trash bin.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-Responsibilities-of-the-Three-Tools"><a href="#4-Responsibilities-of-the-Three-Tools" class="headerlink" title="4. Responsibilities of the Three Tools"></a>4. Responsibilities of the Three Tools</h2><h3 id="Codex"><a href="#Codex" class="headerlink" title="Codex"></a>Codex</h3><p>Codex is responsible for understanding tasks, reading context, organizing information, supporting analysis, executing automatable work, running validation, and summarizing results.</p>
+<p>It is both an executor and a collaborator.</p>
+<h3 id="OpenSpec"><a href="#OpenSpec" class="headerlink" title="OpenSpec"></a>OpenSpec</h3><p>OpenSpec is responsible for preserving long-term context.</p>
+<p>It is the structured memory of the project. It records why something is done, how it is done, and how far it has progressed.</p>
+<h3 id="Superpowers"><a href="#Superpowers" class="headerlink" title="Superpowers"></a>Superpowers</h3><p>Superpowers package frequent, complex operations.</p>
+<p>They turn error-prone, multi-step, experience-heavy workflows into reusable capabilities that team members can call through natural language.</p>
+<p>Recommended mental model:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">OpenSpec preserves context.</span><br><span class="line">Superpowers package complex workflows.</span><br><span class="line">Codex understands the task, selects tools, executes the process, and updates the record.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Notes-and-Tips-for-Using-Codex"><a href="#Notes-and-Tips-for-Using-Codex" class="headerlink" title="Notes and Tips for Using Codex"></a>Notes and Tips for Using Codex</h2><p>Codex is especially useful for information organization, solution exploration, file edits, validation, and stage summaries. However, its effectiveness depends heavily on task description quality, context quality, and validation approach.</p>
+<h3 id="Make-the-Task-Clear"><a href="#Make-the-Task-Clear" class="headerlink" title="Make the Task Clear"></a>Make the Task Clear</h3><p>A good Codex task should include:</p>
+<ul>
+<li>Goal: what you want to accomplish.</li>
+<li>Background: why this matters.</li>
+<li>Scope: what is included and what is excluded.</li>
+<li>Input: relevant files, documents, links, data, or context.</li>
+<li>Output: whether you expect code, documentation, tables, summaries, proposals, or checklists.</li>
+<li>Validation: how to know the task is complete.</li>
+</ul>
+<p>Recommended prompt:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">My goal is: [goal]</span><br><span class="line">The background is: [background]</span><br><span class="line">This scope includes: [scope]</span><br><span class="line">This explicitly excludes: [out of scope]</span><br><span class="line">Please first check the necessary context, then provide an execution plan.</span><br><span class="line">If files need to be modified, first explain what you will change.</span><br><span class="line">After completion, explain the validation method and result.</span><br></pre></td></tr></table></figure>
+
+<h3 id="Ask-Codex-to-Judge-Before-Acting"><a href="#Ask-Codex-to-Judge-Before-Acting" class="headerlink" title="Ask Codex to Judge Before Acting"></a>Ask Codex to Judge Before Acting</h3><p>For non-trivial tasks, do not ask Codex to “just finish it” immediately. A better pattern is to have Codex judge first:</p>
+<ul>
+<li>Whether OpenSpec needs to be read.</li>
+<li>Whether a change needs to be created or updated.</li>
+<li>Whether a Superpower is needed.</li>
+<li>Whether any high-risk operations are involved.</li>
+<li>Whether user confirmation is required.</li>
+</ul>
+<p>Recommended prompt:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Please first assess this task&#x27;s complexity and risk:</span><br><span class="line"></span><br><span class="line">1. Whether OpenSpec is needed</span><br><span class="line">2. Whether a Superpower is needed</span><br><span class="line">3. What context needs to be read</span><br><span class="line">4. Whether files will be modified or external systems affected</span><br><span class="line">5. Which steps require my confirmation</span><br><span class="line"></span><br><span class="line">Proceed only after that assessment.</span><br></pre></td></tr></table></figure>
+
+<h3 id="Control-Context-Instead-of-Loading-Everything-at-Once"><a href="#Control-Context-Instead-of-Loading-Everything-at-Once" class="headerlink" title="Control Context Instead of Loading Everything at Once"></a>Control Context Instead of Loading Everything at Once</h3><p>Do not give Codex every document, every rule, and every historical chat at once. Better practice:</p>
+<ul>
+<li>Provide the goal and the most important background first.</li>
+<li>Let Codex search for or identify the context it needs.</li>
+<li>Add materials in stages.</li>
+<li>Write long-term important information into OpenSpec.</li>
+<li>Summarize details from temporary conversations in time, rather than leaving them buried in chat history.</li>
+</ul>
+<h3 id="Explicitly-Require-Validation"><a href="#Explicitly-Require-Validation" class="headerlink" title="Explicitly Require Validation"></a>Explicitly Require Validation</h3><p>Do not accept only “done.” At the end of a task, ask Codex to explain:</p>
+<ul>
+<li>What it did.</li>
+<li>What it changed.</li>
+<li>How it validated the result.</li>
+<li>What the validation result was.</li>
+<li>What remains unvalidated.</li>
+<li>What risks or follow-ups remain.</li>
+</ul>
+<p>Different roles validate in different ways:</p>
+<table>
+<thead>
+<tr>
+<th>Role &#x2F; scenario</th>
+<th>Common validation methods</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Product</td>
+<td>Acceptance criteria checks, user flow review, scope confirmation</td>
+</tr>
+<tr>
+<td>Engineering</td>
+<td>Tests, lint, builds, page or API validation</td>
+</tr>
+<tr>
+<td>QA</td>
+<td>Test coverage, reproduction steps, regression results, defect status</td>
+</tr>
+<tr>
+<td>Operations &#x2F; business</td>
+<td>Metric definition checks, execution checklist, retrospective conclusions</td>
+</tr>
+<tr>
+<td>Data analysis</td>
+<td>Data source confirmation, metric consistency, outlier checks</td>
+</tr>
+<tr>
+<td>Customer success &#x2F; implementation</td>
+<td>Customer configuration checks, delivery checklist, risk confirmation</td>
+</tr>
+</tbody></table>
+<h3 id="Stop-and-Confirm-High-Risk-Operations"><a href="#Stop-and-Confirm-High-Risk-Operations" class="headerlink" title="Stop and Confirm High-Risk Operations"></a>Stop and Confirm High-Risk Operations</h3><p>The following operations require Codex to explain its plan and wait for human confirmation:</p>
+<ul>
+<li>Deleting, overwriting, or batch-modifying files.</li>
+<li>Database migrations, production data changes, or production configuration updates.</li>
+<li>Releases, deployments, rollbacks, or actions that affect live users.</li>
+<li>Actions that affect customer configurations, delivery scope, or external commitments.</li>
+<li>Sending formal conclusions, reports, or external communications.</li>
+</ul>
+<h3 id="Use-Stage-Summaries"><a href="#Use-Stage-Summaries" class="headerlink" title="Use Stage Summaries"></a>Use Stage Summaries</h3><p>When a task is long, information-heavy, or about to move to a new thread, ask Codex to summarize:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Please create a stage summary based on the current context:</span><br><span class="line"></span><br><span class="line">1. Current goal</span><br><span class="line">2. Completed work</span><br><span class="line">3. Remaining work</span><br><span class="line">4. Key decisions</span><br><span class="line">5. Validation results</span><br><span class="line">6. Current risks</span><br><span class="line">7. Recommended next steps</span><br><span class="line"></span><br><span class="line">Write information that should be preserved long term into OpenSpec.</span><br></pre></td></tr></table></figure>
+
+<p>One-line principle:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ask Codex to perform more verifiable intermediate steps and fewer final leaps without context or validation.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-Applicable-Roles-and-Typical-Scenarios"><a href="#5-Applicable-Roles-and-Typical-Scenarios" class="headerlink" title="5. Applicable Roles and Typical Scenarios"></a>5. Applicable Roles and Typical Scenarios</h2><p>Different roles can use the same OpenSpec method. The difference is what each role focuses on recording.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Typical scenarios</th>
+<th>What to record in OpenSpec</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Product manager</td>
+<td>Requirement analysis, user stories, PRD breakdown, scope confirmation, release planning</td>
+<td>Background, goals, non-goals, acceptance criteria, key decisions, scope changes</td>
+</tr>
+<tr>
+<td>Software engineer</td>
+<td>Technical design, feature implementation, refactoring, bug fixes, API changes</td>
+<td>Technical design, impact scope, implementation progress, validation results, risks</td>
+</tr>
+<tr>
+<td>QA engineer</td>
+<td>Test plans, test case design, defect reproduction, regression validation, acceptance reports</td>
+<td>Test scope, test data, reproduction steps, actual results, remaining risks</td>
+</tr>
+<tr>
+<td>Designer</td>
+<td>UX proposals, interaction changes, design reviews, visual standard documentation</td>
+<td>Design goals, user journeys, trade-offs, acceptance criteria, affected pages</td>
+</tr>
+<tr>
+<td>Operations &#x2F; business team</td>
+<td>Campaign plans, process optimization, customer issue follow-up, business rule changes</td>
+<td>Business background, target metrics, execution plan, validation definitions, retrospective conclusions</td>
+</tr>
+<tr>
+<td>Data analyst</td>
+<td>Metric definitions, data definitions, analysis conclusions, report iterations</td>
+<td>Metric definitions, data sources, analysis assumptions, conclusions, follow-up actions</td>
+</tr>
+<tr>
+<td>Implementation &#x2F; customer success</td>
+<td>Customer delivery, troubleshooting, configuration changes, handoff notes</td>
+<td>Customer background, configuration items, operation logs, risks, delivery conclusions</td>
+</tr>
+</tbody></table>
+<p>One-line principle:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If a task needs to recover context across people, time, or threads, record it in OpenSpec.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6-OpenSpec-Document-Relationships-and-Retrieval-Quality"><a href="#6-OpenSpec-Document-Relationships-and-Retrieval-Quality" class="headerlink" title="6. OpenSpec Document Relationships and Retrieval Quality"></a>6. OpenSpec Document Relationships and Retrieval Quality</h2><p>OpenSpec is valuable not only because it records content, but also because it preserves relationships between project documents.</p>
+<p>When Codex recovers context, it usually relies on file names, directory structure, headings, keywords, references, and task status to decide which content is relevant. The more structured OpenSpec is, and the clearer the relationships are, the better Codex can retrieve and understand project context.</p>
+<h3 id="6-1-Every-Change-Should-Explain-What-It-Relates-To"><a href="#6-1-Every-Change-Should-Explain-What-It-Relates-To" class="headerlink" title="6.1 Every Change Should Explain What It Relates To"></a>6.1 Every Change Should Explain What It Relates To</h3><p>When creating or updating an OpenSpec change, record as much as possible:</p>
+<ul>
+<li>Related specs</li>
+<li>Related code modules</li>
+<li>Related requirement documents, test plans, business processes, data metrics, or customer projects</li>
+<li>Related pages, APIs, database tables, or configuration items</li>
+<li>Related historical changes</li>
+<li>Which behaviors the current change affects</li>
+<li>Which areas are out of scope</li>
+</ul>
+<p>Recommended structure for a change proposal or design:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## Related Context</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> Related specs:</span><br><span class="line"><span class="bullet">  -</span> user-auth</span><br><span class="line"><span class="bullet">  -</span> billing-plan</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> Related changes:</span><br><span class="line"><span class="bullet">  -</span> add-team-invitation-flow</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> Related code:</span><br><span class="line"><span class="bullet">  -</span> src/modules/auth/</span><br><span class="line"><span class="bullet">  -</span> src/modules/billing/</span><br><span class="line"><span class="bullet">  -</span> apps/web/pages/settings/</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> Related docs / business context:</span><br><span class="line"><span class="bullet">  -</span> PRD: team-permission-v2</span><br><span class="line"><span class="bullet">  -</span> Test plan: billing-regression</span><br><span class="line"><span class="bullet">  -</span> Metric: paid-team-conversion-rate</span><br><span class="line"><span class="bullet">  -</span> Customer project: enterprise-onboarding</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> Affected behavior:</span><br><span class="line"><span class="bullet">  -</span> Permission checks after user login</span><br><span class="line"><span class="bullet">  -</span> Feature visibility after team plan changes</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> Out of scope:</span><br><span class="line"><span class="bullet">  -</span> No changes to the payment flow</span><br><span class="line"><span class="bullet">  -</span> No changes to invoice generation logic</span><br></pre></td></tr></table></figure>
+
+<p>This helps Codex in a new thread decide faster which files to read and which files to ignore.</p>
+<h3 id="6-2-Specs-Record-Stable-Capabilities-Changes-Record-Iteration-Process"><a href="#6-2-Specs-Record-Stable-Capabilities-Changes-Record-Iteration-Process" class="headerlink" title="6.2 Specs Record Stable Capabilities, Changes Record Iteration Process"></a>6.2 Specs Record Stable Capabilities, Changes Record Iteration Process</h3><p>Teams need to distinguish the responsibilities of specs and changes.</p>
+<p><code>openspec/specs/</code> is for long-term stable product capabilities, behavior agreements, and system rules.</p>
+<p><code>openspec/changes/</code> is for a specific iteration, including its background, solution, tasks, progress, and validation results.</p>
+<p>Do not put short-term task logs into specs. Do not leave long-term behavior rules only inside changes.</p>
+<p>Recommended principle:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Stable rules go into specs.</span><br><span class="line">Iteration process goes into changes.</span><br><span class="line">Long-term behavior after completion must be written back to specs.</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-Maintain-Document-Relationships-After-a-Task-Is-Complete"><a href="#6-3-Maintain-Document-Relationships-After-a-Task-Is-Complete" class="headerlink" title="6.3 Maintain Document Relationships After a Task Is Complete"></a>6.3 Maintain Document Relationships After a Task Is Complete</h3><p>When a change is complete, do more than check off tasks. Ask Codex to check whether it needs to:</p>
+<ul>
+<li>Update related specs</li>
+<li>Add references to related changes</li>
+<li>Archive completed changes</li>
+<li>Remove or compress outdated temporary notes</li>
+<li>Record final validation results</li>
+<li>Mark follow-up items</li>
+</ul>
+<p>Recommended prompt:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">After the task is complete, please help maintain the OpenSpec document relationships:</span><br><span class="line"></span><br><span class="line">1. Check whether this change affects existing specs</span><br><span class="line">2. If it does, update the corresponding specs</span><br><span class="line">3. Add related specs, related code, related docs, and related changes to the change</span><br><span class="line">4. Mark task completion status</span><br><span class="line">5. Record validation commands and results</span><br><span class="line">6. Decide whether the change can be archived</span><br><span class="line">7. Clean up outdated or duplicate temporary notes to avoid hurting future retrieval</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-4-Minimum-Archive-Output-for-a-Completed-Change"><a href="#6-4-Minimum-Archive-Output-for-a-Completed-Change" class="headerlink" title="6.4 Minimum Archive Output for a Completed Change"></a>6.4 Minimum Archive Output for a Completed Change</h3><p>A completed change should leave more than checked-off tasks. It should allow a future new thread to recover context.</p>
+<p>Before archiving, confirm at least:</p>
+<ul>
+<li>The final goal is clear</li>
+<li>The actual change summary is clear</li>
+<li>Key decisions are recorded</li>
+<li>Validation commands and results are recorded</li>
+<li>Specs update needs have been checked</li>
+<li>Related specs, related code, related docs, and related changes are recorded</li>
+<li>Remaining follow-ups are marked</li>
+</ul>
+<p>Recommended archive summary structure:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## Completion Summary</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> Final outcome:</span><br><span class="line"><span class="bullet">-</span> Actual changes:</span><br><span class="line"><span class="bullet">-</span> Key decisions:</span><br><span class="line"><span class="bullet">-</span> Verification:</span><br><span class="line"><span class="bullet">-</span> Specs updated:</span><br><span class="line"><span class="bullet">-</span> Follow-up:</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-5-Key-Point-Prevent-OpenSpec-from-Becoming-Low-Quality-Context"><a href="#6-5-Key-Point-Prevent-OpenSpec-from-Becoming-Low-Quality-Context" class="headerlink" title="6.5 Key Point: Prevent OpenSpec from Becoming Low-Quality Context"></a>6.5 Key Point: Prevent OpenSpec from Becoming Low-Quality Context</h3><p>OpenSpec is not a chat backup. It is not an operation log.</p>
+<p>Avoid recording:</p>
+<ul>
+<li>Every ordinary command output</li>
+<li>Trial-and-error process with no long-term value</li>
+<li>Repeated background descriptions</li>
+<li>Invalidated solutions that are not marked as such</li>
+<li>Large blocks of code, materials, or background unrelated to the current change</li>
+<li>Temporary guesses without conclusions</li>
+</ul>
+<p>Prefer recording:</p>
+<ul>
+<li>The final selected solution</li>
+<li>Explicitly rejected alternatives and why they were rejected</li>
+<li>Key decisions</li>
+<li>Impact scope</li>
+<li>Validation methods</li>
+<li>Unresolved risks</li>
+<li>Follow-up tasks</li>
+</ul>
+<p>One-line principle:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OpenSpec records reusable context, not model garbage.</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-6-Ask-Codex-to-Regularly-Maintain-OpenSpec"><a href="#6-6-Ask-Codex-to-Regularly-Maintain-OpenSpec" class="headerlink" title="6.6 Ask Codex to Regularly Maintain OpenSpec"></a>6.6 Ask Codex to Regularly Maintain OpenSpec</h3><p>As a project accumulates more iterations, ask Codex to periodically maintain OpenSpec retrievability.</p>
+<p>Recommended prompt:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Please help me improve the retrievability of the current OpenSpec:</span><br><span class="line"></span><br><span class="line">1. Check openspec/specs/ and openspec/changes/</span><br><span class="line">2. Identify documents with unclear names, missing relationships, or unclear status</span><br><span class="line">3. Check whether active changes contain duplicate or outdated content</span><br><span class="line">4. Check whether completed changes should be archived</span><br><span class="line">5. Check whether specs are missing long-term rules that should have been written back from completed changes</span><br><span class="line">6. Provide cleanup suggestions</span><br><span class="line">7. Modify files only after I confirm</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-7-OpenSpec-Maintenance-Principles-Should-Also-Be-Written-into-OpenSpec"><a href="#6-7-OpenSpec-Maintenance-Principles-Should-Also-Be-Written-into-OpenSpec" class="headerlink" title="6.7 OpenSpec Maintenance Principles Should Also Be Written into OpenSpec"></a>6.7 OpenSpec Maintenance Principles Should Also Be Written into OpenSpec</h3><p>When initializing OpenSpec, do more than create the directory structure. Write the rules for maintaining OpenSpec into the project conventions.</p>
+<p>Recommended locations:</p>
+<ul>
+<li>The <code>context:</code> section of <code>openspec/config.yaml</code>, as short and strict project rules.</li>
+<li>If needed, create <code>openspec/specs/openspec-maintenance/spec.md</code> for a fuller OpenSpec maintenance standard.</li>
+</ul>
+<p>This way, every time Codex reads OpenSpec later, it knows not only what the project does, but also how OpenSpec should be maintained.</p>
+<p>Core principles to write:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">OpenSpec is not a chat backup. It is reusable project context.</span><br><span class="line">Specs record long-term stable capabilities, behavior rules, and system agreements.</span><br><span class="line">Changes record specific iterations, task progress, decisions, and validation results.</span><br><span class="line">Every change should maintain related specs, related code, related docs, and related changes.</span><br><span class="line">Every change should clearly state affected behavior and out of scope.</span><br><span class="line">After a task is complete, check whether long-term behavior needs to be written back to specs.</span><br><span class="line">Completed changes should be archived in time to prevent active changes from becoming noise.</span><br><span class="line">Avoid low-value operation logs. Record only key decisions, validation results, risks, and follow-ups.</span><br><span class="line">Whenever creating, updating, or archiving OpenSpec content, maintain document relationships.</span><br><span class="line">Control context complexity. Read only OpenSpec content directly related to the current task.</span><br></pre></td></tr></table></figure>
+
+<p>One-line principle:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">When initializing OpenSpec, also preserve the rules for maintaining OpenSpec itself.</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-8-OpenSpec-Naming-Conventions"><a href="#6-8-OpenSpec-Naming-Conventions" class="headerlink" title="6.8 OpenSpec Naming Conventions"></a>6.8 OpenSpec Naming Conventions</h3><p>OpenSpec naming directly affects future retrieval quality.</p>
+<p>Recommended change naming:</p>
+<ul>
+<li>Start with a verb, such as <code>add-</code>, <code>fix-</code>, <code>refactor-</code>, <code>remove-</code>, or <code>update-</code>.</li>
+<li>Include a clear business object, such as <code>add-team-invitation-flow</code>.</li>
+<li>Make the impact scope visible, such as <code>refactor-billing-plan-permissions</code>.</li>
+<li>Avoid vague names such as <code>misc-fixes</code>, <code>update-stuff</code>, or <code>temp-change</code>.</li>
+<li>For bug fixes, try to include both the problem and object, such as <code>fix-order-refund-status-sync</code>.</li>
+</ul>
+<p>Recommended spec naming:</p>
+<ul>
+<li>Use stable business capability names, such as <code>user-auth</code>, <code>billing-plan</code>, or <code>team-permissions</code>.</li>
+<li>Do not use one-off task names as spec names.</li>
+<li>One spec should correspond to one group of long-term stable behaviors. Do not put multiple unrelated capabilities into the same spec.</li>
+</ul>
+<hr>
+<h2 id="7-Standard-Actions-Before-Starting-Each-Task"><a href="#7-Standard-Actions-Before-Starting-Each-Task" class="headerlink" title="7. Standard Actions Before Starting Each Task"></a>7. Standard Actions Before Starting Each Task</h2><p>Before every non-trivial task, ask Codex to check OpenSpec first.</p>
+<p>For very small tasks, a lightweight judgment is enough. Reading the full OpenSpec may not be necessary.</p>
+<p>Very small tasks usually include:</p>
+<ul>
+<li>Small copy edits</li>
+<li>Pure formatting</li>
+<li>Clear and low-risk single-point fixes</li>
+<li>Local style tweaks that do not affect behavior</li>
+</ul>
+<p>Lightweight judgment criteria:</p>
+<ul>
+<li>Whether it clearly does not affect long-term behavior</li>
+<li>Whether it does not require recording design decisions</li>
+<li>Whether it does not need context recovery across threads</li>
+<li>Whether it does not need full OpenSpec loading</li>
+</ul>
+<p>Recommended prompt:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Before starting, please check this project&#x27;s OpenSpec:</span><br><span class="line"></span><br><span class="line">1. Read openspec/config.yaml</span><br><span class="line">2. Review the project conventions in context</span><br><span class="line">3. Review existing specs in openspec/specs/</span><br><span class="line">4. Check whether openspec/changes/ contains an active change related to this task</span><br><span class="line"></span><br><span class="line">If there is a related change, continue based on it.</span><br><span class="line">If there is no related change, decide whether this task needs a new OpenSpec change.</span><br></pre></td></tr></table></figure>
+
+<p>Short version:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Please first check whether OpenSpec already contains relevant context, then decide whether we need to create or update a change.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="8-When-to-Create-an-OpenSpec-Change"><a href="#8-When-to-Create-an-OpenSpec-Change" class="headerlink" title="8. When to Create an OpenSpec Change"></a>8. When to Create an OpenSpec Change</h2><p>The following cases must create or update an OpenSpec change:</p>
+<ul>
+<li>New feature development</li>
+<li>New requirements, requirement scope changes, or acceptance criteria changes</li>
+<li>Behavior changes</li>
+<li>Cross-role, cross-department, or cross-system collaboration</li>
+<li>Cross-module, cross-service, or cross-page changes</li>
+<li>Changes to test plans, acceptance scope, or regression strategy</li>
+<li>Operational campaigns, customer delivery, business process changes, or data definition changes</li>
+<li>Deployment, configuration, or data structure changes</li>
+<li>Bug fixes with unclear scope</li>
+<li>Tasks that require recording product, technical, QA, or business decisions</li>
+<li>Tasks that may span multiple Codex threads</li>
+<li>Work where future teammates need to know why a change was made</li>
+<li>Long-term-impact changes involving APIs, data models, permissions, workflows, state machines, business rules, metric definitions, and similar areas</li>
+</ul>
+<p>The following cases may not require a change:</p>
+<ul>
+<li>Very small copy edits</li>
+<li>Pure formatting</li>
+<li>Clear and low-risk mechanical edits</li>
+<li>Temporary investigation that does not produce long-term decisions</li>
+<li>Local style tweaks that do not affect behavior</li>
+</ul>
+<p>Judgment:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If another person would struggle to understand the task background without reading the chat history, record it in OpenSpec.</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-1-Quick-Decision-Table"><a href="#8-1-Quick-Decision-Table" class="headerlink" title="8.1 Quick Decision Table"></a>8.1 Quick Decision Table</h3><table>
+<thead>
+<tr>
+<th>Task type</th>
+<th>Need an OpenSpec change?</th>
+<th>Consider a Superpower?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Small copy edit</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Pure formatting or mechanical edit</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Clear, low-risk small bug</td>
+<td>Depends on impact scope</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Bug with unclear scope</td>
+<td>Yes</td>
+<td>Depends on whether the investigation process repeats</td>
+</tr>
+<tr>
+<td>PRD, acceptance criteria, or requirement scope adjustment</td>
+<td>Yes</td>
+<td>Maybe</td>
+</tr>
+<tr>
+<td>New feature</td>
+<td>Yes</td>
+<td>Depends on whether the process repeats</td>
+</tr>
+<tr>
+<td>Cross-module refactor</td>
+<td>Yes</td>
+<td>Maybe</td>
+</tr>
+<tr>
+<td>API, permission, state machine, or data model change</td>
+<td>Yes</td>
+<td>Maybe</td>
+</tr>
+<tr>
+<td>Test plan, regression strategy, or acceptance report</td>
+<td>Depends on impact scope</td>
+<td>Maybe</td>
+</tr>
+<tr>
+<td>Operational campaign, customer delivery, or business process adjustment</td>
+<td>Depends on impact scope</td>
+<td>Maybe</td>
+</tr>
+<tr>
+<td>Metric definition, data definition, or reporting logic change</td>
+<td>Yes</td>
+<td>Maybe</td>
+</tr>
+<tr>
+<td>Pre-release check</td>
+<td>Depends on project requirements</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Production data or production configuration operation</td>
+<td>Yes</td>
+<td>Must have approval, dry run, and rollback plan</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="9-Recommended-Prompt-for-Installing-or-Initializing-OpenSpec"><a href="#9-Recommended-Prompt-for-Installing-or-Initializing-OpenSpec" class="headerlink" title="9. Recommended Prompt for Installing or Initializing OpenSpec"></a>9. Recommended Prompt for Installing or Initializing OpenSpec</h2><p>When a project does not yet have OpenSpec, do not only ask Codex to create the directory structure. Also ask Codex to write OpenSpec maintenance principles into the project conventions.</p>
+<p>Recommended prompt:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">I want you to help install and configure OpenSpec in this project.</span><br><span class="line"></span><br><span class="line">You may decide the appropriate granularity for OpenSpec records. My goal is to use OpenSpec to structure our iteration process, especially after a task is successfully completed, so that results, decisions, validation methods, and follow-up items are preserved.</span><br><span class="line"></span><br><span class="line">Please prevent context from living only inside Codex conversations. This way, even if we later see &quot;Codex ran out of room in the model&#x27;s context window. Start a new thread or clear earlier history before retrying.&quot;, I can open a new thread and recover task context through OpenSpec without restating everything.</span><br><span class="line"></span><br><span class="line">In addition to creating the basic OpenSpec structure, please write the OpenSpec maintenance principles into the project conventions so future OpenSpec records follow them.</span><br><span class="line"></span><br><span class="line">Please focus on these principles:</span><br><span class="line"></span><br><span class="line">1. OpenSpec is not a chat backup. It is reusable project context.</span><br><span class="line">2. specs record long-term stable capabilities, behavior rules, and system agreements.</span><br><span class="line">3. changes record specific iterations, task progress, decisions, and validation results.</span><br><span class="line">4. Every change should maintain related specs, related code, related docs, and related changes.</span><br><span class="line">5. Every change should clearly state affected behavior and out of scope.</span><br><span class="line">6. After a task is complete, check whether long-term behavior needs to be written back to specs.</span><br><span class="line">7. Completed changes should be archived in time to prevent active changes from becoming noise.</span><br><span class="line">8. Avoid low-value operation logs. Record only key decisions, validation results, risks, and follow-ups.</span><br><span class="line">9. Whenever Codex creates, updates, or archives OpenSpec content, it should maintain relationships between documents to improve future retrieval and context recovery.</span><br><span class="line">10. Control context complexity. Read only content directly related to the current task.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="10-Standard-Workflow"><a href="#10-Standard-Workflow" class="headerlink" title="10. Standard Workflow"></a>10. Standard Workflow</h2><h3 id="Step-1-Check-Context"><a href="#Step-1-Check-Context" class="headerlink" title="Step 1: Check Context"></a>Step 1: Check Context</h3><p>Do not let Codex directly modify files, output a solution, or proceed with execution before checking context.</p>
+<p>First ask it to check OpenSpec:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Please search OpenSpec first and confirm whether there are specs or changes related to this task.</span><br></pre></td></tr></table></figure>
+
+<h3 id="Step-2-Decide-Whether-a-New-Change-Is-Needed"><a href="#Step-2-Decide-Whether-a-New-Change-Is-Needed" class="headerlink" title="Step 2: Decide Whether a New Change Is Needed"></a>Step 2: Decide Whether a New Change Is Needed</h3><p>If the task is large, unclear in scope, or involves behavior changes, create an OpenSpec change first.</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If you judge this to be a non-trivial change, please create an OpenSpec change first and record the requirement, solution, and task breakdown. Do not execute directly or produce the final conclusion first.</span><br></pre></td></tr></table></figure>
+
+<h3 id="Step-3-Break-Down-the-Task"><a href="#Step-3-Break-Down-the-Task" class="headerlink" title="Step 3: Break Down the Task"></a>Step 3: Break Down the Task</h3><p>Ask Codex to split the task into executable items:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Based on the OpenSpec change, please break this task into executable tasks and mark the recommended execution order.</span><br></pre></td></tr></table></figure>
+
+<h3 id="Step-4-Execute-the-Task"><a href="#Step-4-Execute-the-Task" class="headerlink" title="Step 4: Execute the Task"></a>Step 4: Execute the Task</h3><p>During execution, ask Codex to proceed according to the OpenSpec tasks:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Please proceed through the tasks in the OpenSpec change one by one, and update task status after completion.</span><br></pre></td></tr></table></figure>
+
+<h3 id="Step-5-Validate-Results"><a href="#Step-5-Validate-Results" class="headerlink" title="Step 5: Validate Results"></a>Step 5: Validate Results</h3><p>Do not accept only “it is fixed.”</p>
+<p>Ask Codex to complete the necessary validation based on task type, such as tests, lint, builds, page validation, API validation, test case review, acceptance criteria checks, data definition checks, business rule confirmation, or document review:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">After completion, please run or perform the necessary validation and record the validation method and result in the OpenSpec change.</span><br></pre></td></tr></table></figure>
+
+<h3 id="Step-6-Update-OpenSpec"><a href="#Step-6-Update-OpenSpec" class="headerlink" title="Step 6: Update OpenSpec"></a>Step 6: Update OpenSpec</h3><p>After the task is complete, Codex must write back the final state:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">After the task is complete, please update OpenSpec:</span><br><span class="line"></span><br><span class="line">1. Mark completed tasks</span><br><span class="line">2. Record the actual changes or business output</span><br><span class="line">3. Record key decisions</span><br><span class="line">4. Record validation results</span><br><span class="line">5. Update related specs, related code, related docs, and related changes</span><br><span class="line">6. Decide whether specs need to be updated</span><br><span class="line">7. Record remaining issues or follow-up items</span><br><span class="line">8. If the change is complete, archive it</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="11-Recovering-Context-in-a-New-Codex-Thread"><a href="#11-Recovering-Context-in-a-New-Codex-Thread" class="headerlink" title="11. Recovering Context in a New Codex Thread"></a>11. Recovering Context in a New Codex Thread</h2><p>When context is lost, a task is interrupted, or the work needs to move to a new thread, do not restate the full background manually.</p>
+<p>Use this prompt:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">This is a new Codex thread. Please do not rely on previous chat history.</span><br><span class="line"></span><br><span class="line">Please first read this project&#x27;s OpenSpec:</span><br><span class="line"></span><br><span class="line">1. openspec/config.yaml</span><br><span class="line">2. openspec/specs/</span><br><span class="line">3. openspec/changes/</span><br><span class="line"></span><br><span class="line">Please find the active change that is still in progress and summarize:</span><br><span class="line"></span><br><span class="line">- Current task goal</span><br><span class="line">- Completed work</span><br><span class="line">- Remaining work</span><br><span class="line">- Key decisions</span><br><span class="line">- Validated work</span><br><span class="line">- Current risks</span><br><span class="line">- Recommended next step</span><br><span class="line"></span><br><span class="line">Then continue with the most reasonable next step.</span><br><span class="line"></span><br><span class="line">Only load content directly related to the current task. Avoid loading unrelated history into the context all at once.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="12-When-to-Consider-Superpowers"><a href="#12-When-to-Consider-Superpowers" class="headerlink" title="12. When to Consider Superpowers"></a>12. When to Consider Superpowers</h2><p>Superpowers are useful for lowering the cost of complex operations. They package frequent, error-prone, multi-step work into standard capabilities.</p>
+<p>Consider Superpowers first when:</p>
+<ul>
+<li>A type of operation is repeated by the team.</li>
+<li>The operation has many steps and steps are easy to miss.</li>
+<li>New teammates are not familiar with the project but need to complete a standard task quickly.</li>
+<li>The task needs to follow a fixed standard.</li>
+<li>Team experience should be codified instead of passed down orally each time.</li>
+<li>Codex needs to execute a fixed workflow for a type of task.</li>
+<li>The task needs to combine multiple tools, scripts, checks, or document workflows.</li>
+</ul>
+<p>Common examples:</p>
+<ul>
+<li>Initialize OpenSpec</li>
+<li>Create an OpenSpec proposal, design, and tasks</li>
+<li>Advance work according to OpenSpec tasks</li>
+<li>Update or archive OpenSpec after task completion</li>
+<li>Break down PRDs and check acceptance criteria</li>
+<li>Organize test plans, test cases, and regression checklists</li>
+<li>Capture customer troubleshooting and delivery records</li>
+<li>Create operational campaign checklists and retrospectives</li>
+<li>Check metric definitions and preserve data analysis conclusions</li>
+<li>Pre-commit checks</li>
+<li>Code reviews</li>
+<li>API change checks</li>
+<li>Database migration checks</li>
+<li>Frontend visual regression checks</li>
+<li>Pre-release checklists</li>
+<li>Incident investigation</li>
+<li>Generate weekly reports, change logs, acceptance reports, retrospectives, or technical documentation</li>
+</ul>
+<p>Avoid using Superpowers when:</p>
+<ul>
+<li>The task is simple and one-off.</li>
+<li>The requirement is still vague and has not become a stable workflow.</li>
+<li>The team has not reached consensus, and packaging the workflow too early would increase maintenance cost.</li>
+<li>The work involves deletion, overwrites, releases, or production operations without approval and dry-run mechanisms.</li>
+</ul>
+<p>Judgment:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If new teammates repeatedly ask &quot;how do I do this step?&quot;, or senior teammates have to walk people through it every time, consider turning it into a Superpower.</span><br></pre></td></tr></table></figure>
+
+<h3 id="Boundaries-of-Superpowers"><a href="#Boundaries-of-Superpowers" class="headerlink" title="Boundaries of Superpowers"></a>Boundaries of Superpowers</h3><p>The value of Superpowers is reducing the cost of complex operations, not adding workflow burden.</p>
+<p>Before using one, judge:</p>
+<ul>
+<li>Whether the current task is truly complex.</li>
+<li>Whether it will truly repeat.</li>
+<li>Whether there is a clear, stable, reusable process.</li>
+<li>Whether using a Superpower is simpler than asking Codex to do the task directly.</li>
+<li>Whether the context it consumes is worth it.</li>
+</ul>
+<p>If a task is simple, ask Codex to complete it directly. No Superpower is needed.</p>
+<p>Recommended principle:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Do simple tasks directly.</span><br><span class="line">Package only repeated complex tasks.</span><br><span class="line">Practice uncertain workflows first, then package them.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="13-Using-Superpowers-Through-Codex"><a href="#13-Using-Superpowers-Through-Codex" class="headerlink" title="13. Using Superpowers Through Codex"></a>13. Using Superpowers Through Codex</h2><p>When using Superpowers, teammates should not need to remember complex commands.</p>
+<p>The recommended approach is to let Codex act as the coordinator:</p>
+<ol>
+<li>First check OpenSpec and understand the current task context.</li>
+<li>Then decide whether there is a suitable Superpower.</li>
+<li>If there is, use that Superpower to complete the task.</li>
+<li>If there is not, proceed with the normal Codex workflow.</li>
+<li>If the task is likely to repeat in the future, suggest whether a new Superpower should be created.</li>
+<li>After completion, write key results back to OpenSpec.</li>
+</ol>
+<p>Recommended prompt:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Please first check OpenSpec and understand this task&#x27;s context.</span><br><span class="line"></span><br><span class="line">Then decide whether this task is suitable for an existing Superpower:</span><br><span class="line"></span><br><span class="line">- If there is a suitable Superpower, use it first and explain which part of the task it will solve.</span><br><span class="line">- If there is no suitable Superpower, complete the task using the normal Codex workflow.</span><br><span class="line">- If you think this task will repeat in the future, suggest whether it should be turned into a new Superpower.</span><br></pre></td></tr></table></figure>
+
+<p>New teammates can use this entry prompt:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">This is my first time handling a similar task in this project.</span><br><span class="line"></span><br><span class="line">Please first check OpenSpec and the project documentation, then tell me:</span><br><span class="line"></span><br><span class="line">1. Whether the current task already has relevant context</span><br><span class="line">2. Whether there is a suitable Superpower</span><br><span class="line">3. How you plan to complete this task in the fewest reasonable steps</span><br><span class="line">4. Which actions require my confirmation</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="14-Safety-Rules-for-Superpowers"><a href="#14-Safety-Rules-for-Superpowers" class="headerlink" title="14. Safety Rules for Superpowers"></a>14. Safety Rules for Superpowers</h2><p>To prevent Superpowers from becoming black boxes, the team should follow these rules:</p>
+<ul>
+<li>Before Codex uses a Superpower, it must explain what problem the Superpower will solve.</li>
+<li>For deletion, overwrites, releases, migrations, or production operations, human confirmation is required first.</li>
+<li>Prefer dry runs, previews, diffs, and test commands.</li>
+<li>After a Superpower completes, Codex must summarize what it did, what it changed, and what it validated.</li>
+<li>If the task has long-term impact, OpenSpec must be updated.</li>
+<li>Do not treat Superpowers as shortcuts that replace thinking.</li>
+<li>A Superpower packages a standard process. It does not skip review.</li>
+</ul>
+<h3 id="14-1-Risk-Levels-and-Confirmation-Rules"><a href="#14-1-Risk-Levels-and-Confirmation-Rules" class="headerlink" title="14.1 Risk Levels and Confirmation Rules"></a>14.1 Risk Levels and Confirmation Rules</h3><table>
+<thead>
+<tr>
+<th>Risk level</th>
+<th>Typical operations</th>
+<th>Required Codex behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Low risk</td>
+<td>Search, read files, view diffs, organize materials, run read-only commands</td>
+<td>Can execute directly and summarize findings when needed</td>
+</tr>
+<tr>
+<td>Medium risk</td>
+<td>Modify code, update docs, adjust tests, organize PRDs, add test cases, draft analysis</td>
+<td>Can execute, but must summarize changes and validation afterward</td>
+</tr>
+<tr>
+<td>High risk</td>
+<td>Delete files, overwrite configurations, run database migrations, deploy, batch-modify data, send formal external conclusions, adjust customer configuration</td>
+<td>Must first explain the plan, impact scope, and rollback method, then wait for human confirmation</td>
+</tr>
+<tr>
+<td>Never execute by default</td>
+<td>Delete production data without backup, deploy without confirmation, overwrite user files without confirmation, make external delivery commitments without confirmation</td>
+<td>Must not execute directly. Requires explicit authorization from the responsible owner</td>
+</tr>
+</tbody></table>
+<p>Minimum confirmation information for high-risk operations:</p>
+<ul>
+<li>What will be done</li>
+<li>Which files, environments, data, or users will be affected</li>
+<li>Whether there is a dry run, backup, or rollback plan</li>
+<li>How to recover if execution fails</li>
+<li>Who needs to confirm</li>
+</ul>
+<p>Recommended prompt:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Before using the Superpower, please explain:</span><br><span class="line"></span><br><span class="line">1. Which Superpower you plan to use</span><br><span class="line">2. Which steps it will execute</span><br><span class="line">3. Whether it will modify files</span><br><span class="line">4. Whether any high-risk operations are involved</span><br><span class="line">5. Which steps require my confirmation</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="15-Recommended-Process-for-Creating-a-New-Superpower"><a href="#15-Recommended-Process-for-Creating-a-New-Superpower" class="headerlink" title="15. Recommended Process for Creating a New Superpower"></a>15. Recommended Process for Creating a New Superpower</h2><p>When a workflow appears repeatedly, ask Codex to help capture it.</p>
+<p>Recommended prompt:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">This workflow may be used repeatedly by the team in the future.</span><br><span class="line"></span><br><span class="line">Please help me judge whether it is suitable to turn into a Superpower.</span><br><span class="line"></span><br><span class="line">If it is suitable, please organize:</span><br><span class="line"></span><br><span class="line">1. Applicable scenarios</span><br><span class="line">2. Non-applicable scenarios</span><br><span class="line">3. Input requirements</span><br><span class="line">4. Execution steps</span><br><span class="line">5. Safety boundaries</span><br><span class="line">6. Validation methods after completion</span><br><span class="line">7. Whether OpenSpec needs to be updated</span><br></pre></td></tr></table></figure>
+
+<p>If the Superpower should be created directly, continue with:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Based on the workflow above, please help me create a reusable team Superpower.</span><br><span class="line"></span><br><span class="line">Requirements:</span><br><span class="line"></span><br><span class="line">- Clear name</span><br><span class="line">- Explain applicable scenarios</span><br><span class="line">- Clearly describe execution steps</span><br><span class="line">- Mark risky operations</span><br><span class="line">- Include validation methods</span><br><span class="line">- Include how to update OpenSpec after task completion</span><br><span class="line">- Make it callable by new teammates through natural language</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="16-Standardizing-OpenSpec-Required-Actions-with-Superpowers"><a href="#16-Standardizing-OpenSpec-Required-Actions-with-Superpowers" class="headerlink" title="16. Standardizing OpenSpec Required Actions with Superpowers"></a>16. Standardizing OpenSpec Required Actions with Superpowers</h2><p>OpenSpec required actions are good candidates for Superpowers.</p>
+<p>However, avoid creating one giant “all-purpose OpenSpec Superpower.” A better approach is to split the workflow into several stable, clear, composable capabilities.</p>
+<p>Recommended splitting principles:</p>
+<ul>
+<li>One Superpower should own one stage.</li>
+<li>Each Superpower should clearly state input, output, applicable scenarios, and non-applicable scenarios.</li>
+<li>Small tasks should only receive a lightweight judgment. Do not force the full OpenSpec flow.</li>
+<li>Read only OpenSpec content directly related to the current task.</li>
+<li>High-risk actions such as creation, archiving, deletion, overwriting, releases, and migrations must first explain the plan and wait for confirmation.</li>
+<li>After a Superpower completes, write key results back to OpenSpec instead of leaving them only in chat.</li>
+</ul>
+<p>Recommended standardization into five OpenSpec Superpowers:</p>
+<table>
+<thead>
+<tr>
+<th>Superpower</th>
+<th>Problem it solves</th>
+<th>Main output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>openspec-start-task</code></td>
+<td>How to check context before starting a task</td>
+<td>Relevant context summary, whether a change is needed, next-step recommendation</td>
+</tr>
+<tr>
+<td><code>openspec-create-change</code></td>
+<td>How to create a change for a non-trivial modification</td>
+<td>proposal, design, tasks, related context</td>
+</tr>
+<tr>
+<td><code>openspec-continue-change</code></td>
+<td>How to continue an existing change</td>
+<td>Current status summary, next task, execution progress</td>
+</tr>
+<tr>
+<td><code>openspec-finish-change</code></td>
+<td>How to close out work after completion</td>
+<td>Task status, validation results, decision records, archive judgment</td>
+</tr>
+<tr>
+<td><code>openspec-maintenance</code></td>
+<td>How to maintain OpenSpec retrieval quality</td>
+<td>Naming, relationships, archive status, low-value context cleanup suggestions</td>
+</tr>
+</tbody></table>
+<h3 id="16-1-openspec-start-task"><a href="#16-1-openspec-start-task" class="headerlink" title="16.1 openspec-start-task"></a>16.1 <code>openspec-start-task</code></h3><p>Applicable scenarios:</p>
+<ul>
+<li>Starting a new requirement, bug, refactor, test, operations, data analysis, or customer delivery task.</li>
+<li>A new thread needs to understand current task context.</li>
+<li>A new teammate is touching a project task for the first time.</li>
+</ul>
+<p>Input requirements:</p>
+<ul>
+<li>The user’s natural-language task description.</li>
+<li>The current project workspace.</li>
+<li>An existing OpenSpec directory.</li>
+</ul>
+<p>Execution steps:</p>
+<ol>
+<li>Read project conventions in <code>openspec/config.yaml</code>.</li>
+<li>Search related specs, active changes, and historical changes.</li>
+<li>Decide whether there is an existing related change to continue.</li>
+<li>Decide whether a new OpenSpec change is needed.</li>
+<li>Decide whether another suitable Superpower exists.</li>
+<li>Output the minimum viable path forward.</li>
+</ol>
+<p>Output requirements:</p>
+<ul>
+<li>Relevant OpenSpec context summary</li>
+<li>Whether a change needs to be created or updated</li>
+<li>Whether another Superpower is needed</li>
+<li>Next-step recommendation</li>
+<li>Operations that require human confirmation</li>
+</ul>
+<p>Non-applicable scenarios:</p>
+<ul>
+<li>Clearly tiny copy, formatting, or low-risk mechanical edits.</li>
+<li>The user explicitly asks for only a lightweight check.</li>
+</ul>
+<h3 id="16-2-openspec-create-change"><a href="#16-2-openspec-create-change" class="headerlink" title="16.2 openspec-create-change"></a>16.2 <code>openspec-create-change</code></h3><p>Applicable scenarios:</p>
+<ul>
+<li>New features, new requirements, or new business processes.</li>
+<li>Behavior changes.</li>
+<li>Cross-role, cross-department, or cross-system collaboration.</li>
+<li>Cross-module, cross-service, or cross-page changes.</li>
+<li>Tasks requiring product, technical, QA, or business decisions to be recorded.</li>
+<li>Future owners need to know why the change was made.</li>
+</ul>
+<p>Input requirements:</p>
+<ul>
+<li>Task goal.</li>
+<li>Confirmed related specs, business scope, code scope, test scope, or delivery scope.</li>
+<li>Business background or constraints supplied by the user when needed.</li>
+</ul>
+<p>Execution steps:</p>
+<ol>
+<li>Generate a clear, searchable change name.</li>
+<li>Create a proposal explaining background, goals, non-goals, and impact scope.</li>
+<li>Create a design recording the solution, trade-offs, risks, and boundaries.</li>
+<li>Create tasks broken into executable steps.</li>
+<li>Add related specs, related code, related docs, and related changes.</li>
+<li>Clearly state affected behavior and out of scope.</li>
+</ol>
+<p>Output requirements:</p>
+<ul>
+<li>Path of the created or updated change</li>
+<li>Summary of proposal, design, and tasks</li>
+<li>Questions requiring user confirmation</li>
+<li>Recommended execution order</li>
+</ul>
+<p>Safety boundaries:</p>
+<ul>
+<li>If requirements are unclear, ask questions or mark assumptions. Do not invent business conclusions.</li>
+<li>Do not stuff unrelated chat content into the change.</li>
+<li>Do not write short-term task logs into specs.</li>
+</ul>
+<h3 id="16-3-openspec-continue-change"><a href="#16-3-openspec-continue-change" class="headerlink" title="16.3 openspec-continue-change"></a>16.3 <code>openspec-continue-change</code></h3><p>Applicable scenarios:</p>
+<ul>
+<li>An existing OpenSpec change needs to continue.</li>
+<li>Context is lost and needs to be recovered from OpenSpec.</li>
+<li>Multiple Codex threads are handing off the same task.</li>
+</ul>
+<p>Input requirements:</p>
+<ul>
+<li>Change name, or the user’s description of the current task.</li>
+<li>Current workspace or relevant material scope.</li>
+</ul>
+<p>Execution steps:</p>
+<ol>
+<li>Read the target change’s proposal, design, and tasks.</li>
+<li>Summarize the current goal, completed tasks, remaining tasks, key decisions, and risks.</li>
+<li>Check related specs, related code, related materials, and impact scope.</li>
+<li>Choose the next most reasonable task to advance.</li>
+<li>After advancement, update task status.</li>
+<li>Record key decisions and validation results.</li>
+</ol>
+<p>Output requirements:</p>
+<ul>
+<li>Current change status summary</li>
+<li>Work completed in this round</li>
+<li>Output summary for this round</li>
+<li>Validation results</li>
+<li>Next-step recommendation</li>
+</ul>
+<p>Safety boundaries:</p>
+<ul>
+<li>Do not skip unfinished tasks.</li>
+<li>If actual execution differs from the design, explain the difference first.</li>
+<li>High-risk operations require human confirmation.</li>
+</ul>
+<h3 id="16-4-openspec-finish-change"><a href="#16-4-openspec-finish-change" class="headerlink" title="16.4 openspec-finish-change"></a>16.4 <code>openspec-finish-change</code></h3><p>Applicable scenarios:</p>
+<ul>
+<li>The main tasks in a change are complete.</li>
+<li>Before commit, merge, acceptance, delivery, or archive.</li>
+<li>Key results from chat need to be preserved back into OpenSpec.</li>
+</ul>
+<p>Input requirements:</p>
+<ul>
+<li>Change name.</li>
+<li>Current git diff, actual changes, or business output.</li>
+<li>Validation methods already run or still needed.</li>
+</ul>
+<p>Execution steps:</p>
+<ol>
+<li>Check whether all tasks are complete.</li>
+<li>Record actual changes or business output.</li>
+<li>Record key decisions.</li>
+<li>Record validation methods and results.</li>
+<li>Update related specs, related code, related docs, and related changes.</li>
+<li>Decide whether long-term behavior needs to be written back to specs.</li>
+<li>Record remaining follow-ups.</li>
+<li>Decide whether the change can be archived.</li>
+</ol>
+<p>Output requirements:</p>
+<ul>
+<li>Change completion summary</li>
+<li>Validation results</li>
+<li>Specs write-back judgment</li>
+<li>Whether archiving is recommended</li>
+<li>Remaining risks or follow-ups</li>
+</ul>
+<p>Safety boundaries:</p>
+<ul>
+<li>If validation was not run, say so clearly.</li>
+<li>Do not casually modify specs before long-term behavior is confirmed.</li>
+<li>Before archiving, confirm tasks, validation, write-back status, and follow-ups.</li>
+</ul>
+<h3 id="16-5-openspec-maintenance"><a href="#16-5-openspec-maintenance" class="headerlink" title="16.5 openspec-maintenance"></a>16.5 <code>openspec-maintenance</code></h3><p>Applicable scenarios:</p>
+<ul>
+<li>The project has many iterations and OpenSpec content has grown.</li>
+<li>Active changes contain duplicate, outdated, or unclear content.</li>
+<li>New teammates report that they cannot find useful context.</li>
+<li>The team wants to regularly improve OpenSpec retrieval quality.</li>
+</ul>
+<p>Input requirements:</p>
+<ul>
+<li>Current OpenSpec directory.</li>
+<li>Optional: user-specified specs, changes, or business scope.</li>
+</ul>
+<p>Execution steps:</p>
+<ol>
+<li>Check <code>openspec/specs/</code> and <code>openspec/changes/</code>.</li>
+<li>Identify documents with unclear names, missing relationships, or unclear status.</li>
+<li>Check whether active changes are duplicate, outdated, or should be archived.</li>
+<li>Check whether completed changes contain long-term rules that were not written back to specs.</li>
+<li>Identify duplicate, outdated, or low-value context.</li>
+<li>Output cleanup suggestions first, then wait for confirmation before modifying files.</li>
+</ol>
+<p>Output requirements:</p>
+<ul>
+<li>List of retrieval quality issues</li>
+<li>Recommended changes</li>
+<li>Directly executable cleanup plan</li>
+<li>Deletion, archive, or merge operations that require human confirmation</li>
+</ul>
+<p>Safety boundaries:</p>
+<ul>
+<li>Default to suggestions only. Do not delete or rewrite at scale directly.</li>
+<li>Archiving, deleting, or merging documents requires confirmation.</li>
+<li>Do not over-abstract OpenSpec into documents that are hard to retrieve.</li>
+</ul>
+<h3 id="16-6-Other-Recommended-Team-Superpowers"><a href="#16-6-Other-Recommended-Team-Superpowers" class="headerlink" title="16.6 Other Recommended Team Superpowers"></a>16.6 Other Recommended Team Superpowers</h3><p>In addition to standard OpenSpec actions, teams can also capture the following general-purpose Superpowers.</p>
+<h3 id="16-7-Code-Review-Superpower"><a href="#16-7-Code-Review-Superpower" class="headerlink" title="16.7 Code Review Superpower"></a>16.7 Code Review Superpower</h3><p>Applicable scenarios:</p>
+<ul>
+<li>Pre-commit self-checks.</li>
+<li>Pre-PR checks.</li>
+<li>High-risk code changes.</li>
+</ul>
+<p>Capability goals:</p>
+<ul>
+<li>Check bug risks.</li>
+<li>Check test gaps.</li>
+<li>Check edge cases.</li>
+<li>Check whether OpenSpec needs to be updated.</li>
+</ul>
+<h3 id="16-8-Pre-Commit-Check-Superpower"><a href="#16-8-Pre-Commit-Check-Superpower" class="headerlink" title="16.8 Pre-Commit Check Superpower"></a>16.8 Pre-Commit Check Superpower</h3><p>Applicable scenarios:</p>
+<ul>
+<li>Preparing a commit or PR.</li>
+</ul>
+<p>Capability goals:</p>
+<ul>
+<li>Review git diff.</li>
+<li>Run tests, lint, and build.</li>
+<li>Check OpenSpec status.</li>
+<li>Summarize risks and validation results.</li>
+</ul>
+<h3 id="16-9-Pre-Release-Check-Superpower"><a href="#16-9-Pre-Release-Check-Superpower" class="headerlink" title="16.9 Pre-Release Check Superpower"></a>16.9 Pre-Release Check Superpower</h3><p>Applicable scenarios:</p>
+<ul>
+<li>Before release, deployment, or launch.</li>
+</ul>
+<p>Capability goals:</p>
+<ul>
+<li>Check configuration changes.</li>
+<li>Check migrations.</li>
+<li>Check environment variables.</li>
+<li>Check rollback plan.</li>
+<li>Check whether OpenSpec is archived or updated.</li>
+</ul>
+<h3 id="16-10-Product-Requirement-Review-Superpower"><a href="#16-10-Product-Requirement-Review-Superpower" class="headerlink" title="16.10 Product Requirement Review Superpower"></a>16.10 Product Requirement Review Superpower</h3><p>Applicable scenarios:</p>
+<ul>
+<li>PRD draft review.</li>
+<li>Requirement scope changes.</li>
+<li>Unclear acceptance criteria.</li>
+</ul>
+<p>Capability goals:</p>
+<ul>
+<li>Check whether goals, non-goals, and user scenarios are clear.</li>
+<li>Check whether acceptance criteria are verifiable.</li>
+<li>Check whether dependencies, risks, and boundaries are missing.</li>
+<li>Decide whether an OpenSpec change needs to be created or updated.</li>
+</ul>
+<h3 id="16-11-Test-Plan-Review-Superpower"><a href="#16-11-Test-Plan-Review-Superpower" class="headerlink" title="16.11 Test Plan Review Superpower"></a>16.11 Test Plan Review Superpower</h3><p>Applicable scenarios:</p>
+<ul>
+<li>New feature test plans.</li>
+<li>Regression scope confirmation.</li>
+<li>Defect reproduction and pre-acceptance checks.</li>
+</ul>
+<p>Capability goals:</p>
+<ul>
+<li>Check test scope, test data, and coverage gaps.</li>
+<li>Organize test cases, risks, and regression checklists.</li>
+<li>Record validation results and remaining risks.</li>
+<li>Decide whether OpenSpec needs to be updated.</li>
+</ul>
+<h3 id="16-12-Business-Retrospective-Superpower"><a href="#16-12-Business-Retrospective-Superpower" class="headerlink" title="16.12 Business Retrospective Superpower"></a>16.12 Business Retrospective Superpower</h3><p>Applicable scenarios:</p>
+<ul>
+<li>Operational campaign retrospectives.</li>
+<li>Customer delivery retrospectives.</li>
+<li>Retrospectives after business process adjustments.</li>
+</ul>
+<p>Capability goals:</p>
+<ul>
+<li>Summarize goals, execution process, results, and deviations.</li>
+<li>Preserve key decisions, lessons learned, and follow-up items.</li>
+<li>Decide whether long-term rules need to be written into specs.</li>
+</ul>
+<hr>
+<h2 id="17-Prompt-Library-for-Key-Operations"><a href="#17-Prompt-Library-for-Key-Operations" class="headerlink" title="17. Prompt Library for Key Operations"></a>17. Prompt Library for Key Operations</h2><p>This section is an appendix for team members to copy from. The workflow principles in Sections 7 through 14 take precedence. If a prompt conflicts with the main principles, follow the main principles.</p>
+<h3 id="17-1-Start-a-New-Task"><a href="#17-1-Start-a-New-Task" class="headerlink" title="17.1 Start a New Task"></a>17.1 Start a New Task</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Please first check whether OpenSpec already contains relevant context.</span><br><span class="line"></span><br><span class="line">Focus on:</span><br><span class="line"></span><br><span class="line">1. openspec/config.yaml</span><br><span class="line">2. openspec/specs/</span><br><span class="line">3. openspec/changes/</span><br><span class="line"></span><br><span class="line">Please summarize content related to this task and decide:</span><br><span class="line"></span><br><span class="line">- Whether there is a related active change</span><br><span class="line">- Whether a new OpenSpec change is needed</span><br><span class="line">- Whether there is a suitable Superpower</span><br><span class="line">- What the minimum viable path forward is</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-2-Create-a-New-OpenSpec-Change"><a href="#17-2-Create-a-New-OpenSpec-Change" class="headerlink" title="17.2 Create a New OpenSpec Change"></a>17.2 Create a New OpenSpec Change</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Please create an OpenSpec change for this task.</span><br><span class="line"></span><br><span class="line">Requirements:</span><br><span class="line"></span><br><span class="line">1. The change name should be clear and searchable</span><br><span class="line">2. The proposal should state background, goals, non-goals, and impact scope</span><br><span class="line">3. The design should record key solution decisions, trade-offs, risks, and boundaries</span><br><span class="line">4. The tasks should be broken into executable steps</span><br><span class="line">5. Add related specs, related code, related docs, and related changes</span><br><span class="line">6. Avoid unrelated background and keep the documents concise</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-3-Continue-an-Existing-Change"><a href="#17-3-Continue-an-Existing-Change" class="headerlink" title="17.3 Continue an Existing Change"></a>17.3 Continue an Existing Change</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Please continue based on the existing OpenSpec change.</span><br><span class="line"></span><br><span class="line">First read the change&#x27;s proposal, design, and tasks, then summarize:</span><br><span class="line"></span><br><span class="line">1. Current goal</span><br><span class="line">2. Completed tasks</span><br><span class="line">3. Remaining tasks</span><br><span class="line">4. Key decisions</span><br><span class="line">5. Current risks</span><br><span class="line">6. Most reasonable next action</span><br><span class="line"></span><br><span class="line">Then continue according to the tasks.</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-4-Decide-Whether-a-Superpower-Is-Needed"><a href="#17-4-Decide-Whether-a-Superpower-Is-Needed" class="headerlink" title="17.4 Decide Whether a Superpower Is Needed"></a>17.4 Decide Whether a Superpower Is Needed</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Please decide whether the current task is suitable for a Superpower.</span><br><span class="line"></span><br><span class="line">Judgment criteria:</span><br><span class="line"></span><br><span class="line">1. Whether it is a repeated task</span><br><span class="line">2. Whether the steps are complex or easy to miss</span><br><span class="line">3. Whether there is an existing stable process</span><br><span class="line">4. Whether using a Superpower is simpler than direct execution</span><br><span class="line">5. Whether the context it consumes is worth it</span><br><span class="line"></span><br><span class="line">If suitable, explain which Superpower to use.</span><br><span class="line">If not suitable, complete the task using the normal Codex workflow.</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-5-Control-Context-Complexity"><a href="#17-5-Control-Context-Complexity" class="headerlink" title="17.5 Control Context Complexity"></a>17.5 Control Context Complexity</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Please control context complexity.</span><br><span class="line"></span><br><span class="line">Read only OpenSpec, code, materials, and tool instructions directly related to the current task.</span><br><span class="line">Do not load unrelated specs, unrelated changes, or unnecessary Superpowers.</span><br><span class="line">If more context is needed, explain why before continuing.</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-6-Pre-Execution-Check"><a href="#17-6-Pre-Execution-Check" class="headerlink" title="17.6 Pre-Execution Check"></a>17.6 Pre-Execution Check</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Before execution, please confirm:</span><br><span class="line"></span><br><span class="line">1. Which OpenSpec change corresponds to this task</span><br><span class="line">2. What content needs to be modified, organized, or produced</span><br><span class="line">3. Which behaviors, workflows, documents, data, or users will be affected</span><br><span class="line">4. What is explicitly out of scope</span><br><span class="line">5. What validation needs to be performed</span><br><span class="line">6. Whether any high-risk operations require my confirmation</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-7-Update-OpenSpec-After-Completion"><a href="#17-7-Update-OpenSpec-After-Completion" class="headerlink" title="17.7 Update OpenSpec After Completion"></a>17.7 Update OpenSpec After Completion</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">After the task is complete, please update OpenSpec:</span><br><span class="line"></span><br><span class="line">1. Mark task completion status</span><br><span class="line">2. Record actual changes or business output</span><br><span class="line">3. Record key decisions</span><br><span class="line">4. Record validation methods and results</span><br><span class="line">5. Update related specs, related code, related docs, and related changes</span><br><span class="line">6. Decide whether specs need to be updated</span><br><span class="line">7. Decide whether the change can be archived</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-8-Recover-Context-in-a-New-Thread"><a href="#17-8-Recover-Context-in-a-New-Thread" class="headerlink" title="17.8 Recover Context in a New Thread"></a>17.8 Recover Context in a New Thread</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">This is a new Codex thread. Please do not rely on previous chat history.</span><br><span class="line"></span><br><span class="line">Please recover context through OpenSpec:</span><br><span class="line"></span><br><span class="line">1. Read openspec/config.yaml</span><br><span class="line">2. Check openspec/specs/</span><br><span class="line">3. Check openspec/changes/</span><br><span class="line">4. Find the most relevant active change</span><br><span class="line">5. Summarize task goal, completed work, remaining work, key decisions, validation results, and next step</span><br><span class="line"></span><br><span class="line">Only load content related to the current task. Avoid consuming too much context.</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-9-Check-Before-Archiving-a-Change"><a href="#17-9-Check-Before-Archiving-a-Change" class="headerlink" title="17.9 Check Before Archiving a Change"></a>17.9 Check Before Archiving a Change</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Before archiving this OpenSpec change, please check:</span><br><span class="line"></span><br><span class="line">1. Whether all tasks are complete</span><br><span class="line">2. Whether validation results have been recorded</span><br><span class="line">3. Whether long-term behavior has been written back to specs</span><br><span class="line">4. Whether related specs, related code, related docs, and related changes are complete</span><br><span class="line">5. Whether any follow-up remains</span><br><span class="line">6. Whether outdated or duplicate content needs to be cleaned up</span><br><span class="line"></span><br><span class="line">Archive only after confirming everything is ready.</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-10-Improve-OpenSpec-Retrieval-Quality"><a href="#17-10-Improve-OpenSpec-Retrieval-Quality" class="headerlink" title="17.10 Improve OpenSpec Retrieval Quality"></a>17.10 Improve OpenSpec Retrieval Quality</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Please help me check OpenSpec retrieval quality.</span><br><span class="line"></span><br><span class="line">Focus on finding:</span><br><span class="line"></span><br><span class="line">1. Specs or changes with unclear names</span><br><span class="line">2. Changes missing related context</span><br><span class="line">3. Completed changes that have not been archived</span><br><span class="line">4. Content that should have been written back to specs but has not been</span><br><span class="line">5. Duplicate, outdated, or low-value context</span><br><span class="line">6. Issues that may affect Codex retrieval efficiency</span><br><span class="line"></span><br><span class="line">Output suggestions first. Do not modify files directly.</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-11-Advance-a-New-Requirement-or-Feature"><a href="#17-11-Advance-a-New-Requirement-or-Feature" class="headerlink" title="17.11 Advance a New Requirement or Feature"></a>17.11 Advance a New Requirement or Feature</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">I want to advance a new requirement or feature: [describe the requirement or feature]</span><br><span class="line"></span><br><span class="line">Please first check OpenSpec:</span><br><span class="line"></span><br><span class="line">1. Whether related specs already exist</span><br><span class="line">2. Whether related active changes already exist</span><br><span class="line">3. Whether a new OpenSpec change is needed</span><br><span class="line"></span><br><span class="line">If needed, create the proposal, design, and tasks first.</span><br><span class="line">Then proceed according to the tasks and update OpenSpec after completion.</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-12-Handle-an-Issue-or-Defect"><a href="#17-12-Handle-an-Issue-or-Defect" class="headerlink" title="17.12 Handle an Issue or Defect"></a>17.12 Handle an Issue or Defect</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">I want to handle an issue or defect: [describe the issue]</span><br><span class="line"></span><br><span class="line">Please first check OpenSpec and related context, then decide whether this issue involves existing specs or active changes.</span><br><span class="line"></span><br><span class="line">If the scope is clear and small, handle it directly.</span><br><span class="line">If it involves behavior changes, data flow, APIs, state logic, business rules, customer impact, or future tracking, create or update an OpenSpec change.</span><br><span class="line"></span><br><span class="line">After completion, record the cause, fix, and validation method.</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-13-Check-Before-Commit-Delivery-or-External-Sync"><a href="#17-13-Check-Before-Commit-Delivery-or-External-Sync" class="headerlink" title="17.13 Check Before Commit, Delivery, or External Sync"></a>17.13 Check Before Commit, Delivery, or External Sync</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Please help me perform a pre-commit, pre-delivery, or pre-external-sync check:</span><br><span class="line"></span><br><span class="line">1. Review the current git diff, document changes, or business output</span><br><span class="line">2. Summarize this change or conclusion</span><br><span class="line">3. Decide whether OpenSpec needs to be updated</span><br><span class="line">4. Run the necessary tests, lint, build, acceptance criteria checks, data definition checks, or business review</span><br><span class="line">5. Check whether obvious risks exist</span><br><span class="line">6. Recommend whether it is ready for commit, delivery, or external sync</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-14-Product-Requirement-Review"><a href="#17-14-Product-Requirement-Review" class="headerlink" title="17.14 Product Requirement Review"></a>17.14 Product Requirement Review</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Please review this product requirement: [describe the requirement or paste the PRD]</span><br><span class="line"></span><br><span class="line">Focus on:</span><br><span class="line"></span><br><span class="line">1. Whether background, goals, and non-goals are clear</span><br><span class="line">2. Whether user scenarios and core flows are complete</span><br><span class="line">3. Whether acceptance criteria are verifiable</span><br><span class="line">4. Whether dependencies, risks, and boundaries are explicit</span><br><span class="line">5. Whether an OpenSpec change needs to be created or updated</span><br><span class="line">6. Which questions require confirmation from product, design, engineering, QA, or business owners</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-15-Test-Plan-Review"><a href="#17-15-Test-Plan-Review" class="headerlink" title="17.15 Test Plan Review"></a>17.15 Test Plan Review</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Please review this test plan: [describe the test plan]</span><br><span class="line"></span><br><span class="line">Focus on:</span><br><span class="line"></span><br><span class="line">1. Whether test scope and out-of-scope items are clear</span><br><span class="line">2. Whether test data, environment, and preconditions are explicit</span><br><span class="line">3. Whether positive, negative, boundary, compatibility, and regression scenarios are covered</span><br><span class="line">4. Whether acceptance criteria can be validated by tests</span><br><span class="line">5. Whether high-risk gaps exist</span><br><span class="line">6. How test results and remaining risks should be written back to OpenSpec</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-16-Business-Plan-or-Retrospective-Organization"><a href="#17-16-Business-Plan-or-Retrospective-Organization" class="headerlink" title="17.16 Business Plan or Retrospective Organization"></a>17.16 Business Plan or Retrospective Organization</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Please help me organize this business plan or retrospective: [describe the business item]</span><br><span class="line"></span><br><span class="line">Focus on outputting:</span><br><span class="line"></span><br><span class="line">1. Background and goals</span><br><span class="line">2. Execution process or plan</span><br><span class="line">3. Key results and deviations</span><br><span class="line">4. Confirmed decisions</span><br><span class="line">5. Risks, issues, and follow-up items</span><br><span class="line">6. Which long-term business rules or metric definitions need to be written into OpenSpec</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-17-Stage-Summary"><a href="#17-17-Stage-Summary" class="headerlink" title="17.17 Stage Summary"></a>17.17 Stage Summary</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Based on the current OpenSpec change and completed work, please create a stage summary:</span><br><span class="line"></span><br><span class="line">1. Completed work</span><br><span class="line">2. Remaining work</span><br><span class="line">3. Confirmed decisions</span><br><span class="line">4. Rejected alternatives and why they were rejected</span><br><span class="line">5. Validation results</span><br><span class="line">6. Current risks</span><br><span class="line">7. Recommended next steps</span><br><span class="line"></span><br><span class="line">Please update OpenSpec with information that needs to be preserved long term. Do not leave it only in chat.</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-18-Initialize-OpenSpec-and-Write-Maintenance-Principles"><a href="#17-18-Initialize-OpenSpec-and-Write-Maintenance-Principles" class="headerlink" title="17.18 Initialize OpenSpec and Write Maintenance Principles"></a>17.18 Initialize OpenSpec and Write Maintenance Principles</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Help me initialize OpenSpec and write OpenSpec maintenance principles into the project conventions.</span><br><span class="line"></span><br><span class="line">Requirements:</span><br><span class="line"></span><br><span class="line">1. Create or check openspec/config.yaml</span><br><span class="line">2. Write short, executable OpenSpec maintenance principles into context</span><br><span class="line">3. Distinguish the responsibilities of specs and changes</span><br><span class="line">4. Make clear that every change needs to maintain related specs, related code, related docs, and related changes</span><br><span class="line">5. Make clear that after a change is complete, we should check whether specs need to be updated</span><br><span class="line">6. Make clear that completed changes should be archived in time</span><br><span class="line">7. Make clear that OpenSpec should not record low-value operation logs</span><br><span class="line">8. Make clear that Codex should read only necessary context for the current task to avoid context pollution</span><br><span class="line">9. If needed, create openspec/specs/openspec-maintenance/spec.md as the long-term maintenance standard</span><br><span class="line"></span><br><span class="line">Please first explain which principles you plan to write, then modify files.</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-19-Use-the-Standard-OpenSpec-Superpower-Actions"><a href="#17-19-Use-the-Standard-OpenSpec-Superpower-Actions" class="headerlink" title="17.19 Use the Standard OpenSpec Superpower Actions"></a>17.19 Use the Standard OpenSpec Superpower Actions</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Please handle this task according to the standard OpenSpec actions: [describe the task]</span><br><span class="line"></span><br><span class="line">First decide which OpenSpec Superpower should be used:</span><br><span class="line"></span><br><span class="line">1. `openspec-start-task`: check context before starting a task</span><br><span class="line">2. `openspec-create-change`: create a change for a non-trivial modification</span><br><span class="line">3. `openspec-continue-change`: continue an existing change</span><br><span class="line">4. `openspec-finish-change`: close out and judge archive readiness after completion</span><br><span class="line">5. `openspec-maintenance`: improve OpenSpec retrieval quality</span><br><span class="line"></span><br><span class="line">Please explain the Superpower you selected, why you selected it, what context it will read, whether it will modify files, and which operations require my confirmation.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="18-Team-Member-Usage-Rules"><a href="#18-Team-Member-Usage-Rules" class="headerlink" title="18. Team Member Usage Rules"></a>18. Team Member Usage Rules</h2><p>Team members should follow these rules when using Codex:</p>
+<ul>
+<li>Do not leave important requirements only in chat.</li>
+<li>Do not let Codex start major changes without checking OpenSpec.</li>
+<li>Do not forget to update OpenSpec after a task is complete.</li>
+<li>Do not treat OpenSpec as an operation log.</li>
+<li>Do not treat Superpowers as black-box automation.</li>
+<li>Do not force complex tools into simple tasks.</li>
+<li>Every larger task should be recoverable through OpenSpec.</li>
+<li>Frequent complex workflows should gradually be captured as Superpowers.</li>
+<li>When new teammates encounter an unfamiliar project, they should first ask Codex to check OpenSpec and available Superpowers.</li>
+<li>For high-risk operations involving deletion, overwriting, deployment, migration, production data, customer configuration, or external commitments, Codex must first explain the plan and wait for confirmation.</li>
+</ul>
+<hr>
+<h2 id="19-Final-Checklist"><a href="#19-Final-Checklist" class="headerlink" title="19. Final Checklist"></a>19. Final Checklist</h2><p>Before a task ends, Codex should complete the following checks:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Has OpenSpec been checked?</li>
+<li><input disabled="" type="checkbox"> Has it been decided whether a change needs to be created or updated?</li>
+<li><input disabled="" type="checkbox"> Was work advanced according to tasks?</li>
+<li><input disabled="" type="checkbox"> Was only context necessary for the current task read?</li>
+<li><input disabled="" type="checkbox"> Were unrelated documents, rules, or tools avoided?</li>
+<li><input disabled="" type="checkbox"> Were only skills or Superpowers truly needed for the task used?</li>
+<li><input disabled="" type="checkbox"> Was context complexity controlled to avoid hurting model attention?</li>
+<li><input disabled="" type="checkbox"> Was necessary validation performed?</li>
+<li><input disabled="" type="checkbox"> Were validation results recorded?</li>
+<li><input disabled="" type="checkbox"> Was OpenSpec updated?</li>
+<li><input disabled="" type="checkbox"> Were related specs, related code, related docs, and related changes maintained?</li>
+<li><input disabled="" type="checkbox"> Was it checked whether long-term behavior needs to be written back to specs?</li>
+<li><input disabled="" type="checkbox"> Were key decisions recorded?</li>
+<li><input disabled="" type="checkbox"> Were acceptance results, business conclusions, or delivery status recorded?</li>
+<li><input disabled="" type="checkbox"> Were remaining items recorded?</li>
+<li><input disabled="" type="checkbox"> Can a new thread recover context through OpenSpec?</li>
+</ul>
+<hr>
+<h2 id="20-One-Line-Summary"><a href="#20-One-Line-Summary" class="headerlink" title="20. One-Line Summary"></a>20. One-Line Summary</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">OpenSpec prevents context from being lost.</span><br><span class="line">Superpowers make complex workflows reusable.</span><br><span class="line">Codex makes execution automated, verifiable, and preservable.</span><br><span class="line">Context budget determines model attention, so keep simple things simple and load only what is needed.</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://orcid.org/0009-0001-6381-2853">Chase Chou</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://blog.janus-path.com/en/2026/05/23/codex-team-usage-sop/">https://blog.janus-path.com/en/2026/05/23/codex-team-usage-sop/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/en/tags/AI-Agent/">AI Agent</a><a class="post-meta__tags" href="/en/tags/Codex/">Codex</a><a class="post-meta__tags" href="/en/tags/OpenSpec/">OpenSpec</a><a class="post-meta__tags" href="/en/tags/team-collaboration/">Team Collaboration</a></div><div class="post-share"><div class="social-share" data-image="/en/assets/img/codex-team-usage-sop-cover.png" data-sites="facebook,twitter,wechat,weibo,qq,linkedin"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/en/assets/img/avatar.png" onerror="this.onerror=null;this.src='/en/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Chase Chou</div><div class="author-info-description"><span style="display: block; text-align: left;">Creator of JanusPath, writing where technology, civilization, philosophy, and institutions meet.</span></div><div class="site-data"><a href="/en/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/en/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a><a href="/en/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/chasechou007" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://orcid.org/0009-0001-6381-2853" target="_blank" title="ORCID"><i class="fab fa-orcid" style="color: #A6CE39;"></i></a><a class="social-icon" href="mailto:chaseshou007@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #ea4335;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content"><span style="display: block;">Distinguish paths in the cracks; extract insight from the noise.</span></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Purpose"><span class="toc-number">1.</span> <span class="toc-text">1. Purpose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start-5-Minute-Version-for-New-Team-Members"><span class="toc-number">2.</span> <span class="toc-text">Quick Start: 5-Minute Version for New Team Members</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deciding-Whether-to-Use-OpenSpec"><span class="toc-number">3.</span> <span class="toc-text">Deciding Whether to Use OpenSpec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Basic-Principles"><span class="toc-number">4.</span> <span class="toc-text">2. Basic Principles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Context-Budget-Principles"><span class="toc-number">5.</span> <span class="toc-text">3. Context Budget Principles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Responsibilities-of-the-Three-Tools"><span class="toc-number">6.</span> <span class="toc-text">4. Responsibilities of the Three Tools</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Codex"><span class="toc-number">6.1.</span> <span class="toc-text">Codex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenSpec"><span class="toc-number">6.2.</span> <span class="toc-text">OpenSpec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Superpowers"><span class="toc-number">6.3.</span> <span class="toc-text">Superpowers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Notes-and-Tips-for-Using-Codex"><span class="toc-number">7.</span> <span class="toc-text">Notes and Tips for Using Codex</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Make-the-Task-Clear"><span class="toc-number">7.1.</span> <span class="toc-text">Make the Task Clear</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ask-Codex-to-Judge-Before-Acting"><span class="toc-number">7.2.</span> <span class="toc-text">Ask Codex to Judge Before Acting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Control-Context-Instead-of-Loading-Everything-at-Once"><span class="toc-number">7.3.</span> <span class="toc-text">Control Context Instead of Loading Everything at Once</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Explicitly-Require-Validation"><span class="toc-number">7.4.</span> <span class="toc-text">Explicitly Require Validation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stop-and-Confirm-High-Risk-Operations"><span class="toc-number">7.5.</span> <span class="toc-text">Stop and Confirm High-Risk Operations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-Stage-Summaries"><span class="toc-number">7.6.</span> <span class="toc-text">Use Stage Summaries</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Applicable-Roles-and-Typical-Scenarios"><span class="toc-number">8.</span> <span class="toc-text">5. Applicable Roles and Typical Scenarios</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-OpenSpec-Document-Relationships-and-Retrieval-Quality"><span class="toc-number">9.</span> <span class="toc-text">6. OpenSpec Document Relationships and Retrieval Quality</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-Every-Change-Should-Explain-What-It-Relates-To"><span class="toc-number">9.1.</span> <span class="toc-text">6.1 Every Change Should Explain What It Relates To</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-Specs-Record-Stable-Capabilities-Changes-Record-Iteration-Process"><span class="toc-number">9.2.</span> <span class="toc-text">6.2 Specs Record Stable Capabilities, Changes Record Iteration Process</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-Maintain-Document-Relationships-After-a-Task-Is-Complete"><span class="toc-number">9.3.</span> <span class="toc-text">6.3 Maintain Document Relationships After a Task Is Complete</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-Minimum-Archive-Output-for-a-Completed-Change"><span class="toc-number">9.4.</span> <span class="toc-text">6.4 Minimum Archive Output for a Completed Change</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-Key-Point-Prevent-OpenSpec-from-Becoming-Low-Quality-Context"><span class="toc-number">9.5.</span> <span class="toc-text">6.5 Key Point: Prevent OpenSpec from Becoming Low-Quality Context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-6-Ask-Codex-to-Regularly-Maintain-OpenSpec"><span class="toc-number">9.6.</span> <span class="toc-text">6.6 Ask Codex to Regularly Maintain OpenSpec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-7-OpenSpec-Maintenance-Principles-Should-Also-Be-Written-into-OpenSpec"><span class="toc-number">9.7.</span> <span class="toc-text">6.7 OpenSpec Maintenance Principles Should Also Be Written into OpenSpec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-8-OpenSpec-Naming-Conventions"><span class="toc-number">9.8.</span> <span class="toc-text">6.8 OpenSpec Naming Conventions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Standard-Actions-Before-Starting-Each-Task"><span class="toc-number">10.</span> <span class="toc-text">7. Standard Actions Before Starting Each Task</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-When-to-Create-an-OpenSpec-Change"><span class="toc-number">11.</span> <span class="toc-text">8. When to Create an OpenSpec Change</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-Quick-Decision-Table"><span class="toc-number">11.1.</span> <span class="toc-text">8.1 Quick Decision Table</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-Recommended-Prompt-for-Installing-or-Initializing-OpenSpec"><span class="toc-number">12.</span> <span class="toc-text">9. Recommended Prompt for Installing or Initializing OpenSpec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-Standard-Workflow"><span class="toc-number">13.</span> <span class="toc-text">10. Standard Workflow</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Check-Context"><span class="toc-number">13.1.</span> <span class="toc-text">Step 1: Check Context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Decide-Whether-a-New-Change-Is-Needed"><span class="toc-number">13.2.</span> <span class="toc-text">Step 2: Decide Whether a New Change Is Needed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Break-Down-the-Task"><span class="toc-number">13.3.</span> <span class="toc-text">Step 3: Break Down the Task</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-Execute-the-Task"><span class="toc-number">13.4.</span> <span class="toc-text">Step 4: Execute the Task</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-5-Validate-Results"><span class="toc-number">13.5.</span> <span class="toc-text">Step 5: Validate Results</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-6-Update-OpenSpec"><span class="toc-number">13.6.</span> <span class="toc-text">Step 6: Update OpenSpec</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Recovering-Context-in-a-New-Codex-Thread"><span class="toc-number">14.</span> <span class="toc-text">11. Recovering Context in a New Codex Thread</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-When-to-Consider-Superpowers"><span class="toc-number">15.</span> <span class="toc-text">12. When to Consider Superpowers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Boundaries-of-Superpowers"><span class="toc-number">15.1.</span> <span class="toc-text">Boundaries of Superpowers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-Using-Superpowers-Through-Codex"><span class="toc-number">16.</span> <span class="toc-text">13. Using Superpowers Through Codex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-Safety-Rules-for-Superpowers"><span class="toc-number">17.</span> <span class="toc-text">14. Safety Rules for Superpowers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-1-Risk-Levels-and-Confirmation-Rules"><span class="toc-number">17.1.</span> <span class="toc-text">14.1 Risk Levels and Confirmation Rules</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-Recommended-Process-for-Creating-a-New-Superpower"><span class="toc-number">18.</span> <span class="toc-text">15. Recommended Process for Creating a New Superpower</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-Standardizing-OpenSpec-Required-Actions-with-Superpowers"><span class="toc-number">19.</span> <span class="toc-text">16. Standardizing OpenSpec Required Actions with Superpowers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-1-openspec-start-task"><span class="toc-number">19.1.</span> <span class="toc-text">16.1 openspec-start-task</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-2-openspec-create-change"><span class="toc-number">19.2.</span> <span class="toc-text">16.2 openspec-create-change</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-3-openspec-continue-change"><span class="toc-number">19.3.</span> <span class="toc-text">16.3 openspec-continue-change</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-4-openspec-finish-change"><span class="toc-number">19.4.</span> <span class="toc-text">16.4 openspec-finish-change</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-5-openspec-maintenance"><span class="toc-number">19.5.</span> <span class="toc-text">16.5 openspec-maintenance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-6-Other-Recommended-Team-Superpowers"><span class="toc-number">19.6.</span> <span class="toc-text">16.6 Other Recommended Team Superpowers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-7-Code-Review-Superpower"><span class="toc-number">19.7.</span> <span class="toc-text">16.7 Code Review Superpower</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-8-Pre-Commit-Check-Superpower"><span class="toc-number">19.8.</span> <span class="toc-text">16.8 Pre-Commit Check Superpower</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-9-Pre-Release-Check-Superpower"><span class="toc-number">19.9.</span> <span class="toc-text">16.9 Pre-Release Check Superpower</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-10-Product-Requirement-Review-Superpower"><span class="toc-number">19.10.</span> <span class="toc-text">16.10 Product Requirement Review Superpower</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-11-Test-Plan-Review-Superpower"><span class="toc-number">19.11.</span> <span class="toc-text">16.11 Test Plan Review Superpower</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-12-Business-Retrospective-Superpower"><span class="toc-number">19.12.</span> <span class="toc-text">16.12 Business Retrospective Superpower</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-Prompt-Library-for-Key-Operations"><span class="toc-number">20.</span> <span class="toc-text">17. Prompt Library for Key Operations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1-Start-a-New-Task"><span class="toc-number">20.1.</span> <span class="toc-text">17.1 Start a New Task</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-2-Create-a-New-OpenSpec-Change"><span class="toc-number">20.2.</span> <span class="toc-text">17.2 Create a New OpenSpec Change</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-3-Continue-an-Existing-Change"><span class="toc-number">20.3.</span> <span class="toc-text">17.3 Continue an Existing Change</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-4-Decide-Whether-a-Superpower-Is-Needed"><span class="toc-number">20.4.</span> <span class="toc-text">17.4 Decide Whether a Superpower Is Needed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-5-Control-Context-Complexity"><span class="toc-number">20.5.</span> <span class="toc-text">17.5 Control Context Complexity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-6-Pre-Execution-Check"><span class="toc-number">20.6.</span> <span class="toc-text">17.6 Pre-Execution Check</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-7-Update-OpenSpec-After-Completion"><span class="toc-number">20.7.</span> <span class="toc-text">17.7 Update OpenSpec After Completion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-8-Recover-Context-in-a-New-Thread"><span class="toc-number">20.8.</span> <span class="toc-text">17.8 Recover Context in a New Thread</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-9-Check-Before-Archiving-a-Change"><span class="toc-number">20.9.</span> <span class="toc-text">17.9 Check Before Archiving a Change</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-10-Improve-OpenSpec-Retrieval-Quality"><span class="toc-number">20.10.</span> <span class="toc-text">17.10 Improve OpenSpec Retrieval Quality</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-11-Advance-a-New-Requirement-or-Feature"><span class="toc-number">20.11.</span> <span class="toc-text">17.11 Advance a New Requirement or Feature</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-12-Handle-an-Issue-or-Defect"><span class="toc-number">20.12.</span> <span class="toc-text">17.12 Handle an Issue or Defect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-13-Check-Before-Commit-Delivery-or-External-Sync"><span class="toc-number">20.13.</span> <span class="toc-text">17.13 Check Before Commit, Delivery, or External Sync</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-14-Product-Requirement-Review"><span class="toc-number">20.14.</span> <span class="toc-text">17.14 Product Requirement Review</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-15-Test-Plan-Review"><span class="toc-number">20.15.</span> <span class="toc-text">17.15 Test Plan Review</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-16-Business-Plan-or-Retrospective-Organization"><span class="toc-number">20.16.</span> <span class="toc-text">17.16 Business Plan or Retrospective Organization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-17-Stage-Summary"><span class="toc-number">20.17.</span> <span class="toc-text">17.17 Stage Summary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-18-Initialize-OpenSpec-and-Write-Maintenance-Principles"><span class="toc-number">20.18.</span> <span class="toc-text">17.18 Initialize OpenSpec and Write Maintenance Principles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-19-Use-the-Standard-OpenSpec-Superpower-Actions"><span class="toc-number">20.19.</span> <span class="toc-text">17.19 Use the Standard OpenSpec Superpower Actions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-Team-Member-Usage-Rules"><span class="toc-number">21.</span> <span class="toc-text">18. Team Member Usage Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-Final-Checklist"><span class="toc-number">22.</span> <span class="toc-text">19. Final Checklist</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-One-Line-Summary"><span class="toc-number">23.</span> <span class="toc-text">20. One-Line Summary</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/en/2026/05/23/codex-team-usage-sop/" title="A Team SOP for Using Codex, OpenSpec, and Superpowers"><img src="/en/assets/img/codex-team-usage-sop-cover.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="A Team SOP for Using Codex, OpenSpec, and Superpowers"/></a><div class="content"><a class="title" href="/en/2026/05/23/codex-team-usage-sop/" title="A Team SOP for Using Codex, OpenSpec, and Superpowers">A Team SOP for Using Codex, OpenSpec, and Superpowers</a><time datetime="2026-05-23T06:27:28.000Z" title="Created 2026-05-23 14:27:28">2026-05-23</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Chase Chou</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text"><div><span>See order in structure, and find freedom in tension.</span></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/en/js/utils.js"></script><script src="/en/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

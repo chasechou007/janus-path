@@ -43,19 +43,11 @@
     <summary type="text">当代码逐渐可以由 AI Agent 自动生成，软件工程师的核心价值正在从直接编码迁移到规则提炼、约束设计、上下文维护与 Agent 治理。本文讨论 AI 时代软件工程的新生产对象：可执行的经验、规则与认知资产。</summary>
   </entry>
   <entry>
-    <title>A Team SOP for Using Codex, OpenSpec, and Superpowers</title>
-    <link href="https://blog.janus-path.com/2026/05/23/codex-team-usage-sop-en/"/>
-    <id>https://blog.janus-path.com/2026/05/23/codex-team-usage-sop-en/</id>
-    <published>2026-05-23T06:27:28.000Z</published>
-    <updated>2026-07-13T05:06:05.344Z</updated>
-    <summary type="text">A team-oriented Codex usage SOP covering OpenSpec, Superpowers, context preservation, requirements discovery, product planning, implementation, validation, operations analysis, troubleshooting, and knowledge handoff.</summary>
-  </entry>
-  <entry>
     <title>Codex 团队使用 SOP</title>
     <link href="https://blog.janus-path.com/2026/05/20/Codex%E5%9B%A2%E9%98%9F%E4%BD%BF%E7%94%A8SOP/"/>
     <id>https://blog.janus-path.com/2026/05/20/Codex%E5%9B%A2%E9%98%9F%E4%BD%BF%E7%94%A8SOP/</id>
     <published>2026-05-20T06:25:43.000Z</published>
-    <updated>2026-07-13T05:06:05.235Z</updated>
+    <updated>2026-07-28T02:34:37.783Z</updated>
     <summary type="text">一份面向团队协作的 Codex 使用规范，围绕 OpenSpec、Superpowers 与上下文沉淀，整理需求调研、产品规划、开发实现、测试验证、运营分析和知识交接中的标准工作流。</summary>
   </entry>
   <entry>

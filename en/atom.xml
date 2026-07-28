@@ -5,11 +5,43 @@
   <id>https://blog.janus-path.com/en/</id>
   <link href="https://blog.janus-path.com/en/"/>
   <link href="https://blog.janus-path.com/en/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-07-28T02:37:25.389Z</updated>
+  <updated>2026-07-28T15:10:13.312Z</updated>
   <author>
     <name>Chase Chou</name>
     <uri>https://orcid.org/0009-0001-6381-2853</uri>
   </author>
+  <entry>
+    <title>When AI Begins to Think Along Your Lines</title>
+    <link href="https://blog.janus-path.com/en/2026/07/23/when-ai-thinks-along-your-thoughts/"/>
+    <id>https://blog.janus-path.com/en/2026/07/23/when-ai-thinks-along-your-thoughts/</id>
+    <published>2026-07-23T06:20:00.000Z</published>
+    <updated>2026-07-28T15:10:13.312Z</updated>
+    <summary type="text">When ChatGPT does more than remember preferences and begins extending a person&apos;s structure of thought, the central challenge of human-AI collaboration shifts from storing more information to sustaining a cognitive subject that is still changing.</summary>
+  </entry>
+  <entry>
+    <title>Why I Started Simplifying My AI Agents</title>
+    <link href="https://blog.janus-path.com/en/2026/07/13/why-i-started-simplifying-ai-agents/"/>
+    <id>https://blog.janus-path.com/en/2026/07/13/why-i-started-simplifying-ai-agents/</id>
+    <published>2026-07-13T02:54:10.000Z</published>
+    <updated>2026-07-28T15:08:02.935Z</updated>
+    <summary type="text">After intensive use of AI agents such as Codex and Claude Code, I began removing unnecessary skills, rules, and context. This article explains why more configuration is not always better and how restraint can make agents more reliable.</summary>
+  </entry>
+  <entry>
+    <title>What You See Is Not the Problem Itself, but the Way It Becomes Visible</title>
+    <link href="https://blog.janus-path.com/en/2026/06/17/januspath-from-structural-reflection-to-origin-observation/"/>
+    <id>https://blog.janus-path.com/en/2026/06/17/januspath-from-structural-reflection-to-origin-observation/</id>
+    <published>2026-06-17T01:49:03.000Z</published>
+    <updated>2026-07-28T15:14:08.692Z</updated>
+    <summary type="text">An accessible introduction to JanusPath&apos;s movement from structural reflection to origin-observation reflection: complex problems concern not only content and structure, but also how observation begins.</summary>
+  </entry>
+  <entry>
+    <title>From Writing Code to Governing Agents: Software Engineering&apos;s New Question in the AI Era</title>
+    <link href="https://blog.janus-path.com/en/2026/06/06/from-code-to-agent-governance/"/>
+    <id>https://blog.janus-path.com/en/2026/06/06/from-code-to-agent-governance/</id>
+    <published>2026-06-06T14:57:22.000Z</published>
+    <updated>2026-07-28T15:08:03.042Z</updated>
+    <summary type="text">As AI agents increasingly generate code, the engineer&apos;s core value is shifting toward extracting rules, designing constraints, maintaining context, and governing agents. The new production object of software engineering is executable experience, rules, and cognitive assets.</summary>
+  </entry>
   <entry>
     <title>A Team SOP for Using Codex, OpenSpec, and Superpowers</title>
     <link href="https://blog.janus-path.com/en/2026/05/23/codex-team-usage-sop/"/>
@@ -17,5 +49,93 @@
     <published>2026-05-23T06:27:28.000Z</published>
     <updated>2026-07-28T02:37:25.389Z</updated>
     <summary type="text">A team-oriented Codex usage SOP covering OpenSpec, Superpowers, context preservation, requirements discovery, product planning, implementation, validation, operations analysis, troubleshooting, and knowledge handoff.</summary>
+  </entry>
+  <entry>
+    <title>Team Atmosphere Is Not Culture; It Is Noise Management</title>
+    <link href="https://blog.janus-path.com/en/2026/03/26/team-atmosphere-noise-management/"/>
+    <id>https://blog.janus-path.com/en/2026/03/26/team-atmosphere-noise-management/</id>
+    <published>2026-03-26T02:00:00.000Z</published>
+    <updated>2026-07-28T15:08:03.147Z</updated>
+    <summary type="text">Team atmosphere is shaped less by cultural slogans than by how leaders handle noise, deviation, and uncertainty. Beginning with an argument over an early food delivery, this article explains defensive work, degradation spirals, risk tiers, tolerance bands, and practical noise budgets.</summary>
+  </entry>
+  <entry>
+    <title>AI Agents Are Powerful, but They Drift</title>
+    <link href="https://blog.janus-path.com/en/2026/03/25/ai-agent-semantic-drift/"/>
+    <id>https://blog.janus-path.com/en/2026/03/25/ai-agent-semantic-drift/</id>
+    <published>2026-03-25T02:00:00.000Z</published>
+    <updated>2026-07-28T15:06:07.369Z</updated>
+    <summary type="text">AI agents perform exceptionally well on short tasks, yet often suffer from semantic drift in long-running workflows. This article distinguishes context windows from persistent memory and argues that today&apos;s agents cannot reliably preserve system structure, leaving structural sovereignty in human hands.</summary>
+  </entry>
+  <entry>
+    <title>If Humans Stop Writing Code, AI Will Get Worse Too</title>
+    <link href="https://blog.janus-path.com/en/2026/03/24/if-no-one-codes-ai-worsens/"/>
+    <id>https://blog.janus-path.com/en/2026/03/24/if-no-one-codes-ai-worsens/</id>
+    <published>2026-03-23T16:00:00.000Z</published>
+    <updated>2026-07-28T15:10:13.209Z</updated>
+    <summary type="text">If most future code is generated by AI, models will increasingly learn from code written by other models. Small errors and poor structures may be copied until they harden into convention, degrading quality and contributing to model collapse. What improves a system is still human judgment about boundaries, trade-offs, and structure.</summary>
+  </entry>
+  <entry>
+    <title>Structural Noise</title>
+    <link href="https://blog.janus-path.com/en/2026/02/07/structural-noise/"/>
+    <id>https://blog.janus-path.com/en/2026/02/07/structural-noise/</id>
+    <published>2026-02-07T02:44:12.000Z</published>
+    <updated>2026-07-28T15:11:51.535Z</updated>
+    <summary type="text">During the city&apos;s Eighth-Round Order Optimization, an algorithmic ethics reviewer is classified as an unpredictable “structural noise point.” As identity, social access, and resources are stripped away layer by layer, he uses a performance of absolute loyalty to make the system downgrade itself and prise loose the anchor of its rules.</summary>
+  </entry>
+  <entry>
+    <title>Inversion of Control Through a Structuralist Lens</title>
+    <link href="https://blog.janus-path.com/en/2026/02/02/structuralism-view-of-ioc/"/>
+    <id>https://blog.janus-path.com/en/2026/02/02/structuralism-view-of-ioc/</id>
+    <published>2026-02-02T04:15:09.000Z</published>
+    <updated>2026-07-28T15:08:02.829Z</updated>
+    <summary type="text">This article steps away from implementation details to reinterpret Inversion of Control through structuralism. A dependency is fundamentally a power relationship, and IoC externalizes the right to decide. This lens connects dependency injection, configuration, low-code systems, and system evolution.</summary>
+  </entry>
+  <entry>
+    <title>Software Engineering Is Full of Hidden Thinking Models</title>
+    <link href="https://blog.janus-path.com/en/2025/09/12/software-engineering-hidden-thinking-models/"/>
+    <id>https://blog.janus-path.com/en/2025/09/12/software-engineering-hidden-thinking-models/</id>
+    <published>2025-09-12T04:30:43.000Z</published>
+    <updated>2026-07-28T15:08:03.251Z</updated>
+    <summary type="text">Software engineering is never purely technical. It is a practical exercise in structural thinking. Through modularity, architecture, debugging, and iteration, engineers have long practiced an unnamed philosophy.</summary>
+  </entry>
+  <entry>
+    <title>Why Does Philosophy Always Seem to Belong to Elites?</title>
+    <link href="https://blog.janus-path.com/en/2025/09/09/why-philosophy-always-belongs-to-elites/"/>
+    <id>https://blog.janus-path.com/en/2025/09/09/why-philosophy-always-belongs-to-elites/</id>
+    <published>2025-09-09T12:44:32.000Z</published>
+    <updated>2026-07-28T15:06:07.577Z</updated>
+    <summary type="text">Why does philosophy feel so inaccessible? By examining linguistic barriers, institutional divisions of labor, and structural silence, this article argues that philosophy is “elitized” when the right to ask fundamental questions is unevenly distributed.</summary>
+  </entry>
+  <entry>
+    <title>Why High-Quality Criticism Should Be Paid For</title>
+    <link href="https://blog.janus-path.com/en/2025/09/05/why-quality-criticism-should-charge/"/>
+    <id>https://blog.janus-path.com/en/2025/09/05/why-quality-criticism-should-charge/</id>
+    <published>2025-09-05T12:20:00.000Z</published>
+    <updated>2026-07-28T15:14:08.583Z</updated>
+    <summary type="text">A reflection on the value of structural criticism: why does feedback capable of producing genuine change require a cost? From the warning that ‘the Way should not be transmitted lightly’ to the consulting paradox, the issue is ultimately respect for cognitive labor.</summary>
+  </entry>
+  <entry>
+    <title>The Two Rarest Capabilities in the AI Era Are Neither Technology nor Business</title>
+    <link href="https://blog.janus-path.com/en/2025/09/02/two-rarest-skills-in-ai-era-not-tech-or-business/"/>
+    <id>https://blog.janus-path.com/en/2025/09/02/two-rarest-skills-in-ai-era-not-tech-or-business/</id>
+    <published>2025-09-02T12:30:00.000Z</published>
+    <updated>2026-07-28T15:06:07.474Z</updated>
+    <summary type="text">In an AI era of relentless technical change, the scarcest capabilities are not technologies themselves, but the ability to model a chaotic business world and the engineering ability to turn those models into evolving systems.</summary>
+  </entry>
+  <entry>
+    <title>An Introduction to JanusPath: Escaping the Cognitive Traps You Cannot See</title>
+    <link href="https://blog.janus-path.com/en/2025/08/31/janus-path-overview-escape-cognitive-traps/"/>
+    <id>https://blog.janus-path.com/en/2025/08/31/janus-path-overview-escape-cognitive-traps/</id>
+    <published>2025-08-31T02:00:00.000Z</published>
+    <updated>2026-07-28T15:10:13.416Z</updated>
+    <summary type="text">This article introduces JanusPath, an original model of structural cognition. It explains how structures confine us and how reflective thinking can help us step outside them in philosophy, organizational governance, and personal growth.</summary>
+  </entry>
+  <entry>
+    <title>Welcome to JanusPath: A Journey Back Through Structure and Consciousness</title>
+    <link href="https://blog.janus-path.com/en/2025/08/28/welcome-to-janus-path-structure-and-consciousness/"/>
+    <id>https://blog.janus-path.com/en/2025/08/28/welcome-to-janus-path-structure-and-consciousness/</id>
+    <published>2025-08-28T06:00:00.000Z</published>
+    <updated>2026-07-28T15:06:07.787Z</updated>
+    <summary type="text">This opening essay establishes the spirit of the blog through structural thinking and the philosophy of consciousness, setting the perspective and tone for JanusPath.</summary>
   </entry>
 </feed>

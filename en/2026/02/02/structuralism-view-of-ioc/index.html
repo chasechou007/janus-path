@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Inversion of Control Through a Structuralist Lens | JanusPath</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="IoC,Inversion of Control,structuralism,software architecture,dependency injection,DI,low-code,system design,control,decoupling"><meta name="description" content="This article steps away from implementation details to reinterpret Inversion of Control through structuralism. A dependency is fundamentally a power relationship, and IoC externalizes the right to dec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Inversion of Control Through a Structuralist Lens">
+<meta property="og:url" content="https://blog.janus-path.com/en/2026/02/02/structuralism-view-of-ioc/">
+<meta property="og:site_name" content="JanusPath">
+<meta property="og:description" content="This article steps away from implementation details to reinterpret Inversion of Control through structuralism. A dependency is fundamentally a power relationship, and IoC externalizes the right to dec">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.janus-path.com/en/assets/img/structuralism-view-of-ioc.png">
+<meta property="article:published_time" content="2026-02-02T04:15:09.000Z">
+<meta property="article:modified_time" content="2026-07-28T15:08:02.829Z">
+<meta property="article:author" content="Chase Chou">
+<meta property="article:tag" content="Software Engineering">
+<meta property="article:tag" content="Architecture">
+<meta property="article:tag" content="Structural Thinking">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.janus-path.com/en/assets/img/structuralism-view-of-ioc.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Inversion of Control Through a Structuralist Lens",
+  "url": "https://blog.janus-path.com/en/2026/02/02/structuralism-view-of-ioc/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.janus-path.com/en/2026/02/02/structuralism-view-of-ioc/"
+  },
+  "description": "This article steps away from implementation details to reinterpret Inversion of Control through structuralism. A dependency is fundamentally a powe...",
+  "image": "https://blog.janus-path.com/en/assets/img/structuralism-view-of-ioc.png",
+  "keywords": "IoC, Inversion of Control, structuralism, software architecture, dependency injection, DI, low-code, system design, control, decoupling",
+  "articleSection": [
+    "Meta Engineering"
+  ],
+  "inLanguage": "en",
+  "datePublished": "2026-02-02T04:15:09.000Z",
+  "dateModified": "2026-07-28T15:08:02.829Z",
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": "https://blog.janus-path.com/en/#blog",
+    "name": "JanusPath",
+    "url": "https://blog.janus-path.com/en/"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Chase Chou",
+      "url": "https://orcid.org/0009-0001-6381-2853",
+      "sameAs": [
+        "https://orcid.org/0009-0001-6381-2853",
+        "https://github.com/chasechou007"
+      ]
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "JanusPath",
+    "url": "https://blog.janus-path.com/en/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.janus-path.com/en/assets/img/logo.png"
+    }
+  }
+}</script><link rel="shortcut icon" href="/en/assets/img/logo.png"><link rel="canonical" href="https://blog.janus-path.com/en/2026/02/02/structuralism-view-of-ioc/"><link rel="alternate" hreflang="zh-Hans" href="https://blog.janus-path.com/2026/02/02/%E4%BB%8E%E7%BB%93%E6%9E%84%E4%B8%BB%E4%B9%89%E8%A7%86%E8%A7%92%E7%9C%8B-IOC%EF%BC%88%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC%EF%BC%89/"><link rel="alternate" hreflang="en" href="https://blog.janus-path.com/en/2026/02/02/structuralism-view-of-ioc/"><link rel="alternate" hreflang="x-default" href="https://blog.janus-path.com/2026/02/02/%E4%BB%8E%E7%BB%93%E6%9E%84%E4%B8%BB%E4%B9%89%E8%A7%86%E8%A7%92%E7%9C%8B-IOC%EF%BC%88%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC%EF%BC%89/"><link rel="alternate" type="application/atom+xml" title="JanusPath Atom Feed" href="https://blog.janus-path.com/en/atom.xml"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/en/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/en/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Inversion of Control Through a Structuralist Lens',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/en/assets/img/avatar.png" onerror="this.onerror=null;this.src='/en/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/en/archives/"><div class="headline">Articles</div><div class="length-num">16</div></a><a href="/en/tags/"><div class="headline">Tags</div><div class="length-num">18</div></a><a href="/en/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/en/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/en/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/en/tags/"><span> Tags</span></a></div><div class="menus_item"><a class="site-page bilingual-switch" href="/2026/02/02/从结构主义视角看-IOC（控制反转）/" hreflang="zh-Hans" lang="zh-Hans" title="阅读这篇文章的简体中文版" aria-label="阅读这篇文章的简体中文版" data-translation-available="true"><i class="fas fa-language fa-fw"></i><span> 简中</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/en/assets/img/structuralism-view-of-ioc.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/en/"><img class="site-icon" src="/en/assets/img/logo.png" alt="Logo"><span class="site-name">JanusPath</span></a><a class="nav-page-title" href="/en/"><span class="site-name">Inversion of Control Through a Structuralist Lens</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/en/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/en/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/en/tags/"><span> Tags</span></a></div><div class="menus_item"><a class="site-page bilingual-switch" href="/2026/02/02/从结构主义视角看-IOC（控制反转）/" hreflang="zh-Hans" lang="zh-Hans" title="阅读这篇文章的简体中文版" aria-label="阅读这篇文章的简体中文版" data-translation-available="true"><i class="fas fa-language fa-fw"></i><span> 简中</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Inversion of Control Through a Structuralist Lens</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-02-02T04:15:09.000Z" title="Created 2026-02-02 12:15:09">2026-02-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-07-28T15:08:02.829Z" title="Updated 2026-07-28 23:08:02">2026-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/en/categories/meta-engineering/">Meta Engineering</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="Introduction-A-Seemingly-Technical-Problem"><a href="#Introduction-A-Seemingly-Technical-Problem" class="headerlink" title="Introduction: A Seemingly Technical Problem"></a><strong>Introduction: A Seemingly Technical Problem</strong></h2><p>Many software projects begin beautifully.</p>
+<p>Modularity, abstraction, decoupling, reusable components—these words appear again and again. The architecture diagram is clean and elegant. Boundaries are clear, responsibilities distinct. Every module seems to occupy its own “reasonable position.”</p>
+<p>Once the project enters its middle and later stages, reality often collapses quickly.</p>
+<p>Modules begin to swell, and dependencies become entangled.</p>
+<p>A change in one place triggers a chain reaction somewhere far away.</p>
+<p>Every line of code has a “reason to exist,” yet the system as a whole becomes harder to understand and maintain.</p>
+<p>We usually attribute this to poor code, inadequate abstraction, or a design that “was not sufficiently thought through.”</p>
+<p>From a structuralist perspective, however, the real problem may lie somewhere more concealed:</p>
+<p><strong><font style="color:#0e0e0e;">Control was placed in the wrong location.</font></strong></p>
+<hr>
+<h2 id="1-The-Nature-of-Dependency-from-a-Structuralist-Perspective"><a href="#1-The-Nature-of-Dependency-from-a-Structuralist-Perspective" class="headerlink" title="1. The Nature of Dependency from a Structuralist Perspective"></a><strong>1. The Nature of Dependency from a Structuralist Perspective</strong></h2><p>In structuralism, the individual is never the center. <strong>Relations are.</strong></p>
+<p>When one module “depends on” another, that is technically a relationship between pieces of code. At the structural level, it also defines <strong>who possesses the right to decide</strong>:</p>
+<ul>
+<li>Who creates whom?</li>
+<li>Who selects whom?</li>
+<li>Who can be replaced, and who cannot be moved?</li>
+</ul>
+<p>When a high-level module instantiates a concrete implementation internally, it is not merely using that implementation. It is also <strong>deciding how that implementation is allowed to exist</strong>.</p>
+<p>Seen this way, dependency is not neutral.</p>
+<p><strong><font style="color:#0e0e0e;">A dependency is fundamentally a power relationship.</font></strong></p>
+<p>Whoever controls creation controls the direction in which the system can evolve.</p>
+<hr>
+<h2 id="2-IoC-Reversing-Not-Control-but-the-Right-to-Decide"><a href="#2-IoC-Reversing-Not-Control-but-the-Right-to-Decide" class="headerlink" title="2. IoC: Reversing Not Control, but the Right to Decide"></a><strong>2. IoC: Reversing Not Control, but the Right to Decide</strong></h2><p>Many explanations of Inversion of Control begin literally: control is “turned around.”</p>
+<p>If we stop at the word inversion, however, it is easy to mistake IoC for a coding technique.</p>
+<p>From a structuralist perspective, IoC changes not the direction of code, but something deeper:</p>
+<p><strong><font style="color:#0e0e0e;">It transfers the power to decide what will be used from inside a module to somewhere outside it.</font></strong></p>
+<p>When a high-level module no longer creates its concrete dependencies, it steps back from being a controller and becomes a role within a structure.</p>
+<p>That is why genuinely using dependency injection for the first time can feel revelatory.</p>
+<p>The elegance does not come from syntax. It comes from clarity:</p>
+<ul>
+<li>This module finally does only what it is responsible for.</li>
+<li>Certain decisions no longer have to be made inside it.</li>
+</ul>
+<hr>
+<h2 id="3-Dependency-Injection-Is-the-Phenomenon-Not-the-Essence"><a href="#3-Dependency-Injection-Is-the-Phenomenon-Not-the-Essence" class="headerlink" title="3. Dependency Injection Is the Phenomenon, Not the Essence"></a><strong>3. Dependency Injection Is the Phenomenon, Not the Essence</strong></h2><p>In engineering practice, IoC is often implemented through Dependency Injection.</p>
+<p>Constructor injection, property injection, parameter injection—the form itself is not important.</p>
+<p>What matters is the more stable structural change behind DI:</p>
+<p><strong><font style="color:#0e0e0e;">High-level modules begin to depend on descriptions of what they need, rather than concrete implementations.</font></strong></p>
+<p>A module no longer cares where a dependency comes from, how it is created, or whether it will be replaced. It declares only: <strong>this is the capability I need</strong>.</p>
+<p>This is also why components such as Ant Design’s ProTable can feel inherently sophisticated.</p>
+<p>The component controls the workflow, state, and lifecycle, while the way data is retrieved is injected as a function.</p>
+<p>The boundary of control is exceptionally clear.</p>
+<hr>
+<h2 id="4-Once-Structure-Is-Externalized-Configuration-Becomes-Inevitable"><a href="#4-Once-Structure-Is-Externalized-Configuration-Becomes-Inevitable" class="headerlink" title="4. Once Structure Is Externalized, Configuration Becomes Inevitable"></a><strong>4. Once Structure Is Externalized, Configuration Becomes Inevitable</strong></h2><p>After control has been externalized successfully, another change that may initially look optional tends to emerge naturally:</p>
+<p><strong>Configuration.</strong></p>
+<p>At first, dependencies are injected as code parameters.</p>
+<p>Then people realize that if those parameters are stable, they can be abstracted into configuration.</p>
+<p>Once behavior is no longer hard-coded but exists declaratively, the next step is almost inevitable:</p>
+<ul>
+<li>JSON</li>
+<li>schemas</li>
+<li>metadata</li>
+<li>rule descriptions</li>
+</ul>
+<p>Code retreats into the role of interpreter and executor. It is no longer the only medium in which behavior can exist.</p>
+<p>From this perspective:</p>
+<p><strong><font style="color:#0e0e0e;">Low-code is not a betrayal of programmers.</font></strong></p>
+<p><strong><font style="color:#0e0e0e;">It is the natural form taken by mature IoC.</font></strong></p>
+<p>It is not a revolution, but an extension of a path of structural evolution.</p>
+<hr>
+<h2 id="5-Containers-Interfaces-and-Conventions-Structure-Taming-Itself"><a href="#5-Containers-Interfaces-and-Conventions-Structure-Taming-Itself" class="headerlink" title="5. Containers, Interfaces, and Conventions: Structure Taming Itself"></a><strong>5. Containers, Interfaces, and Conventions: Structure Taming Itself</strong></h2><p>Opening a structure fully introduces a new problem.</p>
+<p>If any module or behavior can be injected, how does the system remain stable? How can freedom avoid becoming disorder?</p>
+<p>This is why we see:</p>
+<ul>
+<li>containers,</li>
+<li>lifecycles,</li>
+<li>interfaces,</li>
+<li>protocols, and</li>
+<li>conventions.</li>
+</ul>
+<p>These mechanisms are not the intellectual climax of IoC. They are closer to its <strong>institutional conclusion</strong>.</p>
+<p>Their purpose is singular:</p>
+<p><strong><font style="color:#0e0e0e;">After control has been released, the structure must tame itself.</font></strong></p>
+<p>This explains why the first optimization produced by IoC often has the greatest impact, while the later design of containers and interfaces feels almost inevitable.</p>
+<p>The real cognitive leap has already happened.</p>
+<hr>
+<h2 id="6-The-Real-Value-of-IoC-Who-Gets-to-Participate-in-Composition"><a href="#6-The-Real-Value-of-IoC-Who-Gets-to-Participate-in-Composition" class="headerlink" title="6. The Real Value of IoC: Who Gets to Participate in Composition?"></a><strong>6. The Real Value of IoC: Who Gets to Participate in Composition?</strong></h2><p>Raise the perspective above the code and the influence of IoC reaches much farther than engineering practice.</p>
+<p>Once functionality is no longer hard-coded into implementations but decomposed into composable structural units, a deeper question appears:</p>
+<p><strong><font style="color:#0e0e0e;">Who has the power to compose these capabilities?</font></strong></p>
+<p>The framework author?</p>
+<p>The platform builder?</p>
+<p>Business users?</p>
+<p>The end user?</p>
+<p>Platforms, low-code systems, and AI-agent orchestration are all answering the same underlying questions:</p>
+<ul>
+<li>Can decision-making authority be delegated?</li>
+<li>Can the structure be understood?</li>
+<li>Can more people participate in shaping a complex system?</li>
+</ul>
+<p>In this sense, IoC is not merely a technical choice. It is a <strong>way of participating in structural design</strong>.</p>
+<hr>
+<h2 id="Conclusion-Structure-Is-How-an-Idea-Enters-Reality"><a href="#Conclusion-Structure-Is-How-an-Idea-Enters-Reality" class="headerlink" title="Conclusion: Structure Is How an Idea Enters Reality"></a><strong>Conclusion: Structure Is How an Idea Enters Reality</strong></h2><p>People often say that ideas matter more than frameworks.</p>
+<p>In practice, however, an idea that cannot be translated into structure usually remains a slogan.</p>
+<p>IoC matters not because it solves one particular problem, but because it reveals something fundamental:</p>
+<p><strong><font style="color:#0e0e0e;">How a system operates depends on where control is placed.</font></strong></p>
+<p>Once we recognize that, code, configuration, platforms, and institutions become projections of the same structural logic at different scales.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://orcid.org/0009-0001-6381-2853">Chase Chou</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://blog.janus-path.com/en/2026/02/02/structuralism-view-of-ioc/">https://blog.janus-path.com/en/2026/02/02/structuralism-view-of-ioc/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/en/tags/Software-Engineering/">Software Engineering</a><a class="post-meta__tags" href="/en/tags/Architecture/">Architecture</a><a class="post-meta__tags" href="/en/tags/Structural-Thinking/">Structural Thinking</a></div><div class="post-share"><div class="social-share" data-image="/en/assets/img/structuralism-view-of-ioc.png" data-sites="facebook,twitter,wechat,weibo,qq,linkedin"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/en/2026/02/07/structural-noise/" title="Structural Noise"><img class="cover" src="/en/assets/img/structural-noise.png" onerror="onerror=null;src='/en/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Structural Noise</div></div><div class="info-2"><div class="info-item-1">A Day That Did Not ExistYou do not disappear all at once. The system simply closes, one by one, the doors through which it recognizes you. During the morning rush, I approached the subway gate and scanned my face as usual. Four words appeared on the screen, as calm as a sentence handed down by a court: “Recognition failed.” I assumed the lighting was poor, shifted my angle, and tried again. Without hesitation, the screen refused me a second time. “Recognition failed. Please use a QR code.” I ...</div></div></div></a><a class="pagination-related" href="/en/2025/09/12/software-engineering-hidden-thinking-models/" title="Software Engineering Is Full of Hidden Thinking Models"><img class="cover" src="/en/assets/img/md_article0003.png" onerror="onerror=null;src='/en/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Software Engineering Is Full of Hidden Thinking Models</div></div><div class="info-2"><div class="info-item-1">Preface: We Have Always Used “Unnamed Ideas”Many software engineers consider themselves pragmatists who solve problems through experience, logic, and hands-on work. We move constantly among requirements, code, architecture, and debugging, while keeping our distance from words such as “philosophy” and “thinking models,” which can sound abstract or mystical. But shift your attention from tools to structure, from technique to the nature of thought, and you will discover something: We have long b...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/en/2025/09/12/software-engineering-hidden-thinking-models/" title="Software Engineering Is Full of Hidden Thinking Models"><img class="cover" src="/en/assets/img/md_article0003.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-12</div><div class="info-item-2">Software Engineering Is Full of Hidden Thinking Models</div></div><div class="info-2"><div class="info-item-1">Preface: We Have Always Used “Unnamed Ideas”Many software engineers consider themselves pragmatists who solve problems through experience, logic, and hands-on work. We move constantly among requirements, code, architecture, and debugging, while keeping our distance from words such as “philosophy” and “thinking models,” which can sound abstract or mystical. But shift your attention from tools to structure, from technique to the nature of thought, and you will discover something: We have long b...</div></div></div></a><a class="pagination-related" href="/en/2026/06/06/from-code-to-agent-governance/" title="From Writing Code to Governing Agents: Software Engineering&#39;s New Question in the AI Era"><img class="cover" src="/en/assets/img/from-code-to-agent-governance.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-06</div><div class="info-item-2">From Writing Code to Governing Agents: Software Engineering&#39;s New Question in the AI Era</div></div><div class="info-2"><div class="info-item-1">Recently, while using Codex to assist with development, I did something that seemed ordinary. I organized the development constraints, design habits, and engineering conventions I use most often into a Skill, allowing Codex to follow them automatically while executing tasks. It began as a simple cleanup exercise. Halfway through, I suddenly realized:  Perhaps the most important production activity in future software engineering will no longer be writing code, but extracting rules.  The indust...</div></div></div></a><a class="pagination-related" href="/en/2026/03/24/if-no-one-codes-ai-worsens/" title="If Humans Stop Writing Code, AI Will Get Worse Too"><img class="cover" src="/en/assets/img/if-no-one-codes-ai-worsens.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-24</div><div class="info-item-2">If Humans Stop Writing Code, AI Will Get Worse Too</div></div><div class="info-2"><div class="info-item-1">A popular claim has emerged recently:  AI will replace programmers.  It sounds reasonable. Today’s AI can already write code, fix bugs, and even assemble a complete small system. But I have long had the opposite intuition:  If human programmers really stop writing code one day,the code written by AI will become worse and worse.  It will not improve. It will grow messier. Like an already unstable building that keeps adding floors on top of its own rubble.  1. AI Coding Is More Like Imitation T...</div></div></div></a><a class="pagination-related" href="/en/2026/07/13/why-i-started-simplifying-ai-agents/" title="Why I Started Simplifying My AI Agents"><img class="cover" src="/en/assets/img/why-i-started-simplifying-ai-agents.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-13</div><div class="info-item-2">Why I Started Simplifying My AI Agents</div></div><div class="info-2"><div class="info-item-1">Over the past year, I have used AI agents such as Codex and Claude Code intensively in my day-to-day development work. At first, like many people, I kept trying to give the agent more capabilities. Whenever I encountered a new kind of task, I added a Skill. Whenever I discovered a rule, I wrote it into AGENTS.md. After a difficult investigation, I wanted to preserve the process so that it could be reused next time. I assumed the agent would become smarter and smarter. Eventually, I discovered...</div></div></div></a><a class="pagination-related" href="/en/2026/03/25/ai-agent-semantic-drift/" title="AI Agents Are Powerful, but They Drift"><img class="cover" src="/en/assets/img/md_article0004.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-25</div><div class="info-item-2">AI Agents Are Powerful, but They Drift</div></div><div class="info-2"><div class="info-item-1">Recently, AI agents have often been described as systems that can “take over everything.” They can write code, run projects, and execute complex workflows automatically. Some people even believe they can already replace engineers. After using them in practice, however, I have reached almost the opposite conclusion:  Agents are powerful, but their boundaries are just as clear.   1. A Context Window Is Not MemoryPeople often point out that:  “Models now support 200k-token context windows, or ev...</div></div></div></a><a class="pagination-related" href="/en/2025/08/31/janus-path-overview-escape-cognitive-traps/" title="An Introduction to JanusPath: Escaping the Cognitive Traps You Cannot See"><img class="cover" src="/en/assets/img/janus-path00.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-31</div><div class="info-item-2">An Introduction to JanusPath: Escaping the Cognitive Traps You Cannot See</div></div><div class="info-2"><div class="info-item-1">1. Introduction: The Ghost of Structure “We are shaped by language, and imprisoned by it.” — Foucault  The same is true of structure. It is the skeleton of thought, the invisible coordinates of the world. All our actions and judgments unfold within those coordinates, like fish moving through water while rarely noticing that water exists. History shows that many great successes and failures were not caused simply by stronger will or better technology. They emerged from the constraints and bias...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/en/assets/img/avatar.png" onerror="this.onerror=null;this.src='/en/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Chase Chou</div><div class="author-info-description"><span style="display: block; text-align: left;">Creator of JanusPath, writing where technology, civilization, philosophy, and institutions meet.</span></div><div class="site-data"><a href="/en/archives/"><div class="headline">Articles</div><div class="length-num">16</div></a><a href="/en/tags/"><div class="headline">Tags</div><div class="length-num">18</div></a><a href="/en/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/chasechou007" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://orcid.org/0009-0001-6381-2853" target="_blank" title="ORCID"><i class="fab fa-orcid" style="color: #A6CE39;"></i></a><a class="social-icon" href="mailto:chaseshou007@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #ea4335;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content"><span style="display: block;">Distinguish paths in the cracks; extract insight from the noise.</span></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-A-Seemingly-Technical-Problem"><span class="toc-number">1.</span> <span class="toc-text">Introduction: A Seemingly Technical Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-The-Nature-of-Dependency-from-a-Structuralist-Perspective"><span class="toc-number">2.</span> <span class="toc-text">1. The Nature of Dependency from a Structuralist Perspective</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-IoC-Reversing-Not-Control-but-the-Right-to-Decide"><span class="toc-number">3.</span> <span class="toc-text">2. IoC: Reversing Not Control, but the Right to Decide</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Dependency-Injection-Is-the-Phenomenon-Not-the-Essence"><span class="toc-number">4.</span> <span class="toc-text">3. Dependency Injection Is the Phenomenon, Not the Essence</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Once-Structure-Is-Externalized-Configuration-Becomes-Inevitable"><span class="toc-number">5.</span> <span class="toc-text">4. Once Structure Is Externalized, Configuration Becomes Inevitable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Containers-Interfaces-and-Conventions-Structure-Taming-Itself"><span class="toc-number">6.</span> <span class="toc-text">5. Containers, Interfaces, and Conventions: Structure Taming Itself</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-The-Real-Value-of-IoC-Who-Gets-to-Participate-in-Composition"><span class="toc-number">7.</span> <span class="toc-text">6. The Real Value of IoC: Who Gets to Participate in Composition?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion-Structure-Is-How-an-Idea-Enters-Reality"><span class="toc-number">8.</span> <span class="toc-text">Conclusion: Structure Is How an Idea Enters Reality</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/en/2026/07/23/when-ai-thinks-along-your-thoughts/" title="When AI Begins to Think Along Your Lines"><img src="/en/assets/img/cognitive-continuity-beyond-context.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="When AI Begins to Think Along Your Lines"/></a><div class="content"><a class="title" href="/en/2026/07/23/when-ai-thinks-along-your-thoughts/" title="When AI Begins to Think Along Your Lines">When AI Begins to Think Along Your Lines</a><time datetime="2026-07-23T06:20:00.000Z" title="Created 2026-07-23 14:20:00">2026-07-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/en/2026/07/13/why-i-started-simplifying-ai-agents/" title="Why I Started Simplifying My AI Agents"><img src="/en/assets/img/why-i-started-simplifying-ai-agents.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="Why I Started Simplifying My AI Agents"/></a><div class="content"><a class="title" href="/en/2026/07/13/why-i-started-simplifying-ai-agents/" title="Why I Started Simplifying My AI Agents">Why I Started Simplifying My AI Agents</a><time datetime="2026-07-13T02:54:10.000Z" title="Created 2026-07-13 10:54:10">2026-07-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/en/2026/06/17/januspath-from-structural-reflection-to-origin-observation/" title="What You See Is Not the Problem Itself, but the Way It Becomes Visible"><img src="/en/assets/img/januspath-origin-observation-cover.svg" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="What You See Is Not the Problem Itself, but the Way It Becomes Visible"/></a><div class="content"><a class="title" href="/en/2026/06/17/januspath-from-structural-reflection-to-origin-observation/" title="What You See Is Not the Problem Itself, but the Way It Becomes Visible">What You See Is Not the Problem Itself, but the Way It Becomes Visible</a><time datetime="2026-06-17T01:49:03.000Z" title="Created 2026-06-17 09:49:03">2026-06-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/en/2026/06/06/from-code-to-agent-governance/" title="From Writing Code to Governing Agents: Software Engineering's New Question in the AI Era"><img src="/en/assets/img/from-code-to-agent-governance.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="From Writing Code to Governing Agents: Software Engineering's New Question in the AI Era"/></a><div class="content"><a class="title" href="/en/2026/06/06/from-code-to-agent-governance/" title="From Writing Code to Governing Agents: Software Engineering's New Question in the AI Era">From Writing Code to Governing Agents: Software Engineering's New Question in the AI Era</a><time datetime="2026-06-06T14:57:22.000Z" title="Created 2026-06-06 22:57:22">2026-06-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/en/2026/05/23/codex-team-usage-sop/" title="A Team SOP for Using Codex, OpenSpec, and Superpowers"><img src="/en/assets/img/codex-team-usage-sop-cover.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="A Team SOP for Using Codex, OpenSpec, and Superpowers"/></a><div class="content"><a class="title" href="/en/2026/05/23/codex-team-usage-sop/" title="A Team SOP for Using Codex, OpenSpec, and Superpowers">A Team SOP for Using Codex, OpenSpec, and Superpowers</a><time datetime="2026-05-23T06:27:28.000Z" title="Created 2026-05-23 14:27:28">2026-05-23</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Chase Chou</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text"><div><span>See order in structure, and find freedom in tension.</span></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/en/js/utils.js"></script><script src="/en/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

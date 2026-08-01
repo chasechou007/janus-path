@@ -5,11 +5,19 @@
   <id>https://blog.janus-path.com/</id>
   <link href="https://blog.janus-path.com/"/>
   <link href="https://blog.janus-path.com/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-07-28T15:04:30.284Z</updated>
+  <updated>2026-08-01T09:27:44.582Z</updated>
   <author>
     <name>Chase Chou</name>
     <uri>https://orcid.org/0009-0001-6381-2853</uri>
   </author>
+  <entry>
+    <title>Agent 时代，我们需要重新思考密码管理</title>
+    <link href="https://blog.janus-path.com/2026/08/01/Agent%20%E6%97%B6%E4%BB%A3%EF%BC%8C%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E6%80%9D%E8%80%83%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/"/>
+    <id>https://blog.janus-path.com/2026/08/01/Agent%20%E6%97%B6%E4%BB%A3%EF%BC%8C%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E6%80%9D%E8%80%83%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/</id>
+    <published>2026-08-01T09:26:10.000Z</published>
+    <updated>2026-08-01T09:27:44.582Z</updated>
+    <summary type="text">Agent 开始代表人操作 GitHub、API 和云平台后，传统密码管理的“读取秘密”模型暴露出新的风险。本文结合 KeptNear Local Broker，探讨如何从秘密读取转向受控的凭据能力授权，并厘清本地优先与 Agent 安全的边界。</summary>
+  </entry>
   <entry>
     <title>当 AI 开始沿着你的思路思考</title>
     <link href="https://blog.janus-path.com/2026/07/23/%E5%BD%93AI%E5%BC%80%E5%A7%8B%E6%B2%BF%E7%9D%80%E4%BD%A0%E7%9A%84%E6%80%9D%E8%B7%AF%E6%80%9D%E8%80%83/"/>

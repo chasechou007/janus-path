@@ -5,11 +5,19 @@
   <id>https://blog.janus-path.com/en/</id>
   <link href="https://blog.janus-path.com/en/"/>
   <link href="https://blog.janus-path.com/en/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-07-28T15:10:13.312Z</updated>
+  <updated>2026-08-02T02:58:47.438Z</updated>
   <author>
     <name>Chase Chou</name>
     <uri>https://orcid.org/0009-0001-6381-2853</uri>
   </author>
+  <entry>
+    <title>Rethinking Password Management in the Agent Era</title>
+    <link href="https://blog.janus-path.com/en/2026/08/01/rethinking-password-management-in-the-agent-era/"/>
+    <id>https://blog.janus-path.com/en/2026/08/01/rethinking-password-management-in-the-agent-era/</id>
+    <published>2026-08-01T09:26:10.000Z</published>
+    <updated>2026-08-02T02:58:47.438Z</updated>
+    <summary type="text">As AI agents act across GitHub, APIs, and cloud platforms, KeptNear&apos;s Local Broker shows how to authorize credential-backed capabilities without exposing raw secrets.</summary>
+  </entry>
   <entry>
     <title>When AI Begins to Think Along Your Lines</title>
     <link href="https://blog.janus-path.com/en/2026/07/23/when-ai-thinks-along-your-thoughts/"/>

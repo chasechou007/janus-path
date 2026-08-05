@@ -1,0 +1,9 @@
+# Simplified Chinese build. This overlay intentionally keeps all historical
+# Chinese URLs at the domain root.
+language: zh-CN
+url: https://blog.janus-path.com
+root: /
+public_dir: public
+
+bilingual:
+  locale: zh-CN

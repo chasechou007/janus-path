@@ -2,16 +2,15 @@
 title: 如果没人写代码了，AI也会开始变差
 date: 2026-03-24 00:00:00
 slug: if-no-one-codes-ai-worsens
+lang: zh-CN
+translation_key: if-no-one-codes-ai-worsens
 categories: MetaEngineering
 cover: /assets/img/if-no-one-codes-ai-worsens.png
 description: 如果未来代码主要由 AI 生成，模型将越来越多地学习“自己写过的代码”，小错误与坏结构会被反复复制并固化，最终导致质量下滑与 Model Collapse。真正让系统变好的能力，来自人类对边界、权衡与结构的判断。
 tags:
   - AI
-  - 生成式AI
   - 软件工程
-  - 编程
-  - 系统设计
-  - 模型塌缩
+  - 系统思维
 keywords:
   - AI写代码
   - 生成式AI

@@ -2,14 +2,14 @@
 title: 从结构主义视角看 IOC（控制反转）
 date: 2026-02-02 12:15:09
 slug: structuralism-view-of-ioc
+lang: zh-CN
+translation_key: structuralism-view-of-ioc
 categories: meta-engineering
 cover: /assets/img/structuralism-view-of-ioc.png
 tags:
-  - IOC
-  - 结构主义
+  - 软件工程
   - 架构设计
-  - 依赖注入
-  - 软件哲学
+  - 结构性思维
 description: 文章尝试跳出技术细节，从结构主义视角重新解读 IOC（控制反转）。提出依赖本质上是一种“权力关系”，而 IOC 的核心在于将“决定权”外置。通过这一视角，重新审视依赖注入、配置化、低代码以及系统演进背后的逻辑。
 keywords:
   - IOC

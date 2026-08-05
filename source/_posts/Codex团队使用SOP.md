@@ -2,6 +2,8 @@
 title: Codex 团队使用 SOP
 date: 2026-05-20 14:25:43
 slug: codex-team-usage-sop
+lang: zh-CN
+translation_key: codex-team-usage-sop
 categories: MetaEngineering
 cover: /assets/img/codex-team-usage-sop-cover.png
 description: 一份面向团队协作的 Codex 使用规范，围绕 OpenSpec、Superpowers 与上下文沉淀，整理需求调研、产品规划、开发实现、测试验证、运营分析和知识交接中的标准工作流。
@@ -15,11 +17,10 @@ keywords:
   - 上下文管理
   - 知识沉淀
 tags:
+  - AI Agent
   - Codex
   - OpenSpec
-  - Superpowers
   - 团队协作
-  - AI 工程化
 ---
 
 ## 1. 目标

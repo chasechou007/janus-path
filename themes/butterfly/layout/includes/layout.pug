@@ -6,7 +6,7 @@
 - pageType = page.type ? pageType + ' type-' + page.type : pageType
 
 doctype html
-html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside)
+html(lang=(page.lang || page.language || config.language) data-theme=theme.display_mode class=htmlClassHideAside)
   head
     include ./head.pug
   body
@@ -15,7 +15,7 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
     if theme.background
       #web_bg(style=getBgPath(theme.background))
 
-    !=partial('includes/sidebar', {}, {cache: true})
+    !=partial('includes/sidebar', {}, {cache: false})
 
     #body-wrap(class=pageType)
       include ./header/index.pug

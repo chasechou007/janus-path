@@ -27,6 +27,9 @@ meta(name="author" content=pageAuthor)
 meta(name="copyright" content=pageCopyright)
 meta(name ="format-detection" content="telephone=no")
 meta(name="theme-color" content=themeColor)
+- var allowIndexing = globalPageType !== '404' && page.indexing !== false && page.noindex !== true
+- var robotsDirective = allowIndexing ? 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' : 'noindex,follow'
+meta(name="robots" content=robotsDirective)
 //- Inject page-level keywords for SEO
 if page.keywords
   meta(name="keywords" content=(page.keywords instanceof Array ? page.keywords.join(',') : page.keywords))
@@ -41,7 +44,13 @@ include ./head/structured_data.pug
 
 !=favicon_tag(theme.favicon || config.favicon)
 //- link(rel="canonical" href=urlNoIndex(null,config.pretty_urls.trailing_index,config.pretty_urls.trailing_html))
-link(rel="canonical" href= url_for(page.permalink || page.path))
+- const canonicalUrl = full_url_for(urlNoIndex(null, false, false))
+link(rel="canonical" href=canonicalUrl)
+- const localeAlternates = bilingual_alternates(page)
+each alternate in localeAlternates
+  link(rel="alternate" hreflang=alternate.hreflang href=alternate.href)
+- const feedPath = config.feed && config.feed.path ? config.feed.path : 'atom.xml'
+link(rel="alternate" type="application/atom+xml" title=`${config.title} Atom Feed` href=full_url_for(feedPath))
 
 //- 預解析
 !=partial('includes/head/preconnect', {}, {cache: true})

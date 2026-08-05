@@ -1,9 +1,11 @@
 ---
 title: AI时代最稀缺的两种能力，不是技术，也不是业务
 slug: two-rarest-skills-in-ai-era-not-tech-or-business
+lang: zh-CN
+translation_key: two-rarest-skills-in-ai-era-not-tech-or-business
 date: 2025-09-02 20:30:00
 categories: [janus-path-applied]
-tags: [结构性思维, 元能力, AI, 技术幻觉, 认知结构]
+tags: [AI, 结构性思维, 认知]
 cover: /assets/img/md_article0000.png
 description: 在技术日新月异的AI时代，最稀缺的能力并不是技术本身，而是能穿透幻觉与混乱的结构洞察力与自我驯化力。本文从“技术与业务”之外的维度出发，探讨为何真正的关键在于结构性认知与心智演化能力。
 keywords:

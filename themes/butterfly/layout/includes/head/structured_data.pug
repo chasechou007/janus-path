@@ -1,31 +1,65 @@
 if theme.structured_data
+  - let jsonLdScript = ''
   if page.layout === 'post'
     -
       // https://developers.google.com/search/docs/appearance/structured-data/article
 
       const title = page.title
-      const url = page.permalink
+      const url = full_url_for(urlNoIndex(null, false, false))
       const imageVal = page.cover_type === 'img' ? page.cover : theme.avatar.img
       const image = imageVal ? full_url_for(imageVal) : ''
+      const description = truncate(page.description || page.content || page.title || config.description, 150).trim()
       const datePublished = page.date.toISOString()
       const dateModified = (page.updated || page.date).toISOString()
       const author = page.copyright_author || config.author
-      const authorHrefVal = page.copyright_author_href || theme.post_copyright.author_href || config.url
+      const authorHrefVal = page.copyright_author_href || config.author_url || theme.post_copyright.author_href || config.url
       const authorHref = full_url_for(authorHrefVal)
+      const authorSameAs = (config.author_same_as || [authorHrefVal]).map(item => full_url_for(item))
+      const keywords = Array.isArray(page.keywords) ? page.keywords.join(', ') : page.keywords
+      const articleSections = page.categories && page.categories.toArray
+        ? page.categories.toArray().map(category => category.name)
+        : []
+      const publisherLogoVal = theme.favicon || config.favicon || theme.avatar.img
+      const publisherLogo = publisherLogoVal ? full_url_for(publisherLogoVal) : undefined
+      const siteUrl = full_url_for('/')
 
       const jsonLd = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": title,
         "url": url,
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": url
+        },
+        "description": description,
         "image": image,
+        "keywords": keywords,
+        "articleSection": articleSections.length ? articleSections : undefined,
+        "inLanguage": page.lang || page.language || config.language || "zh-CN",
         "datePublished": datePublished,
         "dateModified": dateModified,
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": `${siteUrl}#blog`,
+          "name": config.title,
+          "url": siteUrl
+        },
         "author": [{
           "@type": "Person",
           "name": author,
-          "url": authorHref
-        }]
+          "url": authorHref,
+          "sameAs": authorSameAs
+        }],
+        "publisher": {
+          "@type": "Organization",
+          "name": config.title,
+          "url": siteUrl,
+          "logo": publisherLogo ? {
+            "@type": "ImageObject",
+            "url": publisherLogo
+          } : undefined
+        }
       }
 
       jsonLdScript = JSON.stringify(jsonLd, null, 2)
@@ -35,21 +69,25 @@ if theme.structured_data
     -
       // https://developers.google.com/search/docs/appearance/site-names#website
 
-      const baseUrl = config.url;
-      const currentPath = url_for('/');
-      const isRootOrSubdomain = currentPath.split('/').filter(Boolean).length === 0;
-
-      if (isRootOrSubdomain) {
-        const jsonLd = {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": config.title,
-          "url": full_url_for('/'),
+      const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": config.title,
+        "alternateName": config.subtitle || undefined,
+        "url": full_url_for('/'),
+        "description": truncate(config.description || config.title, 150).trim(),
+        "inLanguage": page.lang || page.language || config.language || "zh-CN",
+        "publisher": {
+          "@type": "Person",
+          "name": config.author,
+          "url": full_url_for(config.author_url || config.url),
+          "sameAs": (config.author_same_as || []).map(item => full_url_for(item))
         }
-
-        jsonLdScript = JSON.stringify(jsonLd, null, 2)
       }
+
+      jsonLdScript = JSON.stringify(jsonLd, null, 2)
     -
 
-  script(type="application/ld+json").
-    !{jsonLdScript}
+  if jsonLdScript
+    script(type="application/ld+json").
+      !{jsonLdScript}

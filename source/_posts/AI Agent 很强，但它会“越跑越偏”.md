@@ -2,15 +2,16 @@
 title: AI Agent 很强，但它会“越跑越偏”
 date: 2026-03-25 10:00:00
 slug: ai-agent-semantic-drift
+lang: zh-CN
+translation_key: ai-agent-semantic-drift
 categories: MetaEngineering
 cover: /assets/img/md_article0004.png
 description: AI Agent 在短任务中表现出色，但在长流程中往往会出现“语义漂移”。本文探讨了上下文窗口与持久化记忆的本质区别，指出 Agent 当前的短板在于无法稳定承载系统结构，工程的结构主权依然需要人类来掌握。
 keywords: AI Agent, 智能体, 语义漂移, 上下文窗口, LLM记忆, 复杂系统, 架构设计, 结构主权
 tags:
-  - AI
   - AI Agent
   - 架构设计
-  - 复杂系统
+  - 系统思维
 ---
 
 最近一段时间，AI Agent 被描述为“可以接管一切”的存在。

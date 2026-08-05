@@ -1,0 +1,50 @@
+# English build. It shares the same source tree and only emits posts marked
+# with `lang: en` beneath /en/.
+title: JanusPath
+subtitle: Structural insight, reflective thought, and paths through complexity
+description: >-
+  JanusPath is a workshop for structural insight across philosophy, society,
+  technology, and literature—seeking clarity and actionable paths through
+  complexity and noise.
+keywords:
+  - philosophy
+  - society
+  - technology
+  - literature
+author: Chase Chou
+language: en
+url: https://blog.janus-path.com/en
+root: /en/
+public_dir: public/en
+
+category_map:
+  Meta Engineering: meta-engineering
+tag_map:
+  Team Collaboration: team-collaboration
+
+bilingual:
+  locale: en
+
+robotstxt:
+  useragent: '*'
+  allow:
+    - /
+  disallow: []
+  sitemap:
+    - https://blog.janus-path.com/sitemap.xml
+
+theme_config:
+  localized_menu:
+    Home: /
+    Categories: /categories/
+    Tags: /tags/
+  subtitle:
+    sub:
+      - 'See order in structure, and find freedom in tension.'
+  footer:
+    custom_text: '<div><span>See order in structure, and find freedom in tension.</span></div>'
+  aside:
+    card_author:
+      description: '<span style="display: block; text-align: left;">Creator of JanusPath, writing where technology, civilization, philosophy, and institutions meet.</span>'
+    card_announcement:
+      content: '<span style="display: block;">Distinguish paths in the cracks; extract insight from the noise.</span>'

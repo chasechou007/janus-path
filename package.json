@@ -3,10 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate",
+    "build": "node tools/build-bilingual.js",
+    "build:zh": "hexo clean --config _config.yml,_config.zh-CN.yml && hexo generate --config _config.yml,_config.zh-CN.yml",
+    "build:en": "hexo clean --config _config.yml,_config.en.yml && hexo generate --config _config.yml,_config.en.yml",
+    "check:bilingual": "node tools/verify-bilingual-build.js",
     "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
+    "deploy": "npm run build && hexo deploy",
+    "server": "npm run build && hexo server --static"
   },
   "hexo": {
     "version": "7.3.0"

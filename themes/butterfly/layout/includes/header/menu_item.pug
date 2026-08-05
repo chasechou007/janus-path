@@ -1,6 +1,7 @@
 if theme.menu
   .menus_items
-    each value, label in theme.menu
+    - const activeMenu = theme.localized_menu || theme.menu
+    each value, label in activeMenu
       if typeof value !== 'object'
         .menus_item
           - const [link, icon] = value.split('||').map(part => trim(part))
@@ -25,3 +26,16 @@ if theme.menu
                   if childIcon
                     i.fa-fw(class=childIcon)
                   span= ' ' + lab
+    - const localeSwitch = bilingual_switch(page)
+    if localeSwitch
+      .menus_item
+        a.site-page.bilingual-switch(
+          href=localeSwitch.href
+          hreflang=localeSwitch.hreflang
+          lang=localeSwitch.hreflang
+          title=localeSwitch.title
+          aria-label=localeSwitch.title
+          data-translation-available=localeSwitch.available ? 'true' : 'false'
+        )
+          i.fas.fa-language.fa-fw
+          span= ' ' + localeSwitch.label

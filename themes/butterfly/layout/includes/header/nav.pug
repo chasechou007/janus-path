@@ -19,7 +19,7 @@ nav#nav
           i.fas.fa-search.fa-fw
           span= ' ' + _p('search.title')
     if theme.menu
-      != partial('includes/header/menu_item', {}, {cache: true})
+      != partial('includes/header/menu_item', {}, {cache: false})
 
       #toggle-menu
         span.site-page

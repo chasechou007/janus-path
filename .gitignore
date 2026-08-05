@@ -9,3 +9,7 @@ _multiconfig.yml
 .deploy_git
 BingSiteAuth.xml
 google73daba12f341baf9.html
+
+# Local AI-assisted workflow records belong in ../openspec, outside this public repository.
+/openspec/
+/docs/superpowers/

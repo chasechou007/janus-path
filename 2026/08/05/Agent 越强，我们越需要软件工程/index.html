@@ -1,0 +1,443 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Agent 越强，我们越需要软件工程 | 观澈辨机</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="AI Agent,Codex,软件工程,架构设计,Architecture is cached reasoning,认知复用,ProTable,模块化,自动化测试,领域模型,Token,Agent 不确定性"><meta name="description" content="代码生成越便宜，软件工程越重要。本文从 ProTable、模块化、类型、测试与领域模型出发，讨论架构如何成为“被缓存的推理”，减少 Agent 的搜索、解释与决策空间，并控制强大执行力带来的不确定性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agent 越强，我们越需要软件工程">
+<meta property="og:url" content="https://blog.janus-path.com/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">
+<meta property="og:site_name" content="观澈辨机">
+<meta property="og:description" content="代码生成越便宜，软件工程越重要。本文从 ProTable、模块化、类型、测试与领域模型出发，讨论架构如何成为“被缓存的推理”，减少 Agent 的搜索、解释与决策空间，并控制强大执行力带来的不确定性。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.janus-path.com/assets/img/stronger-agents-need-software-engineering.png">
+<meta property="article:published_time" content="2026-08-05T03:01:56.000Z">
+<meta property="article:modified_time" content="2026-08-05T06:54:08.449Z">
+<meta property="article:author" content="Chase Chou">
+<meta property="article:tag" content="AI Agent">
+<meta property="article:tag" content="架构设计">
+<meta property="article:tag" content="系统思维">
+<meta property="article:tag" content="软件工程">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.janus-path.com/assets/img/stronger-agents-need-software-engineering.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Agent 越强，我们越需要软件工程",
+  "url": "https://blog.janus-path.com/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.janus-path.com/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"
+  },
+  "description": "代码生成越便宜，软件工程越重要。本文从 ProTable、模块化、类型、测试与领域模型出发，讨论架构如何成为“被缓存的推理”，减少 Agent 的搜索、解释与决策空间，并控制强大执行力带来的不确定性。",
+  "image": "https://blog.janus-path.com/assets/img/stronger-agents-need-software-engineering.png",
+  "keywords": "AI Agent, Codex, 软件工程, 架构设计, Architecture is cached reasoning, 认知复用, ProTable, 模块化, 自动化测试, 领域模型, Token, Agent 不确定性",
+  "articleSection": [
+    "MetaEngineering"
+  ],
+  "inLanguage": "zh-CN",
+  "datePublished": "2026-08-05T03:01:56.000Z",
+  "dateModified": "2026-08-05T06:54:08.449Z",
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": "https://blog.janus-path.com/#blog",
+    "name": "观澈辨机",
+    "url": "https://blog.janus-path.com/"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Chase Chou",
+      "url": "https://orcid.org/0009-0001-6381-2853",
+      "sameAs": [
+        "https://orcid.org/0009-0001-6381-2853",
+        "https://github.com/chasechou007"
+      ]
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "观澈辨机",
+    "url": "https://blog.janus-path.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.janus-path.com/assets/img/logo.png"
+    }
+  }
+}</script><link rel="shortcut icon" href="/assets/img/logo.png"><link rel="canonical" href="https://blog.janus-path.com/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><link rel="alternate" hreflang="zh-Hans" href="https://blog.janus-path.com/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><link rel="alternate" hreflang="en" href="https://blog.janus-path.com/en/2026/08/05/stronger-agents-need-better-software-engineering/"><link rel="alternate" hreflang="x-default" href="https://blog.janus-path.com/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><link rel="alternate" type="application/atom+xml" title="观澈辨机 Atom Feed" href="https://blog.janus-path.com/atom.xml"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Agent 越强，我们越需要软件工程',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/assets/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/Janus-path-prototype/"><span> Janus Path · 原型篇</span></a></div><div class="menus_item"><a class="site-page" href="/categories/janus-path-applied/"><span> Janus Path · 应用篇</span></a></div><div class="menus_item"><a class="site-page" href="/categories/cosmic-structures/"><span> 结构宇宙</span></a></div><div class="menus_item"><a class="site-page" href="/categories/meta-engineering/"><span> 元工程术</span></a></div><div class="menus_item"><a class="site-page" href="/research/"><span> 研究与论文</span></a></div><div class="menus_item"><a class="site-page bilingual-switch" href="/en/2026/08/05/stronger-agents-need-better-software-engineering/" hreflang="en" lang="en" title="Read this article in English" aria-label="Read this article in English" data-translation-available="true"><i class="fas fa-language fa-fw"></i><span> EN</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/img/stronger-agents-need-software-engineering.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/assets/img/logo.png" alt="Logo"><span class="site-name">观澈辨机</span></a><a class="nav-page-title" href="/"><span class="site-name">Agent 越强，我们越需要软件工程</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/Janus-path-prototype/"><span> Janus Path · 原型篇</span></a></div><div class="menus_item"><a class="site-page" href="/categories/janus-path-applied/"><span> Janus Path · 应用篇</span></a></div><div class="menus_item"><a class="site-page" href="/categories/cosmic-structures/"><span> 结构宇宙</span></a></div><div class="menus_item"><a class="site-page" href="/categories/meta-engineering/"><span> 元工程术</span></a></div><div class="menus_item"><a class="site-page" href="/research/"><span> 研究与论文</span></a></div><div class="menus_item"><a class="site-page bilingual-switch" href="/en/2026/08/05/stronger-agents-need-better-software-engineering/" hreflang="en" lang="en" title="Read this article in English" aria-label="Read this article in English" data-translation-available="true"><i class="fas fa-language fa-fw"></i><span> EN</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Agent 越强，我们越需要软件工程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-05T03:01:56.000Z" title="发表于 2026-08-05 11:01:56">2026-08-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-05T06:54:08.449Z" title="更新于 2026-08-05 14:54:08">2026-08-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/MetaEngineering/">MetaEngineering</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>最近在使用 Codex 推进开发时，我越来越强烈地感受到一件事：</p>
+<p><strong>AI 改变了软件开发的生产方式，但它并没有让过去几十年形成的软件工程思想失效。</strong></p>
+<p>恰恰相反。</p>
+<p>当 Agent 能够越来越快地理解需求、修改代码、运行测试，甚至独立推进一个复杂任务以后，过去很多为了“提升开发效率、控制复杂度”而形成的软件工程方法，开始表现出新的价值。</p>
+<p>最直观的感受是：</p>
+<p><strong>更省 Token，也更不容易跑偏。</strong></p>
+<p>但如果继续往下看，会发现 Token 只是表象。</p>
+<p>真正发生变化的是：</p>
+<blockquote>
+<p><strong>软件工程正在从“管理人的复杂度”，进一步变成“管理 Agent 的不确定性”。</strong></p>
+</blockquote>
+<p>而 Agent 越强，这件事情反而越重要。</p>
+<h2 id="从我以前做过的-ProTable-说起"><a href="#从我以前做过的-ProTable-说起" class="headerlink" title="从我以前做过的 ProTable 说起"></a>从我以前做过的 ProTable 说起</h2><p>很多年前，我做前端架构时，开发过类似 ProTable 这样的基础组件。</p>
+<p>当时的目的很简单。</p>
+<p>业务系统里有大量列表页面：用户列表、订单列表、客户列表、审批列表……</p>
+<p>如果每一个开发人员拿到需求以后，都重新实现一次查询、分页、筛选、Loading、异常处理、权限控制，那么不仅开发效率低，最后每个人写出来的东西也很容易不一样。</p>
+<p>所以我们会把这些已经反复出现的问题抽象掉。</p>
+<p>一个新的业务页面真正需要关心的，只应该是：</p>
+<ul>
+<li>查询什么数据；</li>
+<li>展示哪些字段；</li>
+<li>有哪些业务操作；</li>
+<li>当前业务有哪些特殊规则。</li>
+</ul>
+<p>分页怎么处理、查询参数怎么组织、错误状态怎么展示，这些问题不应该每次都重新解决。</p>
+<p>过去我们通常把这种价值叫作：</p>
+<p><strong>代码复用。</strong></p>
+<p>但今天重新回头看，我觉得这个描述其实并不完整。</p>
+<p>因为真正被复用的，从来不只是代码。</p>
+<p>被复用的还有过去已经做过的那些<strong>工程判断</strong>。</p>
+<p>为什么分页这样设计？</p>
+<p>为什么查询参数这样组织？</p>
+<p>为什么组件开放这些扩展点，而不是另外一些？</p>
+<p>这些问题曾经被人思考过、讨论过、踩过坑，最终才形成了一套稳定结构。</p>
+<p>代码只是这些判断留下来的载体。</p>
+<hr>
+<h2 id="AI-会写代码以后，为什么还需要这些东西？"><a href="#AI-会写代码以后，为什么还需要这些东西？" class="headerlink" title="AI 会写代码以后，为什么还需要这些东西？"></a>AI 会写代码以后，为什么还需要这些东西？</h2><p>Agent 出现以后，一个很自然的想法是：</p>
+<p>既然 Codex 可以很快写一个 Table，我们为什么还要花时间抽象？</p>
+<p>下次需要的时候，再让 Agent 生成一次不就好了？</p>
+<p>对于 Demo、原型、一次性脚本，我认为这种思路完全成立。</p>
+<p>但对于一个需要持续演进几个月、几年甚至更久的复杂系统，我越来越不认同这种做法。</p>
+<p>因为：</p>
+<blockquote>
+<p><strong>代码生成变便宜了，不代表重新理解和重新决策也变得免费。</strong></p>
+</blockquote>
+<p>假设系统里没有稳定的 Table 基础能力。</p>
+<p>今天让 Agent 做用户列表，它需要搜索现有代码，理解项目怎么处理分页、接口、状态和权限。</p>
+<p>明天做订单列表，它又会重新做一遍类似的事情。</p>
+<p>换一个 Thread 再做客户列表，它仍然需要重新读取上下文、重新理解约定、重新判断应该怎么实现。</p>
+<p>即使最终三次都写对了，Agent 也完成了三次高度重复的推理。</p>
+<p>这些重复推理会表现为：</p>
+<p>更多搜索、更多文件读取、更大的 Context、更多 Token，以及更多需要 Agent 自己判断的地方。</p>
+<p>而如果系统已经存在一个成熟的 ProTable，Agent 面对的问题就从：</p>
+<blockquote>
+<p>我应该怎么实现一个企业级 Table？</p>
+</blockquote>
+<p>变成：</p>
+<blockquote>
+<p>当前这个业务应该如何映射到现有的 ProTable？</p>
+</blockquote>
+<p>任务空间一下就小了很多。</p>
+<p>这时候节省的已经不仅是代码。</p>
+<p>更重要的是：</p>
+<p><strong>减少了 Agent 的重复推理。</strong></p>
+<hr>
+<h2 id="Architecture-is-cached-reasoning"><a href="#Architecture-is-cached-reasoning" class="headerlink" title="Architecture is cached reasoning"></a>Architecture is cached reasoning</h2><p>这让我逐渐形成了一个新的理解：</p>
+<blockquote>
+<p><strong>Architecture is cached reasoning.</strong></p>
+</blockquote>
+<p>架构，在某种意义上就是被缓存下来的工程推理。</p>
+<p>一个成熟组件，是一组被固化的工程判断。</p>
+<p>一个稳定 API，是一组被固化的系统边界。</p>
+<p>一个 Schema，是一组被显式表达的数据约束。</p>
+<p>一套测试，是一组关于“什么才算正确”的可执行判断。</p>
+<p>一个领域模型，则是一组被长期维护的业务认知。</p>
+<p>这些东西过去主要服务于人。</p>
+<p>今天，它们同时开始服务 Agent。</p>
+<p>当这些结构存在时，Agent 不需要每次重新回答：</p>
+<blockquote>
+<p>这个问题应该怎么解决？</p>
+</blockquote>
+<p>它只需要判断：</p>
+<blockquote>
+<p>当前问题应该如何放进已经存在的结构？</p>
+</blockquote>
+<p>这是完全不同的复杂度。</p>
+<p>所以我越来越认为，AI 时代的软件工程有一个很重要的原则：</p>
+<blockquote>
+<p><strong>不要让 Agent 重复思考已经解决过的问题。</strong></p>
+</blockquote>
+<p>凡是稳定、高频、反复出现的问题，都应该逐渐从 Prompt 和 Agent 的临时推理中移出去，沉淀成更加稳定的工程结构。</p>
+<p>它可以是组件、框架、SDK、Schema、API、测试、规范、领域模型，或者其他基础设施。</p>
+<p>这其实是一种新的：</p>
+<p><strong>认知复用。</strong></p>
+<hr>
+<h2 id="软件工程正在减少-Agent-的不确定性"><a href="#软件工程正在减少-Agent-的不确定性" class="headerlink" title="软件工程正在减少 Agent 的不确定性"></a>软件工程正在减少 Agent 的不确定性</h2><p>如果从这个角度重新看过去几十年的软件工程思想，会发现很多东西都没有过时，只是价值表现发生了变化。</p>
+<table>
+<thead>
+<tr>
+<th>软件工程思想</th>
+<th>过去主要解决什么</th>
+<th>Agent 时代新增的价值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>代码复用 &#x2F; 抽象</td>
+<td>减少重复开发</td>
+<td>减少重复推理</td>
+</tr>
+<tr>
+<td>模块化</td>
+<td>降低耦合、方便协作</td>
+<td>缩小 Agent 的搜索范围和 Context</td>
+</tr>
+<tr>
+<td>API &#x2F; 类型 &#x2F; Schema</td>
+<td>减少接口误解</td>
+<td>缩小 Agent 的解释空间</td>
+</tr>
+<tr>
+<td>自动化测试</td>
+<td>防止回归</td>
+<td>给 Agent 提供客观反馈闭环</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>版本管理与协作</td>
+<td>提供状态边界、审计和恢复能力</td>
+</tr>
+<tr>
+<td>文档 &#x2F; Spec</td>
+<td>知识传递</td>
+<td>提供稳定的外部 Context</td>
+</tr>
+<tr>
+<td>领域模型</td>
+<td>建立统一业务语言</td>
+<td>给 Agent 提供稳定的业务语义</td>
+</tr>
+</tbody></table>
+<p>比如模块化。</p>
+<p>以前我们强调高内聚、低耦合，很重要的原因是方便多人协作。</p>
+<p>到了 Agent 时代，它又多了一层很直接的价值：</p>
+<p><strong>让 Agent 每次只需要理解有限的问题空间。</strong></p>
+<p>如果一个业务修改涉及十几个目录，Agent 就不得不到处搜索：</p>
+<p>这个状态在哪里修改？</p>
+<p>这个字段是谁生成的？</p>
+<p>这里改了会不会影响其他地方？</p>
+<p>即使 Context Window 足够大，也不意味着应该把整个仓库都塞进去。</p>
+<p>大量无关信息本身就是噪声。</p>
+<p>而清晰的模块边界，本质上是在告诉 Agent：</p>
+<blockquote>
+<p>这个任务主要发生在这里。</p>
+</blockquote>
+<p>再比如类型、Schema 和接口契约。</p>
+<p>如果一个字段能不能为空、一个状态有哪些枚举、一个 ID 代表什么都没有明确规定，Agent 就只能自己猜。</p>
+<p>Agent 足够强，很多时候确实能猜出来。</p>
+<p>但问题在于：</p>
+<blockquote>
+<p><strong>能猜出来，不代表应该让它猜。</strong></p>
+</blockquote>
+<p>软件系统很多错误并不是因为 Agent 不够聪明，而是因为系统允许它做出的“合理解释”太多。</p>
+<p>好的软件工程，就是在不断减少这种解释空间。</p>
+<hr>
+<h2 id="Token-少了，只是表象"><a href="#Token-少了，只是表象" class="headerlink" title="Token 少了，只是表象"></a>Token 少了，只是表象</h2><p>为什么好的工程结构往往更加节省 Token？</p>
+<p>其实并不神秘。</p>
+<p>如果架构清楚，Agent 搜索得更少。</p>
+<p>如果模块边界明确，Agent 读取的文件更少。</p>
+<p>如果接口和 Schema 清楚，Agent 猜测得更少。</p>
+<p>如果领域模型稳定，Agent 不需要反复从代码和文档里重建业务认知。</p>
+<p>如果测试充分，Agent 验证修改的路径也更短。</p>
+<p>所以 Token 的减少，并不是因为我们专门做了什么“Prompt 优化”。</p>
+<p>它更像是一个结果。</p>
+<p>真正被降低的是：</p>
+<p><strong>搜索空间、解释空间和决策空间。</strong></p>
+<p>可以简单理解成：</p>
+<blockquote>
+<p>软件工程结构<br>↓<br>缩小 Agent 搜索空间<br>↓<br>缩小 Context<br>↓<br>缩小解释空间<br>↓<br>缩小决策空间<br>↓<br>减少 Token 和重复推理<br>↓<br>降低跑偏概率</p>
+</blockquote>
+<p>所以我现在并不太把“节省 Token”理解成一个单纯的成本问题。</p>
+<p>很多时候，它其实是系统是否具有良好结构的一种外在表现。</p>
+<hr>
+<h2 id="Agent-越强，混乱传播得也越快"><a href="#Agent-越强，混乱传播得也越快" class="headerlink" title="Agent 越强，混乱传播得也越快"></a>Agent 越强，混乱传播得也越快</h2><p>这可能才是我认为最值得警惕的一点。</p>
+<p>过去，一个开发人员一天能够完成的代码修改是有限的。</p>
+<p>即使工程结构很差，混乱的增长速度也受到人的生产力限制。</p>
+<p>但 Agent 改变了这个上限。</p>
+<p>一个能力足够强的 Agent，可以在很短时间内：</p>
+<p>创建大量文件、修改多个模块、完成一次大规模重构、调整接口、补测试，甚至继续自主修复自己制造的问题。</p>
+<p>这种生产力当然很有价值。</p>
+<p>但生产力本身是中性的。</p>
+<p>如果方向正确，它会放大正确的结构。</p>
+<p>如果方向错误，它也会极快地放大错误。</p>
+<p>如果一个仓库边界混乱、缺少测试、缺少明确规则、领域语义模糊，那么越强的 Agent，越可能以更高速度继续扩散这种混乱。</p>
+<p>所以这里其实存在一个很反直觉的关系：</p>
+<blockquote>
+<p><strong>Agent 能力越强，对工程约束的要求反而越高。</strong></p>
+</blockquote>
+<p>因为我们正在把越来越强的执行能力交给它。</p>
+<p>过去糟糕的软件工程可能只是拖慢一个团队。</p>
+<p>到了 Agent 时代，它还可能让混乱以过去数倍、数十倍的速度扩散。</p>
+<hr>
+<h2 id="但好的软件工程，也会被-Agent-成倍放大"><a href="#但好的软件工程，也会被-Agent-成倍放大" class="headerlink" title="但好的软件工程，也会被 Agent 成倍放大"></a>但好的软件工程，也会被 Agent 成倍放大</h2><p>事情的另一面其实更加值得期待。</p>
+<p>Agent 不只会放大坏工程的风险。</p>
+<p>它同样会放大好工程的收益。</p>
+<p>一个结构良好的代码库，Agent 更容易理解。</p>
+<p>一个边界清晰的模块，Agent 更容易修改。</p>
+<p>一个测试充分的系统，Agent 可以自主推进更长的任务链路。</p>
+<p>一个稳定的领域模型，可以让新的 Thread 很快重新获得业务认知。</p>
+<p>一个成熟的组件体系，也可以让 Agent 快速完成大量业务功能，而不用不断重新解决基础问题。</p>
+<p>也就是说：</p>
+<blockquote>
+<p><strong>过去软件工程是在放大人的生产力。</strong></p>
+</blockquote>
+<p>今天，它开始同时：</p>
+<blockquote>
+<p><strong>放大 Agent 的生产力。</strong></p>
+</blockquote>
+<p>这可能才是传统软件工程在 AI 时代真正值得重新理解的地方。</p>
+<hr>
+<h2 id="从代码复用，到认知复用"><a href="#从代码复用，到认知复用" class="headerlink" title="从代码复用，到认知复用"></a>从代码复用，到认知复用</h2><p>所以如果一定要总结我最近的一个感受，我会把它称为：</p>
+<p><strong>从代码复用走向认知复用。</strong></p>
+<p>过去我们把已经写好的代码留下来，不希望下一个程序员重新实现。</p>
+<p>今天我们还应该进一步思考：</p>
+<blockquote>
+<p>哪些问题，是不是也不应该让下一个 Agent 重新思考？</p>
+</blockquote>
+<p>如果一个工程判断不断出现，就应该尝试把它沉淀下来。</p>
+<p>如果一个业务概念不断需要解释，就应该让它拥有稳定的模型。</p>
+<p>如果一个错误不断需要 Agent 自己发现，就应该把它变成测试或者静态约束。</p>
+<p>如果一个操作不断依赖 Prompt 提醒，也许就应该把它变成工程规则或者自动化机制。</p>
+<p>Prompt 很适合告诉 Agent：</p>
+<p><strong>这一次要做什么。</strong></p>
+<p>而软件工程更擅长告诉 Agent：</p>
+<p><strong>在这个系统里，事情应该怎样被做。</strong></p>
+<p>AI 正在让代码本身变得越来越便宜。</p>
+<p>但代码变便宜，并不意味着复杂系统也因此变得简单。</p>
+<p>当生成代码不再是主要瓶颈以后，真正困难的问题反而会越来越集中到：</p>
+<p>如何保持结构，如何维护长期一致性，如何控制 Agent 的不确定性，以及如何避免越来越高的执行速度演变成越来越快的混乱。</p>
+<p>这些问题最终仍然会回到软件工程。</p>
+<p>所以真正值得讨论的问题，从来都不是：</p>
+<blockquote>
+<p>AI 会不会让软件工程过时？</p>
+</blockquote>
+<p>而应该是：</p>
+<blockquote>
+<p><strong>当 Agent 已经可以如此快速地生产代码，我们是否已经准备好了与这种生产力相匹配的软件工程体系？</strong></p>
+</blockquote>
+<p>至少到目前为止，我自己的答案越来越明确：</p>
+<p><strong>Agent 越强，我们越需要软件工程。</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://orcid.org/0009-0001-6381-2853">Chase Chou</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.janus-path.com/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">https://blog.janus-path.com/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.janus-path.com" target="_blank">观澈辨机</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI-Agent/">AI Agent</a><a class="post-meta__tags" href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">架构设计</a><a class="post-meta__tags" href="/tags/%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4/">系统思维</a><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></div><div class="post-share"><div class="social-share" data-image="/assets/img/stronger-agents-need-software-engineering.png" data-sites="facebook,twitter,wechat,weibo,qq,linkedin"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/08/01/Agent%20%E6%97%B6%E4%BB%A3%EF%BC%8C%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E6%80%9D%E8%80%83%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/" title="Agent 时代，我们需要重新思考密码管理"><img class="cover" src="/assets/img/rethinking-password-management-agent-era.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Agent 时代，我们需要重新思考密码管理</div></div><div class="info-2"><div class="info-item-1">最近，我开源了一个本地优先的密码与令牌管理器：KeptNear。 最初开发它的原因很简单：我想要一个交互友好、真正由用户控制数据的本地密码管理器。 后来，在使用 Codex 处理越来越多实际工作时，我发现了另一个问题： Agent 也开始需要凭据了。 GitHub Token、API Key、数据库密码、云平台 Access Key……这些凭据通常散落在环境变量和配置文件里。Agent 需要时要反复配置，也容易在后续任务中遗忘。 更重要的问题是：  Agent 为了完成一项操作，真的需要知道凭据本身吗？  Agent 需要的可能不是秘密，而是能力个人密码管理器主要围绕人设计：保存密码、自动填充、复制到剪贴板，然后由人决定何时使用。 但 Agent 不只是读取信息，它会执行 CLI、调用 API，并操作外部系统。传统做法通常是先把 Token 交给 Agent，再由它完成操作： 1Token → Agent / Tool → HTTP Client → External Service  这会让 Token 进入更多不必要的路径，例如 Agent 上下文、Shell 环境、调试日志...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/03/25/AI%20Agent%20%E5%BE%88%E5%BC%BA%EF%BC%8C%E4%BD%86%E5%AE%83%E4%BC%9A%E2%80%9C%E8%B6%8A%E8%B7%91%E8%B6%8A%E5%81%8F%E2%80%9D/" title="AI Agent 很强，但它会“越跑越偏”"><img class="cover" src="/assets/img/md_article0004.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-25</div><div class="info-item-2">AI Agent 很强，但它会“越跑越偏”</div></div><div class="info-2"><div class="info-item-1">最近一段时间，AI Agent 被描述为“可以接管一切”的存在。 写代码、跑项目、自动执行复杂流程，甚至有人认为它已经可以替代工程师。 但在实际使用之后，我的感受恰恰相反：  Agent 很强，但它的边界，同样非常清晰。   一、上下文窗口 ≠ 记忆很多人会提到：  “现在模型已经支持 200k 上下文，甚至更高”  但这其实是一个误解。 上下文窗口，只是当前推理时可见的信息范围，而不是“记忆”。 当信息超出当前窗口：  要么被丢弃 要么被压缩 要么被检索拼接  无论哪种方式，本质都是：  重建，而不是持有。   二、中断，不是修正，而是重构在使用 Agent 时，我发现一个非常关键的问题： 👉 它无法被中途稳定纠正。 当你发现它执行方向有偏差时，你只能：  让它继续执行 或者中断，然后补充信息  但问题在于：  中断之后，它会重新理解整个上下文。  这意味着：  新信息加入 语义权重重新分布 原本正确的部分，也可能被重新解释  最终结果是：  你不是在修正一个系统，而是在“重建一个系统”。   三、流程越长，漂移越严重Agent 在短任务中表现很好，但在长流程中会出现一个明显...</div></div></div></a><a class="pagination-related" href="/2026/08/01/Agent%20%E6%97%B6%E4%BB%A3%EF%BC%8C%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E6%80%9D%E8%80%83%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/" title="Agent 时代，我们需要重新思考密码管理"><img class="cover" src="/assets/img/rethinking-password-management-agent-era.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-01</div><div class="info-item-2">Agent 时代，我们需要重新思考密码管理</div></div><div class="info-2"><div class="info-item-1">最近，我开源了一个本地优先的密码与令牌管理器：KeptNear。 最初开发它的原因很简单：我想要一个交互友好、真正由用户控制数据的本地密码管理器。 后来，在使用 Codex 处理越来越多实际工作时，我发现了另一个问题： Agent 也开始需要凭据了。 GitHub Token、API Key、数据库密码、云平台 Access Key……这些凭据通常散落在环境变量和配置文件里。Agent 需要时要反复配置，也容易在后续任务中遗忘。 更重要的问题是：  Agent 为了完成一项操作，真的需要知道凭据本身吗？  Agent 需要的可能不是秘密，而是能力个人密码管理器主要围绕人设计：保存密码、自动填充、复制到剪贴板，然后由人决定何时使用。 但 Agent 不只是读取信息，它会执行 CLI、调用 API，并操作外部系统。传统做法通常是先把 Token 交给 Agent，再由它完成操作： 1Token → Agent / Tool → HTTP Client → External Service  这会让 Token 进入更多不必要的路径，例如 Agent 上下文、Shell 环境、调试日志...</div></div></div></a><a class="pagination-related" href="/2026/07/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E5%BC%80%E5%A7%8B%E7%BB%99-AI-Agent-%E5%81%9A%E5%87%8F%E6%B3%95/" title="为什么我开始给 AI Agent 做减法"><img class="cover" src="/assets/img/why-i-started-simplifying-ai-agents.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-13</div><div class="info-item-2">为什么我开始给 AI Agent 做减法</div></div><div class="info-2"><div class="info-item-1">最近一年，我一直高强度使用 Codex、Claude Code 等 AI Agent 来参与日常开发。 刚开始的时候，我和很多人一样，总想着不断给 Agent 增加能力。 遇到一种任务，就增加一个 Skill；发现一条规则，就写进 AGENTS.md；做完一次复杂排查，就想着沉淀下来，方便以后继续使用。 当时觉得这样会越来越智能。 后来我发现，事情并没有那么简单。 Skill，不是越多越好我现在越来越少创建 Skill，也越来越克制使用 Skill。 不是因为 Skill 没用。 恰恰相反，是因为 Skill 很有用，所以更应该慎用。 每加载一个 Skill，本质上都是在告诉 Agent：  除了当前任务，你还需要额外关注这些规则、流程和约束。  如果当前只是一次代码阅读、一次简单修改，或者定位一个问题，这些额外的信息很可能不会帮助 Agent，反而会稀释当前任务真正需要关注的内容。 很多时候，不使用 Skill，Agent 本身已经能够很好地完成工作。 上下文不是越多越好后来我慢慢养成了一个习惯： 如果当前任务没有明确需要，就不要提前加载。 以前，我总觉得多读一点总没坏处。 后...</div></div></div></a><a class="pagination-related" href="/2026/06/06/%E4%BB%8E%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E5%88%B0%E6%B2%BB%E7%90%86-Agent-AI-%E6%97%B6%E4%BB%A3%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%9A%84%E6%96%B0%E5%91%BD%E9%A2%98/" title="从编写代码到治理 Agent：AI 时代软件工程的新命题"><img class="cover" src="/assets/img/from-code-to-agent-governance.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-06</div><div class="info-item-2">从编写代码到治理 Agent：AI 时代软件工程的新命题</div></div><div class="info-2"><div class="info-item-1">最近，我在使用 Codex 辅助开发时，做了一件看似普通的事情。 我将自己平时最常使用的一些开发约束、设计习惯和工程规范，整理成了一套 Skill，让 Codex 在执行任务时自动遵守这些规则。 原本只是一次简单的整理工作。 但整理到一半时，我突然意识到：  也许未来软件工程中最重要的生产活动，已经不再是编写代码，而是提炼规则。  工业时代生产的是产品。 软件时代生产的是代码。 那么 AI 时代生产什么？ 工业时代生产的是产品，软件时代生产的是代码过去几十年里，软件工程始终围绕着“代码”展开。 需求分析、架构设计、开发测试、持续集成…… 所有环节最终都会汇聚到一个核心产物：  代码。  因此，一个优秀工程师最重要的能力往往是：  如何写出更好的代码。  但 AI Agent 的出现，正在悄悄改变这一点。 今天，当我把一个需求交给 Codex 时，我已经很少亲自编写代码了。 更多时候，我在做的是：  定义规范； 补充上下文； 设计约束条件； 验证输出结果； 修正偏离方向的行为。  代码本身，反而成为了最后的产物。 这让我想到一个有趣的问题：  如果代码可以由 Agent 自动生成，...</div></div></div></a><a class="pagination-related" href="/2026/02/02/%E4%BB%8E%E7%BB%93%E6%9E%84%E4%B8%BB%E4%B9%89%E8%A7%86%E8%A7%92%E7%9C%8B-IOC%EF%BC%88%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC%EF%BC%89/" title="从结构主义视角看 IOC（控制反转）"><img class="cover" src="/assets/img/structuralism-view-of-ioc.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-02</div><div class="info-item-2">从结构主义视角看 IOC（控制反转）</div></div><div class="info-2"><div class="info-item-1">引言：一个看似技术的问题很多软件项目在立项之初，都有一个美好的开端。 模块化、抽象、解耦、可复用组件，这些词反复被提起。架构图干净而优雅，边界清晰，职责分明。每一个模块看起来都站在自己“合理的位置”上。 但项目一旦进入中后期，现实往往迅速坍缩。 模块开始膨胀，依赖开始交错； 改一处逻辑，却在远处引发连锁反应； 所有代码都“有理由存在”，但系统整体却越来越难以理解、难以维护。 这时我们通常会把问题归结为： 代码写得不够好，抽象不够到位，或者“当初设计不够周全”。 但从结构主义的视角来看，也许真正的问题并不在代码质量本身，而在一个更隐蔽的地方： 控制权，被放在了错误的位置。  一、从结构主义看“依赖”的本质在结构主义的语境中，个体从来不是核心，关系才是。 一个模块“依赖”另一个模块，表面上是技术关系； 但在结构层面，它同时意味着一种决定权的归属。  谁创建谁 谁选择谁 谁可以被替换，谁不可动  当一个高层模块在内部 new 出具体实现时，它不仅在使用对方，还在决定对方的存在方式。 从这个角度看，“依赖”并不是中性的。 依赖，本质上是一种权力关系。 谁掌握创建权，谁就掌握了对系统演化方...</div></div></div></a><a class="pagination-related" href="/2025/09/12/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%85%B6%E5%AE%9E%E8%97%8F%E7%9D%80%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%9E%8B/" title="软件工程，其实藏着思维模型"><img class="cover" src="/assets/img/md_article0003.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-12</div><div class="info-item-2">软件工程，其实藏着思维模型</div></div><div class="info-2"><div class="info-item-1">前言：我们其实一直在使用“无名的思想”很多软件工程师认为自己是实践主义者，靠经验、逻辑和动手能力解决问题。我们习惯在需求、代码、架构和调试中穿梭，而对“哲学”“思维模型”这些看似玄学的词保持距离。 但如果你把目光从工具移向结构，从术层走向思维本质，你会发现： 我们早已在不自知中，使用着一套套经典的思维模型，只是它们换了名字，藏在了工程实践里。 在软件工程中，这些模型没有被刻意提及，也没有出现在文档中，但它们是我们解决复杂问题的隐性支撑。 本篇文章将带你从软件工程中常见的实践出发，追溯它们背后的“思维原型”。你会惊讶地发现：你已经是一个哲学的践行者了，只是你用的是代码语言。  一、MECE 原则：模块化设计与职责边界MECE（Mutually Exclusive, Collectively Exhaustive）是咨询行业的分析圣经，但在软件工程中，它以另一种语言活跃着：  函数单一职责原则（SRP） 模块高内聚、低耦合 微服务架构中的“限界上下文”  这些原则的目标，正是实现“职责互斥”（或理解为模块独立）与“穷尽覆盖”——每个模块只做一件事，所有模块加起来正好覆盖系统全貌。 M...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/assets/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Chase Chou</div><div class="author-info-description"><span style="display: block; text-align: left;">结构主义型创作者，JanusPath 认知哲学提出者。</span> <span style="display: block; text-align: left;">关注技术、文明、哲学与制度的交汇处，写作于结构与裂隙之间。</span></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/chasechou007" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://orcid.org/0009-0001-6381-2853" target="_blank" title="ORCID"><i class="fab fa-orcid" style="color: #A6CE39;"></i></a><a class="social-icon" href="mailto:chaseshou007@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #ea4335;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><span style="display: block;">思想如光，透过结构折射出真实。</span> <span>在裂隙中辨别路径，在噪点中提取洞察。</span></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E6%88%91%E4%BB%A5%E5%89%8D%E5%81%9A%E8%BF%87%E7%9A%84-ProTable-%E8%AF%B4%E8%B5%B7"><span class="toc-number">1.</span> <span class="toc-text">从我以前做过的 ProTable 说起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AI-%E4%BC%9A%E5%86%99%E4%BB%A3%E7%A0%81%E4%BB%A5%E5%90%8E%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E9%9C%80%E8%A6%81%E8%BF%99%E4%BA%9B%E4%B8%9C%E8%A5%BF%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">AI 会写代码以后，为什么还需要这些东西？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-is-cached-reasoning"><span class="toc-number">3.</span> <span class="toc-text">Architecture is cached reasoning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%AD%A3%E5%9C%A8%E5%87%8F%E5%B0%91-Agent-%E7%9A%84%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7"><span class="toc-number">4.</span> <span class="toc-text">软件工程正在减少 Agent 的不确定性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Token-%E5%B0%91%E4%BA%86%EF%BC%8C%E5%8F%AA%E6%98%AF%E8%A1%A8%E8%B1%A1"><span class="toc-number">5.</span> <span class="toc-text">Token 少了，只是表象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Agent-%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%B7%B7%E4%B9%B1%E4%BC%A0%E6%92%AD%E5%BE%97%E4%B9%9F%E8%B6%8A%E5%BF%AB"><span class="toc-number">6.</span> <span class="toc-text">Agent 越强，混乱传播得也越快</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%86%E5%A5%BD%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%EF%BC%8C%E4%B9%9F%E4%BC%9A%E8%A2%AB-Agent-%E6%88%90%E5%80%8D%E6%94%BE%E5%A4%A7"><span class="toc-number">7.</span> <span class="toc-text">但好的软件工程，也会被 Agent 成倍放大</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%94%A8%EF%BC%8C%E5%88%B0%E8%AE%A4%E7%9F%A5%E5%A4%8D%E7%94%A8"><span class="toc-number">8.</span> <span class="toc-text">从代码复用，到认知复用</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="Agent 越强，我们越需要软件工程"><img src="/assets/img/stronger-agents-need-software-engineering.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Agent 越强，我们越需要软件工程"/></a><div class="content"><a class="title" href="/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="Agent 越强，我们越需要软件工程">Agent 越强，我们越需要软件工程</a><time datetime="2026-08-05T03:01:56.000Z" title="发表于 2026-08-05 11:01:56">2026-08-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/01/Agent%20%E6%97%B6%E4%BB%A3%EF%BC%8C%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E6%80%9D%E8%80%83%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/" title="Agent 时代，我们需要重新思考密码管理"><img src="/assets/img/rethinking-password-management-agent-era.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Agent 时代，我们需要重新思考密码管理"/></a><div class="content"><a class="title" href="/2026/08/01/Agent%20%E6%97%B6%E4%BB%A3%EF%BC%8C%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E6%80%9D%E8%80%83%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/" title="Agent 时代，我们需要重新思考密码管理">Agent 时代，我们需要重新思考密码管理</a><time datetime="2026-08-01T09:26:10.000Z" title="发表于 2026-08-01 17:26:10">2026-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/23/%E5%BD%93AI%E5%BC%80%E5%A7%8B%E6%B2%BF%E7%9D%80%E4%BD%A0%E7%9A%84%E6%80%9D%E8%B7%AF%E6%80%9D%E8%80%83/" title="当 AI 开始沿着你的思路思考"><img src="/assets/img/cognitive-continuity-beyond-context.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="当 AI 开始沿着你的思路思考"/></a><div class="content"><a class="title" href="/2026/07/23/%E5%BD%93AI%E5%BC%80%E5%A7%8B%E6%B2%BF%E7%9D%80%E4%BD%A0%E7%9A%84%E6%80%9D%E8%B7%AF%E6%80%9D%E8%80%83/" title="当 AI 开始沿着你的思路思考">当 AI 开始沿着你的思路思考</a><time datetime="2026-07-23T06:20:00.000Z" title="发表于 2026-07-23 14:20:00">2026-07-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E5%BC%80%E5%A7%8B%E7%BB%99-AI-Agent-%E5%81%9A%E5%87%8F%E6%B3%95/" title="为什么我开始给 AI Agent 做减法"><img src="/assets/img/why-i-started-simplifying-ai-agents.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="为什么我开始给 AI Agent 做减法"/></a><div class="content"><a class="title" href="/2026/07/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E5%BC%80%E5%A7%8B%E7%BB%99-AI-Agent-%E5%81%9A%E5%87%8F%E6%B3%95/" title="为什么我开始给 AI Agent 做减法">为什么我开始给 AI Agent 做减法</a><time datetime="2026-07-13T02:54:10.000Z" title="发表于 2026-07-13 10:54:10">2026-07-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/17/%E4%BD%A0%E7%9C%8B%E5%88%B0%E7%9A%84%E4%B8%8D%E6%98%AF%E9%97%AE%E9%A2%98%E6%9C%AC%E8%BA%AB%EF%BC%8C%E8%80%8C%E6%98%AF%E9%97%AE%E9%A2%98%E8%A2%AB%E7%9C%8B%E8%A7%81%E7%9A%84%E6%96%B9%E5%BC%8F/" title="你看到的不是问题本身，而是问题被看见的方式"><img src="/assets/img/januspath-origin-observation-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="你看到的不是问题本身，而是问题被看见的方式"/></a><div class="content"><a class="title" href="/2026/06/17/%E4%BD%A0%E7%9C%8B%E5%88%B0%E7%9A%84%E4%B8%8D%E6%98%AF%E9%97%AE%E9%A2%98%E6%9C%AC%E8%BA%AB%EF%BC%8C%E8%80%8C%E6%98%AF%E9%97%AE%E9%A2%98%E8%A2%AB%E7%9C%8B%E8%A7%81%E7%9A%84%E6%96%B9%E5%BC%8F/" title="你看到的不是问题本身，而是问题被看见的方式">你看到的不是问题本身，而是问题被看见的方式</a><time datetime="2026-06-17T01:49:03.000Z" title="发表于 2026-06-17 09:49:03">2026-06-17</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Chase Chou</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text"><div><span>结构之中看见秩序，张力之间寻找自由。 </span><span style="display:block;">From the tension of structure, we reclaim our clarity.</span></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

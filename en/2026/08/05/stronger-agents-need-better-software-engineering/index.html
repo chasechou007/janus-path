@@ -1,0 +1,449 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>The Stronger the Agent, the More We Need Software Engineering | JanusPath</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="AI Agent,Codex,software engineering,architecture,Architecture is cached reasoning,cognitive reuse,ProTable,modularity,automated testing,domain models,token efficiency,agent uncertainty"><meta name="description" content="AI makes code cheaper, not complexity free. Architecture, modularity, schemas, tests, and domain models reduce agent uncertainty through cognitive reuse.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Stronger the Agent, the More We Need Software Engineering">
+<meta property="og:url" content="https://blog.janus-path.com/en/2026/08/05/stronger-agents-need-better-software-engineering/">
+<meta property="og:site_name" content="JanusPath">
+<meta property="og:description" content="AI makes code cheaper, not complexity free. Architecture, modularity, schemas, tests, and domain models reduce agent uncertainty through cognitive reuse.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.janus-path.com/en/assets/img/stronger-agents-need-software-engineering.png">
+<meta property="article:published_time" content="2026-08-05T03:01:56.000Z">
+<meta property="article:modified_time" content="2026-08-05T07:27:36.805Z">
+<meta property="article:author" content="Chase Chou">
+<meta property="article:tag" content="AI Agent">
+<meta property="article:tag" content="Architecture">
+<meta property="article:tag" content="Systems Thinking">
+<meta property="article:tag" content="Software Engineering">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.janus-path.com/en/assets/img/stronger-agents-need-software-engineering.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The Stronger the Agent, the More We Need Software Engineering",
+  "url": "https://blog.janus-path.com/en/2026/08/05/stronger-agents-need-better-software-engineering/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.janus-path.com/en/2026/08/05/stronger-agents-need-better-software-engineering/"
+  },
+  "description": "AI makes code cheaper, not complexity free. Architecture, modularity, schemas, tests, and domain models reduce agent uncertainty through cognitive ...",
+  "image": "https://blog.janus-path.com/en/assets/img/stronger-agents-need-software-engineering.png",
+  "keywords": "AI Agent, Codex, software engineering, architecture, Architecture is cached reasoning, cognitive reuse, ProTable, modularity, automated testing, domain models, token efficiency, agent uncertainty",
+  "articleSection": [
+    "Meta Engineering"
+  ],
+  "inLanguage": "en",
+  "datePublished": "2026-08-05T03:01:56.000Z",
+  "dateModified": "2026-08-05T07:27:36.805Z",
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": "https://blog.janus-path.com/en/#blog",
+    "name": "JanusPath",
+    "url": "https://blog.janus-path.com/en/"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Chase Chou",
+      "url": "https://orcid.org/0009-0001-6381-2853",
+      "sameAs": [
+        "https://orcid.org/0009-0001-6381-2853",
+        "https://github.com/chasechou007"
+      ]
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "JanusPath",
+    "url": "https://blog.janus-path.com/en/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.janus-path.com/en/assets/img/logo.png"
+    }
+  }
+}</script><link rel="shortcut icon" href="/en/assets/img/logo.png"><link rel="canonical" href="https://blog.janus-path.com/en/2026/08/05/stronger-agents-need-better-software-engineering/"><link rel="alternate" hreflang="zh-Hans" href="https://blog.janus-path.com/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><link rel="alternate" hreflang="en" href="https://blog.janus-path.com/en/2026/08/05/stronger-agents-need-better-software-engineering/"><link rel="alternate" hreflang="x-default" href="https://blog.janus-path.com/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><link rel="alternate" type="application/atom+xml" title="JanusPath Atom Feed" href="https://blog.janus-path.com/en/atom.xml"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/en/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/en/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'The Stronger the Agent, the More We Need Software Engineering',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/en/assets/img/avatar.png" onerror="this.onerror=null;this.src='/en/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/en/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/en/tags/"><div class="headline">Tags</div><div class="length-num">18</div></a><a href="/en/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/en/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/en/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/en/tags/"><span> Tags</span></a></div><div class="menus_item"><a class="site-page bilingual-switch" href="/2026/08/05/Agent 越强，我们越需要软件工程/" hreflang="zh-Hans" lang="zh-Hans" title="阅读这篇文章的简体中文版" aria-label="阅读这篇文章的简体中文版" data-translation-available="true"><i class="fas fa-language fa-fw"></i><span> 简中</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/en/assets/img/stronger-agents-need-software-engineering.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/en/"><img class="site-icon" src="/en/assets/img/logo.png" alt="Logo"><span class="site-name">JanusPath</span></a><a class="nav-page-title" href="/en/"><span class="site-name">The Stronger the Agent, the More We Need Software Engineering</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/en/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/en/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/en/tags/"><span> Tags</span></a></div><div class="menus_item"><a class="site-page bilingual-switch" href="/2026/08/05/Agent 越强，我们越需要软件工程/" hreflang="zh-Hans" lang="zh-Hans" title="阅读这篇文章的简体中文版" aria-label="阅读这篇文章的简体中文版" data-translation-available="true"><i class="fas fa-language fa-fw"></i><span> 简中</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">The Stronger the Agent, the More We Need Software Engineering</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-08-05T03:01:56.000Z" title="Created 2026-08-05 11:01:56">2026-08-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-08-05T07:27:36.805Z" title="Updated 2026-08-05 15:27:36">2026-08-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/en/categories/meta-engineering/">Meta Engineering</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>The more I use Codex in real development work, the more convinced I become of one thing:</p>
+<p><strong>AI is changing how software gets built, but it is not making decades of software engineering thinking obsolete.</strong></p>
+<p>If anything, the opposite may be true.</p>
+<p>As agents become better at understanding requirements, modifying code, running tests, and autonomously driving complex tasks forward, many practices originally designed to improve developer productivity and control complexity are beginning to reveal a new kind of value.</p>
+<p>The most obvious effects are simple:</p>
+<p><strong>fewer tokens and less drift.</strong></p>
+<p>But token usage is only the visible symptom.</p>
+<p>What is really changing is this:</p>
+<blockquote>
+<p><strong>Software engineering is evolving from managing human complexity to also managing agent uncertainty.</strong></p>
+</blockquote>
+<p>And the stronger the agent becomes, the more important this becomes.</p>
+<h2 id="Starting-with-ProTable"><a href="#Starting-with-ProTable" class="headerlink" title="Starting with ProTable"></a>Starting with ProTable</h2><p>Years ago, when I was working on frontend architecture, I built foundational components similar to ProTable.</p>
+<p>The reason was straightforward.</p>
+<p>Business systems contain a huge number of list pages: user lists, order lists, customer lists, approval lists, and so on.</p>
+<p>If every developer had to repeatedly implement querying, pagination, filtering, loading states, error handling, and permission control from scratch, development would be slower, and each implementation would gradually become different.</p>
+<p>So we abstracted those recurring problems away.</p>
+<p>When building a new business page, developers should ideally only need to care about:</p>
+<ul>
+<li>what data to query;</li>
+<li>which fields to display;</li>
+<li>which business actions are available;</li>
+<li>and which rules are unique to that particular scenario.</li>
+</ul>
+<p>How pagination works, how query parameters are structured, and how error states are displayed should not need to be solved again every time.</p>
+<p>Traditionally, we would describe the value of this as:</p>
+<p><strong>code reuse.</strong></p>
+<p>But looking back at it today, I think that description is incomplete.</p>
+<p>What gets reused is not just code.</p>
+<p>What also gets reused are the <strong>engineering decisions</strong> that have already been made.</p>
+<p>Why was pagination designed this way?</p>
+<p>Why are query parameters structured like this?</p>
+<p>Why does the component expose these extension points instead of others?</p>
+<p>Someone had already thought through those questions, discussed them, made mistakes, and eventually arrived at a stable structure.</p>
+<p>The code is simply the artifact that preserves those decisions.</p>
+<hr>
+<h2 id="If-AI-Can-Write-the-Code-Why-Do-We-Still-Need-This"><a href="#If-AI-Can-Write-the-Code-Why-Do-We-Still-Need-This" class="headerlink" title="If AI Can Write the Code, Why Do We Still Need This?"></a>If AI Can Write the Code, Why Do We Still Need This?</h2><p>Once agents enter the picture, a natural question appears:</p>
+<p>If Codex can quickly generate a table implementation, why spend time abstracting it?</p>
+<p>Why not simply let the agent generate another one next time?</p>
+<p>For demos, prototypes, and disposable scripts, I think that approach is perfectly reasonable.</p>
+<p>But for complex systems that need to evolve for months, years, or even longer, I increasingly disagree with it.</p>
+<p>Because:</p>
+<blockquote>
+<p><strong>Cheaper code generation does not mean that understanding and decision-making have become free.</strong></p>
+</blockquote>
+<p>Imagine a system with no stable table abstraction.</p>
+<p>Today, you ask an agent to build a user list. It has to search the repository, understand how pagination works, inspect API conventions, infer state-management patterns, and figure out permission handling.</p>
+<p>Tomorrow, it builds an order list and goes through much of the same reasoning again.</p>
+<p>In another thread, it builds a customer list and once again needs to read the context, reconstruct conventions, and decide how the feature should fit into the project.</p>
+<p>Even if all three implementations are correct, the agent has performed almost the same reasoning three times.</p>
+<p>That repeated reasoning shows up as:</p>
+<p>more repository searches, more file reads, larger contexts, more tokens, and more places where the agent has to make independent decisions.</p>
+<p>Now compare that with a system that already has a mature ProTable abstraction.</p>
+<p>The agent’s problem changes from:</p>
+<blockquote>
+<p>How should I implement an enterprise-grade table?</p>
+</blockquote>
+<p>to:</p>
+<blockquote>
+<p>How should this business scenario map onto the existing ProTable abstraction?</p>
+</blockquote>
+<p>The problem space becomes dramatically smaller.</p>
+<p>What you save is no longer just code.</p>
+<p>More importantly, you reduce the amount of <strong>repeated reasoning</strong> the agent has to perform.</p>
+<hr>
+<h2 id="Architecture-Is-Cached-Reasoning"><a href="#Architecture-Is-Cached-Reasoning" class="headerlink" title="Architecture Is Cached Reasoning"></a>Architecture Is Cached Reasoning</h2><p>This led me to a different way of thinking about architecture:</p>
+<blockquote>
+<p><strong>Architecture is cached reasoning.</strong></p>
+</blockquote>
+<p>In a sense, architecture is engineering reasoning that has already been performed and preserved.</p>
+<p>A mature component is a collection of stabilized engineering decisions.</p>
+<p>A stable API is a set of established system boundaries.</p>
+<p>A schema is a set of explicitly expressed data constraints.</p>
+<p>A test suite is an executable definition of what the system considers correct.</p>
+<p>A domain model is a maintained body of business understanding.</p>
+<p>Historically, these things were designed primarily for humans.</p>
+<p>Now they also serve agents.</p>
+<p>When these structures exist, the agent no longer needs to repeatedly answer:</p>
+<blockquote>
+<p>How should this problem be solved?</p>
+</blockquote>
+<p>It only needs to answer:</p>
+<blockquote>
+<p>How does the current problem fit into the structure that already exists?</p>
+</blockquote>
+<p>Those are very different levels of complexity.</p>
+<p>That is why I increasingly believe that one of the most important software engineering principles in the agent era is:</p>
+<blockquote>
+<p><strong>Do not make an agent repeatedly reason about problems that have already been solved.</strong></p>
+</blockquote>
+<p>If a problem is stable, frequent, and recurring, its solution should gradually move out of prompts and temporary agent reasoning and into more durable engineering structures.</p>
+<p>That structure might be a component, framework, SDK, schema, API, test suite, convention, domain model, or some other form of infrastructure.</p>
+<p>This is not merely code reuse.</p>
+<p>It is a new form of:</p>
+<p><strong>cognitive reuse.</strong></p>
+<hr>
+<h2 id="Software-Engineering-Now-Reduces-Agent-Uncertainty"><a href="#Software-Engineering-Now-Reduces-Agent-Uncertainty" class="headerlink" title="Software Engineering Now Reduces Agent Uncertainty"></a>Software Engineering Now Reduces Agent Uncertainty</h2><p>Seen from this perspective, many traditional software engineering practices have not lost relevance at all.</p>
+<p>Their value has simply expanded.</p>
+<table>
+<thead>
+<tr>
+<th>Software engineering practice</th>
+<th>Traditional value</th>
+<th>Additional value in the agent era</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Abstraction and reuse</td>
+<td>Reduce repeated implementation</td>
+<td>Reduce repeated reasoning</td>
+</tr>
+<tr>
+<td>Modularity</td>
+<td>Reduce coupling and support collaboration</td>
+<td>Reduce agent search scope and context size</td>
+</tr>
+<tr>
+<td>APIs, types, and schemas</td>
+<td>Reduce interface ambiguity</td>
+<td>Reduce the agent’s interpretation space</td>
+</tr>
+<tr>
+<td>Automated tests</td>
+<td>Prevent regressions</td>
+<td>Give agents an objective feedback loop</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>Versioning and collaboration</td>
+<td>Provide state boundaries, auditability, and recovery</td>
+</tr>
+<tr>
+<td>Documentation and specs</td>
+<td>Transfer knowledge</td>
+<td>Provide durable external context</td>
+</tr>
+<tr>
+<td>Domain models</td>
+<td>Establish a shared business language</td>
+<td>Give agents stable business semantics</td>
+</tr>
+</tbody></table>
+<p>Take modularity.</p>
+<p>We traditionally valued high cohesion and low coupling because they make systems easier for teams to work on.</p>
+<p>In the agent era, modularity provides another very practical benefit:</p>
+<p><strong>it reduces how much of the system the agent needs to understand for a given task.</strong></p>
+<p>If a business change spans more than a dozen directories, the agent has to search repeatedly:</p>
+<p>Where is this state modified?</p>
+<p>Who generates this field?</p>
+<p>Will changing this file affect something elsewhere?</p>
+<p>Even if the context window is large enough to hold the entire repository, that does not mean the entire repository belongs in context.</p>
+<p>Irrelevant information is still noise.</p>
+<p>Clear module boundaries tell the agent:</p>
+<blockquote>
+<p>This task mostly lives here.</p>
+</blockquote>
+<p>The same applies to types, schemas, and interface contracts.</p>
+<p>If the system does not clearly define whether a field is nullable, which states are valid, or what a particular identifier represents, the agent has to infer those answers.</p>
+<p>A strong agent can often infer them successfully.</p>
+<p>But:</p>
+<blockquote>
+<p><strong>The fact that an agent can guess correctly does not mean it should be required to guess.</strong></p>
+</blockquote>
+<p>Many software failures are not caused by an agent being unintelligent.</p>
+<p>They happen because the system allows too many reasonable interpretations.</p>
+<p>Good engineering reduces that ambiguity.</p>
+<hr>
+<h2 id="Lower-Token-Usage-Is-Only-the-Symptom"><a href="#Lower-Token-Usage-Is-Only-the-Symptom" class="headerlink" title="Lower Token Usage Is Only the Symptom"></a>Lower Token Usage Is Only the Symptom</h2><p>Why do well-structured systems often consume fewer tokens?</p>
+<p>The reason is straightforward.</p>
+<p>If the architecture is clear, the agent searches less.</p>
+<p>If module boundaries are explicit, it reads fewer files.</p>
+<p>If APIs and schemas are well defined, it has to infer less.</p>
+<p>If the domain model is stable, it does not need to reconstruct business semantics from scattered code and documents.</p>
+<p>If tests are strong, validation paths become shorter and more objective.</p>
+<p>So lower token consumption is not necessarily the result of clever prompt optimization.</p>
+<p>It is more often a consequence of better structure.</p>
+<p>What has really been reduced is the agent’s:</p>
+<p><strong>search space, context space, interpretation space, and decision space.</strong></p>
+<p>The relationship can be summarized like this:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Better software engineering structure</span><br><span class="line">        ↓</span><br><span class="line">Smaller agent search space</span><br><span class="line">        ↓</span><br><span class="line">Smaller required context</span><br><span class="line">        ↓</span><br><span class="line">Smaller interpretation space</span><br><span class="line">        ↓</span><br><span class="line">Smaller decision space</span><br><span class="line">        ↓</span><br><span class="line">Fewer tokens and less repeated reasoning</span><br><span class="line">        ↓</span><br><span class="line">Lower risk of drift</span><br></pre></td></tr></table></figure>
+
+<p>Lower token usage, shorter execution paths, and less drift are downstream effects.</p>
+<p>That is why I no longer think of token savings as merely a cost issue.</p>
+<p>In many cases, token efficiency is an external signal that the system itself has become easier to reason about.</p>
+<hr>
+<h2 id="Stronger-Agents-Can-Spread-Chaos-Faster"><a href="#Stronger-Agents-Can-Spread-Chaos-Faster" class="headerlink" title="Stronger Agents Can Spread Chaos Faster"></a>Stronger Agents Can Spread Chaos Faster</h2><p>This may be the part that concerns me most.</p>
+<p>In the past, there was a natural limit to how much code a developer could modify in a day.</p>
+<p>Even in a poorly structured system, the rate at which disorder could spread was constrained by human throughput.</p>
+<p>Agents change that limit.</p>
+<p>A capable agent can, in a short period of time:</p>
+<p>create many files, modify multiple modules, perform a large-scale refactor, change APIs, add tests, and even continue repairing problems introduced by its own earlier changes.</p>
+<p>That productivity is valuable.</p>
+<p>But productivity itself is neutral.</p>
+<p>If the direction is correct, it amplifies good structure.</p>
+<p>If the direction is wrong, it amplifies bad decisions just as quickly.</p>
+<p>In a repository with unclear boundaries, weak tests, missing constraints, and ambiguous domain semantics, a stronger agent may simply spread that disorder faster.</p>
+<p>This creates a somewhat counterintuitive relationship:</p>
+<blockquote>
+<p><strong>The stronger the agent becomes, the stronger our engineering constraints need to become as well.</strong></p>
+</blockquote>
+<p>Because we are handing increasingly powerful execution capabilities to the agent.</p>
+<p>In the past, poor software engineering might merely have slowed a team down.</p>
+<p>In the agent era, it can also make disorder spread several—or even dozens of—times faster.</p>
+<hr>
+<h2 id="But-Good-Engineering-Is-Amplified-Too"><a href="#But-Good-Engineering-Is-Amplified-Too" class="headerlink" title="But Good Engineering Is Amplified Too"></a>But Good Engineering Is Amplified Too</h2><p>The opposite is equally important—and far more encouraging.</p>
+<p>Agents do not only amplify the risks of bad engineering.</p>
+<p>They also amplify the value of good engineering.</p>
+<p>A well-structured codebase is easier for an agent to understand.</p>
+<p>A clearly bounded module is easier to modify safely.</p>
+<p>A well-tested system allows an agent to autonomously carry longer task chains forward.</p>
+<p>A stable domain model allows a new thread to recover business understanding much faster.</p>
+<p>A mature component system lets an agent deliver large amounts of business functionality without repeatedly solving infrastructure problems.</p>
+<p>In other words:</p>
+<blockquote>
+<p><strong>Software engineering used to amplify human productivity.</strong></p>
+</blockquote>
+<p>Now it is also beginning to:</p>
+<blockquote>
+<p><strong>amplify agent productivity.</strong></p>
+</blockquote>
+<p>That may be the most useful way to reinterpret traditional software engineering in the AI era.</p>
+<hr>
+<h2 id="From-Code-Reuse-to-Cognitive-Reuse"><a href="#From-Code-Reuse-to-Cognitive-Reuse" class="headerlink" title="From Code Reuse to Cognitive Reuse"></a>From Code Reuse to Cognitive Reuse</h2><p>If I had to summarize this shift in one phrase, I would call it:</p>
+<p><strong>from code reuse to cognitive reuse.</strong></p>
+<p>In the past, we preserved code because we did not want the next developer to implement the same thing again.</p>
+<p>Today, we should also ask:</p>
+<blockquote>
+<p>Which problems should the next agent not have to reason through again?</p>
+</blockquote>
+<p>If the same engineering decision keeps recurring, we should try to make it durable.</p>
+<p>If a business concept repeatedly needs explanation, it should have a stable model.</p>
+<p>If an error repeatedly has to be rediscovered by the agent, it should probably become a test or a static constraint.</p>
+<p>If an operation repeatedly depends on a prompt reminding the agent what to do, it may belong in an engineering rule or an automated mechanism instead.</p>
+<p>Prompts are good at telling an agent:</p>
+<p><strong>what needs to be done this time.</strong></p>
+<p>Software engineering is better at telling an agent:</p>
+<p><strong>how things are supposed to be done in this system.</strong></p>
+<p>AI is making code increasingly cheap to produce.</p>
+<p>But cheaper code does not make complex systems simple.</p>
+<p>When code generation stops being the main bottleneck, the difficult problems increasingly become:</p>
+<p>How do we preserve structure?</p>
+<p>How do we maintain long-term consistency?</p>
+<p>How do we control agent uncertainty?</p>
+<p>How do we prevent greater execution speed from turning into faster disorder?</p>
+<p>Those are still software engineering problems.</p>
+<p>So the real question is probably not:</p>
+<blockquote>
+<p>Will AI make software engineering obsolete?</p>
+</blockquote>
+<p>The better question is:</p>
+<blockquote>
+<p><strong>Now that agents can produce code this quickly, have we built an engineering system capable of handling that level of productivity?</strong></p>
+</blockquote>
+<p>My answer is becoming increasingly clear:</p>
+<p><strong>The stronger the agent, the more we need software engineering.</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://orcid.org/0009-0001-6381-2853">Chase Chou</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://blog.janus-path.com/en/2026/08/05/stronger-agents-need-better-software-engineering/">https://blog.janus-path.com/en/2026/08/05/stronger-agents-need-better-software-engineering/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/en/tags/AI-Agent/">AI Agent</a><a class="post-meta__tags" href="/en/tags/Architecture/">Architecture</a><a class="post-meta__tags" href="/en/tags/Systems-Thinking/">Systems Thinking</a><a class="post-meta__tags" href="/en/tags/Software-Engineering/">Software Engineering</a></div><div class="post-share"><div class="social-share" data-image="/en/assets/img/stronger-agents-need-software-engineering.png" data-sites="facebook,twitter,wechat,weibo,qq,linkedin"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/en/2026/08/01/rethinking-password-management-in-the-agent-era/" title="Rethinking Password Management in the Agent Era"><img class="cover" src="/en/assets/img/rethinking-password-management-agent-era.png" onerror="onerror=null;src='/en/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Rethinking Password Management in the Agent Era</div></div><div class="info-2"><div class="info-item-1">Recently, I open-sourced a local-first password and token manager called KeptNear. My initial reason for building it was simple: I wanted a local password manager with a friendly interface—one whose data genuinely remained under the user’s control. Later, as I used Codex to handle more and more real work, I discovered another problem: Agents need credentials too. GitHub Tokens, API Keys, database passwords, cloud platform Access Keys—these credentials are usually scattered across environment ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/en/2026/03/25/ai-agent-semantic-drift/" title="AI Agents Are Powerful, but They Drift"><img class="cover" src="/en/assets/img/md_article0004.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-25</div><div class="info-item-2">AI Agents Are Powerful, but They Drift</div></div><div class="info-2"><div class="info-item-1">Recently, AI agents have often been described as systems that can “take over everything.” They can write code, run projects, and execute complex workflows automatically. Some people even believe they can already replace engineers. After using them in practice, however, I have reached almost the opposite conclusion:  Agents are powerful, but their boundaries are just as clear.   1. A Context Window Is Not MemoryPeople often point out that:  “Models now support 200k-token context windows, or ev...</div></div></div></a><a class="pagination-related" href="/en/2026/08/01/rethinking-password-management-in-the-agent-era/" title="Rethinking Password Management in the Agent Era"><img class="cover" src="/en/assets/img/rethinking-password-management-agent-era.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-01</div><div class="info-item-2">Rethinking Password Management in the Agent Era</div></div><div class="info-2"><div class="info-item-1">Recently, I open-sourced a local-first password and token manager called KeptNear. My initial reason for building it was simple: I wanted a local password manager with a friendly interface—one whose data genuinely remained under the user’s control. Later, as I used Codex to handle more and more real work, I discovered another problem: Agents need credentials too. GitHub Tokens, API Keys, database passwords, cloud platform Access Keys—these credentials are usually scattered across environment ...</div></div></div></a><a class="pagination-related" href="/en/2026/06/06/from-code-to-agent-governance/" title="From Writing Code to Governing Agents: Software Engineering&#39;s New Question in the AI Era"><img class="cover" src="/en/assets/img/from-code-to-agent-governance.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-06</div><div class="info-item-2">From Writing Code to Governing Agents: Software Engineering&#39;s New Question in the AI Era</div></div><div class="info-2"><div class="info-item-1">Recently, while using Codex to assist with development, I did something that seemed ordinary. I organized the development constraints, design habits, and engineering conventions I use most often into a Skill, allowing Codex to follow them automatically while executing tasks. It began as a simple cleanup exercise. Halfway through, I suddenly realized:  Perhaps the most important production activity in future software engineering will no longer be writing code, but extracting rules.  The indust...</div></div></div></a><a class="pagination-related" href="/en/2026/07/13/why-i-started-simplifying-ai-agents/" title="Why I Started Simplifying My AI Agents"><img class="cover" src="/en/assets/img/why-i-started-simplifying-ai-agents.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-13</div><div class="info-item-2">Why I Started Simplifying My AI Agents</div></div><div class="info-2"><div class="info-item-1">Over the past year, I have used AI agents such as Codex and Claude Code intensively in my day-to-day development work. At first, like many people, I kept trying to give the agent more capabilities. Whenever I encountered a new kind of task, I added a Skill. Whenever I discovered a rule, I wrote it into AGENTS.md. After a difficult investigation, I wanted to preserve the process so that it could be reused next time. I assumed the agent would become smarter and smarter. Eventually, I discovered...</div></div></div></a><a class="pagination-related" href="/en/2025/09/12/software-engineering-hidden-thinking-models/" title="Software Engineering Is Full of Hidden Thinking Models"><img class="cover" src="/en/assets/img/md_article0003.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-12</div><div class="info-item-2">Software Engineering Is Full of Hidden Thinking Models</div></div><div class="info-2"><div class="info-item-1">Preface: We Have Always Used “Unnamed Ideas”Many software engineers consider themselves pragmatists who solve problems through experience, logic, and hands-on work. We move constantly among requirements, code, architecture, and debugging, while keeping our distance from words such as “philosophy” and “thinking models,” which can sound abstract or mystical. But shift your attention from tools to structure, from technique to the nature of thought, and you will discover something: We have long b...</div></div></div></a><a class="pagination-related" href="/en/2026/02/02/structuralism-view-of-ioc/" title="Inversion of Control Through a Structuralist Lens"><img class="cover" src="/en/assets/img/structuralism-view-of-ioc.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-02</div><div class="info-item-2">Inversion of Control Through a Structuralist Lens</div></div><div class="info-2"><div class="info-item-1">Introduction: A Seemingly Technical ProblemMany software projects begin beautifully. Modularity, abstraction, decoupling, reusable components—these words appear again and again. The architecture diagram is clean and elegant. Boundaries are clear, responsibilities distinct. Every module seems to occupy its own “reasonable position.” Once the project enters its middle and later stages, reality often collapses quickly. Modules begin to swell, and dependencies become entangled. A change in one pl...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/en/assets/img/avatar.png" onerror="this.onerror=null;this.src='/en/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Chase Chou</div><div class="author-info-description"><span style="display: block; text-align: left;">Creator of JanusPath, writing where technology, civilization, philosophy, and institutions meet.</span></div><div class="site-data"><a href="/en/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/en/tags/"><div class="headline">Tags</div><div class="length-num">18</div></a><a href="/en/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/chasechou007" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://orcid.org/0009-0001-6381-2853" target="_blank" title="ORCID"><i class="fab fa-orcid" style="color: #A6CE39;"></i></a><a class="social-icon" href="mailto:chaseshou007@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #ea4335;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content"><span style="display: block;">Distinguish paths in the cracks; extract insight from the noise.</span></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Starting-with-ProTable"><span class="toc-number">1.</span> <span class="toc-text">Starting with ProTable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#If-AI-Can-Write-the-Code-Why-Do-We-Still-Need-This"><span class="toc-number">2.</span> <span class="toc-text">If AI Can Write the Code, Why Do We Still Need This?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Is-Cached-Reasoning"><span class="toc-number">3.</span> <span class="toc-text">Architecture Is Cached Reasoning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Software-Engineering-Now-Reduces-Agent-Uncertainty"><span class="toc-number">4.</span> <span class="toc-text">Software Engineering Now Reduces Agent Uncertainty</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lower-Token-Usage-Is-Only-the-Symptom"><span class="toc-number">5.</span> <span class="toc-text">Lower Token Usage Is Only the Symptom</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stronger-Agents-Can-Spread-Chaos-Faster"><span class="toc-number">6.</span> <span class="toc-text">Stronger Agents Can Spread Chaos Faster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#But-Good-Engineering-Is-Amplified-Too"><span class="toc-number">7.</span> <span class="toc-text">But Good Engineering Is Amplified Too</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#From-Code-Reuse-to-Cognitive-Reuse"><span class="toc-number">8.</span> <span class="toc-text">From Code Reuse to Cognitive Reuse</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/en/2026/08/05/stronger-agents-need-better-software-engineering/" title="The Stronger the Agent, the More We Need Software Engineering"><img src="/en/assets/img/stronger-agents-need-software-engineering.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="The Stronger the Agent, the More We Need Software Engineering"/></a><div class="content"><a class="title" href="/en/2026/08/05/stronger-agents-need-better-software-engineering/" title="The Stronger the Agent, the More We Need Software Engineering">The Stronger the Agent, the More We Need Software Engineering</a><time datetime="2026-08-05T03:01:56.000Z" title="Created 2026-08-05 11:01:56">2026-08-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/en/2026/08/01/rethinking-password-management-in-the-agent-era/" title="Rethinking Password Management in the Agent Era"><img src="/en/assets/img/rethinking-password-management-agent-era.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="Rethinking Password Management in the Agent Era"/></a><div class="content"><a class="title" href="/en/2026/08/01/rethinking-password-management-in-the-agent-era/" title="Rethinking Password Management in the Agent Era">Rethinking Password Management in the Agent Era</a><time datetime="2026-08-01T09:26:10.000Z" title="Created 2026-08-01 17:26:10">2026-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/en/2026/07/23/when-ai-thinks-along-your-thoughts/" title="When AI Begins to Think Along Your Lines"><img src="/en/assets/img/cognitive-continuity-beyond-context.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="When AI Begins to Think Along Your Lines"/></a><div class="content"><a class="title" href="/en/2026/07/23/when-ai-thinks-along-your-thoughts/" title="When AI Begins to Think Along Your Lines">When AI Begins to Think Along Your Lines</a><time datetime="2026-07-23T06:20:00.000Z" title="Created 2026-07-23 14:20:00">2026-07-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/en/2026/07/13/why-i-started-simplifying-ai-agents/" title="Why I Started Simplifying My AI Agents"><img src="/en/assets/img/why-i-started-simplifying-ai-agents.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="Why I Started Simplifying My AI Agents"/></a><div class="content"><a class="title" href="/en/2026/07/13/why-i-started-simplifying-ai-agents/" title="Why I Started Simplifying My AI Agents">Why I Started Simplifying My AI Agents</a><time datetime="2026-07-13T02:54:10.000Z" title="Created 2026-07-13 10:54:10">2026-07-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/en/2026/06/17/januspath-from-structural-reflection-to-origin-observation/" title="What You See Is Not the Problem Itself, but the Way It Becomes Visible"><img src="/en/assets/img/januspath-origin-observation-cover.svg" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="What You See Is Not the Problem Itself, but the Way It Becomes Visible"/></a><div class="content"><a class="title" href="/en/2026/06/17/januspath-from-structural-reflection-to-origin-observation/" title="What You See Is Not the Problem Itself, but the Way It Becomes Visible">What You See Is Not the Problem Itself, but the Way It Becomes Visible</a><time datetime="2026-06-17T01:49:03.000Z" title="Created 2026-06-17 09:49:03">2026-06-17</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Chase Chou</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text"><div><span>See order in structure, and find freedom in tension.</span></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/en/js/utils.js"></script><script src="/en/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

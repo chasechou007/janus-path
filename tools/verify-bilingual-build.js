@@ -12,13 +12,14 @@ const legacyPath = path.join(publicDir, '2026/05/23/codex-team-usage-sop-en/inde
 const keptNearZhPostPath = path.join(publicDir, '2026/08/01/Agent 时代，我们需要重新思考密码管理/index.html')
 const keptNearEnPostPath = path.join(publicDir, 'en/2026/08/01/rethinking-password-management-in-the-agent-era/index.html')
 const strongerAgentZhPostPath = path.join(publicDir, '2026/08/05/Agent 越强，我们越需要软件工程/index.html')
-const strongerAgentEnglishLeakPath = path.join(publicDir, 'en/2026/08/05/Agent 越强，我们越需要软件工程/index.html')
+const strongerAgentEnPostPath = path.join(publicDir, 'en/2026/08/05/stronger-agents-need-better-software-engineering/index.html')
 
 const zhPostUrl = new URL('/2026/05/20/Codex团队使用SOP/', 'https://blog.janus-path.com').href
 const enPostUrl = 'https://blog.janus-path.com/en/2026/05/23/codex-team-usage-sop/'
 const keptNearZhPostUrl = new URL('/2026/08/01/Agent 时代，我们需要重新思考密码管理/', 'https://blog.janus-path.com').href
 const keptNearEnPostUrl = 'https://blog.janus-path.com/en/2026/08/01/rethinking-password-management-in-the-agent-era/'
 const strongerAgentZhPostUrl = new URL('/2026/08/05/Agent 越强，我们越需要软件工程/', 'https://blog.janus-path.com').href
+const strongerAgentEnPostUrl = 'https://blog.janus-path.com/en/2026/08/05/stronger-agents-need-better-software-engineering/'
 const zhPostRoute = decodeURI(new URL(zhPostUrl).pathname)
 const enPostRoute = new URL(enPostUrl).pathname
 const requiredTranslationKeys = new Set([
@@ -30,6 +31,7 @@ const requiredTranslationKeys = new Set([
   'januspath-from-structural-reflection-to-origin-observation',
   'rethinking-password-management-in-the-agent-era',
   'software-engineering-hidden-thinking-models',
+  'stronger-agents-need-better-software-engineering',
   'structural-noise',
   'structuralism-view-of-ioc',
   'team-atmosphere-noise-management',
@@ -133,6 +135,7 @@ function verifyBilingualBuild () {
   const keptNearZhPost = read(keptNearZhPostPath)
   const keptNearEnPost = read(keptNearEnPostPath)
   const strongerAgentZhPost = read(strongerAgentZhPostPath)
+  const strongerAgentEnPost = read(strongerAgentEnPostPath)
   const legacy = read(legacyPath)
   const zhHome = read(path.join(publicDir, 'index.html'))
   const enHome = read(path.join(publicDir, 'en/index.html'))
@@ -222,20 +225,31 @@ function verifyBilingualBuild () {
     expectIncludes(keptNearEnPost, tag, `English KeptNear article must render the ${tag} tag`)
   }
 
-  expectIncludes(strongerAgentZhPost, '<html lang="zh-CN"', 'Stronger-agent article must declare zh-CN')
-  expectIncludes(strongerAgentZhPost, `rel="canonical" href="${strongerAgentZhPostUrl}"`, 'Stronger-agent canonical must be self-referential')
-  expectExcludes(strongerAgentZhPost, '<link rel="alternate" hreflang="en"', 'Stronger-agent article must not advertise a missing English variant')
-  expectCountAtLeast(strongerAgentZhPost, 'data-translation-available="false"', 2, 'Stronger-agent article must render desktop and mobile homepage fallbacks')
-  expectExcludes(strongerAgentZhPost, 'data-translation-available="true"', 'Stronger-agent article must not claim that a translation exists')
-  expectIncludes(strongerAgentZhPost, 'class="site-page bilingual-switch" href="/en/" hreflang="en"', 'Stronger-agent switch must use the English homepage fallback')
+  expectIncludes(strongerAgentZhPost, '<html lang="zh-CN"', 'Chinese stronger-agent article must declare zh-CN')
+  expectIncludes(strongerAgentEnPost, '<html lang="en"', 'English stronger-agent article must declare en')
+  expectIncludes(strongerAgentZhPost, `rel="canonical" href="${strongerAgentZhPostUrl}"`, 'Chinese stronger-agent canonical must be self-referential')
+  expectIncludes(strongerAgentEnPost, `rel="canonical" href="${strongerAgentEnPostUrl}"`, 'English stronger-agent canonical must be self-referential')
+  for (const html of [strongerAgentZhPost, strongerAgentEnPost]) {
+    expectIncludes(html, `hreflang="zh-Hans" href="${strongerAgentZhPostUrl}"`, 'Stronger-agent pair must reference the Chinese variant')
+    expectIncludes(html, `hreflang="en" href="${strongerAgentEnPostUrl}"`, 'Stronger-agent pair must reference the English variant')
+    expectIncludes(html, `hreflang="x-default" href="${strongerAgentZhPostUrl}"`, 'Stronger-agent pair must use Chinese as x-default')
+    expectCountAtLeast(html, 'data-translation-available="true"', 2, 'Stronger-agent pair must render desktop and mobile article switches')
+    expectExcludes(html, 'data-translation-available="false"', 'Stronger-agent pair must not render homepage fallbacks')
+  }
+  expectIncludes(strongerAgentZhPost, 'class="site-page bilingual-switch" href="/en/2026/08/05/stronger-agents-need-better-software-engineering/" hreflang="en"', 'Chinese stronger-agent switch must resolve the English article')
+  expectIncludes(strongerAgentEnPost, 'class="site-page bilingual-switch" href="/2026/08/05/Agent 越强，我们越需要软件工程/" hreflang="zh-Hans"', 'English stronger-agent switch must resolve the Chinese article')
   expectIncludes(strongerAgentZhPost, '"inLanguage": "zh-CN"', 'Stronger-agent JSON-LD must declare Simplified Chinese')
+  expectIncludes(strongerAgentEnPost, '"inLanguage": "en"', 'English stronger-agent JSON-LD must declare English')
+  expectIncludes(strongerAgentEnPost, '<meta property="og:locale" content="en_US">', 'English stronger-agent Open Graph locale must be en_US')
   expectIncludes(strongerAgentZhPost, '/assets/img/stronger-agents-need-software-engineering.png', 'Stronger-agent article must render its cover')
+  expectIncludes(strongerAgentEnPost, '/assets/img/stronger-agents-need-software-engineering.png', 'English stronger-agent article must render its cover')
   expectIncludes(strongerAgentZhPost, 'MetaEngineering', 'Stronger-agent article must use the MetaEngineering category')
+  expectIncludes(strongerAgentEnPost, 'Meta Engineering', 'English stronger-agent article must use the localized Meta Engineering category')
   for (const tag of ['AI Agent', '软件工程', '架构设计', '系统思维']) {
     expectIncludes(strongerAgentZhPost, tag, `Stronger-agent article must render the ${tag} tag`)
   }
-  if (fs.existsSync(strongerAgentEnglishLeakPath)) {
-    throw new Error('Stronger-agent Chinese article must not leak into the English build')
+  for (const tag of ['AI Agent', 'Software Engineering', 'Architecture', 'Systems Thinking']) {
+    expectIncludes(strongerAgentEnPost, tag, `English stronger-agent article must render the ${tag} tag`)
   }
 
   expectIncludes(legacy, '<meta name="robots" content="noindex,follow">', 'Legacy English URL must be noindex,follow')
@@ -251,7 +265,9 @@ function verifyBilingualBuild () {
   expectIncludes(enFeed, '<title>Rethinking Password Management in the Agent Era</title>', 'English Feed must include the English KeptNear article')
   expectExcludes(enFeed, '<title>Agent 时代，我们需要重新思考密码管理</title>', 'English Feed must exclude the Chinese KeptNear article')
   expectIncludes(zhFeed, '<title>Agent 越强，我们越需要软件工程</title>', 'Chinese Feed must include the stronger-agent article')
-  expectExcludes(enFeed, '<title>Agent 越强，我们越需要软件工程</title>', 'English Feed must exclude the untranslated stronger-agent article')
+  expectIncludes(enFeed, '<title>The Stronger the Agent, the More We Need Software Engineering</title>', 'English Feed must include the stronger-agent article')
+  expectExcludes(zhFeed, '<title>The Stronger the Agent, the More We Need Software Engineering</title>', 'Chinese Feed must exclude the English stronger-agent article')
+  expectExcludes(enFeed, '<title>Agent 越强，我们越需要软件工程</title>', 'English Feed must exclude the Chinese stronger-agent article')
 
   expectIncludes(sitemap, 'xmlns:xhtml="http://www.w3.org/1999/xhtml"', 'Root Sitemap must declare the xhtml namespace')
   for (const url of [zhPostUrl, enPostUrl]) {
@@ -268,9 +284,13 @@ function verifyBilingualBuild () {
     expectIncludes(entry, `hreflang="en" href="${keptNearEnPostUrl}"`, `KeptNear Sitemap entry must reference English variant: ${url}`)
     expectIncludes(entry, `hreflang="x-default" href="${keptNearZhPostUrl}"`, `KeptNear Sitemap entry must define x-default: ${url}`)
   }
-  const strongerAgentSitemapEntry = sitemapEntry(sitemap, strongerAgentZhPostUrl)
-  if (!strongerAgentSitemapEntry) throw new Error(`Root Sitemap is missing ${strongerAgentZhPostUrl}`)
-  expectExcludes(strongerAgentSitemapEntry, '<xhtml:link', 'Stronger-agent Sitemap entry must not advertise nonexistent alternates')
+  for (const url of [strongerAgentZhPostUrl, strongerAgentEnPostUrl]) {
+    const entry = sitemapEntry(sitemap, url)
+    if (!entry) throw new Error(`Root Sitemap is missing ${url}`)
+    expectIncludes(entry, `hreflang="zh-Hans" href="${strongerAgentZhPostUrl}"`, `Stronger-agent Sitemap entry must reference Chinese variant: ${url}`)
+    expectIncludes(entry, `hreflang="en" href="${strongerAgentEnPostUrl}"`, `Stronger-agent Sitemap entry must reference English variant: ${url}`)
+    expectIncludes(entry, `hreflang="x-default" href="${strongerAgentZhPostUrl}"`, `Stronger-agent Sitemap entry must define x-default: ${url}`)
+  }
 
   process.stdout.write(`Bilingual build verification passed (${pairs.length} complete article pairs).\n`)
 }

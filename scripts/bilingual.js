@@ -210,15 +210,23 @@ hexo.extend.generator.register('bilingual-legacy-redirects', function () {
   if (locale !== config.default_locale && locale !== DEFAULT_LOCALE) return []
 
   return (config.redirects || []).map(redirect => {
-    const group = this._bilingualRegistry && this._bilingualRegistry.get(redirect.translation_key)
-    const target = group && group.get(normalizeLocale(redirect.locale))
-    if (!target) throw new Error(`Bilingual redirect target not found: ${redirect.translation_key}/${redirect.locale}`)
+    let targetHref
+    if (redirect.to) {
+      targetHref = new URL(redirect.to, `${siteOrigin(this)}/`).href
+    } else {
+      const group = this._bilingualRegistry && this._bilingualRegistry.get(redirect.translation_key)
+      const target = group && group.get(normalizeLocale(redirect.locale))
+      if (!target) throw new Error(`Bilingual redirect target not found: ${redirect.translation_key}/${redirect.locale}`)
+      targetHref = target.href
+    }
 
-    const href = escapeHtml(target.href)
-    const scriptTarget = JSON.stringify(target.href).replace(/</g, '\\u003c')
+    const locale = normalizeLocale(redirect.locale)
+    const htmlLang = locale === 'en' ? 'en' : 'zh-CN'
+    const href = escapeHtml(targetHref)
+    const scriptTarget = JSON.stringify(targetHref).replace(/</g, '\\u003c')
     return {
       path: redirect.from,
-      data: `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${href}"><meta http-equiv="refresh" content="0; url=${href}"><title>Moved</title></head><body><p>This page has moved to <a href="${href}">${href}</a>.</p><script>location.replace(${scriptTarget})</script></body></html>`
+      data: `<!doctype html><html lang="${htmlLang}"><head><meta charset="utf-8"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${href}"><meta http-equiv="refresh" content="0; url=${href}"><title>Moved</title></head><body><p>This page has moved to <a href="${href}">${href}</a>.</p><script>location.replace(${scriptTarget})</script></body></html>`
     }
   })
 })

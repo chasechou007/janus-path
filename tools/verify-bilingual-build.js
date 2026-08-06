@@ -13,6 +13,12 @@ const keptNearZhPostPath = path.join(publicDir, '2026/08/01/Agent 时代，我�
 const keptNearEnPostPath = path.join(publicDir, 'en/2026/08/01/rethinking-password-management-in-the-agent-era/index.html')
 const strongerAgentZhPostPath = path.join(publicDir, '2026/08/05/Agent 越强，我们越需要软件工程/index.html')
 const strongerAgentEnPostPath = path.join(publicDir, 'en/2026/08/05/stronger-agents-need-better-software-engineering/index.html')
+const taxonomyRedirects = [
+  ['tags/Janus-Path/index.html', 'https://blog.janus-path.com/tags/JanusPath/'],
+  ['categories/JanusPath-Prototype/index.html', 'https://blog.janus-path.com/categories/Janus-path-prototype/'],
+  ['categories/JanusPath-Applied/index.html', 'https://blog.janus-path.com/categories/janus-path-applied/'],
+  ['categories/meta-engineering/index.html', 'https://blog.janus-path.com/categories/MetaEngineering/']
+]
 
 const zhPostUrl = new URL('/2026/05/20/Codex团队使用SOP/', 'https://blog.janus-path.com').href
 const enPostUrl = 'https://blog.janus-path.com/en/2026/05/23/codex-team-usage-sop/'
@@ -256,6 +262,22 @@ function verifyBilingualBuild () {
   expectIncludes(legacy, `rel="canonical" href="${enPostUrl}"`, 'Legacy English URL must canonicalize to the new URL')
   expectIncludes(legacy, `location.replace("${enPostUrl}")`, 'Legacy English URL must redirect immediately')
 
+  for (const [redirectPath, targetUrl] of taxonomyRedirects) {
+    const redirect = read(path.join(publicDir, redirectPath))
+    expectIncludes(redirect, '<meta name="robots" content="noindex,follow">', `Taxonomy redirect must be noindex,follow: ${redirectPath}`)
+    expectIncludes(redirect, `rel="canonical" href="${targetUrl}"`, `Taxonomy redirect must canonicalize to its destination: ${redirectPath}`)
+    expectIncludes(redirect, `location.replace("${targetUrl}")`, `Taxonomy redirect must resolve immediately: ${redirectPath}`)
+  }
+
+  for (const tagPath of ['tags/index.html', 'tags/AI/index.html', 'en/tags/index.html', 'en/tags/AI/index.html']) {
+    expectIncludes(read(path.join(publicDir, tagPath)), '<meta name="robots" content="noindex,follow">', `Tag archives must be noindex,follow: ${tagPath}`)
+  }
+
+  const canonicalCategoryUrl = 'https://blog.janus-path.com/categories/MetaEngineering/'
+  const canonicalCategory = read(path.join(publicDir, 'categories/MetaEngineering/index.html'))
+  expectIncludes(canonicalCategory, '<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">', 'Canonical category must remain indexable')
+  expectIncludes(canonicalCategory, `rel="canonical" href="${canonicalCategoryUrl}"`, 'Canonical category must be self-referential')
+
   expectIncludes(zhFeed, '<title>Codex 团队使用 SOP</title>', 'Chinese Feed must include the Chinese article')
   expectExcludes(zhFeed, '<title>A Team SOP for Using Codex, OpenSpec, and Superpowers</title>', 'Chinese Feed must exclude the English article')
   expectIncludes(enFeed, '<title>A Team SOP for Using Codex, OpenSpec, and Superpowers</title>', 'English Feed must include the English article')
@@ -270,6 +292,10 @@ function verifyBilingualBuild () {
   expectExcludes(enFeed, '<title>Agent 越强，我们越需要软件工程</title>', 'English Feed must exclude the Chinese stronger-agent article')
 
   expectIncludes(sitemap, 'xmlns:xhtml="http://www.w3.org/1999/xhtml"', 'Root Sitemap must declare the xhtml namespace')
+  expectExcludes(sitemap, '<loc>https://blog.janus-path.com/tags/', 'Chinese tag archives must be excluded from the root Sitemap')
+  expectExcludes(sitemap, '<loc>https://blog.janus-path.com/en/tags/', 'English tag archives must be excluded from the root Sitemap')
+  if (!sitemapEntry(sitemap, canonicalCategoryUrl)) throw new Error('Root Sitemap is missing the canonical MetaEngineering category')
+  expectExcludes(sitemap, '<loc>https://blog.janus-path.com/categories/meta-engineering/</loc>', 'Legacy duplicate category must be excluded from the root Sitemap')
   for (const url of [zhPostUrl, enPostUrl]) {
     const entry = sitemapEntry(sitemap, url)
     if (!entry) throw new Error(`Root Sitemap is missing ${url}`)

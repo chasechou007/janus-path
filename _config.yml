@@ -149,6 +149,18 @@ bilingual:
     - from: 2026/05/23/codex-team-usage-sop-en/index.html
       translation_key: codex-team-usage-sop
       locale: en
+    - from: tags/Janus-Path/index.html
+      to: /tags/JanusPath/
+      locale: zh-CN
+    - from: categories/JanusPath-Prototype/index.html
+      to: /categories/Janus-path-prototype/
+      locale: zh-CN
+    - from: categories/JanusPath-Applied/index.html
+      to: /categories/janus-path-applied/
+      locale: zh-CN
+    - from: categories/meta-engineering/index.html
+      to: /categories/MetaEngineering/
+      locale: zh-CN
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

@@ -4,7 +4,7 @@ date: 2026-02-02 12:15:09
 slug: structuralism-view-of-ioc
 lang: zh-CN
 translation_key: structuralism-view-of-ioc
-categories: meta-engineering
+categories: MetaEngineering
 cover: /assets/img/structuralism-view-of-ioc.png
 tags:
   - 软件工程

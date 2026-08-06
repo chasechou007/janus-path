@@ -27,7 +27,8 @@ meta(name="author" content=pageAuthor)
 meta(name="copyright" content=pageCopyright)
 meta(name ="format-detection" content="telephone=no")
 meta(name="theme-color" content=themeColor)
-- var allowIndexing = globalPageType !== '404' && page.indexing !== false && page.noindex !== true
+- var isTagArchive = globalPageType === 'tag' || page.type === 'tags'
+- var allowIndexing = globalPageType !== '404' && !isTagArchive && page.indexing !== false && page.noindex !== true
 - var robotsDirective = allowIndexing ? 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' : 'noindex,follow'
 meta(name="robots" content=robotsDirective)
 //- Inject page-level keywords for SEO

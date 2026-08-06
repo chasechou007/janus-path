@@ -20,7 +20,7 @@ function htmlAttribute (tag, name) {
   return match ? match[1] : ''
 }
 
-function htmlAlternates (publicDir) {
+function htmlSeo (publicDir) {
   const result = new Map()
 
   for (const file of walkHtml(publicDir)) {
@@ -31,6 +31,10 @@ function htmlAlternates (publicDir) {
     const canonical = htmlAttribute(canonicalTag[0], 'href')
     if (!canonical) continue
 
+    const robotsTag = html.match(/<meta\b(?=[^>]*\bname=["']robots["'])[^>]*>/i)
+    const robots = robotsTag ? htmlAttribute(robotsTag[0], 'content') : ''
+    const indexable = !/(?:^|,)\s*noindex\s*(?:,|$)/i.test(robots)
+
     const alternates = []
     const tags = html.match(/<link\b(?=[^>]*\brel=["']alternate["'])(?=[^>]*\bhreflang=["'])[^>]*>/gi) || []
     for (const tag of tags) {
@@ -39,7 +43,10 @@ function htmlAlternates (publicDir) {
       if (hreflang && href) alternates.push({ hreflang, href })
     }
 
-    if (alternates.length) result.set(canonical, alternates)
+    const existing = result.get(canonical) || { alternates: [], indexable: false }
+    if (alternates.length) existing.alternates = alternates
+    existing.indexable = existing.indexable || indexable
+    result.set(canonical, existing)
   }
 
   return result
@@ -91,18 +98,19 @@ function mergeSitemaps () {
     path.join(publicDir, 'sitemap.xml'),
     path.join(publicDir, 'en', 'sitemap.xml')
   ]
-  const alternates = htmlAlternates(publicDir)
+  const seo = htmlSeo(publicDir)
   const entries = new Map()
 
   for (const sitemapPath of sitemapPaths) {
     for (const entry of sitemapEntries(sitemapPath)) {
       const location = entryLocation(entry)
-      if (location && !entries.has(location)) entries.set(location, entry)
+      const rendered = seo.get(location)
+      if (location && (!rendered || rendered.indexable) && !entries.has(location)) entries.set(location, entry)
     }
   }
 
   const renderedEntries = [...entries.entries()]
-    .map(([location, entry]) => withAlternates(entry, alternates.get(location)))
+    .map(([location, entry]) => withAlternates(entry, (seo.get(location) || {}).alternates))
     .join('\n\n  ')
 
   const xml = [

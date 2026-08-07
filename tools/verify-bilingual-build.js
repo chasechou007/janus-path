@@ -37,6 +37,7 @@ const requiredTranslationKeys = new Set([
   'januspath-from-structural-reflection-to-origin-observation',
   'rethinking-password-management-in-the-agent-era',
   'software-engineering-hidden-thinking-models',
+  'software-development-organizations-in-the-ai-era',
   'stronger-agents-need-better-software-engineering',
   'structural-noise',
   'structuralism-view-of-ioc',
@@ -136,6 +137,11 @@ function translatedPairs () {
 
 function verifyBilingualBuild () {
   const pairs = translatedPairs()
+  const onePersonOrganizationPair = pairs.find(pair => pair.translationKey === 'software-development-organizations-in-the-ai-era')
+  if (!onePersonOrganizationPair) throw new Error('One-person organization article pair is missing')
+
+  const onePersonOrganizationZhPost = read(onePersonOrganizationPair.zh.generatedPath)
+  const onePersonOrganizationEnPost = read(onePersonOrganizationPair.en.generatedPath)
   const zhPost = read(zhPostPath)
   const enPost = read(enPostPath)
   const keptNearZhPost = read(keptNearZhPostPath)
@@ -168,6 +174,17 @@ function verifyBilingualBuild () {
 
     expectIncludes(zhHtml, `class="site-page bilingual-switch" href="${pair.en.route}" hreflang="en"`, `Chinese switch must use the English root-relative route: ${pair.translationKey}`)
     expectIncludes(enHtml, `class="site-page bilingual-switch" href="${pair.zh.route}" hreflang="zh-Hans"`, `English switch must use the Chinese root-relative route: ${pair.translationKey}`)
+  }
+
+  expectIncludes(onePersonOrganizationZhPost, '/assets/img/one-person-ai-organization.png', 'Chinese one-person organization article must render its cover')
+  expectIncludes(onePersonOrganizationEnPost, '/assets/img/one-person-ai-organization.png', 'English one-person organization article must render its cover')
+  expectIncludes(onePersonOrganizationZhPost, 'MetaEngineering', 'Chinese one-person organization article must use the MetaEngineering category')
+  expectIncludes(onePersonOrganizationEnPost, 'Meta Engineering', 'English one-person organization article must use the localized Meta Engineering category')
+  for (const tag of ['AI Agent', '软件工程', '组织设计', '人机协作']) {
+    expectIncludes(onePersonOrganizationZhPost, tag, `Chinese one-person organization article must render the ${tag} tag`)
+  }
+  for (const tag of ['AI Agent', 'Software Engineering', 'Organization Design', 'Human-AI Collaboration']) {
+    expectIncludes(onePersonOrganizationEnPost, tag, `English one-person organization article must render the ${tag} tag`)
   }
 
   expectIncludes(zhPost, '<html lang="zh-CN"', 'Chinese article must declare zh-CN')
@@ -290,6 +307,10 @@ function verifyBilingualBuild () {
   expectIncludes(enFeed, '<title>The Stronger the Agent, the More We Need Software Engineering</title>', 'English Feed must include the stronger-agent article')
   expectExcludes(zhFeed, '<title>The Stronger the Agent, the More We Need Software Engineering</title>', 'Chinese Feed must exclude the English stronger-agent article')
   expectExcludes(enFeed, '<title>Agent 越强，我们越需要软件工程</title>', 'English Feed must exclude the Chinese stronger-agent article')
+  expectIncludes(zhFeed, '<title>AI 时代的软件研发组织变革探索：从多人组织到一人组织</title>', 'Chinese Feed must include the one-person organization article')
+  expectExcludes(zhFeed, '<title>Software Organizations in the AI Era: From Multi-Person Teams to One-Person Organizations</title>', 'Chinese Feed must exclude the English one-person organization article')
+  expectIncludes(enFeed, '<title>Software Organizations in the AI Era: From Multi-Person Teams to One-Person Organizations</title>', 'English Feed must include the one-person organization article')
+  expectExcludes(enFeed, '<title>AI 时代的软件研发组织变革探索：从多人组织到一人组织</title>', 'English Feed must exclude the Chinese one-person organization article')
 
   expectIncludes(sitemap, 'xmlns:xhtml="http://www.w3.org/1999/xhtml"', 'Root Sitemap must declare the xhtml namespace')
   expectExcludes(sitemap, '<loc>https://blog.janus-path.com/tags/', 'Chinese tag archives must be excluded from the root Sitemap')

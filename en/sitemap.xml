@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.janus-path.com/en/2026/08/07/software-development-organizations-in-the-ai-era/</loc>
+    
+    <lastmod>2026-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.janus-path.com/en/2026/08/05/stronger-agents-need-better-software-engineering/</loc>
     
     <lastmod>2026-08-05</lastmod>
@@ -74,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/2026/03/26/team-atmosphere-noise-management/</loc>
+    <loc>https://blog.janus-path.com/en/2025/09/02/two-rarest-skills-in-ai-era-not-tech-or-business/</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -83,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/2025/09/02/two-rarest-skills-in-ai-era-not-tech-or-business/</loc>
+    <loc>https://blog.janus-path.com/en/2026/03/26/team-atmosphere-noise-management/</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -137,7 +146,7 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/2026/06/06/from-code-to-agent-governance/</loc>
+    <loc>https://blog.janus-path.com/en/2026/03/24/if-no-one-codes-ai-worsens/</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -146,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/2026/03/24/if-no-one-codes-ai-worsens/</loc>
+    <loc>https://blog.janus-path.com/en/2026/06/06/from-code-to-agent-governance/</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -184,7 +193,7 @@
 
   <url>
     <loc>https://blog.janus-path.com/en</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -192,126 +201,133 @@
   
   <url>
     <loc>https://blog.janus-path.com/en/tags/AI-Agent/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.janus-path.com/en/tags/AI/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.janus-path.com/en/tags/Codex/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.janus-path.com/en/tags/OpenSpec/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.janus-path.com/en/tags/Architecture/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.janus-path.com/en/tags/Systems-Thinking/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/tags/Skill/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://blog.janus-path.com/en/tags/Codex/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.janus-path.com/en/tags/OpenSpec/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.janus-path.com/en/tags/Software-Engineering/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/tags/JanusPath/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.janus-path.com/en/tags/Structural-Thinking/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.janus-path.com/en/tags/Philosophical-Thinking/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://blog.janus-path.com/en/tags/Skill/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.janus-path.com/en/tags/team-collaboration/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.janus-path.com/en/tags/JanusPath/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.janus-path.com/en/tags/Structural-Thinking/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.janus-path.com/en/tags/Cognition/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/tags/Science-Fiction/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://blog.janus-path.com/en/tags/Philosophical-Thinking/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/tags/ChatGPT/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.janus-path.com/en/tags/Cognitive-Continuity/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://blog.janus-path.com/en/tags/Organization-Design/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.janus-path.com/en/tags/Human-AI-Collaboration/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.janus-path.com/en/tags/Science-Fiction/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.janus-path.com/en/tags/ChatGPT/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.janus-path.com/en/tags/Cognitive-Continuity/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.janus-path.com/en/tags/GPT-API/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -320,28 +336,28 @@
   
   <url>
     <loc>https://blog.janus-path.com/en/categories/meta-engineering/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.janus-path.com/en/categories/JanusPath-Foundations/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.janus-path.com/en/categories/Cosmic-Structures/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.janus-path.com/en/categories/JanusPath-Applied/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

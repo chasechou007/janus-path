@@ -5,11 +5,19 @@
   <id>https://blog.janus-path.com/en/</id>
   <link href="https://blog.janus-path.com/en/"/>
   <link href="https://blog.janus-path.com/en/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-08-05T07:27:36.805Z</updated>
+  <updated>2026-08-07T00:57:44.370Z</updated>
   <author>
     <name>Chase Chou</name>
     <uri>https://orcid.org/0009-0001-6381-2853</uri>
   </author>
+  <entry>
+    <title>Software Organizations in the AI Era: From Multi-Person Teams to One-Person Organizations</title>
+    <link href="https://blog.janus-path.com/en/2026/08/07/software-development-organizations-in-the-ai-era/"/>
+    <id>https://blog.janus-path.com/en/2026/08/07/software-development-organizations-in-the-ai-era/</id>
+    <published>2026-08-07T00:53:25.000Z</published>
+    <updated>2026-08-07T00:57:44.370Z</updated>
+    <summary type="text">AI may reshape software development less by accelerating coding than by changing how work is organized. Explore the shift toward human-governed, agent-executed teams.</summary>
+  </entry>
   <entry>
     <title>The Stronger the Agent, the More We Need Software Engineering</title>
     <link href="https://blog.janus-path.com/en/2026/08/05/stronger-agents-need-better-software-engineering/"/>

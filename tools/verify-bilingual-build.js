@@ -29,6 +29,7 @@ const strongerAgentEnPostUrl = 'https://blog.janus-path.com/en/2026/08/05/strong
 const zhPostRoute = decodeURI(new URL(zhPostUrl).pathname)
 const enPostRoute = new URL(enPostUrl).pathname
 const requiredTranslationKeys = new Set([
+  'agents-need-context-boundaries-not-org-charts',
   'ai-agent-semantic-drift',
   'codex-team-usage-sop',
   'from-code-to-agent-governance',
@@ -137,6 +138,11 @@ function translatedPairs () {
 
 function verifyBilingualBuild () {
   const pairs = translatedPairs()
+  const contextBoundariesPair = pairs.find(pair => pair.translationKey === 'agents-need-context-boundaries-not-org-charts')
+  if (!contextBoundariesPair) throw new Error('Agent context boundaries article pair is missing')
+
+  const contextBoundariesZhPost = read(contextBoundariesPair.zh.generatedPath)
+  const contextBoundariesEnPost = read(contextBoundariesPair.en.generatedPath)
   const onePersonOrganizationPair = pairs.find(pair => pair.translationKey === 'software-development-organizations-in-the-ai-era')
   if (!onePersonOrganizationPair) throw new Error('One-person organization article pair is missing')
 
@@ -174,6 +180,17 @@ function verifyBilingualBuild () {
 
     expectIncludes(zhHtml, `class="site-page bilingual-switch" href="${pair.en.route}" hreflang="en"`, `Chinese switch must use the English root-relative route: ${pair.translationKey}`)
     expectIncludes(enHtml, `class="site-page bilingual-switch" href="${pair.zh.route}" hreflang="zh-Hans"`, `English switch must use the Chinese root-relative route: ${pair.translationKey}`)
+  }
+
+  expectIncludes(contextBoundariesZhPost, '/assets/img/agent-context-boundaries.png', 'Chinese context boundaries article must render its cover')
+  expectIncludes(contextBoundariesEnPost, '/assets/img/agent-context-boundaries.png', 'English context boundaries article must render its cover')
+  expectIncludes(contextBoundariesZhPost, 'MetaEngineering', 'Chinese context boundaries article must use the MetaEngineering category')
+  expectIncludes(contextBoundariesEnPost, 'Meta Engineering', 'English context boundaries article must use the localized Meta Engineering category')
+  for (const tag of ['AI Agent', '上下文治理', '多 Agent 协同', '软件工程']) {
+    expectIncludes(contextBoundariesZhPost, tag, `Chinese context boundaries article must render the ${tag} tag`)
+  }
+  for (const tag of ['AI Agent', 'Context Governance', 'Multi-Agent Collaboration', 'Software Engineering']) {
+    expectIncludes(contextBoundariesEnPost, tag, `English context boundaries article must render the ${tag} tag`)
   }
 
   expectIncludes(onePersonOrganizationZhPost, '/assets/img/one-person-ai-organization.png', 'Chinese one-person organization article must render its cover')
@@ -311,6 +328,10 @@ function verifyBilingualBuild () {
   expectExcludes(zhFeed, '<title>Software Organizations in the AI Era: From Multi-Person Teams to One-Person Organizations</title>', 'Chinese Feed must exclude the English one-person organization article')
   expectIncludes(enFeed, '<title>Software Organizations in the AI Era: From Multi-Person Teams to One-Person Organizations</title>', 'English Feed must include the one-person organization article')
   expectExcludes(enFeed, '<title>AI 时代的软件研发组织变革探索：从多人组织到一人组织</title>', 'English Feed must exclude the Chinese one-person organization article')
+  expectIncludes(zhFeed, '<title>Agent 不需要组织架构，它需要上下文边界</title>', 'Chinese Feed must include the context boundaries article')
+  expectExcludes(zhFeed, '<title>Agents Don&apos;t Need Org Charts; They Need Context Boundaries</title>', 'Chinese Feed must exclude the English context boundaries article')
+  expectIncludes(enFeed, '<title>Agents Don&apos;t Need Org Charts; They Need Context Boundaries</title>', 'English Feed must include the context boundaries article')
+  expectExcludes(enFeed, '<title>Agent 不需要组织架构，它需要上下文边界</title>', 'English Feed must exclude the Chinese context boundaries article')
 
   expectIncludes(sitemap, 'xmlns:xhtml="http://www.w3.org/1999/xhtml"', 'Root Sitemap must declare the xhtml namespace')
   expectExcludes(sitemap, '<loc>https://blog.janus-path.com/tags/', 'Chinese tag archives must be excluded from the root Sitemap')

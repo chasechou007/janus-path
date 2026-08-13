@@ -5,11 +5,19 @@
   <id>https://blog.janus-path.com/en/</id>
   <link href="https://blog.janus-path.com/en/"/>
   <link href="https://blog.janus-path.com/en/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-08-07T00:57:44.370Z</updated>
+  <updated>2026-08-13T06:13:43.003Z</updated>
   <author>
     <name>Chase Chou</name>
     <uri>https://orcid.org/0009-0001-6381-2853</uri>
   </author>
+  <entry>
+    <title>Agents Don&apos;t Need Org Charts; They Need Context Boundaries</title>
+    <link href="https://blog.janus-path.com/en/2026/08/13/agents-need-context-boundaries-not-org-charts/"/>
+    <id>https://blog.janus-path.com/en/2026/08/13/agents-need-context-boundaries-not-org-charts/</id>
+    <published>2026-08-13T05:47:26.000Z</published>
+    <updated>2026-08-13T06:13:43.003Z</updated>
+    <summary type="text">Multi-agent systems may need clear boundaries around knowledge, state, permissions, tools, and decisions more than human-style job titles. Agents are replaceable; context is durable.</summary>
+  </entry>
   <entry>
     <title>Software Organizations in the AI Era: From Multi-Person Teams to One-Person Organizations</title>
     <link href="https://blog.janus-path.com/en/2026/08/07/software-development-organizations-in-the-ai-era/"/>

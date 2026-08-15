@@ -41,6 +41,7 @@ const requiredTranslationKeys = new Set([
   'software-development-organizations-in-the-ai-era',
   'stronger-agents-need-better-software-engineering',
   'structural-noise',
+  'structuralism-look-at-the-structure-before-judging-people',
   'structuralism-view-of-ioc',
   'team-atmosphere-noise-management',
   'two-rarest-skills-in-ai-era-not-tech-or-business',
@@ -138,6 +139,11 @@ function translatedPairs () {
 
 function verifyBilingualBuild () {
   const pairs = translatedPairs()
+  const structuralismWorldviewPair = pairs.find(pair => pair.translationKey === 'structuralism-look-at-the-structure-before-judging-people')
+  if (!structuralismWorldviewPair) throw new Error('Structuralism worldview article pair is missing')
+
+  const structuralismWorldviewZhPost = read(structuralismWorldviewPair.zh.generatedPath)
+  const structuralismWorldviewEnPost = read(structuralismWorldviewPair.en.generatedPath)
   const contextBoundariesPair = pairs.find(pair => pair.translationKey === 'agents-need-context-boundaries-not-org-charts')
   if (!contextBoundariesPair) throw new Error('Agent context boundaries article pair is missing')
 
@@ -180,6 +186,17 @@ function verifyBilingualBuild () {
 
     expectIncludes(zhHtml, `class="site-page bilingual-switch" href="${pair.en.route}" hreflang="en"`, `Chinese switch must use the English root-relative route: ${pair.translationKey}`)
     expectIncludes(enHtml, `class="site-page bilingual-switch" href="${pair.zh.route}" hreflang="zh-Hans"`, `English switch must use the Chinese root-relative route: ${pair.translationKey}`)
+  }
+
+  expectIncludes(structuralismWorldviewZhPost, '/assets/img/structuralism-look-at-the-structure.png', 'Chinese structuralism worldview article must render its cover')
+  expectIncludes(structuralismWorldviewEnPost, '/assets/img/structuralism-look-at-the-structure.png', 'English structuralism worldview article must render its cover')
+  expectIncludes(structuralismWorldviewZhPost, 'janus-path-applied', 'Chinese structuralism worldview article must use the JanusPath Applied category')
+  expectIncludes(structuralismWorldviewEnPost, 'JanusPath Applied', 'English structuralism worldview article must use the localized JanusPath Applied category')
+  for (const tag of ['结构性思维', '组织观察', '社会结构', '激励机制']) {
+    expectIncludes(structuralismWorldviewZhPost, tag, `Chinese structuralism worldview article must render the ${tag} tag`)
+  }
+  for (const tag of ['Structural Thinking', 'Organizational Analysis', 'Social Structure', 'Incentive Systems']) {
+    expectIncludes(structuralismWorldviewEnPost, tag, `English structuralism worldview article must render the ${tag} tag`)
   }
 
   expectIncludes(contextBoundariesZhPost, '/assets/img/agent-context-boundaries.png', 'Chinese context boundaries article must render its cover')
@@ -332,6 +349,10 @@ function verifyBilingualBuild () {
   expectExcludes(zhFeed, '<title>Agents Don&apos;t Need Org Charts; They Need Context Boundaries</title>', 'Chinese Feed must exclude the English context boundaries article')
   expectIncludes(enFeed, '<title>Agents Don&apos;t Need Org Charts; They Need Context Boundaries</title>', 'English Feed must include the context boundaries article')
   expectExcludes(enFeed, '<title>Agent 不需要组织架构，它需要上下文边界</title>', 'English Feed must exclude the Chinese context boundaries article')
+  expectIncludes(zhFeed, '<title>用结构主义看世界：别急着评价人，先看看结构</title>', 'Chinese Feed must include the structuralism worldview article')
+  expectExcludes(zhFeed, '<title>Seeing the World Through Structuralism: Before Judging People, Look at the Structure</title>', 'Chinese Feed must exclude the English structuralism worldview article')
+  expectIncludes(enFeed, '<title>Seeing the World Through Structuralism: Before Judging People, Look at the Structure</title>', 'English Feed must include the structuralism worldview article')
+  expectExcludes(enFeed, '<title>用结构主义看世界：别急着评价人，先看看结构</title>', 'English Feed must exclude the Chinese structuralism worldview article')
 
   expectIncludes(sitemap, 'xmlns:xhtml="http://www.w3.org/1999/xhtml"', 'Root Sitemap must declare the xhtml namespace')
   expectExcludes(sitemap, '<loc>https://blog.janus-path.com/tags/', 'Chinese tag archives must be excluded from the root Sitemap')

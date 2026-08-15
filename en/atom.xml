@@ -5,11 +5,19 @@
   <id>https://blog.janus-path.com/en/</id>
   <link href="https://blog.janus-path.com/en/"/>
   <link href="https://blog.janus-path.com/en/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-08-13T06:13:43.003Z</updated>
+  <updated>2026-08-15T01:59:24.133Z</updated>
   <author>
     <name>Chase Chou</name>
     <uri>https://orcid.org/0009-0001-6381-2853</uri>
   </author>
+  <entry>
+    <title>Seeing the World Through Structuralism: Before Judging People, Look at the Structure</title>
+    <link href="https://blog.janus-path.com/en/2026/08/15/structuralism-look-at-the-structure-before-judging-people/"/>
+    <id>https://blog.janus-path.com/en/2026/08/15/structuralism-look-at-the-structure-before-judging-people/</id>
+    <published>2026-08-15T01:47:36.000Z</published>
+    <updated>2026-08-15T01:59:24.133Z</updated>
+    <summary type="text">Why do organizations keep selecting the same kinds of people even after leaders change? A practical structuralist lens reveals the systems shaping behavior.</summary>
+  </entry>
   <entry>
     <title>Agents Don&apos;t Need Org Charts; They Need Context Boundaries</title>
     <link href="https://blog.janus-path.com/en/2026/08/13/agents-need-context-boundaries-not-org-charts/"/>
@@ -161,13 +169,5 @@
     <published>2025-08-31T02:00:00.000Z</published>
     <updated>2026-08-05T06:54:08.451Z</updated>
     <summary type="text">This article introduces JanusPath, an original model of structural cognition. It explains how structures confine us and how reflective thinking can help us step outside them in philosophy, organizational governance, and personal growth.</summary>
-  </entry>
-  <entry>
-    <title>Welcome to JanusPath: A Journey Back Through Structure and Consciousness</title>
-    <link href="https://blog.janus-path.com/en/2025/08/28/welcome-to-janus-path-structure-and-consciousness/"/>
-    <id>https://blog.janus-path.com/en/2025/08/28/welcome-to-janus-path-structure-and-consciousness/</id>
-    <published>2025-08-28T06:00:00.000Z</published>
-    <updated>2026-08-05T06:54:08.453Z</updated>
-    <summary type="text">This opening essay establishes the spirit of the blog through structural thinking and the philosophy of consciousness, setting the perspective and tone for JanusPath.</summary>
   </entry>
 </feed>

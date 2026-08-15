@@ -5,11 +5,19 @@
   <id>https://blog.janus-path.com/</id>
   <link href="https://blog.janus-path.com/"/>
   <link href="https://blog.janus-path.com/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-08-13T06:13:43.002Z</updated>
+  <updated>2026-08-15T01:59:24.133Z</updated>
   <author>
     <name>Chase Chou</name>
     <uri>https://orcid.org/0009-0001-6381-2853</uri>
   </author>
+  <entry>
+    <title>用结构主义看世界：别急着评价人，先看看结构</title>
+    <link href="https://blog.janus-path.com/2026/08/15/%E7%94%A8%E7%BB%93%E6%9E%84%E4%B8%BB%E4%B9%89%E7%9C%8B%E4%B8%96%E7%95%8C%EF%BC%9A%E5%88%AB%E6%80%A5%E7%9D%80%E8%AF%84%E4%BB%B7%E4%BA%BA%EF%BC%8C%E5%85%88%E7%9C%8B%E7%9C%8B%E7%BB%93%E6%9E%84/"/>
+    <id>https://blog.janus-path.com/2026/08/15/%E7%94%A8%E7%BB%93%E6%9E%84%E4%B8%BB%E4%B9%89%E7%9C%8B%E4%B8%96%E7%95%8C%EF%BC%9A%E5%88%AB%E6%80%A5%E7%9D%80%E8%AF%84%E4%BB%B7%E4%BA%BA%EF%BC%8C%E5%85%88%E7%9C%8B%E7%9C%8B%E7%BB%93%E6%9E%84/</id>
+    <published>2026-08-15T01:47:36.000Z</published>
+    <updated>2026-08-15T01:59:24.133Z</updated>
+    <summary type="text">为什么组织总会筛选出相似的人，换了领导问题仍会重现？本文借助通俗的结构主义视角，从位置、权力、资源、激励与信息流出发，理解个人行为背后的生成机制。</summary>
+  </entry>
   <entry>
     <title>Agent 不需要组织架构，它需要上下文边界</title>
     <link href="https://blog.janus-path.com/2026/08/13/Agent%20%E4%B8%8D%E9%9C%80%E8%A6%81%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%EF%BC%8C%E5%AE%83%E9%9C%80%E8%A6%81%E4%B8%8A%E4%B8%8B%E6%96%87%E8%BE%B9%E7%95%8C/"/>
@@ -161,13 +169,5 @@
     <published>2025-08-31T02:00:00.000Z</published>
     <updated>2026-08-05T06:54:08.457Z</updated>
     <summary type="text">本文介绍一种原创的结构认知模型——双面神思维路径，揭示我们如何被结构困住，又如何通过返照思维跳出困局，适用于哲学思辨、组织治理与个人成长。</summary>
-  </entry>
-  <entry>
-    <title>欢迎来到观澈辨机：一场结构与意识的回望之旅</title>
-    <link href="https://blog.janus-path.com/2025/08/28/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E8%A7%82%E6%BE%88%E8%BE%A8%E6%9C%BA%EF%BC%9A%E4%B8%80%E5%9C%BA%E7%BB%93%E6%9E%84%E4%B8%8E%E6%84%8F%E8%AF%86%E7%9A%84%E5%9B%9E%E6%9C%9B%E4%B9%8B%E6%97%85/"/>
-    <id>https://blog.janus-path.com/2025/08/28/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E8%A7%82%E6%BE%88%E8%BE%A8%E6%9C%BA%EF%BC%9A%E4%B8%80%E5%9C%BA%E7%BB%93%E6%9E%84%E4%B8%8E%E6%84%8F%E8%AF%86%E7%9A%84%E5%9B%9E%E6%9C%9B%E4%B9%8B%E6%97%85/</id>
-    <published>2025-08-28T06:00:00.000Z</published>
-    <updated>2026-08-05T06:54:08.458Z</updated>
-    <summary type="text">这篇开篇文章是对博客“观澈辨机”的精神定位回顾，结合结构性思维与意识哲学展开阐述，确立个人表达的基调与视角。</summary>
   </entry>
 </feed>

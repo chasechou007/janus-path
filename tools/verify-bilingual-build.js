@@ -45,6 +45,7 @@ const requiredTranslationKeys = new Set([
   'structuralism-view-of-ioc',
   'team-atmosphere-noise-management',
   'two-rarest-skills-in-ai-era-not-tech-or-business',
+  'understand-a-structure-before-rebuilding-it',
   'welcome-to-janus-path-structure-and-consciousness',
   'when-ai-thinks-along-your-thoughts',
   'why-i-started-simplifying-ai-agents',
@@ -139,6 +140,11 @@ function translatedPairs () {
 
 function verifyBilingualBuild () {
   const pairs = translatedPairs()
+  const understandBeforeRebuildingPair = pairs.find(pair => pair.translationKey === 'understand-a-structure-before-rebuilding-it')
+  if (!understandBeforeRebuildingPair) throw new Error('Understand before rebuilding article pair is missing')
+
+  const understandBeforeRebuildingZhPost = read(understandBeforeRebuildingPair.zh.generatedPath)
+  const understandBeforeRebuildingEnPost = read(understandBeforeRebuildingPair.en.generatedPath)
   const structuralismWorldviewPair = pairs.find(pair => pair.translationKey === 'structuralism-look-at-the-structure-before-judging-people')
   if (!structuralismWorldviewPair) throw new Error('Structuralism worldview article pair is missing')
 
@@ -187,6 +193,13 @@ function verifyBilingualBuild () {
     expectIncludes(zhHtml, `class="site-page bilingual-switch" href="${pair.en.route}" hreflang="en"`, `Chinese switch must use the English root-relative route: ${pair.translationKey}`)
     expectIncludes(enHtml, `class="site-page bilingual-switch" href="${pair.zh.route}" hreflang="zh-Hans"`, `English switch must use the Chinese root-relative route: ${pair.translationKey}`)
   }
+
+  expectIncludes(understandBeforeRebuildingZhPost, '/assets/img/understand-before-rebuilding-structures.png', 'Chinese reconstruction article must render its cover')
+  expectIncludes(understandBeforeRebuildingEnPost, '/assets/img/understand-before-rebuilding-structures.png', 'English reconstruction article must render its cover')
+  expectIncludes(understandBeforeRebuildingZhPost, 'janus-path-applied', 'Chinese reconstruction article must use the JanusPath Applied category')
+  expectIncludes(understandBeforeRebuildingEnPost, 'JanusPath Applied', 'English reconstruction article must use the localized JanusPath Applied category')
+  for (const tag of ['结构性思维', '制度变迁', '组织重构', '历史循环']) expectIncludes(understandBeforeRebuildingZhPost, tag, `Chinese reconstruction article must render the ${tag} tag`)
+  for (const tag of ['Structural Thinking', 'Institutional Change', 'Organizational Reconstruction', 'Historical Cycles']) expectIncludes(understandBeforeRebuildingEnPost, tag, `English reconstruction article must render the ${tag} tag`)
 
   expectIncludes(structuralismWorldviewZhPost, '/assets/img/structuralism-look-at-the-structure.png', 'Chinese structuralism worldview article must render its cover')
   expectIncludes(structuralismWorldviewEnPost, '/assets/img/structuralism-look-at-the-structure.png', 'English structuralism worldview article must render its cover')
@@ -242,9 +255,10 @@ function verifyBilingualBuild () {
   expectIncludes(zhPost, '"inLanguage": "zh-CN"', 'Chinese JSON-LD must declare Simplified Chinese')
   expectIncludes(enPost, '<meta property="og:locale" content="en_US">', 'English Open Graph locale must be en_US')
 
-  expectExcludes(zhHome, 'A Team SOP for Using Codex, OpenSpec, and Superpowers', 'Chinese homepage must not list the English variant')
-  expectIncludes(enHome, 'A Team SOP for Using Codex, OpenSpec, and Superpowers', 'English homepage must list the English variant')
-  expectExcludes(enHome, 'Codex 团队使用 SOP', 'English homepage must not list the Chinese variant')
+  expectIncludes(zhHome, '人类很擅长通过否定一个结构来获得方向，却不擅长通过理解一个结构来完成重构', 'Chinese homepage must list the latest Chinese article')
+  expectExcludes(zhHome, 'Humans Find Direction by Rejecting Structures, but Struggle to Rebuild Them Through Understanding', 'Chinese homepage must not list the latest English variant')
+  expectIncludes(enHome, 'Humans Find Direction by Rejecting Structures, but Struggle to Rebuild Them Through Understanding', 'English homepage must list the latest English article')
+  expectExcludes(enHome, '人类很擅长通过否定一个结构来获得方向，却不擅长通过理解一个结构来完成重构', 'English homepage must not list the latest Chinese variant')
   expectIncludes(zhHome, 'rel="canonical" href="https://blog.janus-path.com/"', 'Chinese homepage canonical must remain at the domain root')
   expectIncludes(enHome, 'rel="canonical" href="https://blog.janus-path.com/en/"', 'English homepage canonical must use /en/')
   for (const home of [zhHome, enHome]) {
@@ -353,6 +367,10 @@ function verifyBilingualBuild () {
   expectExcludes(zhFeed, '<title>Seeing the World Through Structuralism: Before Judging People, Look at the Structure</title>', 'Chinese Feed must exclude the English structuralism worldview article')
   expectIncludes(enFeed, '<title>Seeing the World Through Structuralism: Before Judging People, Look at the Structure</title>', 'English Feed must include the structuralism worldview article')
   expectExcludes(enFeed, '<title>用结构主义看世界：别急着评价人，先看看结构</title>', 'English Feed must exclude the Chinese structuralism worldview article')
+  expectIncludes(zhFeed, '<title>人类很擅长通过否定一个结构来获得方向，却不擅长通过理解一个结构来完成重构</title>', 'Chinese Feed must include the reconstruction article')
+  expectExcludes(zhFeed, '<title>Humans Find Direction by Rejecting Structures, but Struggle to Rebuild Them Through Understanding</title>', 'Chinese Feed must exclude the English reconstruction article')
+  expectIncludes(enFeed, '<title>Humans Find Direction by Rejecting Structures, but Struggle to Rebuild Them Through Understanding</title>', 'English Feed must include the reconstruction article')
+  expectExcludes(enFeed, '<title>人类很擅长通过否定一个结构来获得方向，却不擅长通过理解一个结构来完成重构</title>', 'English Feed must exclude the Chinese reconstruction article')
 
   expectIncludes(sitemap, 'xmlns:xhtml="http://www.w3.org/1999/xhtml"', 'Root Sitemap must declare the xhtml namespace')
   expectExcludes(sitemap, '<loc>https://blog.janus-path.com/tags/', 'Chinese tag archives must be excluded from the root Sitemap')

@@ -276,13 +276,6 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/tags/Skill/</loc>
-    <lastmod>2026-08-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.janus-path.com/en/tags/Architecture/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -297,7 +290,7 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/tags/team-collaboration/</loc>
+    <loc>https://blog.janus-path.com/en/tags/Skill/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -319,6 +312,13 @@
   
   <url>
     <loc>https://blog.janus-path.com/en/tags/Philosophical-Thinking/</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.janus-path.com/en/tags/team-collaboration/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

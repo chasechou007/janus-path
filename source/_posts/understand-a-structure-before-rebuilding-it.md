@@ -1,5 +1,5 @@
 ---
-title: "Humans Find Direction by Rejecting Structures, but Struggle to Rebuild Them Through Understanding"
+title: "Rejection Is Easy; Reconstruction Is Hard"
 date: 2026-08-16 20:27:23
 slug: understand-a-structure-before-rebuilding-it
 lang: en

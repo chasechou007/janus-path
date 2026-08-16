@@ -5,11 +5,19 @@
   <id>https://blog.janus-path.com/en/</id>
   <link href="https://blog.janus-path.com/en/"/>
   <link href="https://blog.janus-path.com/en/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-08-15T01:59:24.133Z</updated>
+  <updated>2026-08-16T12:40:17.573Z</updated>
   <author>
     <name>Chase Chou</name>
     <uri>https://orcid.org/0009-0001-6381-2853</uri>
   </author>
+  <entry>
+    <title>Humans Find Direction by Rejecting Structures, but Struggle to Rebuild Them Through Understanding</title>
+    <link href="https://blog.janus-path.com/en/2026/08/16/understand-a-structure-before-rebuilding-it/"/>
+    <id>https://blog.janus-path.com/en/2026/08/16/understand-a-structure-before-rebuilding-it/</id>
+    <published>2026-08-16T12:27:23.000Z</published>
+    <updated>2026-08-16T12:40:17.573Z</updated>
+    <summary type="text">Rejecting an old structure creates direction, enemies, and consensus. Real reconstruction requires understanding why it formed, what it still does, and which deeper conditions keep reproducing its failures.</summary>
+  </entry>
   <entry>
     <title>Seeing the World Through Structuralism: Before Judging People, Look at the Structure</title>
     <link href="https://blog.janus-path.com/en/2026/08/15/structuralism-look-at-the-structure-before-judging-people/"/>
@@ -161,13 +169,5 @@
     <published>2025-09-02T12:30:00.000Z</published>
     <updated>2026-08-05T06:54:08.453Z</updated>
     <summary type="text">In an AI era of relentless technical change, the scarcest capabilities are not technologies themselves, but the ability to model a chaotic business world and the engineering ability to turn those models into evolving systems.</summary>
-  </entry>
-  <entry>
-    <title>An Introduction to JanusPath: Escaping the Cognitive Traps You Cannot See</title>
-    <link href="https://blog.janus-path.com/en/2025/08/31/janus-path-overview-escape-cognitive-traps/"/>
-    <id>https://blog.janus-path.com/en/2025/08/31/janus-path-overview-escape-cognitive-traps/</id>
-    <published>2025-08-31T02:00:00.000Z</published>
-    <updated>2026-08-05T06:54:08.451Z</updated>
-    <summary type="text">This article introduces JanusPath, an original model of structural cognition. It explains how structures confine us and how reflective thinking can help us step outside them in philosophy, organizational governance, and personal growth.</summary>
   </entry>
 </feed>

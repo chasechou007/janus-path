@@ -5,11 +5,19 @@
   <id>https://blog.janus-path.com/</id>
   <link href="https://blog.janus-path.com/"/>
   <link href="https://blog.janus-path.com/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-08-15T01:59:24.133Z</updated>
+  <updated>2026-08-16T12:40:17.574Z</updated>
   <author>
     <name>Chase Chou</name>
     <uri>https://orcid.org/0009-0001-6381-2853</uri>
   </author>
+  <entry>
+    <title>人类很擅长通过否定一个结构来获得方向，却不擅长通过理解一个结构来完成重构</title>
+    <link href="https://blog.janus-path.com/2026/08/16/%E4%BA%BA%E7%B1%BB%E5%BE%88%E6%93%85%E9%95%BF%E9%80%9A%E8%BF%87%E5%90%A6%E5%AE%9A%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%9D%A5%E8%8E%B7%E5%BE%97%E6%96%B9%E5%90%91%EF%BC%8C%E5%8D%B4%E4%B8%8D%E6%93%85%E9%95%BF%E9%80%9A%E8%BF%87%E7%90%86%E8%A7%A3%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%9D%A5%E5%AE%8C%E6%88%90%E9%87%8D%E6%9E%84/"/>
+    <id>https://blog.janus-path.com/2026/08/16/%E4%BA%BA%E7%B1%BB%E5%BE%88%E6%93%85%E9%95%BF%E9%80%9A%E8%BF%87%E5%90%A6%E5%AE%9A%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%9D%A5%E8%8E%B7%E5%BE%97%E6%96%B9%E5%90%91%EF%BC%8C%E5%8D%B4%E4%B8%8D%E6%93%85%E9%95%BF%E9%80%9A%E8%BF%87%E7%90%86%E8%A7%A3%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%9D%A5%E5%AE%8C%E6%88%90%E9%87%8D%E6%9E%84/</id>
+    <published>2026-08-16T12:27:23.000Z</published>
+    <updated>2026-08-16T12:40:17.574Z</updated>
+    <summary type="text">否定旧结构很容易带来方向、敌人和共识，真正的重构却要求理解旧制度为何形成、承担什么功能，以及哪些深层条件仍在生产相同问题。</summary>
+  </entry>
   <entry>
     <title>用结构主义看世界：别急着评价人，先看看结构</title>
     <link href="https://blog.janus-path.com/2026/08/15/%E7%94%A8%E7%BB%93%E6%9E%84%E4%B8%BB%E4%B9%89%E7%9C%8B%E4%B8%96%E7%95%8C%EF%BC%9A%E5%88%AB%E6%80%A5%E7%9D%80%E8%AF%84%E4%BB%B7%E4%BA%BA%EF%BC%8C%E5%85%88%E7%9C%8B%E7%9C%8B%E7%BB%93%E6%9E%84/"/>
@@ -161,13 +169,5 @@
     <published>2025-09-02T12:30:00.000Z</published>
     <updated>2026-08-05T06:54:08.448Z</updated>
     <summary type="text">在技术日新月异的AI时代，最稀缺的能力并不是技术本身，而是能穿透幻觉与混乱的结构洞察力与自我驯化力。本文从“技术与业务”之外的维度出发，探讨为何真正的关键在于结构性认知与心智演化能力。</summary>
-  </entry>
-  <entry>
-    <title>双面神思维路径简介：如何跳出你未察觉的思维陷阱</title>
-    <link href="https://blog.janus-path.com/2025/08/31/%E5%8F%8C%E9%9D%A2%E7%A5%9E%E6%80%9D%E7%BB%B4%E8%B7%AF%E5%BE%84%E7%AE%80%E4%BB%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E4%BD%A0%E6%9C%AA%E5%AF%9F%E8%A7%89%E7%9A%84%E6%80%9D%E7%BB%B4%E9%99%B7%E9%98%B1/"/>
-    <id>https://blog.janus-path.com/2025/08/31/%E5%8F%8C%E9%9D%A2%E7%A5%9E%E6%80%9D%E7%BB%B4%E8%B7%AF%E5%BE%84%E7%AE%80%E4%BB%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E8%B7%B3%E5%87%BA%E4%BD%A0%E6%9C%AA%E5%AF%9F%E8%A7%89%E7%9A%84%E6%80%9D%E7%BB%B4%E9%99%B7%E9%98%B1/</id>
-    <published>2025-08-31T02:00:00.000Z</published>
-    <updated>2026-08-05T06:54:08.457Z</updated>
-    <summary type="text">本文介绍一种原创的结构认知模型——双面神思维路径，揭示我们如何被结构困住，又如何通过返照思维跳出困局，适用于哲学思辨、组织治理与个人成长。</summary>
   </entry>
 </feed>

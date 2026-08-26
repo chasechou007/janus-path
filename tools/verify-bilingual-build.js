@@ -49,6 +49,7 @@ const requiredTranslationKeys = new Set([
   'welcome-to-janus-path-structure-and-consciousness',
   'when-ai-thinks-along-your-thoughts',
   'why-i-started-simplifying-ai-agents',
+  'why-multiple-agents-not-one-universal-harness',
   'why-philosophy-always-belongs-to-elites',
   'why-quality-criticism-should-charge'
 ])
@@ -140,6 +141,11 @@ function translatedPairs () {
 
 function verifyBilingualBuild () {
   const pairs = translatedPairs()
+  const agentProfilesPair = pairs.find(pair => pair.translationKey === 'why-multiple-agents-not-one-universal-harness')
+  if (!agentProfilesPair) throw new Error('Multiple agent profiles article pair is missing')
+
+  const agentProfilesZhPost = read(agentProfilesPair.zh.generatedPath)
+  const agentProfilesEnPost = read(agentProfilesPair.en.generatedPath)
   const understandBeforeRebuildingPair = pairs.find(pair => pair.translationKey === 'understand-a-structure-before-rebuilding-it')
   if (!understandBeforeRebuildingPair) throw new Error('Understand before rebuilding article pair is missing')
 
@@ -192,6 +198,17 @@ function verifyBilingualBuild () {
 
     expectIncludes(zhHtml, `class="site-page bilingual-switch" href="${pair.en.route}" hreflang="en"`, `Chinese switch must use the English root-relative route: ${pair.translationKey}`)
     expectIncludes(enHtml, `class="site-page bilingual-switch" href="${pair.zh.route}" hreflang="zh-Hans"`, `English switch must use the Chinese root-relative route: ${pair.translationKey}`)
+  }
+
+  expectIncludes(agentProfilesZhPost, '/assets/img/agent-profiles-standardized-interfaces.png', 'Chinese agent profiles article must render its cover')
+  expectIncludes(agentProfilesEnPost, '/assets/img/agent-profiles-standardized-interfaces.png', 'English agent profiles article must render its cover')
+  expectIncludes(agentProfilesZhPost, 'MetaEngineering', 'Chinese agent profiles article must use the MetaEngineering category')
+  expectIncludes(agentProfilesEnPost, 'Meta Engineering', 'English agent profiles article must use the localized Meta Engineering category')
+  for (const tag of ['AI Agent', '多 Agent 协同', '架构设计', '软件工程', 'RelayPact']) {
+    expectIncludes(agentProfilesZhPost, tag, `Chinese agent profiles article must render the ${tag} tag`)
+  }
+  for (const tag of ['AI Agent', 'Multi-Agent Collaboration', 'Architecture', 'Software Engineering', 'RelayPact']) {
+    expectIncludes(agentProfilesEnPost, tag, `English agent profiles article must render the ${tag} tag`)
   }
 
   expectIncludes(understandBeforeRebuildingZhPost, '/assets/img/understand-before-rebuilding-structures.png', 'Chinese reconstruction article must render its cover')
@@ -255,10 +272,10 @@ function verifyBilingualBuild () {
   expectIncludes(zhPost, '"inLanguage": "zh-CN"', 'Chinese JSON-LD must declare Simplified Chinese')
   expectIncludes(enPost, '<meta property="og:locale" content="en_US">', 'English Open Graph locale must be en_US')
 
-  expectIncludes(zhHome, '否定容易，重构很难', 'Chinese homepage must list the latest Chinese article')
-  expectExcludes(zhHome, 'Rejection Is Easy; Reconstruction Is Hard', 'Chinese homepage must not list the latest English variant')
-  expectIncludes(enHome, 'Rejection Is Easy; Reconstruction Is Hard', 'English homepage must list the latest English article')
-  expectExcludes(enHome, '否定容易，重构很难', 'English homepage must not list the latest Chinese variant')
+  expectIncludes(zhHome, '为什么是多个 Agent，而不是一个万能 Harness', 'Chinese homepage must list the latest Chinese article')
+  expectExcludes(zhHome, 'Why Multiple Agents, Rather Than One Universal Harness', 'Chinese homepage must not list the latest English variant')
+  expectIncludes(enHome, 'Why Multiple Agents, Rather Than One Universal Harness', 'English homepage must list the latest English article')
+  expectExcludes(enHome, '为什么是多个 Agent，而不是一个万能 Harness', 'English homepage must not list the latest Chinese variant')
   expectIncludes(zhHome, 'rel="canonical" href="https://blog.janus-path.com/"', 'Chinese homepage canonical must remain at the domain root')
   expectIncludes(enHome, 'rel="canonical" href="https://blog.janus-path.com/en/"', 'English homepage canonical must use /en/')
   for (const home of [zhHome, enHome]) {
@@ -371,12 +388,23 @@ function verifyBilingualBuild () {
   expectExcludes(zhFeed, '<title>Rejection Is Easy; Reconstruction Is Hard</title>', 'Chinese Feed must exclude the English reconstruction article')
   expectIncludes(enFeed, '<title>Rejection Is Easy; Reconstruction Is Hard</title>', 'English Feed must include the reconstruction article')
   expectExcludes(enFeed, '<title>否定容易，重构很难</title>', 'English Feed must exclude the Chinese reconstruction article')
+  expectIncludes(zhFeed, '<title>为什么是多个 Agent，而不是一个万能 Harness</title>', 'Chinese Feed must include the agent profiles article')
+  expectExcludes(zhFeed, '<title>Why Multiple Agents, Rather Than One Universal Harness</title>', 'Chinese Feed must exclude the English agent profiles article')
+  expectIncludes(enFeed, '<title>Why Multiple Agents, Rather Than One Universal Harness</title>', 'English Feed must include the agent profiles article')
+  expectExcludes(enFeed, '<title>为什么是多个 Agent，而不是一个万能 Harness</title>', 'English Feed must exclude the Chinese agent profiles article')
 
   expectIncludes(sitemap, 'xmlns:xhtml="http://www.w3.org/1999/xhtml"', 'Root Sitemap must declare the xhtml namespace')
   expectExcludes(sitemap, '<loc>https://blog.janus-path.com/tags/', 'Chinese tag archives must be excluded from the root Sitemap')
   expectExcludes(sitemap, '<loc>https://blog.janus-path.com/en/tags/', 'English tag archives must be excluded from the root Sitemap')
   if (!sitemapEntry(sitemap, canonicalCategoryUrl)) throw new Error('Root Sitemap is missing the canonical MetaEngineering category')
   expectExcludes(sitemap, '<loc>https://blog.janus-path.com/categories/meta-engineering/</loc>', 'Legacy duplicate category must be excluded from the root Sitemap')
+  for (const url of [agentProfilesPair.zh.url, agentProfilesPair.en.url]) {
+    const entry = sitemapEntry(sitemap, url)
+    if (!entry) throw new Error(`Root Sitemap is missing ${url}`)
+    expectIncludes(entry, `hreflang="zh-Hans" href="${agentProfilesPair.zh.url}"`, `Agent profiles Sitemap entry must reference Chinese variant: ${url}`)
+    expectIncludes(entry, `hreflang="en" href="${agentProfilesPair.en.url}"`, `Agent profiles Sitemap entry must reference English variant: ${url}`)
+    expectIncludes(entry, `hreflang="x-default" href="${agentProfilesPair.zh.url}"`, `Agent profiles Sitemap entry must define x-default: ${url}`)
+  }
   for (const url of [zhPostUrl, enPostUrl]) {
     const entry = sitemapEntry(sitemap, url)
     if (!entry) throw new Error(`Root Sitemap is missing ${url}`)

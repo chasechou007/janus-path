@@ -1,0 +1,475 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>为什么是多个 Agent，而不是一个万能 Harness | 观澈辨机</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="AI Agent,Agent Harness,Agent Profile,RelayPact,Model Routing,Agent Delegation,Multi-Agent,Codex,Pi,OpenCode Go,Model-Harness Fit"><meta name="description" content="模型能接入 Harness，不代表这个 Agent 已经值得信任。本文讨论为什么经过调校的 Harness + Model 应被视为完整 Agent Profile，以及 RelayPact 如何让可信 Host Agent 受控委托其他 Agent。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么是多个 Agent，而不是一个万能 Harness">
+<meta property="og:url" content="https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/">
+<meta property="og:site_name" content="观澈辨机">
+<meta property="og:description" content="模型能接入 Harness，不代表这个 Agent 已经值得信任。本文讨论为什么经过调校的 Harness + Model 应被视为完整 Agent Profile，以及 RelayPact 如何让可信 Host Agent 受控委托其他 Agent。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.janus-path.com/assets/img/agent-profiles-standardized-interfaces.png">
+<meta property="article:published_time" content="2026-08-26T03:31:54.000Z">
+<meta property="article:modified_time" content="2026-08-26T03:55:26.064Z">
+<meta property="article:author" content="Chase Chou">
+<meta property="article:tag" content="AI Agent">
+<meta property="article:tag" content="架构设计">
+<meta property="article:tag" content="软件工程">
+<meta property="article:tag" content="多 Agent 协同">
+<meta property="article:tag" content="RelayPact">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.janus-path.com/assets/img/agent-profiles-standardized-interfaces.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "为什么是多个 Agent，而不是一个万能 Harness",
+  "url": "https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/"
+  },
+  "description": "模型能接入 Harness，不代表这个 Agent 已经值得信任。本文讨论为什么经过调校的 Harness + Model 应被视为完整 Agent Profile，以及 RelayPact 如何让可信 Host Agent 受控委托其他 Agent。",
+  "image": "https://blog.janus-path.com/assets/img/agent-profiles-standardized-interfaces.png",
+  "keywords": "AI Agent, Agent Harness, Agent Profile, RelayPact, Model Routing, Agent Delegation, Multi-Agent, Codex, Pi, OpenCode Go, Model-Harness Fit",
+  "articleSection": [
+    "MetaEngineering"
+  ],
+  "inLanguage": "zh-CN",
+  "datePublished": "2026-08-26T03:31:54.000Z",
+  "dateModified": "2026-08-26T03:55:26.064Z",
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": "https://blog.janus-path.com/#blog",
+    "name": "观澈辨机",
+    "url": "https://blog.janus-path.com/"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Chase Chou",
+      "url": "https://orcid.org/0009-0001-6381-2853",
+      "sameAs": [
+        "https://orcid.org/0009-0001-6381-2853",
+        "https://github.com/chasechou007"
+      ]
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "观澈辨机",
+    "url": "https://blog.janus-path.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.janus-path.com/assets/img/logo.png"
+    }
+  }
+}</script><link rel="shortcut icon" href="/assets/img/logo.png"><link rel="canonical" href="https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/"><link rel="alternate" hreflang="zh-Hans" href="https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/"><link rel="alternate" hreflang="en" href="https://blog.janus-path.com/en/2026/08/26/why-multiple-agents-not-one-universal-harness/"><link rel="alternate" hreflang="x-default" href="https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/"><link rel="alternate" type="application/atom+xml" title="观澈辨机 Atom Feed" href="https://blog.janus-path.com/atom.xml"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '为什么是多个 Agent，而不是一个万能 Harness',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/assets/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/Janus-path-prototype/"><span> Janus Path · 原型篇</span></a></div><div class="menus_item"><a class="site-page" href="/categories/janus-path-applied/"><span> Janus Path · 应用篇</span></a></div><div class="menus_item"><a class="site-page" href="/categories/cosmic-structures/"><span> 结构宇宙</span></a></div><div class="menus_item"><a class="site-page" href="/categories/meta-engineering/"><span> 元工程术</span></a></div><div class="menus_item"><a class="site-page" href="/research/"><span> 研究与论文</span></a></div><div class="menus_item"><a class="site-page bilingual-switch" href="/en/2026/08/26/why-multiple-agents-not-one-universal-harness/" hreflang="en" lang="en" title="Read this article in English" aria-label="Read this article in English" data-translation-available="true"><i class="fas fa-language fa-fw"></i><span> EN</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/img/agent-profiles-standardized-interfaces.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/assets/img/logo.png" alt="Logo"><span class="site-name">观澈辨机</span></a><a class="nav-page-title" href="/"><span class="site-name">为什么是多个 Agent，而不是一个万能 Harness</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/Janus-path-prototype/"><span> Janus Path · 原型篇</span></a></div><div class="menus_item"><a class="site-page" href="/categories/janus-path-applied/"><span> Janus Path · 应用篇</span></a></div><div class="menus_item"><a class="site-page" href="/categories/cosmic-structures/"><span> 结构宇宙</span></a></div><div class="menus_item"><a class="site-page" href="/categories/meta-engineering/"><span> 元工程术</span></a></div><div class="menus_item"><a class="site-page" href="/research/"><span> 研究与论文</span></a></div><div class="menus_item"><a class="site-page bilingual-switch" href="/en/2026/08/26/why-multiple-agents-not-one-universal-harness/" hreflang="en" lang="en" title="Read this article in English" aria-label="Read this article in English" data-translation-available="true"><i class="fas fa-language fa-fw"></i><span> EN</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">为什么是多个 Agent，而不是一个万能 Harness</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-26T03:31:54.000Z" title="发表于 2026-08-26 11:31:54">2026-08-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-26T03:55:26.064Z" title="更新于 2026-08-26 11:55:26">2026-08-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/MetaEngineering/">MetaEngineering</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>最近我一直在思考一个问题：</p>
+<blockquote>
+<p>未来的 Agent 系统，会是 <strong>One Harness, Many Models</strong>，还是 <strong>Many Agent Profiles, Standardized Interfaces</strong>？</p>
+</blockquote>
+<p>我越来越倾向后者。</p>
+<p>但这里先说明，我并不否定 <strong>One Harness, Many Models</strong>。</p>
+<p>恰恰相反，我自己就在使用这种模式。</p>
+<p>Codex 可以接不同模型，Pi 也可以接不同模型。很多场景下，这种方式简单、直接，而且效果已经不错。</p>
+<p>我真正怀疑的是另一件事：</p>
+<blockquote>
+<p><strong>我们是否应该期待一个 Harness，通过不断切换模型，就覆盖所有 Agent 场景？</strong></p>
+</blockquote>
+<p>我的答案越来越偏向：不需要。</p>
+<h2 id="先说一下我对几个概念的理解"><a href="#先说一下我对几个概念的理解" class="headerlink" title="先说一下我对几个概念的理解"></a>先说一下我对几个概念的理解</h2><p><strong>LLM</strong> 是模型本身。</p>
+<p><strong>Harness</strong> 是驱动模型完成 Agent 工作的一整套运行和执行机制，包括 Agent Loop、Context、Tools、Session、Recovery 等。</p>
+<p>而我这里所说的、真正可以拿来工作的 <strong>Agent Profile</strong>，更接近：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Agent Profile</span><br><span class="line">=</span><br><span class="line">Harness</span><br><span class="line">+</span><br><span class="line">Model</span><br><span class="line">+</span><br><span class="line">Configuration</span><br><span class="line">+</span><br><span class="line">Calibration</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，我并不倾向于把 Harness 和 LLM 完全拆开评估。</p>
+<p>因为模型能接进 Harness，只能说明：</p>
+<blockquote>
+<p><strong>Integration works.</strong></p>
+</blockquote>
+<p>并不能直接说明：</p>
+<blockquote>
+<p><strong>Agent works well.</strong></p>
+</blockquote>
+<h2 id="一个-Harness-可以支持很多模型，但这件事有边界"><a href="#一个-Harness-可以支持很多模型，但这件事有边界" class="headerlink" title="一个 Harness 可以支持很多模型，但这件事有边界"></a>一个 Harness 可以支持很多模型，但这件事有边界</h2><p>很多 Agent Framework 都支持多个 Model Provider：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Harness</span><br><span class="line">├── Model A</span><br><span class="line">├── Model B</span><br><span class="line">└── Model C</span><br></pre></td></tr></table></figure>
+
+<p>这当然有价值。</p>
+<p>它可以帮助我们：</p>
+<ul>
+<li>降低模型成本；</li>
+<li>做模型路由；</li>
+<li>对比不同模型；</li>
+<li>避免绑定单一供应商；</li>
+<li>针对不同任务选择更合适的模型。</li>
+</ul>
+<p>所以 <strong>One Harness, Many Models</strong> 本身没有问题。</p>
+<p>问题在于，不同模型对 Prompt、Context、Tool 和 Agent Loop 的反应并不相同。</p>
+<p>一个模型在某个 Harness 中表现很好，换到另一个 Harness，不一定还能发挥出同样的能力。</p>
+<p>反过来也一样。</p>
+<p>Loop、Context Strategy、Tool Strategy、Compaction、Session、Recovery，看起来是 Harness 内部相对独立的组成部分，但在真实运行中，它们都会和模型行为产生耦合。</p>
+<p>这和汽车很像。</p>
+<p>最好的电机、最好的底盘、最好的悬架和最好的智驾系统拼在一起，并不会自动得到最好的汽车。</p>
+<p>真正困难的是整车调校。</p>
+<p>Agent 也是一样。</p>
+<blockquote>
+<p><strong>最强的 Model + 最强的 Harness，不一定等于最强的 Agent。</strong></p>
+</blockquote>
+<p>真正重要的是两者是否适配，以及这个组合有没有经过足够的调校和验证。</p>
+<h2 id="插件化降低的是组装成本，不是验证成本"><a href="#插件化降低的是组装成本，不是验证成本" class="headerlink" title="插件化降低的是组装成本，不是验证成本"></a>插件化降低的是组装成本，不是验证成本</h2><p>最近 DeepSeek 开源了 Harness，其中一个很有意思的理念是：</p>
+<blockquote>
+<p>Everything is a Plugin.</p>
+</blockquote>
+<p>Model、Loop、Tool、Session、Sandbox 等都可以替换。</p>
+<p>从 Harness Framework 的角度看，这种设计很漂亮。</p>
+<p>它降低了实验和组合不同方案的成本。</p>
+<p>但：</p>
+<blockquote>
+<p><strong>Composability does not guarantee capability.</strong></p>
+</blockquote>
+<p>A 的 Loop 最强，B 的 Context 最好，C 的 Tools 最丰富，把它们拼在一起，并不会自动得到最强的 Agent。</p>
+<p>因为 Agent 不是一个确定性程序。</p>
+<p>一个组合能够正常运行，不代表它在长任务、复杂 Context、Tool Failure、Session Recovery 等真实场景里仍然可靠。</p>
+<p>所以我越来越认为：</p>
+<blockquote>
+<p><strong>Harness 最容易被低估的成本，不只是开发，而是后续持续的调校和验证。</strong></p>
+</blockquote>
+<p>能搭出来是一回事。</p>
+<p>能不能长期稳定地用，是另一回事。</p>
+<h2 id="为什么我仍然在使用-One-Harness-Many-Models"><a href="#为什么我仍然在使用-One-Harness-Many-Models" class="headerlink" title="为什么我仍然在使用 One Harness, Many Models"></a>为什么我仍然在使用 One Harness, Many Models</h2><p>这一点其实很重要。</p>
+<p>如果我完全不认可 <strong>One Harness, Many Models</strong>，那 <a target="_blank" rel="noopener" href="https://github.com/echopath-labs/relaypact">RelayPact</a> 本身也不会是现在这个样子。</p>
+<p>目前 RelayPact 已经支持：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Codex + Sol</span><br><span class="line">      ↓</span><br><span class="line">   RelayPact</span><br><span class="line">      ↓</span><br><span class="line">Codex + OpenCode Go（其他模型）</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，我确实在利用：</p>
+<blockquote>
+<p><strong>同一个 Harness + 不同模型</strong></p>
+</blockquote>
+<p>形成不同的 Agent Profile。</p>
+<p>而我正在继续推进：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Codex + Sol</span><br><span class="line">      ↓</span><br><span class="line">   RelayPact</span><br><span class="line">      ↓</span><br><span class="line">Pi + OpenCode Go（其他模型）</span><br></pre></td></tr></table></figure>
+
+<p>这一步则进一步跨越 Harness 边界。</p>
+<p>所以我的思路从来不是：</p>
+<blockquote>
+<p>One Harness, Many Models 不行。</p>
+</blockquote>
+<p>而是：</p>
+<blockquote>
+<p><strong>One Harness, Many Models 有价值，但没必要把所有选择都限制在一个 Harness 里。</strong></p>
+</blockquote>
+<h2 id="Codex-Sol-也不是万能的"><a href="#Codex-Sol-也不是万能的" class="headerlink" title="Codex + Sol 也不是万能的"></a>Codex + Sol 也不是万能的</h2><p>我目前更愿意把：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Codex + Sol</span><br></pre></td></tr></table></figure>
+
+<p>作为主要的 Host Agent。</p>
+<p>原因很简单。</p>
+<p>我的工作区规范、Skills、工程习惯、上下文组织方式，以及我对 Agent 行为的判断，长期都围绕 Codex 形成。</p>
+<p>我知道它擅长什么。</p>
+<p>也知道它容易在哪里出问题。</p>
+<p>这种长期使用积累下来的经验，本身就是一种工程资产。</p>
+<p>但这并不意味着 Codex + Sol 什么都最好。</p>
+<p>它同样有成本、额度、速度等方面的限制，有些局部任务也未必需要它来完成。</p>
+<p>Pi 这样的极简 Harness，在一些上下文明确、边界清楚的局部任务里，可能更快、更轻。</p>
+<p>其他模型在某些特定任务上，也可能更合适。</p>
+<p>所以我真正想做的，不是寻找一个万能 Agent。</p>
+<p>而是：</p>
+<blockquote>
+<p><strong>让一个我长期使用、已经建立工程基线的 Host Agent，去调用和管理其他更适合具体任务的 Agent。</strong></p>
+</blockquote>
+<h2 id="这就是-RelayPact-的起点"><a href="#这就是-RelayPact-的起点" class="headerlink" title="这就是 RelayPact 的起点"></a>这就是 RelayPact 的起点</h2><p>我更倾向于这样的结构：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">             Codex + Sol</span><br><span class="line">            Trusted Host</span><br><span class="line">                 │</span><br><span class="line">             RelayPact</span><br><span class="line">         ┌───────┴────────┐</span><br><span class="line">         ↓                ↓</span><br><span class="line">Codex + 其他 LLM     Pi + 其他 LLM</span><br><span class="line">     Executor          Executor</span><br><span class="line">         │                │</span><br><span class="line">         └──── Result ─────┘</span><br><span class="line">                 ↓</span><br><span class="line">             Host Review</span><br></pre></td></tr></table></figure>
+
+<p>Host Agent 负责：</p>
+<ul>
+<li>理解整体任务；</li>
+<li>拆分任务边界；</li>
+<li>决定交给谁；</li>
+<li>控制权限；</li>
+<li>检查结果；</li>
+<li>最终验收。</li>
+</ul>
+<p>Executor Agent 则负责在明确边界内完成具体工作。</p>
+<p>目标不是让 Agent 数量更多。</p>
+<p>而是：</p>
+<blockquote>
+<p><strong>在保持质量基线的前提下，利用不同 Agent Profile 在能力、速度和成本上的差异。</strong></p>
+</blockquote>
+<p>我更愿意把这个原则概括成：</p>
+<blockquote>
+<p><strong>Start with one trusted host agent, then delegate outward.</strong></p>
+</blockquote>
+<h2 id="Model-Routing-和-Agent-Delegation-并不冲突"><a href="#Model-Routing-和-Agent-Delegation-并不冲突" class="headerlink" title="Model Routing 和 Agent Delegation 并不冲突"></a>Model Routing 和 Agent Delegation 并不冲突</h2><p>RelayPact 并不是为了取代 Model Routing。</p>
+<p>两者解决的是不同问题。</p>
+<h3 id="Model-Routing"><a href="#Model-Routing" class="headerlink" title="Model Routing"></a>Model Routing</h3><p>解决的是：</p>
+<blockquote>
+<p>这一次推理请求应该由哪个模型完成？</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Request</span><br><span class="line">   ↓</span><br><span class="line">Model Router</span><br><span class="line">   ↓</span><br><span class="line">Model A / B / C</span><br></pre></td></tr></table></figure>
+
+<h3 id="Agent-Delegation"><a href="#Agent-Delegation" class="headerlink" title="Agent Delegation"></a>Agent Delegation</h3><p>解决的是：</p>
+<blockquote>
+<p>这项完整任务应该交给哪个 Agent 执行？</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Task</span><br><span class="line">  ↓</span><br><span class="line">Host Agent</span><br><span class="line">  ↓</span><br><span class="line">RelayPact</span><br><span class="line">  ↓</span><br><span class="line">Executor Agent</span><br></pre></td></tr></table></figure>
+
+<p>当一个任务开始拥有独立目标、Workspace、多轮 Tool Calling、权限边界、验收条件和结果证据时，它就已经不再只是一次模型调用。</p>
+<p>问题也从：</p>
+<blockquote>
+<p>Which model should answer this request?</p>
+</blockquote>
+<p>变成了：</p>
+<blockquote>
+<p><strong>Which agent should own and execute this task?</strong></p>
+</blockquote>
+<p>所以我现在更愿意这样理解：</p>
+<blockquote>
+<p><strong>Model Routing 选择模型。</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>RelayPact 选择执行任务的 Agent。</strong></p>
+</blockquote>
+<p>两者完全可以同时存在。</p>
+<h2 id="RelayPact-连接的不是模型，而是-Agent"><a href="#RelayPact-连接的不是模型，而是-Agent" class="headerlink" title="RelayPact 连接的不是模型，而是 Agent"></a>RelayPact 连接的不是模型，而是 Agent</h2><p>这也是全文最重要的一点。</p>
+<p>我不希望 RelayPact 只是帮助 Codex 在内部切换到一个更便宜的模型。</p>
+<p>我希望：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Codex + Sol</span><br></pre></td></tr></table></figure>
+
+<p>可以把一个有明确目标、范围、权限和验收标准的任务，交给：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Codex + 其他 LLM</span><br></pre></td></tr></table></figure>
+
+<p>也可以进一步交给：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Pi + 其他 LLM</span><br><span class="line">其他 Harness + 其他 LLM</span><br></pre></td></tr></table></figure>
+
+<p>关键不在于对面使用什么模型。</p>
+<p>甚至也不在于是不是同一个 Harness。</p>
+<p>关键在于：</p>
+<blockquote>
+<p><strong>对方是不是一个可以被独立评估、拥有明确能力边界的 Agent Profile。</strong></p>
+</blockquote>
+<p>所以：</p>
+<blockquote>
+<p><strong>RelayPact connects agents, not models.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>它解决的不是模型切换，而是 Agent 之间的受控委托。</strong></p>
+</blockquote>
+<h2 id="为什么要强调“受控”"><a href="#为什么要强调“受控”" class="headerlink" title="为什么要强调“受控”"></a>为什么要强调“受控”</h2><p>不同 Agent 可以拥有不同 Harness、不同 Model、不同 Session，甚至完全不同的 Workspace。</p>
+<p>所以我不会假设：</p>
+<blockquote>
+<p>把 Host 的全部历史交给 Executor，它就一定能得到完全相同的理解。</p>
+</blockquote>
+<p>相同的 Context，不代表相同的 Interpreted State。</p>
+<p>所以 RelayPact 更强调显式传递：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Goal</span><br><span class="line">Scope</span><br><span class="line">Constraints</span><br><span class="line">Relevant Context</span><br><span class="line">Authority</span><br><span class="line">Expected Output</span><br><span class="line">Required Evidence</span><br></pre></td></tr></table></figure>
+
+<p>不是：</p>
+<blockquote>
+<p>“这是我的所有上下文，你接着做。”</p>
+</blockquote>
+<p>而是：</p>
+<blockquote>
+<p>“这是任务，这是边界，这是权限，这是验收要求。”</p>
+</blockquote>
+<p>执行 Agent 可以自主完成工作。</p>
+<p>但最终是否接受结果，仍然由 Host Agent 或人决定。</p>
+<blockquote>
+<p><strong>Delegation does not mean surrendering authority.</strong></p>
+</blockquote>
+<p>委托的是执行责任。</p>
+<p>不是最终控制权。</p>
+<h2 id="协议统一会让这件事更容易，而不是消灭多个-Agent"><a href="#协议统一会让这件事更容易，而不是消灭多个-Agent" class="headerlink" title="协议统一会让这件事更容易，而不是消灭多个 Agent"></a>协议统一会让这件事更容易，而不是消灭多个 Agent</h2><p>有人认为，现在存在很多 Harness，只是模型接口割裂时代的阶段性现象。</p>
+<p>随着 MCP、A2A、Runtime Protocol 等逐渐标准化，最终可能只剩：</p>
+<blockquote>
+<p>One Harness, Many Models.</p>
+</blockquote>
+<p>我不这么看。</p>
+<p>协议标准化解决的是：</p>
+<blockquote>
+<p><strong>Interoperability</strong></p>
+</blockquote>
+<p>而不是：</p>
+<blockquote>
+<p><strong>Behavioral Equivalence</strong></p>
+</blockquote>
+<p>接口统一以后，我确实可以更方便地在不同 Agent 之间切换。</p>
+<p>但这并不会让它们变成同一种 Agent。</p>
+<p>标准化统一的是 Agent 之间的边界。</p>
+<p>差异仍然保留在 Agent 内部。</p>
+<p>所以我更倾向于未来是：</p>
+<blockquote>
+<p><strong>Many Agent Profiles, Standardized Interfaces</strong></p>
+</blockquote>
+<p>协议越统一，我越容易切换不同 Agent。</p>
+<p>而不是越需要把所有模型都塞进同一个 Harness。</p>
+<h2 id="EchoPath-Labs-的三层"><a href="#EchoPath-Labs-的三层" class="headerlink" title="EchoPath Labs 的三层"></a>EchoPath Labs 的三层</h2><p>这套思考，也逐渐让我看清 OpenDomain、RelayPact 和 EchoPath 三者之间的关系。</p>
+<h3 id="OpenDomain-—-Meaning"><a href="#OpenDomain-—-Meaning" class="headerlink" title="OpenDomain — Meaning"></a>OpenDomain — Meaning</h3><p>让不同 Agent 共享相对稳定的业务语义。</p>
+<blockquote>
+<p><strong>What does it mean?</strong></p>
+</blockquote>
+<h3 id="RelayPact-—-Bounded-Action"><a href="#RelayPact-—-Bounded-Action" class="headerlink" title="RelayPact — Bounded Action"></a>RelayPact — Bounded Action</h3><p>让不同 Agent 之间进行有目标、有边界、有证据的任务委托。</p>
+<blockquote>
+<p><strong>What should be handed off and executed?</strong></p>
+</blockquote>
+<h3 id="EchoPath-—-Continuity"><a href="#EchoPath-—-Continuity" class="headerlink" title="EchoPath — Continuity"></a>EchoPath — Continuity</h3><p>观察发生了什么，以及发生漂移或中断以后如何继续和恢复。</p>
+<blockquote>
+<p><strong>What happened, and how do we continue?</strong></p>
+</blockquote>
+<p>可以进一步压缩成：</p>
+<blockquote>
+<p><strong>OpenDomain preserves meaning.</strong></p>
+<p><strong>RelayPact bounds action.</strong></p>
+<p><strong>EchoPath preserves continuity.</strong></p>
+</blockquote>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>我并不反对 <strong>One Harness, Many Models</strong>。</p>
+<p>它已经是一种有效的 Agent 构建方式，我自己也在使用。</p>
+<p>但我的任务通常涉及更长的上下文、更复杂的工程、更持续的执行，以及更高的质量要求。</p>
+<p>在这种场景下，我越来越不愿意把：</p>
+<blockquote>
+<p>模型能接进去</p>
+</blockquote>
+<p>直接等同于：</p>
+<blockquote>
+<p>这个 Agent 已经值得信任。</p>
+</blockquote>
+<p>我更愿意把经过调校和验证的：</p>
+<blockquote>
+<p><strong>Harness + Model</strong></p>
+</blockquote>
+<p>视为一个完整的 Agent Profile。</p>
+<p>然后让一个我长期使用、已经形成工程基线的 Host Agent，去受控地委托其他更适合具体任务的 Agent。</p>
+<p>所以 RelayPact 并不是对 Model Routing 的否定。</p>
+<p>它更像是在 Model Routing 之外，再向前走一步：</p>
+<blockquote>
+<p><strong>既然不同 Harness 和不同模型组合各有价值，那为什么一定要把所有选择限制在一个 Harness 里？</strong></p>
+</blockquote>
+<p><strong>RelayPact 连接的不是模型，而是 Agent。</strong></p>
+<p><strong>它解决的不是模型切换，而是 Agent 之间的受控委托。</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://orcid.org/0009-0001-6381-2853">Chase Chou</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/">https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.janus-path.com" target="_blank">观澈辨机</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI-Agent/">AI Agent</a><a class="post-meta__tags" href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">架构设计</a><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><a class="post-meta__tags" href="/tags/%E5%A4%9A-Agent-%E5%8D%8F%E5%90%8C/">多 Agent 协同</a><a class="post-meta__tags" href="/tags/RelayPact/">RelayPact</a></div><div class="post-share"><div class="social-share" data-image="/assets/img/agent-profiles-standardized-interfaces.png" data-sites="facebook,twitter,wechat,weibo,qq,linkedin"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/08/16/%E4%BA%BA%E7%B1%BB%E5%BE%88%E6%93%85%E9%95%BF%E9%80%9A%E8%BF%87%E5%90%A6%E5%AE%9A%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%9D%A5%E8%8E%B7%E5%BE%97%E6%96%B9%E5%90%91%EF%BC%8C%E5%8D%B4%E4%B8%8D%E6%93%85%E9%95%BF%E9%80%9A%E8%BF%87%E7%90%86%E8%A7%A3%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%9D%A5%E5%AE%8C%E6%88%90%E9%87%8D%E6%9E%84/" title="否定容易，重构很难"><img class="cover" src="/assets/img/understand-before-rebuilding-structures.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">否定容易，重构很难</div></div><div class="info-2"><div class="info-item-1">最近看了克里斯托弗·诺兰的《奥德赛》。 电影给我留下最深印象的，并不是奥德修斯的冒险本身，而是一个更大的背景： 一个旧秩序正在结束。 特洛伊战争持续多年，传统的英雄主义、战争规则和信任关系都开始失效。 最终结束战争的，不是更强大的武力，而是特洛伊木马。 欺骗取代了正面对抗。 于是很容易产生一种理解：  因为人们开始使用阴谋和欺骗，所以信任被破坏，秩序开始崩坏。  但我越来越觉得，因果关系可能恰恰相反。 不是阴谋诡计摧毁了原本健康的秩序。 而是：  旧秩序已经发展到了无法解决现实问题的阶段，于是阴谋诡计开始成为一种有效策略。  特洛伊木马不是秩序崩坏的原因。 它更像是秩序已经发生变化以后，浮出水面的一个症状。 当然，我们无法确定导演真正想表达什么，也没有必要过度揣测。 电影只是给我打开了一个问题。 而这个问题远远不只属于古希腊。 为什么新的，总是倾向于否定旧的？我们经常看到一种现象。 一个旧制度出现问题以后，人们很容易得出一个结论：  这个体系不行了。  随后，判断又会进一步扩大：  过去的方法都是错的。  再进一步：  必须重新来过。  这种逻辑在政治、社会运动、企业管理甚至普通...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/08/13/Agent%20%E4%B8%8D%E9%9C%80%E8%A6%81%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%EF%BC%8C%E5%AE%83%E9%9C%80%E8%A6%81%E4%B8%8A%E4%B8%8B%E6%96%87%E8%BE%B9%E7%95%8C/" title="Agent 不需要组织架构，它需要上下文边界"><img class="cover" src="/assets/img/agent-context-boundaries.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-13</div><div class="info-item-2">Agent 不需要组织架构，它需要上下文边界</div></div><div class="info-2"><div class="info-item-1">最近在使用 Codex 时，我逐渐形成了一种很高效的工作方式。 我为不同项目保留独立的 Workspace 和 Thread，再用一个主 Thread 负责分派任务、接收结果，并完成第一轮判断。 大致是这样： 1234567Human  ↓Master Thread  ↓├── Workspace A / Thread A├── Workspace B / Thread B└── Workspace C / Thread C  这样，我不需要同时盯着很多会话。 我只需要关注主 Thread 做出了什么判断，以及接下来应该把任务交给谁。 一开始，我只是觉得这种方式很省精力。 后来我突然意识到一个问题：  为什么这些子 Thread 天然是按照项目和 Workspace 区分，而不是按照“架构师 Agent”“开发 Agent”“测试 Agent”来区分？  这个问题，让我重新审视了现在很常见的一类 Multi-Agent 设计。 我们很容易把 Agent 设计成人类组织很多 Multi-Agent 系统喜欢采用这样的结构： 12345CEO Agent├── HR Agent├──...</div></div></div></a><a class="pagination-related" href="/2026/08/01/Agent%20%E6%97%B6%E4%BB%A3%EF%BC%8C%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E6%80%9D%E8%80%83%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/" title="Agent 时代，我们需要重新思考密码管理"><img class="cover" src="/assets/img/rethinking-password-management-agent-era.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-01</div><div class="info-item-2">Agent 时代，我们需要重新思考密码管理</div></div><div class="info-2"><div class="info-item-1">最近，我开源了一个本地优先的密码与令牌管理器：KeptNear。 最初开发它的原因很简单：我想要一个交互友好、真正由用户控制数据的本地密码管理器。 后来，在使用 Codex 处理越来越多实际工作时，我发现了另一个问题： Agent 也开始需要凭据了。 GitHub Token、API Key、数据库密码、云平台 Access Key……这些凭据通常散落在环境变量和配置文件里。Agent 需要时要反复配置，也容易在后续任务中遗忘。 更重要的问题是：  Agent 为了完成一项操作，真的需要知道凭据本身吗？  Agent 需要的可能不是秘密，而是能力个人密码管理器主要围绕人设计：保存密码、自动填充、复制到剪贴板，然后由人决定何时使用。 但 Agent 不只是读取信息，它会执行 CLI、调用 API，并操作外部系统。传统做法通常是先把 Token 交给 Agent，再由它完成操作： 1Token → Agent / Tool → HTTP Client → External Service  这会让 Token 进入更多不必要的路径，例如 Agent 上下文、Shell 环境、调试日志...</div></div></div></a><a class="pagination-related" href="/2026/08/05/Agent%20%E8%B6%8A%E5%BC%BA%EF%BC%8C%E6%88%91%E4%BB%AC%E8%B6%8A%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="Agent 越强，我们越需要软件工程"><img class="cover" src="/assets/img/stronger-agents-need-software-engineering.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-05</div><div class="info-item-2">Agent 越强，我们越需要软件工程</div></div><div class="info-2"><div class="info-item-1">最近在使用 Codex 推进开发时，我越来越强烈地感受到一件事： AI 改变了软件开发的生产方式，但它并没有让过去几十年形成的软件工程思想失效。 恰恰相反。 当 Agent 能够越来越快地理解需求、修改代码、运行测试，甚至独立推进一个复杂任务以后，过去很多为了“提升开发效率、控制复杂度”而形成的软件工程方法，开始表现出新的价值。 最直观的感受是： 更省 Token，也更不容易跑偏。 但如果继续往下看，会发现 Token 只是表象。 真正发生变化的是：  软件工程正在从“管理人的复杂度”，进一步变成“管理 Agent 的不确定性”。  而 Agent 越强，这件事情反而越重要。 从我以前做过的 ProTable 说起很多年前，我做前端架构时，开发过类似 ProTable 这样的基础组件。 当时的目的很简单。 业务系统里有大量列表页面：用户列表、订单列表、客户列表、审批列表…… 如果每一个开发人员拿到需求以后，都重新实现一次查询、分页、筛选、Loading、异常处理、权限控制，那么不仅开发效率低，最后每个人写出来的东西也很容易不一样。 所以我们会把这些已经反复出现的问题抽象掉。 一个...</div></div></div></a><a class="pagination-related" href="/2026/03/25/AI%20Agent%20%E5%BE%88%E5%BC%BA%EF%BC%8C%E4%BD%86%E5%AE%83%E4%BC%9A%E2%80%9C%E8%B6%8A%E8%B7%91%E8%B6%8A%E5%81%8F%E2%80%9D/" title="AI Agent 很强，但它会“越跑越偏”"><img class="cover" src="/assets/img/md_article0004.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-25</div><div class="info-item-2">AI Agent 很强，但它会“越跑越偏”</div></div><div class="info-2"><div class="info-item-1">最近一段时间，AI Agent 被描述为“可以接管一切”的存在。 写代码、跑项目、自动执行复杂流程，甚至有人认为它已经可以替代工程师。 但在实际使用之后，我的感受恰恰相反：  Agent 很强，但它的边界，同样非常清晰。   一、上下文窗口 ≠ 记忆很多人会提到：  “现在模型已经支持 200k 上下文，甚至更高”  但这其实是一个误解。 上下文窗口，只是当前推理时可见的信息范围，而不是“记忆”。 当信息超出当前窗口：  要么被丢弃 要么被压缩 要么被检索拼接  无论哪种方式，本质都是：  重建，而不是持有。   二、中断，不是修正，而是重构在使用 Agent 时，我发现一个非常关键的问题： 👉 它无法被中途稳定纠正。 当你发现它执行方向有偏差时，你只能：  让它继续执行 或者中断，然后补充信息  但问题在于：  中断之后，它会重新理解整个上下文。  这意味着：  新信息加入 语义权重重新分布 原本正确的部分，也可能被重新解释  最终结果是：  你不是在修正一个系统，而是在“重建一个系统”。   三、流程越长，漂移越严重Agent 在短任务中表现很好，但在长流程中会出现一个明显...</div></div></div></a><a class="pagination-related" href="/2026/08/07/AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%A0%94%E5%8F%91%E7%BB%84%E7%BB%87%E5%8F%98%E9%9D%A9%E6%8E%A2%E7%B4%A2%EF%BC%9A%E4%BB%8E%E5%A4%9A%E4%BA%BA%E7%BB%84%E7%BB%87%E5%88%B0%E4%B8%80%E4%BA%BA%E7%BB%84%E7%BB%87/" title="AI 时代的软件研发组织变革探索：从多人组织到一人组织"><img class="cover" src="/assets/img/one-person-ai-organization.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-07</div><div class="info-item-2">AI 时代的软件研发组织变革探索：从多人组织到一人组织</div></div><div class="info-2"><div class="info-item-1"> 一次软件研发组织范式的重新思考。  一、为什么今天讨论的是组织，而不是 AI？过去两年，AI 在软件研发中的讨论大多围绕工具展开：  AI 是否能写代码？ AI 是否能提高开发效率？ AI 是否会替代程序员？  这些问题都很重要。 但经过持续实践，我们越来越认为：  AI 带来的最大变化，不是开发方式，而是组织方式。  真正值得讨论的，不是某个 AI 工具，而是：  软件研发组织将如何演进。  二、软件研发组织的三次演进第一阶段：个人开发（Personal Development）软件规模较小时，一个人可以完成产品、开发、测试和部署，组织成本最低。 但随着系统越来越复杂，个人能力逐渐成为瓶颈。 第二阶段：多人组织（Multi-person Organization）这是过去几十年软件工程建立起来的组织范式：通过专业化分工解决复杂性。 典型组织链路是： 1产品 → 设计 → 前端 → 后端 → 测试 → 运维  软件工程中的大量理论和实践，包括：  项目管理 敏捷开发 DevOps 微服务 CI&#x2F;CD 软件质量体系  本质上都在回答同一个问题：  如何组织更多的人，共同...</div></div></div></a><a class="pagination-related" href="/2026/07/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E5%BC%80%E5%A7%8B%E7%BB%99-AI-Agent-%E5%81%9A%E5%87%8F%E6%B3%95/" title="为什么我开始给 AI Agent 做减法"><img class="cover" src="/assets/img/why-i-started-simplifying-ai-agents.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-13</div><div class="info-item-2">为什么我开始给 AI Agent 做减法</div></div><div class="info-2"><div class="info-item-1">最近一年，我一直高强度使用 Codex、Claude Code 等 AI Agent 来参与日常开发。 刚开始的时候，我和很多人一样，总想着不断给 Agent 增加能力。 遇到一种任务，就增加一个 Skill；发现一条规则，就写进 AGENTS.md；做完一次复杂排查，就想着沉淀下来，方便以后继续使用。 当时觉得这样会越来越智能。 后来我发现，事情并没有那么简单。 Skill，不是越多越好我现在越来越少创建 Skill，也越来越克制使用 Skill。 不是因为 Skill 没用。 恰恰相反，是因为 Skill 很有用，所以更应该慎用。 每加载一个 Skill，本质上都是在告诉 Agent：  除了当前任务，你还需要额外关注这些规则、流程和约束。  如果当前只是一次代码阅读、一次简单修改，或者定位一个问题，这些额外的信息很可能不会帮助 Agent，反而会稀释当前任务真正需要关注的内容。 很多时候，不使用 Skill，Agent 本身已经能够很好地完成工作。 上下文不是越多越好后来我慢慢养成了一个习惯： 如果当前任务没有明确需要，就不要提前加载。 以前，我总觉得多读一点总没坏处。 后...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/assets/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Chase Chou</div><div class="author-info-description"><span style="display: block; text-align: left;">结构主义型创作者，JanusPath 认知哲学提出者。</span> <span style="display: block; text-align: left;">关注技术、文明、哲学与制度的交汇处，写作于结构与裂隙之间。</span></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/chasechou007" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://orcid.org/0009-0001-6381-2853" target="_blank" title="ORCID"><i class="fab fa-orcid" style="color: #A6CE39;"></i></a><a class="social-icon" href="mailto:chaseshou007@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #ea4335;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><span style="display: block;">思想如光，透过结构折射出真实。</span> <span>在裂隙中辨别路径，在噪点中提取洞察。</span></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%88%91%E5%AF%B9%E5%87%A0%E4%B8%AA%E6%A6%82%E5%BF%B5%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">先说一下我对几个概念的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA-Harness-%E5%8F%AF%E4%BB%A5%E6%94%AF%E6%8C%81%E5%BE%88%E5%A4%9A%E6%A8%A1%E5%9E%8B%EF%BC%8C%E4%BD%86%E8%BF%99%E4%BB%B6%E4%BA%8B%E6%9C%89%E8%BE%B9%E7%95%8C"><span class="toc-number">2.</span> <span class="toc-text">一个 Harness 可以支持很多模型，但这件事有边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E5%8C%96%E9%99%8D%E4%BD%8E%E7%9A%84%E6%98%AF%E7%BB%84%E8%A3%85%E6%88%90%E6%9C%AC%EF%BC%8C%E4%B8%8D%E6%98%AF%E9%AA%8C%E8%AF%81%E6%88%90%E6%9C%AC"><span class="toc-number">3.</span> <span class="toc-text">插件化降低的是组装成本，不是验证成本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%8D%E7%84%B6%E5%9C%A8%E4%BD%BF%E7%94%A8-One-Harness-Many-Models"><span class="toc-number">4.</span> <span class="toc-text">为什么我仍然在使用 One Harness, Many Models</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codex-Sol-%E4%B9%9F%E4%B8%8D%E6%98%AF%E4%B8%87%E8%83%BD%E7%9A%84"><span class="toc-number">5.</span> <span class="toc-text">Codex + Sol 也不是万能的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E5%B0%B1%E6%98%AF-RelayPact-%E7%9A%84%E8%B5%B7%E7%82%B9"><span class="toc-number">6.</span> <span class="toc-text">这就是 RelayPact 的起点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Model-Routing-%E5%92%8C-Agent-Delegation-%E5%B9%B6%E4%B8%8D%E5%86%B2%E7%AA%81"><span class="toc-number">7.</span> <span class="toc-text">Model Routing 和 Agent Delegation 并不冲突</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-Routing"><span class="toc-number">7.1.</span> <span class="toc-text">Model Routing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Agent-Delegation"><span class="toc-number">7.2.</span> <span class="toc-text">Agent Delegation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RelayPact-%E8%BF%9E%E6%8E%A5%E7%9A%84%E4%B8%8D%E6%98%AF%E6%A8%A1%E5%9E%8B%EF%BC%8C%E8%80%8C%E6%98%AF-Agent"><span class="toc-number">8.</span> <span class="toc-text">RelayPact 连接的不是模型，而是 Agent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BC%BA%E8%B0%83%E2%80%9C%E5%8F%97%E6%8E%A7%E2%80%9D"><span class="toc-number">9.</span> <span class="toc-text">为什么要强调“受控”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%BB%9F%E4%B8%80%E4%BC%9A%E8%AE%A9%E8%BF%99%E4%BB%B6%E4%BA%8B%E6%9B%B4%E5%AE%B9%E6%98%93%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E6%B6%88%E7%81%AD%E5%A4%9A%E4%B8%AA-Agent"><span class="toc-number">10.</span> <span class="toc-text">协议统一会让这件事更容易，而不是消灭多个 Agent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EchoPath-Labs-%E7%9A%84%E4%B8%89%E5%B1%82"><span class="toc-number">11.</span> <span class="toc-text">EchoPath Labs 的三层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenDomain-%E2%80%94-Meaning"><span class="toc-number">11.1.</span> <span class="toc-text">OpenDomain — Meaning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RelayPact-%E2%80%94-Bounded-Action"><span class="toc-number">11.2.</span> <span class="toc-text">RelayPact — Bounded Action</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EchoPath-%E2%80%94-Continuity"><span class="toc-number">11.3.</span> <span class="toc-text">EchoPath — Continuity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">12.</span> <span class="toc-text">最后</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/" title="为什么是多个 Agent，而不是一个万能 Harness"><img src="/assets/img/agent-profiles-standardized-interfaces.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="为什么是多个 Agent，而不是一个万能 Harness"/></a><div class="content"><a class="title" href="/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/" title="为什么是多个 Agent，而不是一个万能 Harness">为什么是多个 Agent，而不是一个万能 Harness</a><time datetime="2026-08-26T03:31:54.000Z" title="发表于 2026-08-26 11:31:54">2026-08-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/16/%E4%BA%BA%E7%B1%BB%E5%BE%88%E6%93%85%E9%95%BF%E9%80%9A%E8%BF%87%E5%90%A6%E5%AE%9A%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%9D%A5%E8%8E%B7%E5%BE%97%E6%96%B9%E5%90%91%EF%BC%8C%E5%8D%B4%E4%B8%8D%E6%93%85%E9%95%BF%E9%80%9A%E8%BF%87%E7%90%86%E8%A7%A3%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%9D%A5%E5%AE%8C%E6%88%90%E9%87%8D%E6%9E%84/" title="否定容易，重构很难"><img src="/assets/img/understand-before-rebuilding-structures.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="否定容易，重构很难"/></a><div class="content"><a class="title" href="/2026/08/16/%E4%BA%BA%E7%B1%BB%E5%BE%88%E6%93%85%E9%95%BF%E9%80%9A%E8%BF%87%E5%90%A6%E5%AE%9A%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%9D%A5%E8%8E%B7%E5%BE%97%E6%96%B9%E5%90%91%EF%BC%8C%E5%8D%B4%E4%B8%8D%E6%93%85%E9%95%BF%E9%80%9A%E8%BF%87%E7%90%86%E8%A7%A3%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%9D%A5%E5%AE%8C%E6%88%90%E9%87%8D%E6%9E%84/" title="否定容易，重构很难">否定容易，重构很难</a><time datetime="2026-08-16T12:27:23.000Z" title="发表于 2026-08-16 20:27:23">2026-08-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/15/%E7%94%A8%E7%BB%93%E6%9E%84%E4%B8%BB%E4%B9%89%E7%9C%8B%E4%B8%96%E7%95%8C%EF%BC%9A%E5%88%AB%E6%80%A5%E7%9D%80%E8%AF%84%E4%BB%B7%E4%BA%BA%EF%BC%8C%E5%85%88%E7%9C%8B%E7%9C%8B%E7%BB%93%E6%9E%84/" title="用结构主义看世界：别急着评价人，先看看结构"><img src="/assets/img/structuralism-look-at-the-structure.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="用结构主义看世界：别急着评价人，先看看结构"/></a><div class="content"><a class="title" href="/2026/08/15/%E7%94%A8%E7%BB%93%E6%9E%84%E4%B8%BB%E4%B9%89%E7%9C%8B%E4%B8%96%E7%95%8C%EF%BC%9A%E5%88%AB%E6%80%A5%E7%9D%80%E8%AF%84%E4%BB%B7%E4%BA%BA%EF%BC%8C%E5%85%88%E7%9C%8B%E7%9C%8B%E7%BB%93%E6%9E%84/" title="用结构主义看世界：别急着评价人，先看看结构">用结构主义看世界：别急着评价人，先看看结构</a><time datetime="2026-08-15T01:47:36.000Z" title="发表于 2026-08-15 09:47:36">2026-08-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/13/Agent%20%E4%B8%8D%E9%9C%80%E8%A6%81%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%EF%BC%8C%E5%AE%83%E9%9C%80%E8%A6%81%E4%B8%8A%E4%B8%8B%E6%96%87%E8%BE%B9%E7%95%8C/" title="Agent 不需要组织架构，它需要上下文边界"><img src="/assets/img/agent-context-boundaries.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Agent 不需要组织架构，它需要上下文边界"/></a><div class="content"><a class="title" href="/2026/08/13/Agent%20%E4%B8%8D%E9%9C%80%E8%A6%81%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%EF%BC%8C%E5%AE%83%E9%9C%80%E8%A6%81%E4%B8%8A%E4%B8%8B%E6%96%87%E8%BE%B9%E7%95%8C/" title="Agent 不需要组织架构，它需要上下文边界">Agent 不需要组织架构，它需要上下文边界</a><time datetime="2026-08-13T05:47:26.000Z" title="发表于 2026-08-13 13:47:26">2026-08-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/07/AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%A0%94%E5%8F%91%E7%BB%84%E7%BB%87%E5%8F%98%E9%9D%A9%E6%8E%A2%E7%B4%A2%EF%BC%9A%E4%BB%8E%E5%A4%9A%E4%BA%BA%E7%BB%84%E7%BB%87%E5%88%B0%E4%B8%80%E4%BA%BA%E7%BB%84%E7%BB%87/" title="AI 时代的软件研发组织变革探索：从多人组织到一人组织"><img src="/assets/img/one-person-ai-organization.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI 时代的软件研发组织变革探索：从多人组织到一人组织"/></a><div class="content"><a class="title" href="/2026/08/07/AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%A0%94%E5%8F%91%E7%BB%84%E7%BB%87%E5%8F%98%E9%9D%A9%E6%8E%A2%E7%B4%A2%EF%BC%9A%E4%BB%8E%E5%A4%9A%E4%BA%BA%E7%BB%84%E7%BB%87%E5%88%B0%E4%B8%80%E4%BA%BA%E7%BB%84%E7%BB%87/" title="AI 时代的软件研发组织变革探索：从多人组织到一人组织">AI 时代的软件研发组织变革探索：从多人组织到一人组织</a><time datetime="2026-08-07T00:53:25.000Z" title="发表于 2026-08-07 08:53:25">2026-08-07</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Chase Chou</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text"><div><span>结构之中看见秩序，张力之间寻找自由。 </span><span style="display:block;">From the tension of structure, we reclaim our clarity.</span></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

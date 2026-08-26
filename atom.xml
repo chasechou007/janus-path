@@ -5,11 +5,19 @@
   <id>https://blog.janus-path.com/</id>
   <link href="https://blog.janus-path.com/"/>
   <link href="https://blog.janus-path.com/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-08-16T14:19:43.670Z</updated>
+  <updated>2026-08-26T03:55:26.064Z</updated>
   <author>
     <name>Chase Chou</name>
     <uri>https://orcid.org/0009-0001-6381-2853</uri>
   </author>
+  <entry>
+    <title>为什么是多个 Agent，而不是一个万能 Harness</title>
+    <link href="https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/"/>
+    <id>https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/</id>
+    <published>2026-08-26T03:31:54.000Z</published>
+    <updated>2026-08-26T03:55:26.064Z</updated>
+    <summary type="text">模型能接入 Harness，不代表这个 Agent 已经值得信任。本文讨论为什么经过调校的 Harness + Model 应被视为完整 Agent Profile，以及 RelayPact 如何让可信 Host Agent 受控委托其他 Agent。</summary>
+  </entry>
   <entry>
     <title>否定容易，重构很难</title>
     <link href="https://blog.janus-path.com/2026/08/16/%E4%BA%BA%E7%B1%BB%E5%BE%88%E6%93%85%E9%95%BF%E9%80%9A%E8%BF%87%E5%90%A6%E5%AE%9A%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%9D%A5%E8%8E%B7%E5%BE%97%E6%96%B9%E5%90%91%EF%BC%8C%E5%8D%B4%E4%B8%8D%E6%93%85%E9%95%BF%E9%80%9A%E8%BF%87%E7%90%86%E8%A7%A3%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%9D%A5%E5%AE%8C%E6%88%90%E9%87%8D%E6%9E%84/"/>
@@ -161,13 +169,5 @@
     <published>2025-09-05T12:20:00.000Z</published>
     <updated>2026-08-05T06:54:08.456Z</updated>
     <summary type="text">一篇关于结构性批评价值的深度思考：为什么真正有改变力的批评需要代价？从“道不可轻传”到咨询悖论，本质上是对认知劳动的尊重。</summary>
-  </entry>
-  <entry>
-    <title>AI时代最稀缺的两种能力，不是技术，也不是业务</title>
-    <link href="https://blog.janus-path.com/2025/09/02/AI%E6%97%B6%E4%BB%A3%E6%9C%80%E7%A8%80%E7%BC%BA%E7%9A%84%E4%B8%A4%E7%A7%8D%E8%83%BD%E5%8A%9B%EF%BC%8C%E4%B8%8D%E6%98%AF%E6%8A%80%E6%9C%AF%EF%BC%8C%E4%B9%9F%E4%B8%8D%E6%98%AF%E4%B8%9A%E5%8A%A1/"/>
-    <id>https://blog.janus-path.com/2025/09/02/AI%E6%97%B6%E4%BB%A3%E6%9C%80%E7%A8%80%E7%BC%BA%E7%9A%84%E4%B8%A4%E7%A7%8D%E8%83%BD%E5%8A%9B%EF%BC%8C%E4%B8%8D%E6%98%AF%E6%8A%80%E6%9C%AF%EF%BC%8C%E4%B9%9F%E4%B8%8D%E6%98%AF%E4%B8%9A%E5%8A%A1/</id>
-    <published>2025-09-02T12:30:00.000Z</published>
-    <updated>2026-08-05T06:54:08.448Z</updated>
-    <summary type="text">在技术日新月异的AI时代，最稀缺的能力并不是技术本身，而是能穿透幻觉与混乱的结构洞察力与自我驯化力。本文从“技术与业务”之外的维度出发，探讨为何真正的关键在于结构性认知与心智演化能力。</summary>
   </entry>
 </feed>

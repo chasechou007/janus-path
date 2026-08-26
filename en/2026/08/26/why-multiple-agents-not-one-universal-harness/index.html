@@ -1,0 +1,475 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Why Multiple Agents, Rather Than One Universal Harness | JanusPath</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="AI Agent,Agent Harness,Agent Profile,RelayPact,Model Routing,Agent Delegation,Multi-Agent,Codex,Pi,OpenCode Go,Model-Harness Fit"><meta name="description" content="A model fitting into a harness does not mean the resulting agent is trustworthy. This essay explains why a calibrated Harness + Model should be treated as a complete Agent Profile, and how RelayPact e">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why Multiple Agents, Rather Than One Universal Harness">
+<meta property="og:url" content="https://blog.janus-path.com/en/2026/08/26/why-multiple-agents-not-one-universal-harness/">
+<meta property="og:site_name" content="JanusPath">
+<meta property="og:description" content="A model fitting into a harness does not mean the resulting agent is trustworthy. This essay explains why a calibrated Harness + Model should be treated as a complete Agent Profile, and how RelayPact e">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.janus-path.com/en/assets/img/agent-profiles-standardized-interfaces.png">
+<meta property="article:published_time" content="2026-08-26T03:31:54.000Z">
+<meta property="article:modified_time" content="2026-08-26T03:55:26.064Z">
+<meta property="article:author" content="Chase Chou">
+<meta property="article:tag" content="AI Agent">
+<meta property="article:tag" content="Multi-Agent Collaboration">
+<meta property="article:tag" content="Software Engineering">
+<meta property="article:tag" content="Architecture">
+<meta property="article:tag" content="RelayPact">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.janus-path.com/en/assets/img/agent-profiles-standardized-interfaces.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Why Multiple Agents, Rather Than One Universal Harness",
+  "url": "https://blog.janus-path.com/en/2026/08/26/why-multiple-agents-not-one-universal-harness/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.janus-path.com/en/2026/08/26/why-multiple-agents-not-one-universal-harness/"
+  },
+  "description": "A model fitting into a harness does not mean the resulting agent is trustworthy. This essay explains why a calibrated Harness + Model should be tre...",
+  "image": "https://blog.janus-path.com/en/assets/img/agent-profiles-standardized-interfaces.png",
+  "keywords": "AI Agent, Agent Harness, Agent Profile, RelayPact, Model Routing, Agent Delegation, Multi-Agent, Codex, Pi, OpenCode Go, Model-Harness Fit",
+  "articleSection": [
+    "Meta Engineering"
+  ],
+  "inLanguage": "en",
+  "datePublished": "2026-08-26T03:31:54.000Z",
+  "dateModified": "2026-08-26T03:55:26.064Z",
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": "https://blog.janus-path.com/en/#blog",
+    "name": "JanusPath",
+    "url": "https://blog.janus-path.com/en/"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Chase Chou",
+      "url": "https://orcid.org/0009-0001-6381-2853",
+      "sameAs": [
+        "https://orcid.org/0009-0001-6381-2853",
+        "https://github.com/chasechou007"
+      ]
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "JanusPath",
+    "url": "https://blog.janus-path.com/en/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.janus-path.com/en/assets/img/logo.png"
+    }
+  }
+}</script><link rel="shortcut icon" href="/en/assets/img/logo.png"><link rel="canonical" href="https://blog.janus-path.com/en/2026/08/26/why-multiple-agents-not-one-universal-harness/"><link rel="alternate" hreflang="zh-Hans" href="https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/"><link rel="alternate" hreflang="en" href="https://blog.janus-path.com/en/2026/08/26/why-multiple-agents-not-one-universal-harness/"><link rel="alternate" hreflang="x-default" href="https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/"><link rel="alternate" type="application/atom+xml" title="JanusPath Atom Feed" href="https://blog.janus-path.com/en/atom.xml"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/en/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/en/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Why Multiple Agents, Rather Than One Universal Harness',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/en/assets/img/avatar.png" onerror="this.onerror=null;this.src='/en/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/en/archives/"><div class="headline">Articles</div><div class="length-num">23</div></a><a href="/en/tags/"><div class="headline">Tags</div><div class="length-num">28</div></a><a href="/en/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/en/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/en/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/en/tags/"><span> Tags</span></a></div><div class="menus_item"><a class="site-page bilingual-switch" href="/2026/08/26/为什么是多个 Agent，而不是一个万能 Harness/" hreflang="zh-Hans" lang="zh-Hans" title="阅读这篇文章的简体中文版" aria-label="阅读这篇文章的简体中文版" data-translation-available="true"><i class="fas fa-language fa-fw"></i><span> 简中</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/en/assets/img/agent-profiles-standardized-interfaces.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/en/"><img class="site-icon" src="/en/assets/img/logo.png" alt="Logo"><span class="site-name">JanusPath</span></a><a class="nav-page-title" href="/en/"><span class="site-name">Why Multiple Agents, Rather Than One Universal Harness</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/en/"><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/en/categories/"><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/en/tags/"><span> Tags</span></a></div><div class="menus_item"><a class="site-page bilingual-switch" href="/2026/08/26/为什么是多个 Agent，而不是一个万能 Harness/" hreflang="zh-Hans" lang="zh-Hans" title="阅读这篇文章的简体中文版" aria-label="阅读这篇文章的简体中文版" data-translation-available="true"><i class="fas fa-language fa-fw"></i><span> 简中</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Why Multiple Agents, Rather Than One Universal Harness</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-08-26T03:31:54.000Z" title="Created 2026-08-26 11:31:54">2026-08-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-08-26T03:55:26.064Z" title="Updated 2026-08-26 11:55:26">2026-08-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/en/categories/meta-engineering/">Meta Engineering</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>Recently, I have been thinking about a question:</p>
+<blockquote>
+<p>Will future agent systems follow <strong>One Harness, Many Models</strong>, or <strong>Many Agent Profiles, Standardized Interfaces</strong>?</p>
+</blockquote>
+<p>I increasingly lean toward the latter.</p>
+<p>But let me clarify something first: I am not rejecting <strong>One Harness, Many Models</strong>.</p>
+<p>Quite the opposite. I use this pattern myself.</p>
+<p>Codex can connect to different models, and so can Pi. In many scenarios, this approach is simple, direct, and already works well.</p>
+<p>What I actually question is something else:</p>
+<blockquote>
+<p><strong>Should we expect one harness to cover every agent scenario simply by switching models?</strong></p>
+</blockquote>
+<p>My answer increasingly is: we do not need to.</p>
+<h2 id="First-What-Do-I-Mean-by-These-Terms"><a href="#First-What-Do-I-Mean-by-These-Terms" class="headerlink" title="First, What Do I Mean by These Terms?"></a>First, What Do I Mean by These Terms?</h2><p>An <strong>LLM</strong> is the model itself.</p>
+<p>A <strong>Harness</strong> is the full runtime and execution system that drives a model to perform agentic work, including the Agent Loop, Context, Tools, Session, Recovery, and more.</p>
+<p>What I call an <strong>Agent Profile</strong>—the thing that can actually be put to work—is closer to:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Agent Profile</span><br><span class="line">=</span><br><span class="line">Harness</span><br><span class="line">+</span><br><span class="line">Model</span><br><span class="line">+</span><br><span class="line">Configuration</span><br><span class="line">+</span><br><span class="line">Calibration</span><br></pre></td></tr></table></figure>
+
+<p>In other words, I do not think a Harness and an LLM should be evaluated in complete isolation from each other.</p>
+<p>The fact that a model can be connected to a Harness only tells us:</p>
+<blockquote>
+<p><strong>Integration works.</strong></p>
+</blockquote>
+<p>It does not necessarily tell us:</p>
+<blockquote>
+<p><strong>Agent works well.</strong></p>
+</blockquote>
+<h2 id="One-Harness-Can-Support-Many-Models-but-There-Are-Limits"><a href="#One-Harness-Can-Support-Many-Models-but-There-Are-Limits" class="headerlink" title="One Harness Can Support Many Models, but There Are Limits"></a>One Harness Can Support Many Models, but There Are Limits</h2><p>Many agent frameworks support multiple model providers:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Harness</span><br><span class="line">├── Model A</span><br><span class="line">├── Model B</span><br><span class="line">└── Model C</span><br></pre></td></tr></table></figure>
+
+<p>This is clearly valuable.</p>
+<p>It can help us:</p>
+<ul>
+<li>reduce model costs;</li>
+<li>perform model routing;</li>
+<li>compare different models;</li>
+<li>avoid dependence on a single provider;</li>
+<li>choose a more suitable model for each task.</li>
+</ul>
+<p>So there is nothing inherently wrong with <strong>One Harness, Many Models</strong>.</p>
+<p>The issue is that different models do not respond to Prompts, Context, Tools, and Agent Loops in the same way.</p>
+<p>A model that performs well in one Harness may not demonstrate the same capability in another.</p>
+<p>The reverse is also true.</p>
+<p>Loop, Context Strategy, Tool Strategy, Compaction, Session, and Recovery may look like relatively independent parts inside a Harness, but in real operation they all become coupled with model behavior.</p>
+<p>This is similar to building a car.</p>
+<p>Combining the best motor, chassis, suspension, and autonomous-driving system does not automatically produce the best car.</p>
+<p>The difficult part is tuning the whole vehicle.</p>
+<p>Agents are the same.</p>
+<blockquote>
+<p><strong>The strongest Model + the strongest Harness does not necessarily equal the strongest Agent.</strong></p>
+</blockquote>
+<p>What matters is whether the two fit—and whether the combination has been sufficiently calibrated and validated.</p>
+<h2 id="Plugin-Architecture-Reduces-Assembly-Cost-Not-Validation-Cost"><a href="#Plugin-Architecture-Reduces-Assembly-Cost-Not-Validation-Cost" class="headerlink" title="Plugin Architecture Reduces Assembly Cost, Not Validation Cost"></a>Plugin Architecture Reduces Assembly Cost, Not Validation Cost</h2><p>DeepSeek recently open-sourced its Harness around an interesting idea:</p>
+<blockquote>
+<p>Everything is a Plugin.</p>
+</blockquote>
+<p>The Model, Loop, Tool, Session, Sandbox, and other components can all be replaced.</p>
+<p>From the perspective of a Harness Framework, this is an elegant design.</p>
+<p>It lowers the cost of experimenting with and composing different approaches.</p>
+<p>But:</p>
+<blockquote>
+<p><strong>Composability does not guarantee capability.</strong></p>
+</blockquote>
+<p>Taking the strongest Loop from A, the best Context system from B, and the richest Tools from C does not automatically produce the strongest Agent.</p>
+<p>An Agent is not a deterministic program.</p>
+<p>The fact that a combination runs successfully does not mean it will remain reliable in real situations involving long tasks, complex Context, Tool Failure, or Session Recovery.</p>
+<p>This is why I increasingly believe:</p>
+<blockquote>
+<p><strong>The most underestimated cost of a Harness is not only development, but the continuous calibration and validation that follow.</strong></p>
+</blockquote>
+<p>Being able to assemble it is one thing.</p>
+<p>Being able to use it reliably over time is another.</p>
+<h2 id="Why-I-Still-Use-One-Harness-Many-Models"><a href="#Why-I-Still-Use-One-Harness-Many-Models" class="headerlink" title="Why I Still Use One Harness, Many Models"></a>Why I Still Use One Harness, Many Models</h2><p>This point matters.</p>
+<p>If I rejected <strong>One Harness, Many Models</strong> entirely, <a target="_blank" rel="noopener" href="https://github.com/echopath-labs/relaypact">RelayPact</a> would not look the way it does today.</p>
+<p>RelayPact currently supports:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Codex + Sol</span><br><span class="line">      ↓</span><br><span class="line">   RelayPact</span><br><span class="line">      ↓</span><br><span class="line">Codex + OpenCode Go (another model)</span><br></pre></td></tr></table></figure>
+
+<p>In other words, I am indeed using:</p>
+<blockquote>
+<p><strong>the same Harness + different models</strong></p>
+</blockquote>
+<p>to form different Agent Profiles.</p>
+<p>And I am continuing to work toward:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Codex + Sol</span><br><span class="line">      ↓</span><br><span class="line">   RelayPact</span><br><span class="line">      ↓</span><br><span class="line">Pi + OpenCode Go (another model)</span><br></pre></td></tr></table></figure>
+
+<p>This step goes further by crossing the Harness boundary.</p>
+<p>So my position has never been:</p>
+<blockquote>
+<p>One Harness, Many Models does not work.</p>
+</blockquote>
+<p>It is:</p>
+<blockquote>
+<p><strong>One Harness, Many Models is valuable, but there is no need to restrict every choice to one Harness.</strong></p>
+</blockquote>
+<h2 id="Codex-Sol-Is-Not-Universal-Either"><a href="#Codex-Sol-Is-Not-Universal-Either" class="headerlink" title="Codex + Sol Is Not Universal, Either"></a>Codex + Sol Is Not Universal, Either</h2><p>For now, I prefer to use:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Codex + Sol</span><br></pre></td></tr></table></figure>
+
+<p>as my primary Host Agent.</p>
+<p>The reason is simple.</p>
+<p>My workspace conventions, Skills, engineering habits, context organization, and judgment of Agent behavior have all developed around Codex over a long period of time.</p>
+<p>I know what it is good at.</p>
+<p>I also know where it tends to fail.</p>
+<p>The experience accumulated through long-term use is itself an engineering asset.</p>
+<p>But this does not mean Codex + Sol is best at everything.</p>
+<p>It still has limits in cost, quota, and speed, and some local tasks do not need to be completed by it at all.</p>
+<p>A minimal Harness such as Pi may be faster and lighter for bounded tasks with clear Context.</p>
+<p>Other models may also be more suitable for particular kinds of work.</p>
+<p>So what I want is not a universal Agent.</p>
+<p>It is:</p>
+<blockquote>
+<p><strong>a Host Agent that I have used for a long time and for which I have established an engineering baseline, able to call and manage other Agents that are better suited to specific tasks.</strong></p>
+</blockquote>
+<h2 id="This-Is-Where-RelayPact-Begins"><a href="#This-Is-Where-RelayPact-Begins" class="headerlink" title="This Is Where RelayPact Begins"></a>This Is Where RelayPact Begins</h2><p>I prefer a structure like this:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">             Codex + Sol</span><br><span class="line">            Trusted Host</span><br><span class="line">                 │</span><br><span class="line">             RelayPact</span><br><span class="line">         ┌───────┴────────┐</span><br><span class="line">         ↓                ↓</span><br><span class="line">Codex + another LLM   Pi + another LLM</span><br><span class="line">      Executor           Executor</span><br><span class="line">         │                  │</span><br><span class="line">         └───── Result ─────┘</span><br><span class="line">                  ↓</span><br><span class="line">              Host Review</span><br></pre></td></tr></table></figure>
+
+<p>The Host Agent is responsible for:</p>
+<ul>
+<li>understanding the overall task;</li>
+<li>defining task boundaries;</li>
+<li>deciding where to delegate;</li>
+<li>controlling authority;</li>
+<li>reviewing the result;</li>
+<li>making the final acceptance decision.</li>
+</ul>
+<p>The Executor Agent is responsible for completing specific work within clearly defined boundaries.</p>
+<p>The goal is not to increase the number of Agents.</p>
+<p>It is:</p>
+<blockquote>
+<p><strong>to use the differences in capability, speed, and cost across Agent Profiles while preserving a consistent quality baseline.</strong></p>
+</blockquote>
+<p>I summarize this principle as:</p>
+<blockquote>
+<p><strong>Start with one trusted host agent, then delegate outward.</strong></p>
+</blockquote>
+<h2 id="Model-Routing-and-Agent-Delegation-Do-Not-Conflict"><a href="#Model-Routing-and-Agent-Delegation-Do-Not-Conflict" class="headerlink" title="Model Routing and Agent Delegation Do Not Conflict"></a>Model Routing and Agent Delegation Do Not Conflict</h2><p>RelayPact is not intended to replace Model Routing.</p>
+<p>They solve different problems.</p>
+<h3 id="Model-Routing"><a href="#Model-Routing" class="headerlink" title="Model Routing"></a>Model Routing</h3><p>Model Routing answers:</p>
+<blockquote>
+<p>Which model should handle this inference request?</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Request</span><br><span class="line">   ↓</span><br><span class="line">Model Router</span><br><span class="line">   ↓</span><br><span class="line">Model A / B / C</span><br></pre></td></tr></table></figure>
+
+<h3 id="Agent-Delegation"><a href="#Agent-Delegation" class="headerlink" title="Agent Delegation"></a>Agent Delegation</h3><p>Agent Delegation answers:</p>
+<blockquote>
+<p>Which Agent should execute this complete task?</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Task</span><br><span class="line">  ↓</span><br><span class="line">Host Agent</span><br><span class="line">  ↓</span><br><span class="line">RelayPact</span><br><span class="line">  ↓</span><br><span class="line">Executor Agent</span><br></pre></td></tr></table></figure>
+
+<p>Once a task has its own goal, Workspace, multiple rounds of Tool Calling, authority boundaries, acceptance criteria, and result evidence, it is no longer merely a model invocation.</p>
+<p>The question changes from:</p>
+<blockquote>
+<p>Which model should answer this request?</p>
+</blockquote>
+<p>to:</p>
+<blockquote>
+<p><strong>Which agent should own and execute this task?</strong></p>
+</blockquote>
+<p>So I now think about the distinction this way:</p>
+<blockquote>
+<p><strong>Model Routing selects the model.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>RelayPact selects the Agent that will execute the task.</strong></p>
+</blockquote>
+<p>The two can coexist perfectly well.</p>
+<h2 id="RelayPact-Connects-Agents-Not-Models"><a href="#RelayPact-Connects-Agents-Not-Models" class="headerlink" title="RelayPact Connects Agents, Not Models"></a>RelayPact Connects Agents, Not Models</h2><p>This is the most important point in the essay.</p>
+<p>I do not want RelayPact merely to help Codex switch internally to a cheaper model.</p>
+<p>I want:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Codex + Sol</span><br></pre></td></tr></table></figure>
+
+<p>to be able to hand a task with a clear goal, scope, authority, and acceptance criteria to:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Codex + another LLM</span><br></pre></td></tr></table></figure>
+
+<p>and eventually to:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Pi + another LLM</span><br><span class="line">another Harness + another LLM</span><br></pre></td></tr></table></figure>
+
+<p>The key is not which model is on the other side.</p>
+<p>It is not even whether the other side uses the same Harness.</p>
+<p>The key is:</p>
+<blockquote>
+<p><strong>whether it is an independently evaluable Agent Profile with a clear capability boundary.</strong></p>
+</blockquote>
+<p>Therefore:</p>
+<blockquote>
+<p><strong>RelayPact connects agents, not models.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>It solves controlled delegation between Agents, not model switching.</strong></p>
+</blockquote>
+<h2 id="Why-Emphasize-“Controlled”"><a href="#Why-Emphasize-“Controlled”" class="headerlink" title="Why Emphasize “Controlled”?"></a>Why Emphasize “Controlled”?</h2><p>Different Agents may have different Harnesses, Models, Sessions, or even completely separate Workspaces.</p>
+<p>So I do not assume:</p>
+<blockquote>
+<p>If the Executor receives the Host’s entire history, it will necessarily arrive at exactly the same understanding.</p>
+</blockquote>
+<p>The same Context does not imply the same Interpreted State.</p>
+<p>This is why RelayPact emphasizes explicitly passing:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Goal</span><br><span class="line">Scope</span><br><span class="line">Constraints</span><br><span class="line">Relevant Context</span><br><span class="line">Authority</span><br><span class="line">Expected Output</span><br><span class="line">Required Evidence</span><br></pre></td></tr></table></figure>
+
+<p>Not:</p>
+<blockquote>
+<p>“Here is all my context. Continue from where I left off.”</p>
+</blockquote>
+<p>But:</p>
+<blockquote>
+<p>“Here is the task. Here are the boundaries, the authority, and the acceptance requirements.”</p>
+</blockquote>
+<p>The Executor Agent can complete the work autonomously.</p>
+<p>But whether the result is accepted remains a decision for the Host Agent or a human.</p>
+<blockquote>
+<p><strong>Delegation does not mean surrendering authority.</strong></p>
+</blockquote>
+<p>Execution responsibility is delegated.</p>
+<p>Final control is not.</p>
+<h2 id="Standardized-Protocols-Will-Make-This-Easier-Not-Eliminate-Multiple-Agents"><a href="#Standardized-Protocols-Will-Make-This-Easier-Not-Eliminate-Multiple-Agents" class="headerlink" title="Standardized Protocols Will Make This Easier, Not Eliminate Multiple Agents"></a>Standardized Protocols Will Make This Easier, Not Eliminate Multiple Agents</h2><p>Some people believe that the current variety of Harnesses is only a temporary consequence of fragmented model interfaces.</p>
+<p>As MCP, A2A, Runtime Protocols, and other interfaces become more standardized, they expect the future to converge on:</p>
+<blockquote>
+<p>One Harness, Many Models.</p>
+</blockquote>
+<p>I do not.</p>
+<p>Protocol standardization solves:</p>
+<blockquote>
+<p><strong>Interoperability</strong></p>
+</blockquote>
+<p>not:</p>
+<blockquote>
+<p><strong>Behavioral Equivalence</strong></p>
+</blockquote>
+<p>Standardized interfaces will certainly make it easier to switch between different Agents.</p>
+<p>But they will not turn those Agents into the same kind of Agent.</p>
+<p>Standards unify the boundaries between Agents.</p>
+<p>The differences remain inside them.</p>
+<p>This is why I expect the future to look more like:</p>
+<blockquote>
+<p><strong>Many Agent Profiles, Standardized Interfaces</strong></p>
+</blockquote>
+<p>The more standardized the protocols become, the easier it is for me to switch among different Agents.</p>
+<p>It does not mean that I need to put every model into the same Harness.</p>
+<h2 id="The-Three-Layers-of-EchoPath-Labs"><a href="#The-Three-Layers-of-EchoPath-Labs" class="headerlink" title="The Three Layers of EchoPath Labs"></a>The Three Layers of EchoPath Labs</h2><p>This line of thought has also helped me clarify the relationship among OpenDomain, RelayPact, and EchoPath.</p>
+<h3 id="OpenDomain-—-Meaning"><a href="#OpenDomain-—-Meaning" class="headerlink" title="OpenDomain — Meaning"></a>OpenDomain — Meaning</h3><p>Enable different Agents to share relatively stable business meaning.</p>
+<blockquote>
+<p><strong>What does it mean?</strong></p>
+</blockquote>
+<h3 id="RelayPact-—-Bounded-Action"><a href="#RelayPact-—-Bounded-Action" class="headerlink" title="RelayPact — Bounded Action"></a>RelayPact — Bounded Action</h3><p>Enable different Agents to delegate tasks with clear goals, boundaries, and evidence.</p>
+<blockquote>
+<p><strong>What should be handed off and executed?</strong></p>
+</blockquote>
+<h3 id="EchoPath-—-Continuity"><a href="#EchoPath-—-Continuity" class="headerlink" title="EchoPath — Continuity"></a>EchoPath — Continuity</h3><p>Observe what happened, and determine how to continue and recover after drift or interruption.</p>
+<blockquote>
+<p><strong>What happened, and how do we continue?</strong></p>
+</blockquote>
+<p>This can be compressed further:</p>
+<blockquote>
+<p><strong>OpenDomain preserves meaning.</strong></p>
+<p><strong>RelayPact bounds action.</strong></p>
+<p><strong>EchoPath preserves continuity.</strong></p>
+</blockquote>
+<h2 id="Closing-Thoughts"><a href="#Closing-Thoughts" class="headerlink" title="Closing Thoughts"></a>Closing Thoughts</h2><p>I am not opposed to <strong>One Harness, Many Models</strong>.</p>
+<p>It is already an effective way to build Agents, and I use it myself.</p>
+<p>But my work usually involves longer Context, more complex engineering, sustained execution, and higher quality requirements.</p>
+<p>In these situations, I am increasingly unwilling to treat:</p>
+<blockquote>
+<p>the model can be connected</p>
+</blockquote>
+<p>as equivalent to:</p>
+<blockquote>
+<p>this Agent is now trustworthy.</p>
+</blockquote>
+<p>I prefer to treat a calibrated and validated:</p>
+<blockquote>
+<p><strong>Harness + Model</strong></p>
+</blockquote>
+<p>as a complete Agent Profile.</p>
+<p>Then a Host Agent that I have used over time and for which I have established an engineering baseline can delegate, under explicit controls, to other Agents better suited to particular tasks.</p>
+<p>RelayPact is therefore not a rejection of Model Routing.</p>
+<p>It takes one more step beyond Model Routing:</p>
+<blockquote>
+<p><strong>If different combinations of Harnesses and models have their own value, why must every choice be constrained to a single Harness?</strong></p>
+</blockquote>
+<p><strong>RelayPact connects agents, not models.</strong></p>
+<p><strong>It solves controlled delegation between Agents, not model switching.</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://orcid.org/0009-0001-6381-2853">Chase Chou</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://blog.janus-path.com/en/2026/08/26/why-multiple-agents-not-one-universal-harness/">https://blog.janus-path.com/en/2026/08/26/why-multiple-agents-not-one-universal-harness/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/en/tags/AI-Agent/">AI Agent</a><a class="post-meta__tags" href="/en/tags/Multi-Agent-Collaboration/">Multi-Agent Collaboration</a><a class="post-meta__tags" href="/en/tags/Software-Engineering/">Software Engineering</a><a class="post-meta__tags" href="/en/tags/Architecture/">Architecture</a><a class="post-meta__tags" href="/en/tags/RelayPact/">RelayPact</a></div><div class="post-share"><div class="social-share" data-image="/en/assets/img/agent-profiles-standardized-interfaces.png" data-sites="facebook,twitter,wechat,weibo,qq,linkedin"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/en/2026/08/16/understand-a-structure-before-rebuilding-it/" title="Rejection Is Easy; Reconstruction Is Hard"><img class="cover" src="/en/assets/img/understand-before-rebuilding-structures.png" onerror="onerror=null;src='/en/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Rejection Is Easy; Reconstruction Is Hard</div></div><div class="info-2"><div class="info-item-1">I recently watched Christopher Nolan’s The Odyssey. What stayed with me most was not Odysseus’s adventure itself, but the larger backdrop: an old order is coming to an end. The Trojan War has dragged on for years. Traditional heroism, the rules of war, and relationships of trust are all beginning to fail. The war is ultimately ended not by greater force, but by the Trojan Horse. Deception replaces direct confrontation. This makes one interpretation tempting:  Because people began using scheme...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/en/2026/08/13/agents-need-context-boundaries-not-org-charts/" title="Agents Don&#39;t Need Org Charts; They Need Context Boundaries"><img class="cover" src="/en/assets/img/agent-context-boundaries.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-13</div><div class="info-item-2">Agents Don&#39;t Need Org Charts; They Need Context Boundaries</div></div><div class="info-2"><div class="info-item-1">Recently, while using Codex, I have gradually settled into a highly efficient way of working. I keep separate Workspaces and Threads for different projects, then use one master Thread to delegate tasks, receive results, and make the first round of decisions. It looks roughly like this: 1234567Human  ↓Master Thread  ↓├── Workspace A / Thread A├── Workspace B / Thread B└── Workspace C / Thread C  This means I do not have to monitor many conversations at once. I only need to follow the master Th...</div></div></div></a><a class="pagination-related" href="/en/2026/08/01/rethinking-password-management-in-the-agent-era/" title="Rethinking Password Management in the Agent Era"><img class="cover" src="/en/assets/img/rethinking-password-management-agent-era.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-01</div><div class="info-item-2">Rethinking Password Management in the Agent Era</div></div><div class="info-2"><div class="info-item-1">Recently, I open-sourced a local-first password and token manager called KeptNear. My initial reason for building it was simple: I wanted a local password manager with a friendly interface—one whose data genuinely remained under the user’s control. Later, as I used Codex to handle more and more real work, I discovered another problem: Agents need credentials too. GitHub Tokens, API Keys, database passwords, cloud platform Access Keys—these credentials are usually scattered across environment ...</div></div></div></a><a class="pagination-related" href="/en/2026/08/05/stronger-agents-need-better-software-engineering/" title="The Stronger the Agent, the More We Need Software Engineering"><img class="cover" src="/en/assets/img/stronger-agents-need-software-engineering.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-05</div><div class="info-item-2">The Stronger the Agent, the More We Need Software Engineering</div></div><div class="info-2"><div class="info-item-1">The more I use Codex in real development work, the more convinced I become of one thing: AI is changing how software gets built, but it is not making decades of software engineering thinking obsolete. If anything, the opposite may be true. As agents become better at understanding requirements, modifying code, running tests, and autonomously driving complex tasks forward, many practices originally designed to improve developer productivity and control complexity are beginning to reveal a new k...</div></div></div></a><a class="pagination-related" href="/en/2026/03/25/ai-agent-semantic-drift/" title="AI Agents Are Powerful, but They Drift"><img class="cover" src="/en/assets/img/md_article0004.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-25</div><div class="info-item-2">AI Agents Are Powerful, but They Drift</div></div><div class="info-2"><div class="info-item-1">Recently, AI agents have often been described as systems that can “take over everything.” They can write code, run projects, and execute complex workflows automatically. Some people even believe they can already replace engineers. After using them in practice, however, I have reached almost the opposite conclusion:  Agents are powerful, but their boundaries are just as clear.   1. A Context Window Is Not MemoryPeople often point out that:  “Models now support 200k-token context windows, or ev...</div></div></div></a><a class="pagination-related" href="/en/2026/06/06/from-code-to-agent-governance/" title="From Writing Code to Governing Agents: Software Engineering&#39;s New Question in the AI Era"><img class="cover" src="/en/assets/img/from-code-to-agent-governance.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-06</div><div class="info-item-2">From Writing Code to Governing Agents: Software Engineering&#39;s New Question in the AI Era</div></div><div class="info-2"><div class="info-item-1">Recently, while using Codex to assist with development, I did something that seemed ordinary. I organized the development constraints, design habits, and engineering conventions I use most often into a Skill, allowing Codex to follow them automatically while executing tasks. It began as a simple cleanup exercise. Halfway through, I suddenly realized:  Perhaps the most important production activity in future software engineering will no longer be writing code, but extracting rules.  The indust...</div></div></div></a><a class="pagination-related" href="/en/2026/08/07/software-development-organizations-in-the-ai-era/" title="Software Organizations in the AI Era: From Multi-Person Teams to One-Person Organizations"><img class="cover" src="/en/assets/img/one-person-ai-organization.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-07</div><div class="info-item-2">Software Organizations in the AI Era: From Multi-Person Teams to One-Person Organizations</div></div><div class="info-2"><div class="info-item-1"> A reconsideration of the organizational paradigm of software development.  1. Why Talk About Organizations Rather Than AI?Over the past two years, most discussions about AI in software development have focused on tools:  Can AI write code? Can AI improve development efficiency? Will AI replace programmers?  All of these questions matter. But sustained practice has led us to an increasingly strong conclusion:  The biggest change AI brings may not be how software is developed, but how developm...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/en/assets/img/avatar.png" onerror="this.onerror=null;this.src='/en/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Chase Chou</div><div class="author-info-description"><span style="display: block; text-align: left;">Creator of JanusPath, writing where technology, civilization, philosophy, and institutions meet.</span></div><div class="site-data"><a href="/en/archives/"><div class="headline">Articles</div><div class="length-num">23</div></a><a href="/en/tags/"><div class="headline">Tags</div><div class="length-num">28</div></a><a href="/en/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/chasechou007" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://orcid.org/0009-0001-6381-2853" target="_blank" title="ORCID"><i class="fab fa-orcid" style="color: #A6CE39;"></i></a><a class="social-icon" href="mailto:chaseshou007@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #ea4335;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content"><span style="display: block;">Distinguish paths in the cracks; extract insight from the noise.</span></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#First-What-Do-I-Mean-by-These-Terms"><span class="toc-number">1.</span> <span class="toc-text">First, What Do I Mean by These Terms?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#One-Harness-Can-Support-Many-Models-but-There-Are-Limits"><span class="toc-number">2.</span> <span class="toc-text">One Harness Can Support Many Models, but There Are Limits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Plugin-Architecture-Reduces-Assembly-Cost-Not-Validation-Cost"><span class="toc-number">3.</span> <span class="toc-text">Plugin Architecture Reduces Assembly Cost, Not Validation Cost</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-I-Still-Use-One-Harness-Many-Models"><span class="toc-number">4.</span> <span class="toc-text">Why I Still Use One Harness, Many Models</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codex-Sol-Is-Not-Universal-Either"><span class="toc-number">5.</span> <span class="toc-text">Codex + Sol Is Not Universal, Either</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#This-Is-Where-RelayPact-Begins"><span class="toc-number">6.</span> <span class="toc-text">This Is Where RelayPact Begins</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Model-Routing-and-Agent-Delegation-Do-Not-Conflict"><span class="toc-number">7.</span> <span class="toc-text">Model Routing and Agent Delegation Do Not Conflict</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-Routing"><span class="toc-number">7.1.</span> <span class="toc-text">Model Routing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Agent-Delegation"><span class="toc-number">7.2.</span> <span class="toc-text">Agent Delegation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RelayPact-Connects-Agents-Not-Models"><span class="toc-number">8.</span> <span class="toc-text">RelayPact Connects Agents, Not Models</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Emphasize-%E2%80%9CControlled%E2%80%9D"><span class="toc-number">9.</span> <span class="toc-text">Why Emphasize “Controlled”?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Standardized-Protocols-Will-Make-This-Easier-Not-Eliminate-Multiple-Agents"><span class="toc-number">10.</span> <span class="toc-text">Standardized Protocols Will Make This Easier, Not Eliminate Multiple Agents</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Three-Layers-of-EchoPath-Labs"><span class="toc-number">11.</span> <span class="toc-text">The Three Layers of EchoPath Labs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenDomain-%E2%80%94-Meaning"><span class="toc-number">11.1.</span> <span class="toc-text">OpenDomain — Meaning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RelayPact-%E2%80%94-Bounded-Action"><span class="toc-number">11.2.</span> <span class="toc-text">RelayPact — Bounded Action</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EchoPath-%E2%80%94-Continuity"><span class="toc-number">11.3.</span> <span class="toc-text">EchoPath — Continuity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Closing-Thoughts"><span class="toc-number">12.</span> <span class="toc-text">Closing Thoughts</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/en/2026/08/26/why-multiple-agents-not-one-universal-harness/" title="Why Multiple Agents, Rather Than One Universal Harness"><img src="/en/assets/img/agent-profiles-standardized-interfaces.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="Why Multiple Agents, Rather Than One Universal Harness"/></a><div class="content"><a class="title" href="/en/2026/08/26/why-multiple-agents-not-one-universal-harness/" title="Why Multiple Agents, Rather Than One Universal Harness">Why Multiple Agents, Rather Than One Universal Harness</a><time datetime="2026-08-26T03:31:54.000Z" title="Created 2026-08-26 11:31:54">2026-08-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/en/2026/08/16/understand-a-structure-before-rebuilding-it/" title="Rejection Is Easy; Reconstruction Is Hard"><img src="/en/assets/img/understand-before-rebuilding-structures.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="Rejection Is Easy; Reconstruction Is Hard"/></a><div class="content"><a class="title" href="/en/2026/08/16/understand-a-structure-before-rebuilding-it/" title="Rejection Is Easy; Reconstruction Is Hard">Rejection Is Easy; Reconstruction Is Hard</a><time datetime="2026-08-16T12:27:23.000Z" title="Created 2026-08-16 20:27:23">2026-08-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/en/2026/08/15/structuralism-look-at-the-structure-before-judging-people/" title="Seeing the World Through Structuralism: Before Judging People, Look at the Structure"><img src="/en/assets/img/structuralism-look-at-the-structure.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="Seeing the World Through Structuralism: Before Judging People, Look at the Structure"/></a><div class="content"><a class="title" href="/en/2026/08/15/structuralism-look-at-the-structure-before-judging-people/" title="Seeing the World Through Structuralism: Before Judging People, Look at the Structure">Seeing the World Through Structuralism: Before Judging People, Look at the Structure</a><time datetime="2026-08-15T01:47:36.000Z" title="Created 2026-08-15 09:47:36">2026-08-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/en/2026/08/13/agents-need-context-boundaries-not-org-charts/" title="Agents Don't Need Org Charts; They Need Context Boundaries"><img src="/en/assets/img/agent-context-boundaries.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="Agents Don't Need Org Charts; They Need Context Boundaries"/></a><div class="content"><a class="title" href="/en/2026/08/13/agents-need-context-boundaries-not-org-charts/" title="Agents Don't Need Org Charts; They Need Context Boundaries">Agents Don't Need Org Charts; They Need Context Boundaries</a><time datetime="2026-08-13T05:47:26.000Z" title="Created 2026-08-13 13:47:26">2026-08-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/en/2026/08/07/software-development-organizations-in-the-ai-era/" title="Software Organizations in the AI Era: From Multi-Person Teams to One-Person Organizations"><img src="/en/assets/img/one-person-ai-organization.png" onerror="this.onerror=null;this.src='/en/img/404.jpg'" alt="Software Organizations in the AI Era: From Multi-Person Teams to One-Person Organizations"/></a><div class="content"><a class="title" href="/en/2026/08/07/software-development-organizations-in-the-ai-era/" title="Software Organizations in the AI Era: From Multi-Person Teams to One-Person Organizations">Software Organizations in the AI Era: From Multi-Person Teams to One-Person Organizations</a><time datetime="2026-08-07T00:53:25.000Z" title="Created 2026-08-07 08:53:25">2026-08-07</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Chase Chou</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text"><div><span>See order in structure, and find freedom in tension.</span></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/en/js/utils.js"></script><script src="/en/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

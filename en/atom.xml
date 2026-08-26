@@ -5,11 +5,19 @@
   <id>https://blog.janus-path.com/en/</id>
   <link href="https://blog.janus-path.com/en/"/>
   <link href="https://blog.janus-path.com/en/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-08-16T14:19:43.670Z</updated>
+  <updated>2026-08-26T03:55:26.064Z</updated>
   <author>
     <name>Chase Chou</name>
     <uri>https://orcid.org/0009-0001-6381-2853</uri>
   </author>
+  <entry>
+    <title>Why Multiple Agents, Rather Than One Universal Harness</title>
+    <link href="https://blog.janus-path.com/en/2026/08/26/why-multiple-agents-not-one-universal-harness/"/>
+    <id>https://blog.janus-path.com/en/2026/08/26/why-multiple-agents-not-one-universal-harness/</id>
+    <published>2026-08-26T03:31:54.000Z</published>
+    <updated>2026-08-26T03:55:26.064Z</updated>
+    <summary type="text">A model fitting into a harness does not mean the resulting agent is trustworthy. This essay explains why a calibrated Harness + Model should be treated as a complete Agent Profile, and how RelayPact enables a trusted Host Agent to delegate bounded work to other agents.</summary>
+  </entry>
   <entry>
     <title>Rejection Is Easy; Reconstruction Is Hard</title>
     <link href="https://blog.janus-path.com/en/2026/08/16/understand-a-structure-before-rebuilding-it/"/>
@@ -161,13 +169,5 @@
     <published>2025-09-05T12:20:00.000Z</published>
     <updated>2026-08-05T06:54:08.455Z</updated>
     <summary type="text">A reflection on the value of structural criticism: why does feedback capable of producing genuine change require a cost? From the warning that ‘the Way should not be transmitted lightly’ to the consulting paradox, the issue is ultimately respect for cognitive labor.</summary>
-  </entry>
-  <entry>
-    <title>The Two Rarest Capabilities in the AI Era Are Neither Technology nor Business</title>
-    <link href="https://blog.janus-path.com/en/2025/09/02/two-rarest-skills-in-ai-era-not-tech-or-business/"/>
-    <id>https://blog.janus-path.com/en/2025/09/02/two-rarest-skills-in-ai-era-not-tech-or-business/</id>
-    <published>2025-09-02T12:30:00.000Z</published>
-    <updated>2026-08-05T06:54:08.453Z</updated>
-    <summary type="text">In an AI era of relentless technical change, the scarcest capabilities are not technologies themselves, but the ability to model a chaotic business world and the engineering ability to turn those models into evolving systems.</summary>
   </entry>
 </feed>

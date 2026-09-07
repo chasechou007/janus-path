@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/2026/07/13/why-i-started-simplifying-ai-agents/</loc>
+    <loc>https://blog.janus-path.com/en/2025/09/09/why-philosophy-always-belongs-to-elites/</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -110,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/2025/09/09/why-philosophy-always-belongs-to-elites/</loc>
+    <loc>https://blog.janus-path.com/en/2026/07/13/why-i-started-simplifying-ai-agents/</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -155,15 +155,6 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/2026/08/01/rethinking-password-management-in-the-agent-era/</loc>
-    
-    <lastmod>2026-08-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.janus-path.com/en/2026/06/17/januspath-from-structural-reflection-to-origin-observation/</loc>
     
     <lastmod>2026-08-05</lastmod>
@@ -191,6 +182,24 @@
   </url>
   
   <url>
+    <loc>https://blog.janus-path.com/en/2026/08/01/rethinking-password-management-in-the-agent-era/</loc>
+    
+    <lastmod>2026-08-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.janus-path.com/en/2025/08/31/janus-path-overview-escape-cognitive-traps/</loc>
+    
+    <lastmod>2026-08-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.janus-path.com/en/2026/03/24/if-no-one-codes-ai-worsens/</loc>
     
     <lastmod>2026-08-05</lastmod>
@@ -201,15 +210,6 @@
   
   <url>
     <loc>https://blog.janus-path.com/en/2026/06/06/from-code-to-agent-governance/</loc>
-    
-    <lastmod>2026-08-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.janus-path.com/en/2025/08/31/janus-path-overview-escape-cognitive-traps/</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -259,20 +259,6 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/tags/Codex/</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.janus-path.com/en/tags/OpenSpec/</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.janus-path.com/en/tags/Context-Governance/</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -308,20 +294,6 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/tags/team-collaboration/</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.janus-path.com/en/tags/Skill/</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.janus-path.com/en/tags/JanusPath/</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -343,7 +315,35 @@
   </url>
   
   <url>
+    <loc>https://blog.janus-path.com/en/tags/Codex/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.janus-path.com/en/tags/OpenSpec/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.janus-path.com/en/tags/Cognition/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.janus-path.com/en/tags/team-collaboration/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.janus-path.com/en/tags/Skill/</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

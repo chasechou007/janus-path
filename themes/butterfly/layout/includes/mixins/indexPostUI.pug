@@ -1,7 +1,12 @@
 mixin indexPostUI()
   - const indexLayout = theme.index_layout
   - const masonryLayoutClass = (indexLayout === 6 || indexLayout === 7) ? 'masonry' : ''
-  #recent-posts.recent-posts.nc(class=masonryLayoutClass)
+  - const discovery = globalPageType === 'home' ? homepage_discovery() : null
+  #recent-posts.recent-posts.nc(class=[masonryLayoutClass, discovery ? 'home-discovery' : ''])
+    if discovery
+      if page.current === 1
+        include ../home-start.pug
+      h2.home-latest-heading= discovery.latest
     .recent-post-items
       each article, index in page.posts.data
         .recent-post-item
@@ -47,7 +52,7 @@ mixin indexPostUI()
                   span.article-meta-separator |
                   each item, index in article.categories.data
                     i.fas.fa-inbox
-                    a(href=url_for(item.path)).article-meta__categories #[=item.name]
+                    a(href=url_for(item.path)).article-meta__categories= discovery ? (discovery.topics.find(topic => topic.category === item.name) || { title: item.name }).title : item.name
                     if index < article.categories.data.length - 1
                       i.fas.fa-angle-right.article-meta-link
               if theme.post_meta.page.tags && article.tags.length > 0
@@ -105,9 +110,14 @@ mixin indexPostUI()
                           i.fa-solid.fa-spinner.fa-spin
 
             //- Display the article introduction on homepage
-            - const content = postDesc(article)
-            if content
-              .content!=content
+            if discovery
+              - const summary = homepage_summary(article)
+              if summary
+                .content= summary
+            else
+              - const content = postDesc(article)
+              if content
+                .content!=content
 
         if theme.ad && theme.ad.index
           if (index + 1) % 3 === 0

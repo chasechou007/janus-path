@@ -1,0 +1,10 @@
+section.home-start(aria-labelledby='home-start-title')
+  .home-start-heading
+    h2#home-start-title= discovery.heading
+    p= discovery.introduction
+  ol.home-start-list
+    each article in discovery.starting_points
+      li
+        a.home-start-link(href=url_for(article.path))
+          span.home-start-label= article.label
+          span.home-start-title= article.title

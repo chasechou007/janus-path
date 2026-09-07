@@ -8,6 +8,7 @@
     "build:en": "hexo clean --config _config.yml,_config.en.yml && hexo generate --config _config.yml,_config.en.yml && npm run optimize:images",
     "optimize:images": "node tools/optimize-images.js",
     "test:images": "node --test tools/optimize-images.test.js",
+    "test:homepage": "node --test tools/homepage.test.js",
     "check:bilingual": "node tools/verify-bilingual-build.js",
     "clean": "hexo clean",
     "deploy": "npm run build && hexo deploy",

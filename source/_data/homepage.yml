@@ -1,0 +1,55 @@
+starting_points:
+  - key: januspath-from-structural-reflection-to-origin-observation
+    label:
+      zh-CN: 认识 JanusPath
+      en: Understand JanusPath
+  - key: structuralism-look-at-the-structure-before-judging-people
+    label:
+      zh-CN: 观察现实
+      en: Read the world
+  - key: stronger-agents-need-better-software-engineering
+    label:
+      zh-CN: 走向实践
+      en: Put it into practice
+
+zh-CN:
+  heading: 从这里开始
+  introduction: 三篇文章，走进这里的思想与实践。
+  latest: 最新文章
+  topics_heading: 按主题探索
+  tags: 所有标签
+  archives: 文章归档
+  topics:
+    - category: Janus-path-prototype
+      title: JanusPath · 原型篇
+      description: 从观察方式出发，理解结构与认知。
+    - category: janus-path-applied
+      title: JanusPath · 应用篇
+      description: 把结构视角带入组织、社会与日常。
+    - category: cosmic-structures
+      title: 结构宇宙
+      description: 探索复杂系统背后的秩序与演化。
+    - category: MetaEngineering
+      title: 元工程术
+      description: 思考软件、AI 与工程协作的方法。
+
+en:
+  heading: Start here
+  introduction: Three ways into the ideas and practice behind this blog.
+  latest: Latest writing
+  topics_heading: Explore by topic
+  tags: All tags
+  archives: Article archive
+  topics:
+    - category: JanusPath Foundations
+      title: JanusPath · Foundations
+      description: How observation shapes structure and understanding.
+    - category: JanusPath Applied
+      title: JanusPath · Applied
+      description: A structural view of organizations, society and everyday life.
+    - category: Cosmic Structures
+      title: Cosmic Structures
+      description: Order and evolution within complex systems.
+    - category: Meta Engineering
+      title: Meta Engineering
+      description: Methods for software, AI and engineering collaboration.

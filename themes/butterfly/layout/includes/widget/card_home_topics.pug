@@ -1,0 +1,12 @@
+- const homeTopics = homepage_discovery()
+nav.card-widget.home-topics(aria-labelledby='home-topics-title')
+  h2#home-topics-title= homeTopics.topics_heading
+  ul.home-topic-list
+    each topic in homeTopics.topics
+      li
+        a(href=url_for(topic.path))
+          span.home-topic-title= topic.title
+          span.home-topic-description= topic.description
+  .home-browse-links
+    a(href=url_for('/tags/'))= homeTopics.tags
+    a(href=url_for('/archives/'))= homeTopics.archives

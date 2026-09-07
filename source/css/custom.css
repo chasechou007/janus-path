@@ -371,3 +371,206 @@ a:hover,
     flex-direction: column;
   }
 }
+
+/* Long-form reading: scoped to posts so landing and research pages keep their layout. */
+.layout > #post {
+  min-width: 0;
+}
+
+#post #article-container {
+  max-width: 720px;
+  margin-inline: auto;
+  font-size: 18px;
+  line-height: 1.9;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+
+#post #article-container:lang(en) {
+  line-height: 1.8;
+}
+
+#post #article-container p {
+  margin: 0 0 1.25em;
+}
+
+#post #article-container :is(h1, h2, h3, h4, h5, h6) {
+  margin: 2em 0 .8em;
+  color: var(--jp-heading);
+  line-height: 1.45;
+  scroll-margin-top: 90px;
+}
+
+#post #article-container h1 { font-size: 1.85em; }
+#post #article-container h2 { font-size: 1.5em; }
+#post #article-container h3 { font-size: 1.25em; }
+#post #article-container h4 { font-size: 1.1em; }
+#post #article-container :is(h5, h6) { font-size: 1em; }
+
+#post #article-container > :first-child {
+  margin-top: 0;
+}
+
+#post #article-container :is(ul, ol) {
+  padding-inline-start: 1.5em;
+  margin-block: 0 1.25em;
+}
+
+#post #article-container li {
+  margin-block: .4em;
+  padding-inline-start: .15em;
+}
+
+#post #article-container li > :is(ul, ol) {
+  margin-block: .4em 0;
+}
+
+#post #article-container li > p {
+  margin-bottom: .5em;
+}
+
+#post #article-container blockquote {
+  margin: 1.5em 0;
+  padding: 1em 1.25em;
+  border-left-width: 3px;
+}
+
+#post #article-container blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+#post #article-container :is(pre, code) {
+  font-size: .85em;
+}
+
+#post #article-container :is(pre code, figure.highlight code) {
+  font-size: inherit;
+}
+
+#post #article-container :is(figure.highlight, pre[class*='language-']) {
+  max-width: 100%;
+  margin: 1.5em 0;
+  border: 1px solid var(--jp-border);
+  border-radius: var(--jp-control-radius);
+  line-height: 1.65;
+}
+
+#post #article-container .highlight-tools {
+  min-height: 40px;
+}
+
+#post #article-container .highlight-tools .copy-button {
+  padding: 12px;
+}
+
+#post #article-container :is(.table-wrap, figure.highlight) {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+#post #article-container .table-wrap {
+  margin: 1.5em 0;
+  border: 1px solid var(--jp-border);
+  border-radius: var(--jp-control-radius);
+}
+
+#post #article-container .table-wrap table {
+  margin: 0;
+  font-size: .9em;
+  line-height: 1.65;
+}
+
+#post #article-container .table-wrap :is(th, td) {
+  padding: .75em 1em;
+  min-width: 7em;
+}
+
+#post #article-container hr {
+  margin: 2.5em 0;
+}
+
+#post #article-container a:not(.headerlink) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .2em;
+}
+
+.post #aside-content #card-toc .toc-content .toc-link {
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.post #aside-content #card-toc .toc-content {
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+@media screen and (max-width: 900px) {
+  #rightside.post-tools > div > :is(button, a) {
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+    line-height: 44px;
+  }
+
+  #rightside.post-tools #mobile-toc-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+    min-width: 84px;
+    padding: 0 12px;
+    font-size: 14px;
+    box-shadow: var(--jp-shadow-hover);
+  }
+
+  .post #aside-content #card-toc {
+    right: 16px;
+    bottom: 180px;
+    width: calc(100vw - 32px);
+    max-width: 360px;
+    max-height: calc(100dvh - 260px);
+    padding: 20px;
+    visibility: hidden;
+  }
+
+  .post #aside-content #card-toc.open {
+    visibility: visible;
+  }
+
+  .post #aside-content #card-toc .toc-content {
+    width: 100%;
+    margin: 0;
+    max-height: calc(100dvh - 330px);
+  }
+
+  .post #aside-content #card-toc .toc-content > ol {
+    margin: 0 !important;
+  }
+
+  .post #aside-content #card-toc .toc-content .toc-link {
+    min-height: 44px;
+    padding-block: 11px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .post .layout {
+    padding: 20px 10px;
+  }
+
+  .post .layout > #post {
+    padding: 28px 20px;
+  }
+
+  #post #article-container {
+    font-size: 17px;
+  }
+
+  #post #article-container blockquote {
+    padding: .85em 1em;
+  }
+}

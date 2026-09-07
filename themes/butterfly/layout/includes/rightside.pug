@@ -20,8 +20,9 @@ mixin rightsideItem(array)
             i.fas.fa-arrows-alt-h
       when 'toc'
         if showToc
-          button#mobile-toc-button.close(type="button" title=_p("rightside.toc"))
-            i.fas.fa-list-ul
+          button#mobile-toc-button.close(type="button" title=_p("rightside.toc") aria-label=_p("rightside.toc") aria-controls="card-toc" aria-expanded="false")
+            i.fas.fa-list-ul(aria-hidden="true")
+            span= _p("aside.card_toc")
       when 'chat'
         if chat.rightside_button && chat.use
           button#chat-btn(type="button" title=_p("rightside.chat") style="display:none")
@@ -36,7 +37,7 @@ mixin rightsideItem(array)
 - const showArray = enable && show ? show.split(',') : ['toc','chat','comment']
 - const needCogBtn = (enable && hide) || (!enable && ((globalPageType === 'post' && (readmode || translate.enable || (darkmode.enable && darkmode.button))) || (translate.enable || (darkmode.enable && darkmode.button))))
 
-#rightside
+#rightside(class=globalPageType === "post" ? "post-tools" : "")
   #rightside-config-hide
     if hideArray.length
       +rightsideItem(hideArray)

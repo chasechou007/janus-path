@@ -13,14 +13,14 @@ nav#nav
           span= '  ' + _p('post.back_to_home')
 
   #menus
+    if theme.menu
+      != partial('includes/header/menu_item', {}, {cache: false})
     if theme.search.use
       #search-button
         button.site-page.social-icon.search(type='button' data-open-search aria-label=_p('search.title') aria-haspopup='dialog' aria-controls='jp-search-dialog')
           i.fas.fa-search.fa-fw(aria-hidden='true')
           span= ' ' + _p('search.title')
     if theme.menu
-      != partial('includes/header/menu_item', {}, {cache: false})
-
       #toggle-menu
         span.site-page
           i.fas.fa-bars.fa-fw

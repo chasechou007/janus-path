@@ -42,6 +42,13 @@ search:
     hits_empty: 'No results found for: ${query}'
     hits_stats: '${hits} results found in ${time} ms'
   local_search:
+    initial: Search English articles. Separate multiple terms with spaces.
+    error: Could not load the article index. Please try again.
+    empty: No articles found. Try a shorter keyword.
+    count: 'Articles found: {count}'
+    retry: Try again
+    close: Close search
+    label: Search English articles
     hits_empty: 'No results found for: ${query}'
     hits_stats: '${hits} articles found'
 

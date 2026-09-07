@@ -15,4 +15,8 @@ if theme.menu
           .headline= _p('aside.categories')
           .length-num= site.categories.length
 
+      if theme.search.use === 'local_search'
+        button.sidebar-search(type='button' data-open-search aria-haspopup='dialog' aria-controls='jp-search-dialog')
+          i.fas.fa-search.fa-fw(aria-hidden='true')
+          span= ' ' + _p('search.title')
       != partial('includes/header/menu_item', {}, { cache: false })

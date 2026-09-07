@@ -43,6 +43,13 @@ search:
     hits_empty: '未找到符合您查询的内容：${query}'
     hits_stats: '找到 ${hits} 条结果，耗时 ${time} 毫秒'
   local_search:
+    initial: 输入关键词，查找本站中文文章。多个词请用空格分开。
+    error: 暂时无法加载文章索引，请重试。
+    empty: 没有找到相关文章，试试更短的关键词。
+    count: 找到 {count} 篇文章
+    retry: 重新加载
+    close: 关闭搜索
+    label: 搜索中文文章
     hits_empty: '未找到符合您查询的内容：${query}'
     hits_stats: '共找到 ${hits} 篇文章'
 

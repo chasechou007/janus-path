@@ -12,7 +12,8 @@
     "check:bilingual": "node tools/verify-bilingual-build.js",
     "clean": "hexo clean",
     "deploy": "npm run build && hexo deploy",
-    "server": "npm run build && hexo server --static"
+    "server": "npm run build && hexo server --static",
+    "test:search": "node --test tools/search.test.js"
   },
   "hexo": {
     "version": "7.3.0"

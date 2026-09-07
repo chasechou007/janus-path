@@ -15,8 +15,8 @@ nav#nav
   #menus
     if theme.search.use
       #search-button
-        span.site-page.social-icon.search
-          i.fas.fa-search.fa-fw
+        button.site-page.social-icon.search(type='button' data-open-search aria-label=_p('search.title') aria-haspopup='dialog' aria-controls='jp-search-dialog')
+          i.fas.fa-search.fa-fw(aria-hidden='true')
           span= ' ' + _p('search.title')
     if theme.menu
       != partial('includes/header/menu_item', {}, {cache: false})

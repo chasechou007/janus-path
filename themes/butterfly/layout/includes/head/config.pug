@@ -19,16 +19,15 @@
 
   let localSearch = 'undefined'
   if (theme.search.use === 'local_search') {
-    const { CDN, preload, top_n_per_article, unescape } = theme.search.local_search
     localSearch = JSON.stringify({
-      path: CDN || config.root + config.search.path,
-      preload,
-      top_n_per_article,
-      unescape,
+      path: config.root + config.search.path,
+      locale: config.bilingual.locale,
       languages: {
-        // search languages
-        hits_empty: _p("search.local_search.hits_empty"),
-        hits_stats: _p("search.local_search.hits_stats"),
+        initial: _p('search.local_search.initial'),
+        loading: _p('search.load_data'),
+        error: _p('search.local_search.error'),
+        empty: _p('search.local_search.empty'),
+        count: _p('search.local_search.count')
       }
     })
   }

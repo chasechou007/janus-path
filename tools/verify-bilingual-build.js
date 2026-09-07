@@ -141,6 +141,32 @@ function translatedPairs () {
 
 function verifyBilingualBuild () {
   const pairs = translatedPairs()
+  const { load } = require('cheerio')
+  for (const [locale, root] of [['zh-CN', '/'], ['en', '/en/']]) {
+    const indexPath = path.join(publicDir, root, 'search.json')
+    const index = JSON.parse(read(indexPath))
+    const expected = sourcePosts().filter(post => post.locale === locale)
+      .filter(post => {
+        const data = frontMatter.parse(read(post.source))
+        return data.published !== false && !data.encrypt && !data.password
+      }).map(post => new URL(post.url).pathname).sort()
+    if (index.locale !== locale || JSON.stringify(index.posts.map(post => post.url).sort()) !== JSON.stringify(expected)) {
+      throw new Error(`Search index must include exactly the eligible ${locale} posts`)
+    }
+    for (const post of index.posts) {
+      const html = read(path.join(publicDir, decodeURIComponent(post.url), 'index.html'))
+      const $ = load(html)
+      if ($('html').attr('lang') !== locale || !$('h1').text().includes(post.title) || !post.content) {
+        throw new Error(`Search result must resolve to the matching locale/title/prose: ${post.url}`)
+      }
+      if ($('#jp-search-dialog').length !== 1 || $('[data-open-search]').length !== 2) {
+        throw new Error(`Search entry points must exist on article pages: ${post.url}`)
+      }
+    }
+    const home = read(path.join(publicDir, root, 'index.html'))
+    expectIncludes(home, `"path":"${root}search.json"`, 'Search must load its current locale index')
+    console.log(`Search index verified: ${locale}, ${index.posts.length} articles, ${fs.statSync(indexPath).size} bytes`)
+  }
   const agentProfilesPair = pairs.find(pair => pair.translationKey === 'why-multiple-agents-not-one-universal-harness')
   if (!agentProfilesPair) throw new Error('Multiple agent profiles article pair is missing')
 

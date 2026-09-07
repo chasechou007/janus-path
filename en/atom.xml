@@ -5,11 +5,19 @@
   <id>https://blog.janus-path.com/en/</id>
   <link href="https://blog.janus-path.com/en/"/>
   <link href="https://blog.janus-path.com/en/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-08-26T03:55:26.064Z</updated>
+  <updated>2026-09-07T12:18:43.133Z</updated>
   <author>
     <name>Chase Chou</name>
     <uri>https://orcid.org/0009-0001-6381-2853</uri>
   </author>
+  <entry>
+    <title>Modeling Thought Through Language: EchoPath Labs Is My First Step</title>
+    <link href="https://blog.janus-path.com/en/2026/09/07/modeling-thought-through-language-echopath-labs/"/>
+    <id>https://blog.janus-path.com/en/2026/09/07/modeling-thought-through-language-echopath-labs/</id>
+    <published>2026-09-07T09:28:00.000Z</published>
+    <updated>2026-09-07T12:18:43.133Z</updated>
+    <summary type="text">My long-term goal is to model how people think through the words they express. EchoPath Labs is my first step, connecting meaning, bounded action, and cognitive history in engineering collaboration so that interpretations can be tested and revised through practice.</summary>
+  </entry>
   <entry>
     <title>Why Multiple Agents, Rather Than One Universal Harness</title>
     <link href="https://blog.janus-path.com/en/2026/08/26/why-multiple-agents-not-one-universal-harness/"/>
@@ -161,13 +169,5 @@
     <published>2025-09-09T12:44:32.000Z</published>
     <updated>2026-08-05T06:54:08.454Z</updated>
     <summary type="text">Why does philosophy feel so inaccessible? By examining linguistic barriers, institutional divisions of labor, and structural silence, this article argues that philosophy is “elitized” when the right to ask fundamental questions is unevenly distributed.</summary>
-  </entry>
-  <entry>
-    <title>Why High-Quality Criticism Should Be Paid For</title>
-    <link href="https://blog.janus-path.com/en/2025/09/05/why-quality-criticism-should-charge/"/>
-    <id>https://blog.janus-path.com/en/2025/09/05/why-quality-criticism-should-charge/</id>
-    <published>2025-09-05T12:20:00.000Z</published>
-    <updated>2026-08-05T06:54:08.455Z</updated>
-    <summary type="text">A reflection on the value of structural criticism: why does feedback capable of producing genuine change require a cost? From the warning that ‘the Way should not be transmitted lightly’ to the consulting paradox, the issue is ultimately respect for cognitive labor.</summary>
   </entry>
 </feed>

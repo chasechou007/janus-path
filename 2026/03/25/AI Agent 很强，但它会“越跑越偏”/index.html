@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AI Agent 很强，但它会“越跑越偏” | 观澈辨机</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="AI Agent, 智能体, 语义漂移, 上下文窗口, LLM记忆, 复杂系统, 架构设计, 结构主权"><meta name="description" content="AI Agent 在短任务中表现出色，但在长流程中往往会出现“语义漂移”。本文探讨了上下文窗口与持久化记忆的本质区别，指出 Agent 当前的短板在于无法稳定承载系统结构，工程的结构主权依然需要人类来掌握。">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AI Agent 很强，但它会“越跑越偏” | 观澈辨机</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f6f5f0"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="AI Agent, 智能体, 语义漂移, 上下文窗口, LLM记忆, 复杂系统, 架构设计, 结构主权"><meta name="description" content="AI Agent 在短任务中表现出色，但在长流程中往往会出现“语义漂移”。本文探讨了上下文窗口与持久化记忆的本质区别，指出 Agent 当前的短板在于无法稳定承载系统结构，工程的结构主权依然需要人类来掌握。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AI Agent 很强，但它会“越跑越偏”">
 <meta property="og:url" content="https://blog.janus-path.com/2026/03/25/AI%20Agent%20%E5%BE%88%E5%BC%BA%EF%BC%8C%E4%BD%86%E5%AE%83%E4%BC%9A%E2%80%9C%E8%B6%8A%E8%B7%91%E8%B6%8A%E5%81%8F%E2%80%9D/">
@@ -115,13 +115,13 @@
       const activateDarkMode = () => {
         document.documentElement.setAttribute('data-theme', 'dark')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#151d1b')
         }
       }
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f6f5f0')
         }
       }
 

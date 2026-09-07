@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Agent 时代，我们需要重新思考密码管理 | 观澈辨机</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="Agent 时代,AI Agent,密码管理,凭据管理,凭据能力,KeptNear,Local Broker,MCP,GitHub Token,API Key,本地优先,Agent 安全"><meta name="description" content="Agent 开始代表人操作 GitHub、API 和云平台后，传统密码管理的“读取秘密”模型暴露出新的风险。本文结合 KeptNear Local Broker，探讨如何从秘密读取转向受控的凭据能力授权，并厘清本地优先与 Agent 安全的边界。">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Agent 时代，我们需要重新思考密码管理 | 观澈辨机</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f6f5f0"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="Agent 时代,AI Agent,密码管理,凭据管理,凭据能力,KeptNear,Local Broker,MCP,GitHub Token,API Key,本地优先,Agent 安全"><meta name="description" content="Agent 开始代表人操作 GitHub、API 和云平台后，传统密码管理的“读取秘密”模型暴露出新的风险。本文结合 KeptNear Local Broker，探讨如何从秘密读取转向受控的凭据能力授权，并厘清本地优先与 Agent 安全的边界。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Agent 时代，我们需要重新思考密码管理">
 <meta property="og:url" content="https://blog.janus-path.com/2026/08/01/Agent%20%E6%97%B6%E4%BB%A3%EF%BC%8C%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E6%80%9D%E8%80%83%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/">
@@ -115,13 +115,13 @@
       const activateDarkMode = () => {
         document.documentElement.setAttribute('data-theme', 'dark')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#151d1b')
         }
       }
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f6f5f0')
         }
       }
 

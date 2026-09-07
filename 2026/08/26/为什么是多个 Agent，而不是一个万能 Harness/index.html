@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>为什么是多个 Agent，而不是一个万能 Harness | 观澈辨机</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="AI Agent,Agent Harness,Agent Profile,RelayPact,Model Routing,Agent Delegation,Multi-Agent,Codex,Pi,OpenCode Go,Model-Harness Fit"><meta name="description" content="模型能接入 Harness，不代表这个 Agent 已经值得信任。本文讨论为什么经过调校的 Harness + Model 应被视为完整 Agent Profile，以及 RelayPact 如何让可信 Host Agent 受控委托其他 Agent。">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>为什么是多个 Agent，而不是一个万能 Harness | 观澈辨机</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f6f5f0"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="AI Agent,Agent Harness,Agent Profile,RelayPact,Model Routing,Agent Delegation,Multi-Agent,Codex,Pi,OpenCode Go,Model-Harness Fit"><meta name="description" content="模型能接入 Harness，不代表这个 Agent 已经值得信任。本文讨论为什么经过调校的 Harness + Model 应被视为完整 Agent Profile，以及 RelayPact 如何让可信 Host Agent 受控委托其他 Agent。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为什么是多个 Agent，而不是一个万能 Harness">
 <meta property="og:url" content="https://blog.janus-path.com/2026/08/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E4%B8%AA%20Agent%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%20Harness/">
@@ -117,13 +117,13 @@
       const activateDarkMode = () => {
         document.documentElement.setAttribute('data-theme', 'dark')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#151d1b')
         }
       }
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f6f5f0')
         }
       }
 

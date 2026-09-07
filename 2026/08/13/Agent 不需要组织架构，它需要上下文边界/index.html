@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Agent 不需要组织架构，它需要上下文边界 | 观澈辨机</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="AI Agent,Multi-Agent,上下文边界,Context,Workspace,Codex,上下文治理,Agent 架构,多 Agent 协同,Agent is replaceable"><meta name="description" content="Multi-Agent 系统真正需要的也许不是模仿人类岗位，而是明确知识、状态、权限、工具与决策的上下文边界。本文从 Codex 的 Workspace 和 Thread 实践出发，讨论为什么 Agent 可以替换，而 Context 应该持续存在。">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Agent 不需要组织架构，它需要上下文边界 | 观澈辨机</title><meta name="author" content="Chase Chou"><meta name="copyright" content="Chase Chou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f6f5f0"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="keywords" content="AI Agent,Multi-Agent,上下文边界,Context,Workspace,Codex,上下文治理,Agent 架构,多 Agent 协同,Agent is replaceable"><meta name="description" content="Multi-Agent 系统真正需要的也许不是模仿人类岗位，而是明确知识、状态、权限、工具与决策的上下文边界。本文从 Codex 的 Workspace 和 Thread 实践出发，讨论为什么 Agent 可以替换，而 Context 应该持续存在。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Agent 不需要组织架构，它需要上下文边界">
 <meta property="og:url" content="https://blog.janus-path.com/2026/08/13/Agent%20%E4%B8%8D%E9%9C%80%E8%A6%81%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%EF%BC%8C%E5%AE%83%E9%9C%80%E8%A6%81%E4%B8%8A%E4%B8%8B%E6%96%87%E8%BE%B9%E7%95%8C/">
@@ -116,13 +116,13 @@
       const activateDarkMode = () => {
         document.documentElement.setAttribute('data-theme', 'dark')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#151d1b')
         }
       }
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f6f5f0')
         }
       }
 

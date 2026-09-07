@@ -26,13 +26,22 @@ const builds = [
   }
 ]
 
-for (const build of builds) {
-  process.stdout.write(`\nBuilding ${build.name} site...\n`)
-  runHexo(['clean', '--config', build.config])
-  runHexo(['generate', '--config', build.config])
+async function main () {
+  for (const build of builds) {
+    process.stdout.write(`\nBuilding ${build.name} site...\n`)
+    runHexo(['clean', '--config', build.config])
+    runHexo(['generate', '--config', build.config])
+  }
+
+  require('./merge-sitemaps')()
+  const report = await require('./optimize-images').optimizeImages()
+  console.log('Image optimization:', report)
+  require('./verify-bilingual-build')()
+
+  process.stdout.write('\nBilingual site generated in public/.\n')
 }
 
-require('./merge-sitemaps')()
-require('./verify-bilingual-build')()
-
-process.stdout.write('\nBilingual site generated in public/.\n')
+main().catch(error => {
+  console.error(error)
+  process.exitCode = 1
+})

@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "build": "node tools/build-bilingual.js",
-    "build:zh": "hexo clean --config _config.yml,_config.zh-CN.yml && hexo generate --config _config.yml,_config.zh-CN.yml",
-    "build:en": "hexo clean --config _config.yml,_config.en.yml && hexo generate --config _config.yml,_config.en.yml",
+    "build:zh": "hexo clean --config _config.yml,_config.zh-CN.yml && hexo generate --config _config.yml,_config.zh-CN.yml && npm run optimize:images",
+    "build:en": "hexo clean --config _config.yml,_config.en.yml && hexo generate --config _config.yml,_config.en.yml && npm run optimize:images",
+    "optimize:images": "node tools/optimize-images.js",
+    "test:images": "node --test tools/optimize-images.test.js",
     "check:bilingual": "node tools/verify-bilingual-build.js",
     "clean": "hexo clean",
     "deploy": "npm run build && hexo deploy",
@@ -39,5 +41,9 @@
   },
   "volta": {
     "node": "22.15.0"
+  },
+  "devDependencies": {
+    "cheerio": "1.0.0",
+    "sharp": "^0.34.5"
   }
 }

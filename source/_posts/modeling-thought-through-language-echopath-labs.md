@@ -4,7 +4,7 @@ date: 2026-09-07 17:28:00
 slug: modeling-thought-through-language-echopath-labs
 lang: en
 translation_key: modeling-thought-through-language-echopath-labs
-cover: false
+cover: /assets/img/echopath-labs-thought-modeling.png
 categories: Meta Engineering
 description: My long-term goal is to model how people think through the words they express. EchoPath Labs is my first step, connecting meaning, bounded action, and cognitive history in engineering collaboration so that interpretations can be tested and revised through practice.
 keywords:

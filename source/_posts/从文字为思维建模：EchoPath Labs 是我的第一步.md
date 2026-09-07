@@ -4,7 +4,7 @@ date: 2026-09-07 17:28:00
 slug: modeling-thought-through-language-echopath-labs
 lang: zh-CN
 translation_key: modeling-thought-through-language-echopath-labs
-cover: false
+cover: /assets/img/echopath-labs-thought-modeling.png
 categories: MetaEngineering
 description: 我最终想做的，是通过人类表达的文字，为人的思维方式建立可以持续修正的模型。EchoPath Labs 是这条探索的第一步：从工程协作出发，连接表达、领域意义、受控行动与认知历史，让对思维的理解能够在实践中被检验。
 keywords:

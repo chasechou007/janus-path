@@ -110,15 +110,6 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/2026/02/02/structuralism-view-of-ioc/</loc>
-    
-    <lastmod>2026-08-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.janus-path.com/en/2026/03/26/team-atmosphere-noise-management/</loc>
     
     <lastmod>2026-08-05</lastmod>
@@ -129,6 +120,15 @@
   
   <url>
     <loc>https://blog.janus-path.com/en/2025/09/02/two-rarest-skills-in-ai-era-not-tech-or-business/</loc>
+    
+    <lastmod>2026-08-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.janus-path.com/en/2026/02/02/structuralism-view-of-ioc/</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -182,7 +182,7 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/2026/03/24/if-no-one-codes-ai-worsens/</loc>
+    <loc>https://blog.janus-path.com/en/2026/06/06/from-code-to-agent-governance/</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -191,7 +191,7 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/2026/06/06/from-code-to-agent-governance/</loc>
+    <loc>https://blog.janus-path.com/en/2026/03/24/if-no-one-codes-ai-worsens/</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -299,13 +299,6 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/tags/team-collaboration/</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.janus-path.com/en/tags/Skill/</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -327,6 +320,13 @@
   </url>
   
   <url>
+    <loc>https://blog.janus-path.com/en/tags/Philosophical-Thinking/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.janus-path.com/en/tags/Cognition/</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -334,7 +334,7 @@
   </url>
   
   <url>
-    <loc>https://blog.janus-path.com/en/tags/Philosophical-Thinking/</loc>
+    <loc>https://blog.janus-path.com/en/tags/team-collaboration/</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

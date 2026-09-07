@@ -1,16 +1,253 @@
-.wechat-card {
-  background-color: rgb(87, 189, 106) !important; /* 设置浅灰背景色，可替换为你想要的颜色 */
-  border-radius: 12px; /* 可选：圆角效果 */
-  padding: 10px; /* 可选：内部留白 */
-  box-sizing: border-box;
+/* JanusPath palette. Keep the compile-time accents in theme_color in sync. */
+:root {
+  --jp-bg: #f6f5f0;
+  --jp-surface: #fffefa;
+  --jp-surface-muted: #eaf0eb;
+  --jp-text: #293735;
+  --jp-heading: #1c302c;
+  --jp-muted: #626d67;
+  --jp-link: #234f4a;
+  --jp-link-hover: #35665e;
+  --jp-accent: #8a682f;
+  --jp-border: #dce2d9;
+  --jp-button: #234f4a;
+  --jp-button-hover: #35665e;
+  --jp-on-button: #fffefa;
+  --jp-hero-start: #172e2b;
+  --jp-hero-end: #234f4a;
+  --jp-on-hero: #f6f5f0;
+  --jp-hero-accent: #dfc28c;
+  --jp-nav-bg: rgba(255, 254, 250, 0.94);
+  --jp-header-mask: rgba(13, 35, 32, 0.48);
+  --jp-shadow: 0 3px 14px rgba(25, 47, 37, 0.04);
+  --jp-shadow-hover: 0 5px 20px rgba(25, 47, 37, 0.08);
+  --jp-radius: 10px;
+  --jp-control-radius: 6px;
 }
+
+[data-theme='dark'] {
+  --jp-bg: #151d1b;
+  --jp-surface: #1d2926;
+  --jp-surface-muted: #293a34;
+  --jp-text: #e0e7df;
+  --jp-heading: #f3f3e9;
+  --jp-muted: #adbab0;
+  --jp-link: #a4d1bf;
+  --jp-link-hover: #d2e9df;
+  --jp-accent: #dfc28c;
+  --jp-border: #3b4d44;
+  --jp-nav-bg: rgba(29, 41, 38, 0.95);
+  --jp-header-mask: rgba(13, 35, 32, 0.6);
+  --jp-shadow: 0 3px 14px rgba(0, 0, 0, 0.12);
+  --jp-shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* Map Butterfly's runtime tokens in both modes after its own dark rules. */
+:root,
+[data-theme='dark'] {
+  --global-bg: var(--jp-bg);
+  --font-color: var(--jp-text);
+  --text-highlight-color: var(--jp-heading);
+  --card-bg: var(--jp-surface);
+  --card-meta: var(--jp-muted);
+  --card-box-shadow: var(--jp-shadow);
+  --card-hover-box-shadow: var(--jp-shadow-hover);
+  --sidebar-bg: var(--jp-surface);
+  --sidebar-menu-bg: var(--jp-surface-muted);
+  --btn-bg: var(--jp-button);
+  --btn-hover-color: var(--jp-button-hover);
+  --btn-color: var(--jp-on-button);
+  --text-bg-hover: var(--jp-button);
+  --pseudo-hover: var(--jp-link-hover);
+  --toc-link-color: var(--jp-muted);
+  --blockquote-color: var(--jp-text);
+  --blockquote-bg: var(--jp-surface-muted);
+  --hr-border: var(--jp-border);
+  --hr-before-color: var(--jp-accent);
+  --scrollbar-color: var(--jp-muted);
+  --search-bg: var(--jp-surface);
+  --search-input-color: var(--jp-text);
+  --search-a-color: var(--jp-link);
+  --tab-border-color: var(--jp-border);
+  --tab-button-bg: var(--jp-surface-muted);
+  --tab-button-color: var(--jp-text);
+  --tab-button-hover-bg: var(--jp-surface-muted);
+  --tab-button-active-bg: var(--jp-surface);
+  --zoom-bg: var(--jp-bg);
+  --mark-bg: var(--jp-header-mask);
+  --hl-color: var(--jp-text);
+  --hl-bg: var(--jp-surface-muted);
+  --hltools-bg: var(--jp-border);
+  --hltools-color: var(--jp-text);
+  --hlnumber-bg: var(--jp-surface-muted);
+  --hlnumber-color: var(--jp-muted);
+  --hlscrollbar-bg: var(--jp-muted);
+}
+
+#recent-posts .recent-post-item,
+#aside-content .card-widget,
+.layout > #post,
+.layout > #page,
+.layout > #archive,
+.layout > #tag,
+.layout > #category {
+  border: 1px solid var(--jp-border);
+  border-radius: var(--jp-radius);
+}
+
+#aside-content .card-info,
+#aside-content .wechat-card,
+[data-theme='dark'] #aside-content #card-toc {
+  background: var(--jp-surface);
+}
+
 .wechat-card .item-headline {
-  display: none !important;
+  display: none;
 }
-.card-info {
-  background-color: #f0f8ff !important; /* 可替换为你喜欢的颜色 */
-  border-radius: 8px; /* 可选，圆角效果 */
-  padding: 12px; /* 可选，内部留白 */
+
+a {
+  color: var(--jp-link);
+}
+
+a:hover,
+#article-container a:hover,
+#recent-posts .recent-post-item > .recent-post-info > .article-title:hover,
+#recent-posts .recent-post-item > .recent-post-info > .article-meta-wrap a:hover,
+#aside-content .aside-list > .aside-list-item .content > .title:hover,
+#aside-content #card-toc .toc-content .toc-link:hover,
+.article-sort-item-title:hover {
+  color: var(--jp-link-hover);
+}
+
+#article-container a {
+  color: var(--jp-link);
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--jp-link);
+  outline-offset: 4px;
+}
+
+#page-header:not(.nav-fixed):not(.not-top-img) #nav a:focus-visible,
+.research-hero a:focus-visible {
+  outline-color: var(--jp-hero-accent);
+}
+
+/* Hexo emits inline tag colors; override only that presentation detail. */
+#aside-content .card-tag-cloud a,
+.tag-cloud-list a {
+  color: var(--jp-muted) !important;
+}
+
+#aside-content .card-tag-cloud a:hover,
+.tag-cloud-list a:hover {
+  color: var(--jp-link-hover) !important;
+}
+
+#aside-content .card-announcement .item-headline i {
+  color: var(--jp-accent);
+}
+
+#page-header.nav-fixed #nav,
+#page-header.not-top-img #nav,
+[data-theme='dark'] #page-header.nav-fixed #nav,
+[data-theme='dark'] #page-header.not-top-img #nav {
+  background: var(--jp-nav-bg);
+  box-shadow: 0 1px 0 var(--jp-border);
+}
+
+#page-header.nav-fixed #nav a:hover,
+#page-header.not-top-img #nav a:hover,
+#page-header.nav-fixed #nav #blog-info:hover {
+  color: var(--jp-link-hover);
+}
+
+#footer {
+  background: var(--jp-surface-muted);
+  border-top: 1px solid var(--jp-border);
+}
+
+#footer::before {
+  background: transparent;
+}
+
+#footer #footer-wrap,
+#footer #footer-wrap a {
+  color: var(--jp-muted);
+}
+
+#footer #footer-wrap a:hover {
+  color: var(--jp-link-hover);
+}
+
+#pagination .page-number.current,
+#aside-content #card-toc .toc-content .toc-link.active {
+  background: var(--jp-button);
+  color: var(--jp-on-button);
+}
+
+#pagination .page-number,
+#pagination .extend,
+#rightside > div > button,
+#rightside > div > a,
+#aside-content #card-toc .toc-content .toc-link,
+#aside-content #card-info-btn {
+  border-radius: var(--jp-control-radius);
+}
+
+#article-container blockquote {
+  border-left-color: var(--jp-accent);
+  border-radius: 0 var(--jp-control-radius) var(--jp-control-radius) 0;
+}
+
+#article-container :not(pre) > code {
+  color: var(--jp-link);
+  background: var(--jp-surface-muted);
+  border-radius: 4px;
+}
+
+#article-container table,
+#article-container th,
+#article-container td {
+  border-color: var(--jp-border);
+}
+
+#article-container thead {
+  background: var(--jp-surface-muted);
+}
+
+#post .post-copyright {
+  border-color: var(--jp-border);
+  border-radius: var(--jp-radius);
+}
+
+#post .post-copyright:hover {
+  box-shadow: var(--jp-shadow-hover);
+}
+
+#post .post-copyright::before,
+#post .post-copyright .post-copyright-meta {
+  color: var(--jp-accent);
+}
+
+#post .post-copyright .post-copyright-info a,
+#post .tag_share .post-meta__tags {
+  color: var(--jp-link);
+}
+
+#post .tag_share .post-meta__tags {
+  border-color: var(--jp-border);
+  border-radius: var(--jp-control-radius);
+}
+
+#post .tag_share .post-meta__tags:hover {
+  background: var(--jp-button);
+  color: var(--jp-on-button);
+}
+
+/* These theme hover rules use !important; match them for dark-mode contrast. */
+#aside-content .site-data > a:hover div {
+  color: var(--jp-link-hover) !important;
 }
 
 .research-page {
@@ -21,15 +258,15 @@
 .research-hero {
   margin-bottom: 28px;
   padding: 30px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #101820, #1f3a3d);
-  color: #f7fafc;
+  border-radius: var(--jp-radius);
+  background: linear-gradient(135deg, var(--jp-hero-start), var(--jp-hero-end));
+  color: var(--jp-on-hero);
 }
 
 .research-kicker,
 .research-label {
   margin: 0 0 8px;
-  color: #b58b45;
+  color: var(--jp-accent);
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -38,12 +275,12 @@
 
 .research-hero h2 {
   margin: 0 0 12px;
-  color: #fff;
+  color: var(--jp-on-hero);
 }
 
 .research-hero p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.84);
+  color: var(--jp-on-hero);
   line-height: 1.8;
 }
 
@@ -55,25 +292,33 @@
   margin-top: 18px;
 }
 
-.research-actions a,
-.paper-links a,
-.research-link {
+#article-container .research-actions a,
+#article-container .paper-links a,
+#article-container .research-link {
   display: inline-flex;
   align-items: center;
   min-height: 34px;
   padding: 7px 12px;
-  border-radius: 6px;
-  background: #123c46;
-  color: #fff;
+  border-radius: var(--jp-control-radius);
+  background: var(--jp-button);
+  color: var(--jp-on-button);
   font-size: 0.92rem;
   text-decoration: none;
 }
 
-.research-actions a:hover,
-.paper-links a:hover,
-.research-link:hover {
-  background: #b58b45;
-  color: #fff;
+#article-container .research-actions a:hover,
+#article-container .paper-links a:hover,
+#article-container .research-link:hover {
+  background: var(--jp-button-hover);
+  color: var(--jp-on-button);
+}
+
+.research-hero .research-kicker {
+  color: var(--jp-hero-accent);
+}
+
+#article-container .research-hero .research-actions a {
+  border: 1px solid var(--jp-hero-accent);
 }
 
 .research-section {
@@ -86,8 +331,8 @@
 
 .research-card {
   padding: 22px;
-  border: 1px solid rgba(18, 60, 70, 0.12);
-  border-radius: 8px;
+  border: 1px solid var(--jp-border);
+  border-radius: var(--jp-radius);
   background: var(--card-bg);
   box-shadow: var(--card-box-shadow);
 }

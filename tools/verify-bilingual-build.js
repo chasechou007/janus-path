@@ -39,6 +39,7 @@ const requiredTranslationKeys = new Set([
   'rethinking-password-management-in-the-agent-era',
   'software-engineering-hidden-thinking-models',
   'software-development-organizations-in-the-ai-era',
+  'software-is-changing-shape-in-the-agent-era',
   'stronger-agents-need-better-software-engineering',
   'structural-noise',
   'structuralism-look-at-the-structure-before-judging-people',
@@ -172,6 +173,11 @@ function verifyBilingualBuild () {
 
   const agentProfilesZhPost = read(agentProfilesPair.zh.generatedPath)
   const agentProfilesEnPost = read(agentProfilesPair.en.generatedPath)
+  const softwareShapePair = pairs.find(pair => pair.translationKey === 'software-is-changing-shape-in-the-agent-era')
+  if (!softwareShapePair) throw new Error('Agent-era software shape article pair is missing')
+
+  const softwareShapeZhPost = read(softwareShapePair.zh.generatedPath)
+  const softwareShapeEnPost = read(softwareShapePair.en.generatedPath)
   const understandBeforeRebuildingPair = pairs.find(pair => pair.translationKey === 'understand-a-structure-before-rebuilding-it')
   if (!understandBeforeRebuildingPair) throw new Error('Understand before rebuilding article pair is missing')
 
@@ -237,6 +243,17 @@ function verifyBilingualBuild () {
     expectIncludes(agentProfilesEnPost, tag, `English agent profiles article must render the ${tag} tag`)
   }
 
+  expectIncludes(softwareShapeZhPost, '/assets/img/software-changing-shape-agent-era.png', 'Chinese software shape article must render its cover')
+  expectIncludes(softwareShapeEnPost, '/assets/img/software-changing-shape-agent-era.png', 'English software shape article must render its cover')
+  expectIncludes(softwareShapeZhPost, 'MetaEngineering', 'Chinese software shape article must use the MetaEngineering category')
+  expectIncludes(softwareShapeEnPost, 'Meta Engineering', 'English software shape article must use the localized Meta Engineering category')
+  for (const tag of ['AI Agent', '软件工程', '架构设计', '系统思维', '人机协作']) {
+    expectIncludes(softwareShapeZhPost, tag, `Chinese software shape article must render the ${tag} tag`)
+  }
+  for (const tag of ['AI Agent', 'Software Engineering', 'Architecture', 'Systems Thinking', 'Human-AI Collaboration']) {
+    expectIncludes(softwareShapeEnPost, tag, `English software shape article must render the ${tag} tag`)
+  }
+
   expectIncludes(understandBeforeRebuildingZhPost, '/assets/img/understand-before-rebuilding-structures.png', 'Chinese reconstruction article must render its cover')
   expectIncludes(understandBeforeRebuildingEnPost, '/assets/img/understand-before-rebuilding-structures.png', 'English reconstruction article must render its cover')
   expectIncludes(understandBeforeRebuildingZhPost, 'janus-path-applied', 'Chinese reconstruction article must use the JanusPath Applied category')
@@ -298,10 +315,10 @@ function verifyBilingualBuild () {
   expectIncludes(zhPost, '"inLanguage": "zh-CN"', 'Chinese JSON-LD must declare Simplified Chinese')
   expectIncludes(enPost, '<meta property="og:locale" content="en_US">', 'English Open Graph locale must be en_US')
 
-  expectIncludes(zhHome, '为什么是多个 Agent，而不是一个万能 Harness', 'Chinese homepage must list the latest Chinese article')
-  expectExcludes(zhHome, 'Why Multiple Agents, Rather Than One Universal Harness', 'Chinese homepage must not list the latest English variant')
-  expectIncludes(enHome, 'Why Multiple Agents, Rather Than One Universal Harness', 'English homepage must list the latest English article')
-  expectExcludes(enHome, '为什么是多个 Agent，而不是一个万能 Harness', 'English homepage must not list the latest Chinese variant')
+  expectIncludes(zhHome, 'Agent 时代，软件正在改变形态', 'Chinese homepage must list the latest Chinese article')
+  expectExcludes(zhHome, 'In the Agent Era, Software Is Changing Shape', 'Chinese homepage must not list the latest English variant')
+  expectIncludes(enHome, 'In the Agent Era, Software Is Changing Shape', 'English homepage must list the latest English article')
+  expectExcludes(enHome, 'Agent 时代，软件正在改变形态', 'English homepage must not list the latest Chinese variant')
   expectIncludes(zhHome, 'rel="canonical" href="https://blog.janus-path.com/"', 'Chinese homepage canonical must remain at the domain root')
   expectIncludes(enHome, 'rel="canonical" href="https://blog.janus-path.com/en/"', 'English homepage canonical must use /en/')
   for (const home of [zhHome, enHome]) {
@@ -418,6 +435,10 @@ function verifyBilingualBuild () {
   expectExcludes(zhFeed, '<title>Why Multiple Agents, Rather Than One Universal Harness</title>', 'Chinese Feed must exclude the English agent profiles article')
   expectIncludes(enFeed, '<title>Why Multiple Agents, Rather Than One Universal Harness</title>', 'English Feed must include the agent profiles article')
   expectExcludes(enFeed, '<title>为什么是多个 Agent，而不是一个万能 Harness</title>', 'English Feed must exclude the Chinese agent profiles article')
+  expectIncludes(zhFeed, '<title>Agent 时代，软件正在改变形态</title>', 'Chinese Feed must include the software shape article')
+  expectExcludes(zhFeed, '<title>In the Agent Era, Software Is Changing Shape</title>', 'Chinese Feed must exclude the English software shape article')
+  expectIncludes(enFeed, '<title>In the Agent Era, Software Is Changing Shape</title>', 'English Feed must include the software shape article')
+  expectExcludes(enFeed, '<title>Agent 时代，软件正在改变形态</title>', 'English Feed must exclude the Chinese software shape article')
 
   expectIncludes(sitemap, 'xmlns:xhtml="http://www.w3.org/1999/xhtml"', 'Root Sitemap must declare the xhtml namespace')
   expectExcludes(sitemap, '<loc>https://blog.janus-path.com/tags/', 'Chinese tag archives must be excluded from the root Sitemap')
@@ -430,6 +451,13 @@ function verifyBilingualBuild () {
     expectIncludes(entry, `hreflang="zh-Hans" href="${agentProfilesPair.zh.url}"`, `Agent profiles Sitemap entry must reference Chinese variant: ${url}`)
     expectIncludes(entry, `hreflang="en" href="${agentProfilesPair.en.url}"`, `Agent profiles Sitemap entry must reference English variant: ${url}`)
     expectIncludes(entry, `hreflang="x-default" href="${agentProfilesPair.zh.url}"`, `Agent profiles Sitemap entry must define x-default: ${url}`)
+  }
+  for (const url of [softwareShapePair.zh.url, softwareShapePair.en.url]) {
+    const entry = sitemapEntry(sitemap, url)
+    if (!entry) throw new Error(`Root Sitemap is missing ${url}`)
+    expectIncludes(entry, `hreflang="zh-Hans" href="${softwareShapePair.zh.url}"`, `Software shape Sitemap entry must reference Chinese variant: ${url}`)
+    expectIncludes(entry, `hreflang="en" href="${softwareShapePair.en.url}"`, `Software shape Sitemap entry must reference English variant: ${url}`)
+    expectIncludes(entry, `hreflang="x-default" href="${softwareShapePair.zh.url}"`, `Software shape Sitemap entry must define x-default: ${url}`)
   }
   for (const url of [zhPostUrl, enPostUrl]) {
     const entry = sitemapEntry(sitemap, url)

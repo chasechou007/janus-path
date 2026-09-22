@@ -484,12 +484,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         e.preventDefault()
         btf.scrollToDest(btf.getEleTop(document.getElementById(decodeURI(target.getAttribute('href')).replace('#', ''))), 300)
-        if (window.innerWidth < 900) {
+        if (window.innerWidth <= 900) {
           $cardTocLayout.classList.remove('open')
+          document.getElementById('mobile-toc-button')?.setAttribute('aria-expanded', 'false')
         }
       }
 
       btf.addEventListenerPjax($cardToc, 'click', tocItemClickFn)
+      btf.addEventListenerPjax(document, 'keydown', e => {
+        if (e.key !== 'Escape' || window.innerWidth > 900 || !$cardTocLayout.classList.contains('open')) return
+        $cardTocLayout.classList.remove('open')
+        const button = document.getElementById('mobile-toc-button')
+        button?.setAttribute('aria-expanded', 'false')
+        button?.focus({ preventScroll: true })
+      })
 
       autoScrollToc = item => {
         const sidebarHeight = $cardToc.clientHeight
@@ -648,7 +656,8 @@ document.addEventListener('DOMContentLoaded', () => {
         tocEle.style.transformOrigin = `right ${tocEleHeight - tocEleBottom - btData.height / 2}px`
       }
 
-      tocEle.classList.toggle('open')
+      const isOpen = tocEle.classList.toggle('open')
+      item.setAttribute('aria-expanded', String(isOpen))
       tocEle.addEventListener('transitionend', () => {
         tocEle.style.cssText = ''
       }, { once: true })
